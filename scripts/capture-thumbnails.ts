@@ -84,8 +84,12 @@ async function capture() {
 
   try {
     console.log(`Using server: ${serverUrl}`);
-    const headlessMode =
-      process.env.HEADLESS === "false" ? false : ("new" as const);
+    const headlessMode: boolean | "shell" =
+      process.env.HEADLESS === "false"
+        ? false
+        : process.env.HEADLESS === "shell"
+          ? "shell"
+          : true;
     const browser = await puppeteer.launch({
       executablePath: CHROME_PATH,
       headless: headlessMode,
@@ -109,7 +113,7 @@ async function capture() {
       const url = `${serverUrl}/p/${entry.id}?thumb=1`;
       await page.goto(url, { waitUntil: "domcontentloaded" });
       await page.waitForSelector("canvas", { timeout: 15_000 });
-      await page.waitForTimeout(400);
+      await new Promise((resolve) => setTimeout(resolve, 400));
 
       const canvas =
         (await page.$('[data-viewer=\"preposition\"] canvas')) ??
