@@ -1,0 +1,244 @@
+import fs from "fs";
+import path from "path";
+import * as THREE from "three";
+
+import { PREPOSITIONS } from "../src/data/prepositions";
+import type { SceneConfig } from "../src/data/types";
+
+const SIZE = 120;
+const PADDING = 12;
+const FRONT_STROKE = "#0f172a";
+const BACK_STROKE = "#cbd5e1";
+const FRONT_OPACITY = 0.85;
+const BACK_OPACITY = 0.9;
+const BALL_COLOR = "#7c3aed";
+
+const EDGE_INDEXES: Array<[number, number]> = [
+  [0, 1],
+  [1, 2],
+  [2, 3],
+  [3, 0],
+  [4, 5],
+  [5, 6],
+  [6, 7],
+  [7, 4],
+  [0, 4],
+  [1, 5],
+  [2, 6],
+  [3, 7],
+];
+
+const FACE_INDEXES: Array<[number, number, number, number]> = [
+  [4, 5, 6, 7], // front (+z)
+  [0, 3, 2, 1], // back (-z)
+  [1, 2, 6, 5], // right (+x)
+  [0, 4, 7, 3], // left (-x)
+  [3, 7, 6, 2], // top (+y)
+  [0, 1, 5, 4], // bottom (-y)
+];
+
+type Vec3 = [number, number, number];
+
+type Vec2 = [number, number];
+
+function project(point: Vec3, camera: THREE.PerspectiveCamera) {
+  const vector = new THREE.Vector3(...point);
+  const cameraSpace = vector.clone().applyMatrix4(camera.matrixWorldInverse);
+  const projected = vector.project(camera);
+  return { point: [projected.x, -projected.y] as Vec2, depth: -cameraSpace.z };
+}
+
+function cubeVertices(center: Vec3, size: number): Vec3[] {
+  const h = size / 2;
+  const [cx, cy, cz] = center;
+  return [
+    [cx - h, cy - h, cz - h],
+    [cx + h, cy - h, cz - h],
+    [cx + h, cy + h, cz - h],
+    [cx - h, cy + h, cz - h],
+    [cx - h, cy - h, cz + h],
+    [cx + h, cy - h, cz + h],
+    [cx + h, cy + h, cz + h],
+    [cx - h, cy + h, cz + h],
+  ];
+}
+
+function buildCubeOffsets(scene: SceneConfig): Vec3[] {
+  const variant = scene.variant ?? "singleCube";
+  if (variant === "singleCube") {
+    return [[0, 0, 0]];
+  }
+  if (variant === "twoCubes") {
+    return [
+      [-0.9, 0, 0],
+      [0.9, 0, 0],
+    ];
+  }
+  const offsets: Vec3[] = [];
+  const radius = 1.1;
+  const count = 4;
+  for (let i = 0; i < count; i += 1) {
+    const angle = (Math.PI * 2 * i) / count;
+    offsets.push([Math.cos(angle) * radius, 0, Math.sin(angle) * radius]);
+  }
+  return offsets;
+}
+
+function normalizePoints(points: Vec2[]) {
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  points.forEach(([x, y]) => {
+    minX = Math.min(minX, x);
+    minY = Math.min(minY, y);
+    maxX = Math.max(maxX, x);
+    maxY = Math.max(maxY, y);
+  });
+
+  const width = maxX - minX || 1;
+  const height = maxY - minY || 1;
+  const scale = (SIZE - PADDING * 2) / Math.max(width, height);
+
+  const normalized = points.map(([x, y]) => [
+    (x - minX) * scale + PADDING,
+    (y - minY) * scale + PADDING,
+  ]);
+
+  return {
+    points: normalized,
+    scale,
+  };
+}
+
+function ballProjectedRadius(center: Vec3, radius: number, camera: THREE.PerspectiveCamera) {
+  const centerProjected = project(center, camera).point;
+  const axisOffsets: Vec3[] = [
+    [center[0] + radius, center[1], center[2]],
+    [center[0], center[1] + radius, center[2]],
+    [center[0], center[1], center[2] + radius],
+  ];
+  const distances = axisOffsets.map((point) => {
+    const projected = project(point, camera).point;
+    const dx = projected[0] - centerProjected[0];
+    const dy = projected[1] - centerProjected[1];
+    return Math.hypot(dx, dy);
+  });
+  return Math.max(...distances);
+}
+
+function buildSvg(scene: SceneConfig) {
+  const offsets = buildCubeOffsets(scene);
+  const camera = new THREE.PerspectiveCamera(
+    scene.camera.fov ?? 42,
+    1,
+    0.1,
+    100,
+  );
+  camera.position.set(...scene.camera.position);
+  camera.lookAt(new THREE.Vector3(...scene.camera.target));
+  camera.updateProjectionMatrix();
+  camera.updateMatrixWorld(true);
+  const vertices: Vec3[] = [];
+  const cubes: Vec3[][] = [];
+  offsets.forEach((offset) => {
+    const center: Vec3 = [
+      scene.cube.position[0] + offset[0],
+      scene.cube.position[1] + offset[1],
+      scene.cube.position[2] + offset[2],
+    ];
+    const cube = cubeVertices(center, scene.cube.size);
+    cubes.push(cube);
+    vertices.push(...cube);
+  });
+
+  const projectedVertices = vertices.map((point) => project(point, camera));
+  const ballProjected = project(scene.ball.position as Vec3, camera);
+  const ballRadiusProjected = ballProjectedRadius(
+    scene.ball.position as Vec3,
+    scene.ball.radius,
+    camera,
+  );
+
+  const ballBoundsRadius = ballRadiusProjected * 1.1;
+  const { points: normalized, scale } = normalizePoints([
+    ...projectedVertices.map((item) => item.point),
+    ballProjected.point,
+    [
+      ballProjected.point[0] - ballBoundsRadius,
+      ballProjected.point[1] - ballBoundsRadius,
+    ],
+    [
+      ballProjected.point[0] + ballBoundsRadius,
+      ballProjected.point[1] + ballBoundsRadius,
+    ],
+  ]);
+  const normalizedBallIndex = projectedVertices.length;
+  const normalizedBall = normalized[normalizedBallIndex];
+  const normalizedVertices = normalized.slice(0, projectedVertices.length);
+
+  const frontEdges: string[] = [];
+  const backEdges: string[] = [];
+  let vertexIndex = 0;
+  cubes.forEach((cube) => {
+    const faceVisibility = FACE_INDEXES.map((face) => {
+      const a = new THREE.Vector3(...cube[face[0]]);
+      const b = new THREE.Vector3(...cube[face[1]]);
+      const c = new THREE.Vector3(...cube[face[2]]);
+      const d = new THREE.Vector3(...cube[face[3]]);
+      const normal = b.clone().sub(a).cross(c.clone().sub(a)).normalize();
+      const center = a
+        .clone()
+        .add(b)
+        .add(c)
+        .add(d)
+        .multiplyScalar(0.25);
+      const viewDir = camera.position.clone().sub(center).normalize();
+      return normal.dot(viewDir) > 0;
+    });
+
+    EDGE_INDEXES.forEach(([start, end]) => {
+      const a = normalizedVertices[vertexIndex + start];
+      const b = normalizedVertices[vertexIndex + end];
+      const line = `<line x1="${a[0].toFixed(2)}" y1="${a[1].toFixed(
+        2,
+      )}" x2="${b[0].toFixed(2)}" y2="${b[1].toFixed(2)}" />`;
+      const isFront = FACE_INDEXES.some((face, index) => {
+        if (!faceVisibility[index]) return false;
+        return face.includes(start) && face.includes(end);
+      });
+      if (isFront) {
+        frontEdges.push(line);
+      } else {
+        backEdges.push(line);
+      }
+    });
+    vertexIndex += 8;
+  });
+
+  const projectedBallRadius = ballRadiusProjected * scale;
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${SIZE}" height="${SIZE}" viewBox="0 0 ${SIZE} ${SIZE}" fill="none">
+  <g stroke="${BACK_STROKE}" stroke-opacity="${BACK_OPACITY}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    ${backEdges.join("\n    ")}
+  </g>
+  <g stroke="${FRONT_STROKE}" stroke-opacity="${FRONT_OPACITY}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    ${frontEdges.join("\n    ")}
+  </g>
+  <circle cx="${normalizedBall[0].toFixed(2)}" cy="${normalizedBall[1].toFixed(
+    2,
+  )}" r="${projectedBallRadius.toFixed(2)}" fill="${BALL_COLOR}" />
+</svg>`;
+}
+
+const outDir = path.join(process.cwd(), "public", "thumbnails");
+fs.mkdirSync(outDir, { recursive: true });
+
+PREPOSITIONS.forEach((entry) => {
+  const svg = buildSvg(entry.scene);
+  fs.writeFileSync(path.join(outDir, `${entry.id}.svg`), svg, "utf8");
+});
+
+console.log(`Generated ${PREPOSITIONS.length} thumbnails in ${outDir}`);
