@@ -47,4 +47,22 @@ export type PrepositionEntry = {
   }>;
   relatedIds: string[];
   scene: SceneConfig;
+  comparison?: {
+    i18n: Record<
+      Locale,
+      {
+        summary: string;
+        differences: Array<{
+          term: string;
+          description: string;
+          examples?: Array<{
+            term: string;
+            sentence: string;
+            translation?: string;
+          }>;
+        }>;
+      }
+    >;
+  };
+  collocations?: Record<Locale, string[]>;
 };

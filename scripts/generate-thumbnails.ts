@@ -12,6 +12,12 @@ const BACK_STROKE = "#cbd5e1";
 const FRONT_OPACITY = 0.85;
 const BACK_OPACITY = 0.9;
 const BALL_COLOR = "#7c3aed";
+const MOTION_STROKE = "#9ca3af";
+const MOTION_OPACITY = 0.8;
+const MOTION_WIDTH = 0.8;
+const MOTION_DASH = "4 4";
+const LOOP_ARC_PORTION = 0.7;
+const LOOP_DISTANCE_EPS = 0.05;
 
 const EDGE_INDEXES: Array<[number, number]> = [
   [0, 1],
@@ -128,6 +134,72 @@ function ballProjectedRadius(center: Vec3, radius: number, camera: THREE.Perspec
   return Math.max(...distances);
 }
 
+function distance3(a: Vec3, b: Vec3) {
+  const dx = a[0] - b[0];
+  const dy = a[1] - b[1];
+  const dz = a[2] - b[2];
+  return Math.sqrt(dx * dx + dy * dy + dz * dz);
+}
+
+function simplifyOpenPath(points: Vec3[]) {
+  if (points.length < 3) return points;
+  const origin = points[0];
+  let bestIndex = 1;
+  let bestDistance = distance3(origin, points[1]);
+  for (let i = 2; i < points.length; i += 1) {
+    const dist = distance3(origin, points[i]);
+    if (dist > bestDistance + 0.001 || Math.abs(dist - bestDistance) < 0.001) {
+      bestDistance = dist;
+      bestIndex = i;
+    }
+  }
+  return points.slice(0, bestIndex + 1);
+}
+
+function sampleCurve(points: Vec3[], closed: boolean, portion = 1, count = 48) {
+  const curve = new THREE.CatmullRomCurve3(
+    points.map((point) => new THREE.Vector3(...point)),
+    closed,
+    "centripetal",
+  );
+  const samples: Vec3[] = [];
+  for (let i = 0; i <= count; i += 1) {
+    const t = (i / count) * portion;
+    const p = curve.getPointAt(t);
+    samples.push([p.x, p.y, p.z]);
+  }
+  return samples;
+}
+
+function buildMotionPath(scene: SceneConfig): Vec3[] {
+  const animation = scene.animation;
+  if (!animation || animation.type !== "path") return [];
+
+  if (animation.path && animation.path.length >= 2) {
+    let points = animation.path;
+    const isClosed =
+      Boolean(animation.closed) ||
+      distance3(points[0], points[points.length - 1]) < LOOP_DISTANCE_EPS;
+    if (isClosed && distance3(points[0], points[points.length - 1]) < LOOP_DISTANCE_EPS) {
+      points = points.slice(0, -1);
+    }
+    if (isClosed) {
+      return sampleCurve(points, true, LOOP_ARC_PORTION);
+    }
+    const simplified = simplifyOpenPath(points);
+    if (simplified.length >= 3) {
+      return sampleCurve(simplified, false, 1);
+    }
+    return simplified;
+  }
+
+  if (animation.from && animation.to) {
+    return [animation.from, animation.to];
+  }
+
+  return [];
+}
+
 function buildSvg(scene: SceneConfig) {
   const offsets = buildCubeOffsets(scene);
   const camera = new THREE.PerspectiveCamera(
@@ -160,10 +232,13 @@ function buildSvg(scene: SceneConfig) {
     scene.ball.radius,
     camera,
   );
+  const motionPoints = buildMotionPath(scene);
+  const motionProjected = motionPoints.map((point) => project(point, camera));
 
   const ballBoundsRadius = ballRadiusProjected * 1.1;
-  const { points: normalized, scale } = normalizePoints([
+  const pointsForNormalize: Vec2[] = [
     ...projectedVertices.map((item) => item.point),
+    ...motionProjected.map((item) => item.point),
     ballProjected.point,
     [
       ballProjected.point[0] - ballBoundsRadius,
@@ -173,10 +248,18 @@ function buildSvg(scene: SceneConfig) {
       ballProjected.point[0] + ballBoundsRadius,
       ballProjected.point[1] + ballBoundsRadius,
     ],
-  ]);
+  ];
+  const { points: normalized, scale } = normalizePoints(pointsForNormalize);
   const normalizedBallIndex = projectedVertices.length;
-  const normalizedBall = normalized[normalizedBallIndex];
+  const normalizedBall =
+    normalized[normalizedBallIndex + motionProjected.length];
   const normalizedVertices = normalized.slice(0, projectedVertices.length);
+  const normalizedMotion = motionProjected.length
+    ? normalized.slice(
+        projectedVertices.length,
+        projectedVertices.length + motionProjected.length,
+      )
+    : [];
 
   const frontEdges: string[] = [];
   const backEdges: string[] = [];
@@ -219,6 +302,24 @@ function buildSvg(scene: SceneConfig) {
 
   const projectedBallRadius = ballRadiusProjected * scale;
 
+  let motionPathMarkup = "";
+  if (normalizedMotion.length >= 2) {
+    const pathData = normalizedMotion
+      .map((point, index) =>
+        `${index === 0 ? "M" : "L"}${point[0].toFixed(2)} ${point[1].toFixed(
+          2,
+        )}`,
+      )
+      .join(" ");
+    motionPathMarkup = `
+  <defs>
+    <marker id="motion-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="${MOTION_STROKE}" />
+    </marker>
+  </defs>
+  <path d="${pathData}" fill="none" stroke="${MOTION_STROKE}" stroke-opacity="${MOTION_OPACITY}" stroke-width="${MOTION_WIDTH}" stroke-linecap="round" stroke-dasharray="${MOTION_DASH}" marker-end="url(#motion-arrow)" />`;
+  }
+
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${SIZE}" height="${SIZE}" viewBox="0 0 ${SIZE} ${SIZE}" fill="none">
   <g stroke="${BACK_STROKE}" stroke-opacity="${BACK_OPACITY}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -227,6 +328,7 @@ function buildSvg(scene: SceneConfig) {
   <g stroke="${FRONT_STROKE}" stroke-opacity="${FRONT_OPACITY}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
     ${frontEdges.join("\n    ")}
   </g>
+  ${motionPathMarkup}
   <circle cx="${normalizedBall[0].toFixed(2)}" cy="${normalizedBall[1].toFixed(
     2,
   )}" r="${projectedBallRadius.toFixed(2)}" fill="${BALL_COLOR}" />

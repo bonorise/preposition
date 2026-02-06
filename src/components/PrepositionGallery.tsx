@@ -4,10 +4,12 @@ import { useMemo, useState } from "react";
 
 import type { Locale, PrepositionEntry } from "@/data/types";
 import { getUiText } from "@/data/i18n";
+import { partitionByHomeCategory } from "@/lib/prepositionCategory";
 import { filterPrepositions } from "@/lib/search";
 import type { ThumbnailFormat } from "@/lib/thumbnail";
 import { Input } from "@/components/ui/input";
 import PrepositionCard from "@/components/PrepositionCard";
+import SpatialPlayground from "@/components/SpatialPlayground";
 import { useLocale } from "@/components/LocaleProvider";
 
 type PrepositionGalleryProps = {
@@ -30,6 +32,30 @@ export default function PrepositionGallery({
     () => filterPrepositions(entries, query, activeLocale),
     [entries, query, activeLocale],
   );
+  const groupedResults = useMemo(
+    () => partitionByHomeCategory(results),
+    [results],
+  );
+  const sections = [
+    {
+      key: "space",
+      title: ui.sectionSpaceTitle,
+      description: ui.sectionSpaceDesc,
+      entries: groupedResults.space,
+    },
+    {
+      key: "time",
+      title: ui.sectionTimeTitle,
+      description: ui.sectionTimeDesc,
+      entries: groupedResults.time,
+    },
+    {
+      key: "dynamic",
+      title: ui.sectionDynamicTitle,
+      description: ui.sectionDynamicDesc,
+      entries: groupedResults.dynamic,
+    },
+  ] as const;
 
   return (
     <section className="space-y-10">
@@ -78,6 +104,8 @@ export default function PrepositionGallery({
         </div>
       </div>
 
+      <SpatialPlayground />
+
       <div className="space-y-4">
         <h2 className="font-display text-2xl tracking-tight text-[color:var(--color-ink)]">
           {ui.galleryLabel}
@@ -87,18 +115,49 @@ export default function PrepositionGallery({
             <p className="text-base font-semibold">{ui.emptyTitle}</p>
             <p className="mt-2 text-sm">{ui.emptyBody}</p>
           </div>
-        ) : null}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {results.map((entry, index) => (
-            <PrepositionCard
-              key={entry.id}
-              entry={entry}
-              locale={activeLocale}
-              index={index}
-              thumbnailFormat={thumbnailFormat}
-            />
-          ))}
-        </div>
+        ) : (
+          <div className="space-y-8">
+            {sections.map((section) => (
+              <section
+                key={section.key}
+                className="space-y-4 rounded-[var(--radius-md)] border border-[color:var(--color-edge)] bg-white/55 p-5"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="space-y-1">
+                    <h3 className="font-display text-xl tracking-tight text-[color:var(--color-ink)]">
+                      {section.title}
+                    </h3>
+                    <p className="text-sm text-[color:var(--color-muted)]">
+                      {section.description}
+                    </p>
+                  </div>
+                  <span className="rounded-full border border-[color:var(--color-edge)] bg-white/70 px-3 py-1 text-xs uppercase tracking-[0.15em] text-[color:var(--color-muted)]">
+                    {section.entries.length} {ui.countLabel}
+                  </span>
+                </div>
+
+                {section.entries.length === 0 ? (
+                  <div className="rounded-[var(--radius-md)] border border-dashed border-[color:var(--color-edge)] bg-white/60 p-4 text-sm text-[color:var(--color-muted)]">
+                    {ui.sectionEmpty}
+                  </div>
+                ) : (
+                  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    {section.entries.map((entry, index) => (
+                      <PrepositionCard
+                        key={entry.id}
+                        entry={entry}
+                        locale={activeLocale}
+                        index={index}
+                        category={section.key}
+                        thumbnailFormat={thumbnailFormat}
+                      />
+                    ))}
+                  </div>
+                )}
+              </section>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

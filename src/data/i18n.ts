@@ -29,12 +29,30 @@ export const UI_TEXT: Record<
     detailControlsTitle: string;
     detailResetCamera: string;
     detailPlayAnimation: string;
+    detailFullscreen: string;
+    detailExitFullscreen: string;
     detailPrev: string;
     detailNext: string;
     detailViewerHint: string;
     detailViewerHelper: string;
     detailRelatedTitle: string;
     directionFront: string;
+    playgroundTitle: string;
+    playgroundHint: string;
+    playgroundModeStatic: string;
+    playgroundModeDynamic: string;
+    playgroundMotionHint: string;
+    detailComparisonTitle: string;
+    detailComparisonPlaceholder: string;
+    detailCollocationsTitle: string;
+    detailCollocationsPlaceholder: string;
+    sectionSpaceTitle: string;
+    sectionSpaceDesc: string;
+    sectionTimeTitle: string;
+    sectionTimeDesc: string;
+    sectionDynamicTitle: string;
+    sectionDynamicDesc: string;
+    sectionEmpty: string;
     faqTitle: string;
     faqSubtitle: string;
     faqItems: Array<{ question: string; answer: string }>;
@@ -66,12 +84,30 @@ export const UI_TEXT: Record<
     detailControlsTitle: "视角控制",
     detailResetCamera: "重置视角",
     detailPlayAnimation: "播放动效",
+    detailFullscreen: "全屏演示",
+    detailExitFullscreen: "取消全屏",
     detailPrev: "上一个",
     detailNext: "下一个",
     detailViewerHint: "拖拽旋转 / 滚轮缩放 / 双指缩放",
     detailViewerHelper: "部分介词需要动态表达，MVP 先用静态位置 + 文字说明。",
     detailRelatedTitle: "相关介词",
     directionFront: "前",
+    playgroundTitle: "拖动小球识别介词",
+    playgroundHint: "拖动紫色小球，观察它与立方体的相对位置。",
+    playgroundModeStatic: "静态介词",
+    playgroundModeDynamic: "动态介词",
+    playgroundMotionHint: "切到动态介词后，沿虚线路径拖动小球，感受方向与过程。",
+    detailComparisonTitle: "差异解析",
+    detailComparisonPlaceholder: "内容整理中，后续补充。",
+    detailCollocationsTitle: "常见词组组合",
+    detailCollocationsPlaceholder: "内容整理中，后续补充。",
+    sectionSpaceTitle: "空间介词",
+    sectionSpaceDesc: "聚焦位置关系：内外、上下、前后、远近。",
+    sectionTimeTitle: "时间介词",
+    sectionTimeDesc: "聚焦时间表达：时间点、时间段与时限。",
+    sectionDynamicTitle: "动态介词",
+    sectionDynamicDesc: "聚焦运动过程：路径、方向与起终点变化。",
+    sectionEmpty: "当前搜索下暂无该分类词条。",
     faqTitle: "FAQ · Preposition Learning",
     faqSubtitle: "常见问题",
     faqItems: [
@@ -137,6 +173,8 @@ export const UI_TEXT: Record<
     detailControlsTitle: "Controls",
     detailResetCamera: "Reset Camera",
     detailPlayAnimation: "Play motion",
+    detailFullscreen: "Fullscreen",
+    detailExitFullscreen: "Exit fullscreen",
     detailPrev: "Previous",
     detailNext: "Next",
     detailViewerHint: "Drag to rotate / Scroll to zoom / Pinch to zoom",
@@ -144,6 +182,24 @@ export const UI_TEXT: Record<
       "Some prepositions need motion; MVP shows a static cue + notes.",
     detailRelatedTitle: "Related prepositions",
     directionFront: "Front",
+    playgroundTitle: "Drag the ball to learn prepositions",
+    playgroundHint:
+      "Drag the purple ball and watch the preposition update in real time.",
+    playgroundModeStatic: "Static prepositions",
+    playgroundModeDynamic: "Dynamic prepositions",
+    playgroundMotionHint:
+      "Switch to dynamic mode and drag the ball along the dashed path to feel direction and motion.",
+    detailComparisonTitle: "Key differences",
+    detailComparisonPlaceholder: "Content coming soon.",
+    detailCollocationsTitle: "Common collocations",
+    detailCollocationsPlaceholder: "Content coming soon.",
+    sectionSpaceTitle: "Spatial prepositions",
+    sectionSpaceDesc: "Focus on location relations: inside/outside, above/below, front/back, near/far.",
+    sectionTimeTitle: "Time prepositions",
+    sectionTimeDesc: "Focus on time points, durations, and deadlines.",
+    sectionDynamicTitle: "Dynamic prepositions",
+    sectionDynamicDesc: "Focus on movement paths, direction, and start-end transitions.",
+    sectionEmpty: "No items in this section for the current query.",
     faqTitle: "FAQ · Preposition Learning",
     faqSubtitle: "Common questions",
     faqItems: [

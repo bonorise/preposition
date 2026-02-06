@@ -54,6 +54,163 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
       },
     ],
     scene: makeScene([0, 0, 0]),
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "in 强调在边界之内；和 inside/into/on 等词相比，in 更偏静态位置。",
+          differences: [
+            {
+              term: "inside",
+              description: "inside 更强调边界与内部空间感，比 in 更“在里面”。",
+              examples: [
+                {
+                  term: "inside",
+                  sentence: "The keys are inside the box.",
+                  translation: "钥匙在盒子内部。",
+                },
+                {
+                  term: "in",
+                  sentence: "The keys are in the box.",
+                  translation: "钥匙在盒子里。",
+                },
+              ],
+            },
+            {
+              term: "into",
+              description: "into 表示从外到内的运动过程；in 只表示位置。",
+              examples: [
+                {
+                  term: "into",
+                  sentence: "The cat jumped into the box.",
+                  translation: "猫跳进盒子里。",
+                },
+                {
+                  term: "in",
+                  sentence: "The cat is in the box.",
+                  translation: "猫在盒子里。",
+                },
+              ],
+            },
+            {
+              term: "on",
+              description: "on 强调接触表面；in 强调被包在内部。",
+              examples: [
+                {
+                  term: "on",
+                  sentence: "The book is on the box.",
+                  translation: "书在盒子上。",
+                },
+                {
+                  term: "in",
+                  sentence: "The book is in the box.",
+                  translation: "书在盒子里。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "In focuses on being inside a boundary; compared with inside/into/on, it describes a static position.",
+          differences: [
+            {
+              term: "inside",
+              description:
+                "Inside emphasizes the boundary and interior space more strongly.",
+              examples: [
+                {
+                  term: "inside",
+                  sentence: "The keys are inside the box.",
+                },
+                {
+                  term: "in",
+                  sentence: "The keys are in the box.",
+                },
+              ],
+            },
+            {
+              term: "into",
+              description:
+                "Into is motion from outside to inside; in is a static location.",
+              examples: [
+                {
+                  term: "into",
+                  sentence: "The cat jumped into the box.",
+                },
+                {
+                  term: "in",
+                  sentence: "The cat is in the box.",
+                },
+              ],
+            },
+            {
+              term: "on",
+              description:
+                "On means touching a surface; in means enclosed within.",
+              examples: [
+                {
+                  term: "on",
+                  sentence: "The book is on the box.",
+                },
+                {
+                  term: "in",
+                  sentence: "The book is in the box.",
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocations: {
+      "zh-CN": [
+        "in a taxi",
+        "in a car",
+        "in prison",
+        "in the bedroom",
+        "in the classroom",
+        "in the garden",
+        "in the park",
+        "in the kitchen",
+        "in a book",
+        "in a picture",
+        "in the newspaper",
+        "in my pocket",
+        "in my bag",
+        "in a building",
+        "in the city",
+        "in the morning",
+        "in the evening",
+        "in a hurry",
+        "in love",
+        "in trouble",
+        "in the hallway",
+      ],
+      en: [
+        "in a taxi",
+        "in a car",
+        "in prison",
+        "in the bedroom",
+        "in the classroom",
+        "in the garden",
+        "in the park",
+        "in the kitchen",
+        "in a book",
+        "in a picture",
+        "in the newspaper",
+        "in my pocket",
+        "in my bag",
+        "in a building",
+        "in the city",
+        "in the morning",
+        "in the evening",
+        "in a hurry",
+        "in love",
+        "in trouble",
+        "in the hallway",
+      ],
+    },
   },
   {
     id: "on",

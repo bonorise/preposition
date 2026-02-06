@@ -10,6 +10,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 import type { PrepositionEntry, SceneConfig } from "@/data/types";
+import { cn } from "@/lib/utils";
 
 export type ViewerHandle = {
   reset: () => void;
@@ -20,12 +21,14 @@ type PrepositionViewer3DProps = {
   entry: PrepositionEntry;
   frontLabel?: string;
   showGroundOverride?: boolean;
+  className?: string;
 };
 
 const cubeLineColor = 0x0f1c2e;
 const cubeFaceColor = 0xffffff;
 const ballColor = 0x7c3aed;
 const groundColor = 0xe6e6e6;
+const motionPathColor = 0x9ca3af;
 const animationEase = (t: number) => t * t * (3 - 2 * t);
 
 function resolveAnimationPath(scene: SceneConfig) {
@@ -126,7 +129,7 @@ function buildCubeGroup(scene: SceneConfig) {
 }
 
 const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
-  ({ entry, frontLabel, showGroundOverride }, ref) => {
+  ({ entry, frontLabel, showGroundOverride, className }, ref) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const animationRef = useRef<{
       isPlaying: boolean;
@@ -259,6 +262,58 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
           curve: animationPath.curve,
           loop: animationPath.loop,
         };
+
+        const pathPoints = animationPath.curve
+          ? animationPath.curve.getPoints(72)
+          : [animationPath.start.clone(), animationPath.end.clone()];
+        if (pathPoints.length >= 2) {
+          const pathGeometry = new THREE.BufferGeometry().setFromPoints(pathPoints);
+          const pathMaterial = new THREE.LineDashedMaterial({
+            color: motionPathColor,
+            transparent: true,
+            opacity: 0.85,
+            dashSize: 0.1,
+            gapSize: 0.09,
+          });
+          geometries.push(pathGeometry);
+          materials.push(pathMaterial);
+          const isClosedPath = Boolean(entry.scene.animation?.closed);
+          const pathLine = isClosedPath
+            ? new THREE.LineLoop(pathGeometry, pathMaterial)
+            : new THREE.Line(pathGeometry, pathMaterial);
+          pathLine.computeLineDistances();
+          pathLine.renderOrder = 2;
+          scene.add(pathLine);
+
+          const endIndex = isClosedPath
+            ? Math.max(1, Math.floor(pathPoints.length * 0.72))
+            : pathPoints.length - 1;
+          const prevIndex = Math.max(0, endIndex - 1);
+          const endPoint = pathPoints[endIndex];
+          const prevPoint = pathPoints[prevIndex];
+          const direction = endPoint.clone().sub(prevPoint);
+          if (direction.lengthSq() > 0.000001) {
+            direction.normalize();
+            const arrowGeometry = new THREE.ConeGeometry(0.075, 0.2, 18);
+            const arrowMaterial = new THREE.MeshBasicMaterial({
+              color: motionPathColor,
+              transparent: true,
+              opacity: 0.95,
+            });
+            geometries.push(arrowGeometry);
+            materials.push(arrowMaterial);
+            const motionArrow = new THREE.Mesh(arrowGeometry, arrowMaterial);
+            motionArrow.position
+              .copy(endPoint)
+              .add(direction.clone().multiplyScalar(0.06));
+            motionArrow.quaternion.setFromUnitVectors(
+              new THREE.Vector3(0, 1, 0),
+              direction,
+            );
+            motionArrow.renderOrder = 3;
+            scene.add(motionArrow);
+          }
+        }
       } else {
         animationRef.current = null;
       }
@@ -407,7 +462,10 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
       <div
         ref={containerRef}
         data-viewer="preposition"
-        className="relative h-[320px] w-full overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--color-edge)] bg-white/60 md:h-[420px] lg:h-[460px]"
+        className={cn(
+          "relative w-full overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--color-edge)] bg-white/60",
+          className ?? "h-[320px] md:h-[420px] lg:h-[460px]",
+        )}
       />
     );
   },

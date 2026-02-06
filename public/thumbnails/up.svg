@@ -16,5 +16,12 @@
     <line x1="65.92" y1="60.25" x2="38.96" y2="71.25" />
     <line x1="38.96" y1="52.55" x2="12.00" y2="60.25" />
   </g>
+  
+  <defs>
+    <marker id="motion-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#9ca3af" />
+    </marker>
+  </defs>
+  <path d="M38.96 70.72 L38.96 23.50" fill="none" stroke="#9ca3af" stroke-opacity="0.8" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="4 4" marker-end="url(#motion-arrow)" />
   <circle cx="38.96" cy="23.50" r="10.45" fill="#7c3aed" />
 </svg>
