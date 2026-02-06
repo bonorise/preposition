@@ -1,6 +1,6 @@
-import type { PrepositionEntry } from "@/data/types";
+import type { LearningCategory, PrepositionEntry } from "@/data/types";
 
-export type HomeCategory = "space" | "time" | "dynamic";
+export type HomeCategory = LearningCategory;
 
 const TEMPORAL_IDS = new Set([
   "at",
@@ -16,6 +16,10 @@ const TEMPORAL_IDS = new Set([
   "past",
   "within",
   "throughout",
+  "under",
+  "beyond",
+  "ahead-of",
+  "behind",
 ]);
 
 export function isSpatialPreposition(entry: PrepositionEntry) {

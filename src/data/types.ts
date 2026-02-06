@@ -1,4 +1,5 @@
 export type Locale = "en" | "zh-CN";
+export type LearningCategory = "space" | "time" | "dynamic";
 
 export type SceneVariant = "singleCube" | "twoCubes" | "ringCubes";
 
@@ -35,16 +36,19 @@ export type SceneConfig = {
   };
 };
 
+export type PrepositionExample = {
+  en: string;
+  i18n: Record<Locale, { translation: string }>;
+};
+
 export type PrepositionEntry = {
   id: string;
   word: string;
   tags: string[];
   sense: "space";
   i18n: Record<Locale, { meaning: string; tips?: string[] }>;
-  examples: Array<{
-    en: string;
-    i18n: Record<Locale, { translation: string }>;
-  }>;
+  examples: PrepositionExample[];
+  examplesByCategory?: Partial<Record<LearningCategory, PrepositionExample[]>>;
   relatedIds: string[];
   scene: SceneConfig;
   comparison?: {

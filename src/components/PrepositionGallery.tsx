@@ -26,6 +26,10 @@ export default function PrepositionGallery({
   const { locale: contextLocale } = useLocale();
   const activeLocale = locale ?? contextLocale;
   const ui = getUiText(activeLocale);
+  const isChinese = activeLocale === "zh-CN";
+  const heroLines = isChinese
+    ? [ui.heroSloganZhLine1, ui.heroSloganZhLine2]
+    : [ui.heroSloganEnLine1, ui.heroSloganEnLine2];
   const [query, setQuery] = useState("");
 
   const results = useMemo(
@@ -59,47 +63,36 @@ export default function PrepositionGallery({
 
   return (
     <section className="space-y-10">
-      <div className="relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--color-edge)] bg-white/70 p-8 shadow-[var(--shadow-soft)] animate-rise">
-        <div className="absolute -right-16 -top-24 h-56 w-56 rounded-full bg-[color:var(--color-accent)]/20 blur-3xl" />
-        <div className="absolute -left-12 bottom-0 h-48 w-48 rounded-full bg-[color:var(--color-accent-2)]/20 blur-3xl" />
-        <div className="relative space-y-6">
-          <div className="flex flex-wrap items-center gap-3">
-            {ui.featureChips.map((chip) => (
-              <span
-                key={chip}
-                className="rounded-full border border-[color:var(--color-edge)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.2em] text-[color:var(--color-muted)]"
-              >
-                {chip}
-              </span>
-            ))}
-          </div>
-          <div className="space-y-3">
-            <p className="text-xs uppercase tracking-[0.35em] text-[color:var(--color-muted)]">
-              {ui.siteTagline}
-            </p>
-            <h1 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
-              {ui.siteTitle}
-            </h1>
-            <p className="max-w-2xl text-base text-[color:var(--color-muted)]">
-              {ui.siteSubtitle}
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+      <div className="relative py-10 animate-rise">
+        <div className="absolute left-1/2 top-0 h-44 w-44 -translate-x-1/2 rounded-full bg-[color:var(--color-accent)]/22 blur-3xl" />
+        <div className="absolute left-1/2 top-16 h-40 w-40 -translate-x-[140%] rounded-full bg-[color:var(--color-accent-2)]/18 blur-3xl" />
+        <div className="absolute left-1/2 top-24 h-36 w-36 translate-x-[65%] rounded-full bg-[color:var(--color-accent)]/16 blur-3xl" />
+        <div className="relative mx-auto max-w-4xl space-y-7 text-center">
+          <h1
+            className={`font-display font-semibold leading-tight tracking-tight text-[color:var(--color-ink)] drop-shadow-[0_10px_24px_rgba(15,23,42,0.2)] ${
+              isChinese
+                ? "text-3xl md:text-6xl"
+                : "text-3xl md:text-5xl lg:text-[3.15rem]"
+            }`}
+          >
+            <span className={`block ${isChinese ? "" : "md:whitespace-nowrap"}`}>
+              {heroLines[0]}
+            </span>
+            <span className={`mt-1 block ${isChinese ? "" : "md:whitespace-nowrap"}`}>
+              {heroLines[1]}
+            </span>
+          </h1>
+          <div className="mx-auto grid max-w-2xl gap-4">
             <Input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder={ui.searchPlaceholder}
               aria-label={ui.searchPlaceholder}
-              className="md:max-w-xl"
+              className="mx-auto w-full border-[color:var(--color-edge)] bg-white/70 text-center text-base shadow-[var(--shadow-tight)]"
             />
-            <div className="flex flex-wrap items-center gap-3 text-sm text-[color:var(--color-muted)]">
-              <span className="rounded-full border border-[color:var(--color-edge)] px-3 py-1">
-                {results.length} {ui.countLabel}
-              </span>
-              <span className="hidden text-xs uppercase tracking-[0.2em] md:inline">
-                {ui.searchHint}
-              </span>
-            </div>
+            <p className="text-center text-sm font-medium text-[color:var(--color-ink)]">
+              {ui.heroMasteryLine}
+            </p>
           </div>
         </div>
       </div>

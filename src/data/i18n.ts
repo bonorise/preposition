@@ -7,6 +7,11 @@ export const UI_TEXT: Record<
   Locale,
   {
     siteTitle: string;
+    heroSloganZhLine1: string;
+    heroSloganZhLine2: string;
+    heroSloganEnLine1: string;
+    heroSloganEnLine2: string;
+    heroMasteryLine: string;
     siteTagline: string;
     siteSubtitle: string;
     galleryLabel: string;
@@ -62,6 +67,11 @@ export const UI_TEXT: Record<
 > = {
   "zh-CN": {
     siteTitle: "Preposition 3D",
+    heroSloganZhLine1: "让全世界的英语初学者",
+    heroSloganZhLine2: "3 秒钟学懂一个介词",
+    heroSloganEnLine1: "Help beginners around the world",
+    heroSloganEnLine2: "learn one preposition in 3 seconds",
+    heroMasteryLine: "1 天时间，轻松掌握 50 个介词",
     siteTagline: "英语介词 3D 空间学习站",
     siteSubtitle: "用极简线框与立体球体，建立最直观的空间记忆。",
     galleryLabel: "介词画廊",
@@ -69,7 +79,7 @@ export const UI_TEXT: Record<
     searchHint: "支持英文或中文释义搜索",
     countLabel: "条介词",
     headerTitle: "Preposition 3D",
-    headerSubtitle: "英语介词 3D 空间学习站",
+    headerSubtitle: "可能是全世界最好的介词学习网站",
     headerHome: "首页",
     footerText: "用空间直觉高效理解英语介词。",
     languageLabel: "语言",
@@ -150,6 +160,11 @@ export const UI_TEXT: Record<
   },
   en: {
     siteTitle: "Preposition 3D",
+    heroSloganZhLine1: "让全世界的英语初学者",
+    heroSloganZhLine2: "3 秒钟学懂一个介词",
+    heroSloganEnLine1: "Help English beginners worldwide",
+    heroSloganEnLine2: "learn one preposition in 3 seconds",
+    heroMasteryLine: "Master 50 prepositions in one day",
     siteTagline: "A 3D spatial learning station for English prepositions",
     siteSubtitle:
       "Minimal wireframes + a bold sphere to build fast spatial intuition.",
@@ -158,7 +173,7 @@ export const UI_TEXT: Record<
     searchHint: "Search by English word or meaning",
     countLabel: "prepositions",
     headerTitle: "Preposition 3D",
-    headerSubtitle: "3D spatial learning for English prepositions",
+    headerSubtitle: "Possibly the best preposition learning website in the world",
     headerHome: "Home",
     footerText: "Build spatial intuition for English prepositions.",
     languageLabel: "Language",

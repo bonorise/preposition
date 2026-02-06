@@ -14,7 +14,7 @@ const cubeFaceColor = 0xffffff;
 
 const cubeSize = DEFAULT_CUBE.size;
 const ballRadius = 0.22;
-const bounds = { x: 2.35, y: 1.25, z: 1.45 };
+const bounds = { x: 2.5, y: 1.35, z: 2.35 };
 type PlaygroundMode = "static" | "dynamic";
 
 type MotionDefinition = {
@@ -42,47 +42,62 @@ const MOTIONS: MotionDefinition[] = [
   { label: "down", path: [[0, 0.2, 0], [0, -1.5, 0]] },
 ];
 
-const STATIC_LABELS = {
-  in: "in",
-  on: "on",
-  under: "under",
-  above: "above",
-  "in front of": "in front of",
-  behind: "behind",
-  "next to": "next to",
-  outside: "outside",
+type StaticAnchor = {
+  label: string;
+  point: [number, number, number];
 };
+
+const STATIC_ANCHORS: StaticAnchor[] = [
+  { label: "in", point: [0, 0, 0] },
+  { label: "inside", point: [0.18, 0.05, 0.12] },
+  { label: "within", point: [-0.2, -0.08, 0.1] },
+  { label: "on", point: [0, 0.7, 0] },
+  { label: "on top of", point: [0.32, 0.7, 0.06] },
+  { label: "above", point: [0, 1.18, 0] },
+  { label: "over", point: [0.62, 1.08, 0] },
+  { label: "under", point: [0, -0.84, 0] },
+  { label: "below", point: [-0.45, -1.02, 0] },
+  { label: "beneath", point: [0.45, -1.08, 0] },
+  { label: "underneath", point: [0, -1.18, -0.36] },
+  { label: "beside", point: [1.0, 0, 0] },
+  { label: "next to", point: [1.45, 0, 0] },
+  { label: "near", point: [1.92, 0, 0.22] },
+  { label: "by", point: [-1.0, 0, 0] },
+  { label: "close to", point: [-1.35, 0, 0.2] },
+  { label: "far from", point: [-2.35, 0, 0] },
+  { label: "in front of", point: [0, 0, 1.35] },
+  { label: "ahead of", point: [-0.42, 0, 1.72] },
+  { label: "opposite", point: [0, 0, 1.95] },
+  { label: "across from", point: [0, 0, 2.18] },
+  { label: "behind", point: [0, 0, -1.3] },
+  { label: "in back of", point: [0.42, 0, -1.62] },
+  { label: "outside", point: [-0.72, 0, 1.06] },
+  { label: "without", point: [-1.05, 0, 1.42] },
+  { label: "around", point: [1.18, 0.05, 0.92] },
+  { label: "between", point: [0, 0, 0.68] },
+  { label: "among", point: [0.78, 0.08, 0.55] },
+  { label: "in the middle of", point: [0, 0.08, 0.42] },
+];
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
 
 function getStaticPrepositionLabel(position: THREE.Vector3) {
-  const half = cubeSize / 2;
-  const margin = ballRadius * 0.35;
-  const { x, y, z } = position;
-
-  const inside =
-    Math.abs(x) <= half - margin &&
-    Math.abs(y) <= half - margin &&
-    Math.abs(z) <= half - margin;
-  if (inside) return STATIC_LABELS.in;
-
-  const onTop =
-    Math.abs(x) <= half &&
-    Math.abs(z) <= half &&
-    Math.abs(y - (half + ballRadius)) <= ballRadius * 0.45;
-  if (onTop) return STATIC_LABELS.on;
-
-  if (y > half + ballRadius * 1.1) return STATIC_LABELS.above;
-  if (y < -half - ballRadius * 1.1) return STATIC_LABELS.under;
-
-  if (z > half + ballRadius * 0.8) return STATIC_LABELS["in front of"];
-  if (z < -half - ballRadius * 0.8) return STATIC_LABELS.behind;
-
-  if (Math.abs(x) > half + ballRadius * 0.8) return STATIC_LABELS["next to"];
-
-  return STATIC_LABELS.outside;
+  let bestLabel = STATIC_ANCHORS[0]?.label ?? "in";
+  let bestDistance = Infinity;
+  STATIC_ANCHORS.forEach((anchor) => {
+    const [x, y, z] = anchor.point;
+    const dx = position.x - x;
+    const dy = position.y - y;
+    const dz = position.z - z;
+    const distance = dx * dx + dy * dy + dz * dz;
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      bestLabel = anchor.label;
+    }
+  });
+  return bestLabel;
 }
 
 type MotionSample = {
@@ -112,7 +127,7 @@ export default function SpatialPlayground() {
   const [selectedMotionLabel, setSelectedMotionLabel] = useState(
     MOTIONS[0]?.label ?? "into",
   );
-  const [label, setLabel] = useState(STATIC_LABELS.in);
+  const [label, setLabel] = useState(STATIC_ANCHORS[0]?.label ?? "in");
   const labelRef = useRef(label);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -458,9 +473,10 @@ export default function SpatialPlayground() {
 
   useEffect(() => {
     if (mode === "dynamic") return;
-    if (labelRef.current === STATIC_LABELS.in) return;
-    labelRef.current = STATIC_LABELS.in;
-    setLabel(STATIC_LABELS.in);
+    const defaultLabel = STATIC_ANCHORS[0]?.label ?? "in";
+    if (labelRef.current === defaultLabel) return;
+    labelRef.current = defaultLabel;
+    setLabel(defaultLabel);
   }, [mode]);
 
   return (

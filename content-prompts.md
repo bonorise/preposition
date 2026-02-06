@@ -1,6 +1,6 @@
 # Content Generation Prompts (Preposition 3D)
 
-Use these prompts to generate content for the **“差异解析”** and **“常见词组组合”** modules.  
+Use these prompts to generate content for the **“差异解析”**, **“例句”**, and **“常见词组组合”** modules.  
 Outputs should map cleanly into `src/data/prepositions.ts`.
 
 ---
@@ -68,7 +68,51 @@ Rules:
 
 ---
 
-## 2) Collocations Prompt (常见词组组合)
+## 2) Examples Prompt (例句)
+
+**Goal:** Generate beginner-friendly examples for each applicable learning category.
+
+**Input you provide:**
+- Target preposition: `{word}`
+- Applicable categories: any combination of `space`, `time`, `dynamic`
+- Locale: `en` or `zh-CN`
+
+**Prompt:**
+```
+You are generating learning examples for English prepositions for beginners.
+
+Target preposition: "{word}"
+Applicable categories: {categories}
+Locale: {locale}
+
+Output a JSON object with this shape:
+{
+  "examplesByCategory": {
+    "space"?: [Example, Example, ...],
+    "time"?: [Example, Example, ...],
+    "dynamic"?: [Example, Example, ...]
+  }
+}
+
+Where Example is:
+{
+  "en": string,
+  "translation"?: string
+}
+
+Rules:
+- Every applicable category must be present.
+- Each category must contain at least 2 examples.
+- All examples must start from real beginner use cases and common nouns.
+- If a preposition belongs to multiple categories (e.g. space + time, or space + dynamic), examples must be clearly separated by category, not mixed.
+- Keep sentence length short and natural (about 6-12 words).
+- For zh-CN, include `translation` for each example. For en, `translation` is optional.
+- Return JSON only.
+```
+
+---
+
+## 3) Collocations Prompt (常见词组组合)
 
 **Goal:** Generate a list of common collocations for the target preposition.  
 **Important:** The count must be a **multiple of 3** (e.g., 21, 24).
