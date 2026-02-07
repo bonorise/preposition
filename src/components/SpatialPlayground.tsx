@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
+import type { PrepositionEntry } from "@/data/types";
 import { getUiText } from "@/data/i18n";
+import { PREPOSITIONS } from "@/data/prepositions";
 import { DEFAULT_CAMERA, DEFAULT_CUBE } from "@/lib/scenePreset";
 import { useLocale } from "@/components/LocaleProvider";
 
@@ -120,16 +122,60 @@ function getNearestPointOnMotionPath(point: THREE.Vector3, motion: MotionSample)
   return nearest.clone();
 }
 
-export default function SpatialPlayground() {
+type SpatialPlaygroundProps = {
+  focusedEntry?: PrepositionEntry | null;
+};
+
+export default function SpatialPlayground({
+  focusedEntry = null,
+}: SpatialPlaygroundProps) {
   const { locale } = useLocale();
   const ui = getUiText(locale);
   const [mode, setMode] = useState<PlaygroundMode>("static");
   const [selectedMotionLabel, setSelectedMotionLabel] = useState(
     MOTIONS[0]?.label ?? "into",
   );
+  const [selectedStaticLabel, setSelectedStaticLabel] = useState(
+    STATIC_ANCHORS[0]?.label ?? "in",
+  );
   const [label, setLabel] = useState(STATIC_ANCHORS[0]?.label ?? "in");
   const labelRef = useRef(label);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const labelMeaningMap = new Map(
+    PREPOSITIONS.map((entry) => [
+      entry.word.toLowerCase(),
+      entry.i18n[locale]?.meaning ?? entry.i18n["zh-CN"]?.meaning ?? entry.word,
+    ]),
+  );
+  const labelMeaning =
+    labelMeaningMap.get(label.toLowerCase()) ??
+    (mode === "dynamic" ? ui.playgroundMotionHint : ui.playgroundHint);
+  const sceneHint = mode === "dynamic" ? ui.playgroundMotionHint : ui.playgroundHint;
+
+  useEffect(() => {
+    if (!focusedEntry) {
+      setSelectedStaticLabel(STATIC_ANCHORS[0]?.label ?? "in");
+      return;
+    }
+    const normalizedWord = focusedEntry.word.toLowerCase();
+    const motionMatch = MOTIONS.find((motion) => motion.label === normalizedWord);
+    if (motionMatch) {
+      setMode("dynamic");
+      setSelectedMotionLabel(motionMatch.label);
+      labelRef.current = motionMatch.label;
+      setLabel(motionMatch.label);
+      return;
+    }
+    const staticMatch = STATIC_ANCHORS.find(
+      (anchor) => anchor.label === normalizedWord,
+    );
+    if (staticMatch) {
+      setMode("static");
+      setSelectedStaticLabel(staticMatch.label);
+      labelRef.current = staticMatch.label;
+      setLabel(staticMatch.label);
+    }
+  }, [focusedEntry]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -256,7 +302,6 @@ export default function SpatialPlayground() {
         samples,
       };
     });
-
     const findMotionByLabel = (value: string) =>
       motionSamples.find((motion) => motion.label === value) ?? motionSamples[0];
 
@@ -331,7 +376,15 @@ export default function SpatialPlayground() {
     };
 
     const activateStaticMode = () => {
-      ball.position.set(0, 0, 0);
+      const selectedAnchor =
+        STATIC_ANCHORS.find((anchor) => anchor.label === selectedStaticLabel) ??
+        STATIC_ANCHORS[0];
+      if (selectedAnchor) {
+        const [x, y, z] = selectedAnchor.point;
+        ball.position.set(x, y, z);
+      } else {
+        ball.position.set(0, 0, 0);
+      }
       lastPosition.copy(ball.position);
       setRenderedMotion(null);
       setLabelSafe(getStaticPrepositionLabel(ball.position));
@@ -469,7 +522,7 @@ export default function SpatialPlayground() {
       }
       scene.clear();
     };
-  }, [locale, mode, selectedMotionLabel, ui.directionFront]);
+  }, [locale, mode, selectedMotionLabel, selectedStaticLabel, ui.directionFront]);
 
   useEffect(() => {
     if (mode === "dynamic") return;
@@ -482,63 +535,67 @@ export default function SpatialPlayground() {
   return (
     <section className="space-y-5">
       <div className="rounded-[var(--radius-lg)] border border-[color:var(--color-edge)] bg-white/70 shadow-[var(--shadow-soft)]">
-        <div className="border-b border-[color:var(--color-edge)] px-6 py-5">
-          <p className="text-sm text-[color:var(--color-muted)]">
-            {mode === "dynamic" ? ui.playgroundMotionHint : ui.playgroundHint}
-          </p>
-          <h2 className="mt-2 font-display text-4xl font-semibold tracking-tight text-[color:var(--color-ink)]">
-            {label}
-          </h2>
-          <p className="mt-2 text-sm text-[color:var(--color-muted)]">
-            {ui.playgroundTitle}
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => setMode("static")}
-              className={`rounded-full border px-4 py-2 text-sm transition ${
-                mode === "static"
-                  ? "border-[color:var(--color-accent)] bg-[color:var(--color-accent)] text-white"
-                  : "border-[color:var(--color-edge)] bg-white/70 text-[color:var(--color-muted)] hover:border-[color:var(--color-accent)]/60"
-              }`}
-            >
-              {ui.playgroundModeStatic}
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode("dynamic")}
-              className={`rounded-full border px-4 py-2 text-sm transition ${
-                mode === "dynamic"
-                  ? "border-[color:var(--color-accent)] bg-[color:var(--color-accent)] text-white"
-                  : "border-[color:var(--color-edge)] bg-white/70 text-[color:var(--color-muted)] hover:border-[color:var(--color-accent)]/60"
-              }`}
-            >
-              {ui.playgroundModeDynamic}
-            </button>
-          </div>
-          {mode === "dynamic" ? (
-            <div className="mt-3 flex flex-wrap gap-2">
-              {MOTIONS.map((motion) => (
-                <button
-                  key={motion.label}
-                  type="button"
-                  onClick={() => setSelectedMotionLabel(motion.label)}
-                  className={`rounded-full border px-3 py-1.5 text-xs uppercase tracking-[0.14em] transition ${
-                    selectedMotionLabel === motion.label
-                      ? "border-[color:var(--color-accent)] bg-[color:var(--color-accent)] text-white"
-                      : "border-[color:var(--color-edge)] bg-white/75 text-[color:var(--color-muted)] hover:border-[color:var(--color-accent)]/60"
-                  }`}
-                >
-                  {motion.label}
-                </button>
-              ))}
+        <div className="grid gap-0 md:grid-cols-3">
+          <div className="border-b border-[color:var(--color-edge)] px-6 py-5 md:col-span-1 md:border-b-0 md:border-r">
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => setMode("static")}
+                className={`rounded-full border px-4 py-2 text-sm transition ${
+                  mode === "static"
+                    ? "border-2 border-[color:var(--color-accent)] bg-white text-[color:var(--color-accent)]"
+                    : "border-[color:var(--color-edge)] bg-white/70 text-[color:var(--color-muted)] hover:border-[color:var(--color-accent)]/60"
+                }`}
+              >
+                {ui.playgroundModeStatic}
+              </button>
+              <button
+                type="button"
+                onClick={() => setMode("dynamic")}
+                className={`rounded-full border px-4 py-2 text-sm transition ${
+                  mode === "dynamic"
+                    ? "border-2 border-[color:var(--color-accent)] bg-white text-[color:var(--color-accent)]"
+                    : "border-[color:var(--color-edge)] bg-white/70 text-[color:var(--color-muted)] hover:border-[color:var(--color-accent)]/60"
+                }`}
+              >
+                {ui.playgroundModeDynamic}
+              </button>
             </div>
-          ) : null}
+            <h2 className="mt-5 font-display text-4xl font-semibold tracking-tight text-[color:var(--color-ink)]">
+              {label}
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-[color:var(--color-muted)]">
+              {labelMeaning}
+            </p>
+            {mode === "dynamic" ? (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {MOTIONS.map((motion) => (
+                  <button
+                    key={motion.label}
+                    type="button"
+                    onClick={() => setSelectedMotionLabel(motion.label)}
+                    className={`rounded-full border px-3 py-1.5 text-xs uppercase tracking-[0.14em] transition ${
+                      selectedMotionLabel === motion.label
+                        ? "border-2 border-[color:var(--color-accent)] bg-white text-[color:var(--color-accent)]"
+                        : "border-[color:var(--color-edge)] bg-white/75 text-[color:var(--color-muted)] hover:border-[color:var(--color-accent)]/60"
+                    }`}
+                  >
+                    {motion.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+          <div className="relative md:col-span-2">
+            <p className="pointer-events-none absolute left-4 top-4 z-10 text-xs text-[color:var(--color-muted)]">
+              {sceneHint}
+            </p>
+            <div
+              ref={containerRef}
+              className="relative h-[320px] w-full overflow-hidden bg-white/60 md:h-[420px]"
+            />
+          </div>
         </div>
-        <div
-          ref={containerRef}
-          className="relative h-[320px] w-full overflow-hidden bg-white/60 md:h-[380px]"
-        />
       </div>
     </section>
   );

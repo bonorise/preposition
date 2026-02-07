@@ -4,7 +4,12 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import type { Locale } from "@/data/types";
-import { SUPPORTED_LOCALES, getUiText } from "@/data/i18n";
+import {
+  SUPPORTED_LOCALES,
+  getUiText,
+  localeToPathSegment,
+  pathSegmentToLocale,
+} from "@/data/i18n";
 import { useLocale } from "@/components/LocaleProvider";
 
 export default function SiteHeader() {
@@ -16,13 +21,12 @@ export default function SiteHeader() {
   const handleLocaleChange = (nextLocale: Locale) => {
     setLocale(nextLocale);
     const segments = pathname.split("/").filter(Boolean);
-    if (
-      segments.length > 0 &&
-      SUPPORTED_LOCALES.includes(segments[0] as Locale)
-    ) {
-      segments[0] = nextLocale;
+    const currentRouteLocale =
+      segments.length > 0 ? pathSegmentToLocale(segments[0]) : null;
+    if (currentRouteLocale && SUPPORTED_LOCALES.includes(currentRouteLocale)) {
+      segments[0] = localeToPathSegment(nextLocale);
     } else {
-      segments.unshift(nextLocale);
+      segments.unshift(localeToPathSegment(nextLocale));
     }
     const nextPath = `/${segments.join("/")}`;
     const query = searchParams.toString();
@@ -34,7 +38,7 @@ export default function SiteHeader() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-5 md:flex-row md:items-center md:justify-between">
         <div className="space-y-1">
           <Link
-            href={`/${locale}`}
+            href={`/${localeToPathSegment(locale)}`}
             className="font-display text-2xl font-semibold tracking-tight text-[color:var(--color-ink)]"
           >
             {ui.headerTitle}

@@ -31,6 +31,16 @@ export default function PrepositionGallery({
     ? [ui.heroSloganZhLine1, ui.heroSloganZhLine2]
     : [ui.heroSloganEnLine1, ui.heroSloganEnLine2];
   const [query, setQuery] = useState("");
+  const normalizedQuery = query.toLowerCase().replace(/\s+/g, "").trim();
+  const focusedEntry = useMemo(() => {
+    if (!normalizedQuery) return null;
+    return (
+      entries.find(
+        (entry) =>
+          entry.word.toLowerCase().replace(/\s+/g, "").trim() === normalizedQuery,
+      ) ?? null
+    );
+  }, [entries, normalizedQuery]);
 
   const results = useMemo(
     () => filterPrepositions(entries, query, activeLocale),
@@ -88,7 +98,7 @@ export default function PrepositionGallery({
               onChange={(event) => setQuery(event.target.value)}
               placeholder={ui.searchPlaceholder}
               aria-label={ui.searchPlaceholder}
-              className="mx-auto w-full border-[color:var(--color-edge)] bg-white/70 text-center text-base shadow-[var(--shadow-tight)]"
+              className="mx-auto w-full border-[color:var(--color-edge)] bg-white/70 text-center text-base shadow-[var(--shadow-tight)] focus:placeholder:text-transparent"
             />
             <p className="text-center text-sm font-medium text-[color:var(--color-ink)]">
               {ui.heroMasteryLine}
@@ -97,7 +107,9 @@ export default function PrepositionGallery({
         </div>
       </div>
 
-      <SpatialPlayground />
+      <SpatialPlayground
+        focusedEntry={focusedEntry}
+      />
 
       <div className="space-y-4">
         <h2 className="font-display text-2xl tracking-tight text-[color:var(--color-ink)]">

@@ -7,6 +7,18 @@ export function isSupportedLocale(value: string): value is Locale {
   return SUPPORTED_LOCALES.includes(value as Locale);
 }
 
+// Internal locales are BCP-47 (e.g. zh-CN), but URL segments stay short (e.g. /zh).
+export function localeToPathSegment(locale: Locale): string {
+  if (locale === "zh-CN") return "zh";
+  return locale;
+}
+
+export function pathSegmentToLocale(segment: string): Locale | null {
+  if (segment === "zh") return "zh-CN";
+  if (isSupportedLocale(segment)) return segment;
+  return null;
+}
+
 export const UI_TEXT: Record<
   Locale,
   {
@@ -225,8 +237,8 @@ export const UI_TEXT: Record<
     playgroundTitle: "Drag the ball to learn prepositions",
     playgroundHint:
       "Drag the purple ball and watch the preposition update in real time.",
-    playgroundModeStatic: "Static prepositions",
-    playgroundModeDynamic: "Dynamic prepositions",
+    playgroundModeStatic: "Static preps",
+    playgroundModeDynamic: "Dynamic preps",
     playgroundMotionHint:
       "Switch to dynamic mode and drag the ball along the dashed path to feel direction and motion.",
     detailComparisonTitle: "Key differences",

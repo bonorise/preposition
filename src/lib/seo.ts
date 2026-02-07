@@ -26,7 +26,8 @@ export function buildHreflangLanguages({
 }: HreflangOptions) {
   const languages: Record<string, string> = {};
   for (const locale of locales) {
-    languages[locale] = pathBuilder(locale);
+    const pathLocale = locale === "zh-CN" ? "zh" : locale;
+    languages[locale] = pathBuilder(pathLocale);
   }
   languages["x-default"] = pathBuilder(defaultLocale);
   return languages;

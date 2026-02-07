@@ -8,6 +8,7 @@ import type { HomeCategory } from "@/lib/prepositionCategory";
 import type { ThumbnailFormat } from "@/lib/thumbnail";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { localeToPathSegment } from "@/data/i18n";
 
 type PrepositionCardProps = {
   entry: PrepositionEntry;
@@ -27,8 +28,9 @@ export default function PrepositionCard({
   const meaning = entry.i18n[locale]?.meaning ?? entry.i18n["zh-CN"].meaning;
   const imgSrc = `/thumbnails/${entry.id}.${thumbnailFormat}`;
   const isTemporal = category === "time";
+  const localePath = localeToPathSegment(locale);
   return (
-    <Link href={`/${locale}/p/${entry.id}`} className="group">
+    <Link href={`/${localePath}/p/${entry.id}`} className="group">
       <Card
         className={cn(
           "relative h-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--color-accent)] hover:shadow-[var(--shadow-soft)]",

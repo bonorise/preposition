@@ -7,7 +7,8 @@ import {
   DEFAULT_LOCALE,
   SUPPORTED_LOCALES,
   getUiText,
-  isSupportedLocale,
+  localeToPathSegment,
+  pathSegmentToLocale,
 } from "@/data/i18n";
 import type { Locale } from "@/data/types";
 import { PREPOSITIONS } from "@/data/prepositions";
@@ -24,18 +25,20 @@ type PageProps = {
 };
 
 function resolveLocale(value: string): Locale | null {
-  if (!isSupportedLocale(value)) return null;
-  return value;
+  return pathSegmentToLocale(value);
 }
 
 export function generateStaticParams() {
-  return SUPPORTED_LOCALES.map((locale) => ({ locale }));
+  return SUPPORTED_LOCALES.map((locale) => ({
+    locale: localeToPathSegment(locale),
+  }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await Promise.resolve(params);
   const locale = resolveLocale(resolvedParams.locale) ?? DEFAULT_LOCALE;
   const ui = getUiText(locale);
+  const localePath = localeToPathSegment(locale);
   const languages = buildHreflangLanguages({
     locales: SUPPORTED_LOCALES,
     defaultLocale: DEFAULT_LOCALE,
@@ -46,14 +49,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: ui.metaDescription,
     keywords: ["prepositions", "3D", "English learning", "spatial learning"],
     alternates: {
-      canonical: `/${locale}`,
+      canonical: `/${localePath}`,
       languages,
     },
     openGraph: {
       title: ui.metaTitle,
       description: ui.metaDescription,
       type: "website",
-      url: `/${locale}`,
+      url: `/${localePath}`,
       locale: getOpenGraphLocale(locale),
     },
     twitter: {
@@ -72,6 +75,7 @@ export default async function LocaleHome({ params }: PageProps) {
   }
 
   const ui = getUiText(locale);
+  const localePath = localeToPathSegment(locale);
   const thumbnailFormat = getThumbnailFormat(PREPOSITIONS.map((entry) => entry.id));
   const siteUrl = getSiteUrl();
   const structuredData = {
@@ -91,7 +95,7 @@ export default async function LocaleHome({ params }: PageProps) {
       itemListElement: PREPOSITIONS.map((entry, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: absoluteUrl(`/${locale}/p/${entry.id}`),
+        url: absoluteUrl(`/${localePath}/p/${entry.id}`),
         name: entry.word,
       })),
     },

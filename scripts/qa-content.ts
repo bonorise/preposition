@@ -9,6 +9,7 @@ import {
 import { getPrepositionFaqItems } from "../src/lib/prepositionFaq";
 
 type Severity = "error" | "warn";
+type Scope = "all" | "time" | "dynamic";
 
 type Issue = {
   severity: Severity;
@@ -451,16 +452,41 @@ function summarizeByRule(issues: Issue[]) {
   return [...counts.entries()].sort((a, b) => b[1] - a[1]);
 }
 
+function readScopeArg(): Scope {
+  const normalize = (value: string | undefined): Scope =>
+    value === "time" || value === "dynamic" ? value : "all";
+
+  const direct = process.argv.find((arg) => arg.startsWith("--scope="));
+  if (direct) {
+    return normalize(direct.split("=")[1]);
+  }
+
+  const scopeIndex = process.argv.indexOf("--scope");
+  if (scopeIndex >= 0) {
+    return normalize(process.argv[scopeIndex + 1]);
+  }
+
+  return "all";
+}
+
 function main() {
+  const scope = readScopeArg();
+  const targetEntries =
+    scope === "time"
+      ? PREPOSITIONS.filter((entry) => isTemporalPreposition(entry))
+      : scope === "dynamic"
+        ? PREPOSITIONS.filter((entry) => isDynamicPreposition(entry))
+      : PREPOSITIONS;
   const allIssues: Issue[] = [];
-  for (const entry of PREPOSITIONS) {
+  for (const entry of targetEntries) {
     allIssues.push(...runChecks(entry));
   }
 
   const errorCount = allIssues.filter((issue) => issue.severity === "error").length;
   const warnCount = allIssues.filter((issue) => issue.severity === "warn").length;
 
-  console.log(`Checked entries: ${PREPOSITIONS.length}`);
+  console.log(`Scope: ${scope}`);
+  console.log(`Checked entries: ${targetEntries.length}`);
   console.log(`Errors: ${errorCount}`);
   console.log(`Warnings: ${warnCount}`);
 

@@ -261,6 +261,50 @@ Rules:
 
 ---
 
+## 6) Quick Check Decision Tree Prompt (快速判断问句)
+
+**Goal:** Generate a decision tree block with the minimum number of evidence-based questions needed for the current preposition page. Questions must use observable criteria, not "which word is closer".
+
+**Input you provide:**
+- Target preposition: `{word}`
+- Locale: `en` or `zh-CN`
+- Similar terms (2-3): `{similar_terms}` (must come from current word's comparison/related terms)
+- Current word meaning: `{meaning}`
+- Current word tips (2-3): `{tips}`
+
+**Prompt:**
+```
+You are generating a "Quick check questions (decision tree)" block for beginner preposition learning.
+
+Target preposition: "{word}"
+Locale: {locale}
+Similar terms: {similar_terms}
+Meaning: {meaning}
+Tips: {tips}
+
+Output JSON with this shape:
+{
+  "title": string,
+  "items": [
+    { "question": string, "answer": string }
+  ]
+}
+
+Rules:
+- Output 3-6 question-answer items (minimum needed, not fixed at 5).
+- This block must be generated per preposition page; do NOT reuse the in-page tree for other prepositions.
+- Every item must mention the current target preposition or one of its similar terms.
+- Do NOT ask "Is this closer to X or Y?". Every question must be an evidence check a beginner can observe in the sentence.
+- Question ordering: high-signal first (dimension: time vs space vs motion), then key discriminators, then final tiebreaker.
+- For time prepositions, include evidence checks like: exact time point vs a specific day/date vs a longer period vs deadline/range.
+- For motion prepositions, include evidence checks like: motion exists, path type (through/across/along/toward), endpoint reached (into/onto/to).
+- For spatial static prepositions, include checks like: surface contact, enclosure/boundary, above-without-contact, below/covered, between/relative position.
+- Answers must be short, actionable, and beginner-friendly.
+- Keep wording simple; no jargon; no markdown; JSON only.
+```
+
+---
+
 ## 6) Consistency Rules (统一规范)
 
 - Keep output fields strictly aligned with `src/data/types.ts`.

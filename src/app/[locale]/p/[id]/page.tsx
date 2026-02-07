@@ -7,6 +7,7 @@ import {
   SUPPORTED_LOCALES,
   getUiText,
   isSupportedLocale,
+  localeToPathSegment,
 } from "@/data/i18n";
 import type { LearningCategory, Locale } from "@/data/types";
 import {
@@ -38,6 +39,7 @@ type PageProps = {
 };
 
 function resolveLocale(value: string): Locale | null {
+  if (value === "zh") return "zh-CN";
   if (!isSupportedLocale(value)) return null;
   return value;
 }
@@ -199,7 +201,10 @@ function getSeoKeywords({
 }
 
 export function generateStaticParams() {
-  return SUPPORTED_LOCALES.flatMap((locale) =>
+  const routeLocales = SUPPORTED_LOCALES.map((locale) =>
+    locale === "zh-CN" ? "zh" : locale,
+  );
+  return routeLocales.flatMap((locale) =>
     PREPOSITIONS.map((entry) => ({ locale, id: entry.id })),
   );
 }
@@ -265,14 +270,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     keywords,
     alternates: {
-      canonical: `/${locale}/p/${entry.id}`,
+      canonical: `/${locale === "zh-CN" ? "zh" : locale}/p/${entry.id}`,
       languages,
     },
     openGraph: {
       title,
       description,
       type: "article",
-      url: `/${locale}/p/${entry.id}`,
+      url: `/${locale === "zh-CN" ? "zh" : locale}/p/${entry.id}`,
       locale: getOpenGraphLocale(locale),
       images: socialImage,
     },
@@ -294,6 +299,7 @@ export default async function LocalePrepositionPage({
   if (!locale) {
     notFound();
   }
+  const localePath = localeToPathSegment(locale);
 
   const resolvedSearch = await Promise.resolve(searchParams);
   const thumbParam = resolvedSearch?.thumb;
@@ -325,7 +331,7 @@ export default async function LocalePrepositionPage({
     "@type": "WebPage",
     name: `${entry.word} | Preposition 3D`,
     description: meaning,
-    url: absoluteUrl(`/${locale}/p/${entry.id}`),
+    url: absoluteUrl(`/${localePath}/p/${entry.id}`),
     inLanguage: ["en", "zh-CN"],
     isPartOf: {
       "@type": "WebSite",

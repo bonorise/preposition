@@ -1,4 +1,11 @@
-import type { PrepositionEntry } from "@/data/types";
+import type {
+  LearningCategory,
+  PrepositionCollocationGroup,
+  PrepositionEntry,
+  PrepositionExample,
+  PrepositionMistakeItem,
+  PrepositionQuizItem,
+} from "@/data/types";
 import { DEFAULT_CAMERA, DEFAULT_CUBE, DEFAULT_RENDER } from "@/lib/scenePreset";
 
 const ballRadius = 0.22;
@@ -465,12 +472,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……上面（接触表面）",
-        tips: ["强调接触表面。", "若只是上方不接触，用 above/over。"],
+        meaning: "在……上面（接触表面）；（时间）用于星期/日期",
+        tips: [
+          "接触表面 -> 用 on。",
+          "星期/具体日期 -> 用 on（on Monday / on July 1）。",
+          "不接触仅在上方 -> above/over；有“落到表面”的动作 -> onto。",
+        ],
       },
       en: {
-        meaning: "on top of; touching a surface",
-        tips: ["Touching the surface.", "If not touching, use above or over."],
+        meaning: "touching a surface; (time) used with days and dates",
+        tips: [
+          "Surface contact -> on.",
+          "Days and dates -> on (on Monday / on July 1).",
+          "No contact -> above/over; movement to a surface -> onto.",
+        ],
       },
     },
     examples: [
@@ -490,6 +505,394 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
       },
     ],
     scene: makeScene([0, 0.7, 0]),
+    examplesByCategory: {
+      space: [
+        {
+          en: "The book is on the table.",
+          i18n: {
+            "zh-CN": { translation: "书在桌子上。" },
+            en: { translation: "The book is on the table." },
+          },
+        },
+        {
+          en: "A sticker is on the box.",
+          i18n: {
+            "zh-CN": { translation: "贴纸在盒子上。" },
+            en: { translation: "A sticker is on the box." },
+          },
+        },
+      ],
+      time: [
+        {
+          en: "We have class on Monday.",
+          i18n: {
+            "zh-CN": { translation: "我们在星期一上课。" },
+            en: { translation: "We have class on Monday." },
+          },
+        },
+        {
+          en: "My birthday is on July 1.",
+          i18n: {
+            "zh-CN": { translation: "我的生日在 7 月 1 日。" },
+            en: { translation: "My birthday is on July 1." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "on 的核心是“接触表面”；在时间表达中常用于星期与具体日期。常与 in/onto/over 混淆。",
+          differences: [
+            {
+              term: "in",
+              description: "in 表示在内部；on 表示接触表面。",
+              examples: [
+                {
+                  term: "in",
+                  sentence: "The keys are in the box.",
+                  translation: "钥匙在盒子里。",
+                },
+                {
+                  term: "on",
+                  sentence: "The keys are on the box.",
+                  translation: "钥匙在盒子上。",
+                },
+              ],
+            },
+            {
+              term: "onto",
+              description: "onto 表示移动到表面；on 表示已在表面上。",
+              examples: [
+                {
+                  term: "onto",
+                  sentence: "He climbed onto the box.",
+                  translation: "他爬到盒子上。",
+                },
+                {
+                  term: "on",
+                  sentence: "He is on the box.",
+                  translation: "他在盒子上。",
+                },
+              ],
+            },
+            {
+              term: "over",
+              description: "over 在上方不一定接触；on 必须接触。",
+              examples: [
+                {
+                  term: "over",
+                  sentence: "A lamp hangs over the table.",
+                  translation: "灯悬挂在桌子上方。",
+                },
+                {
+                  term: "on",
+                  sentence: "A lamp is on the table.",
+                  translation: "灯在桌子上。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "On mainly means surface contact. In time expressions, it is common with days and specific dates.",
+          differences: [
+            {
+              term: "in",
+              description: "In is inside; on is on a surface (touching).",
+              examples: [
+                {
+                  term: "in",
+                  sentence: "The keys are in the box.",
+                },
+                {
+                  term: "on",
+                  sentence: "The keys are on the box.",
+                },
+              ],
+            },
+            {
+              term: "onto",
+              description: "Onto is movement to a surface; on is a position on it.",
+              examples: [
+                {
+                  term: "onto",
+                  sentence: "He climbed onto the box.",
+                },
+                {
+                  term: "on",
+                  sentence: "He is on the box.",
+                },
+              ],
+            },
+            {
+              term: "over",
+              description: "Over can be above without contact; on requires contact.",
+              examples: [
+                {
+                  term: "over",
+                  sentence: "A lamp hangs over the table.",
+                },
+                {
+                  term: "on",
+                  sentence: "A lamp is on the table.",
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "表面/接触类",
+          items: [
+            { phrase: "on the table", meaning: "在桌子上" },
+            { phrase: "on the wall", meaning: "在墙上" },
+            { phrase: "on the floor", meaning: "在地板上" },
+            { phrase: "on the roof", meaning: "在屋顶上" },
+            { phrase: "on the screen", meaning: "在屏幕上" },
+            { phrase: "on the left", meaning: "在左边" },
+          ],
+        },
+        {
+          title: "时间类",
+          items: [
+            { phrase: "on Monday", meaning: "在星期一" },
+            { phrase: "on Tuesday", meaning: "在星期二" },
+            { phrase: "on July 1", meaning: "在 7 月 1 日" },
+            { phrase: "on my birthday", meaning: "在我生日那天" },
+            { phrase: "on the weekend", meaning: "在周末" },
+            { phrase: "on Monday morning", meaning: "在周一早上" },
+          ],
+        },
+        {
+          title: "抽象/常用表达",
+          items: [
+            { phrase: "on time", meaning: "准时" },
+            { phrase: "on schedule", meaning: "按计划" },
+            { phrase: "on duty", meaning: "值班/在岗" },
+            { phrase: "on sale", meaning: "在打折" },
+            { phrase: "on the phone", meaning: "在打电话/电话里" },
+            { phrase: "on the internet", meaning: "在网上" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Surface contact",
+          items: [
+            "on the table",
+            "on the wall",
+            "on the floor",
+            "on the roof",
+            "on the screen",
+            "on the left",
+          ],
+        },
+        {
+          title: "Time (days/dates)",
+          items: [
+            "on Monday",
+            "on Tuesday",
+            "on July 1",
+            "on my birthday",
+            "on the weekend",
+            "on Monday morning",
+          ],
+        },
+        {
+          title: "Common phrases",
+          items: [
+            "on time",
+            "on schedule",
+            "on duty",
+            "on sale",
+            "on the phone",
+            "on the internet",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The book is in the table.",
+          correct: "The book is on the table.",
+          reason: "table 是表面，强调接触时用 on，不用 in。",
+        },
+        {
+          wrong: "I will see you in Monday.",
+          correct: "I will see you on Monday.",
+          reason: "具体到星期几一般用 on；in 多用于月份、年份或较长时间段。",
+        },
+        {
+          wrong: "I was born on 2010.",
+          correct: "I was born in 2010.",
+          reason: "年份通常用 in（in 2010），而不是 on。",
+        },
+        {
+          wrong: "I am on a taxi.",
+          correct: "I am in a taxi.",
+          reason:
+            "taxi/car 这类封闭空间通常用 in；on 更常用于 bus/train/bike 这类“平台式”交通工具。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The book is in the table.",
+          correct: "The book is on the table.",
+          reason: "A table is a surface, so use on for contact.",
+        },
+        {
+          wrong: "I will see you in Monday.",
+          correct: "I will see you on Monday.",
+          reason: "Use on with days; in is for months, years, or longer periods.",
+        },
+        {
+          wrong: "I was born on 2010.",
+          correct: "I was born in 2010.",
+          reason: "Use in with years (in 2010), not on.",
+        },
+        {
+          wrong: "I am on a taxi.",
+          correct: "I am in a taxi.",
+          reason:
+            "Taxis/cars are enclosed spaces, so in is typical; on is common for buses/trains/bikes.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "The picture is ___ the wall.",
+          options: ["on", "in", "under"],
+          answer: "on",
+          explanation: "墙是表面，图片贴在表面上，用 on。",
+        },
+        {
+          prompt: "We have class ___ Monday.",
+          options: ["on", "in", "at"],
+          answer: "on",
+          explanation: "星期几用 on：on Monday。",
+        },
+        {
+          prompt: "He climbed ___ the roof.",
+          options: ["on", "onto", "into"],
+          answer: "onto",
+          explanation: "climbed 表示移动到表面上，用 onto；到达后才是 on。",
+        },
+      ],
+      en: [
+        {
+          prompt: "The picture is ___ the wall.",
+          options: ["on", "in", "under"],
+          answer: "on",
+          explanation: "Use on because the picture is on a surface (the wall).",
+        },
+        {
+          prompt: "We have class ___ Monday.",
+          options: ["on", "in", "at"],
+          answer: "on",
+          explanation: "Use on with days: on Monday.",
+        },
+        {
+          prompt: "He climbed ___ the roof.",
+          options: ["on", "onto", "into"],
+          answer: "onto",
+          explanation: "Onto highlights movement to a surface; on is the final position.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "介词 on 的核心含义是什么？",
+          answer:
+            "on 的核心是“接触表面”。物体与表面接触时用 on。时间表达里，on 也常用于星期与具体日期。例：on the table / on Monday。",
+        },
+        {
+          question: "on 和 in 怎么快速区分？",
+          answer:
+            "先问“是否接触表面”。接触表面用 on；在容器/空间内部用 in。例：on the box（表面）vs in the box（内部）。",
+        },
+        {
+          question: "on 和 onto 有什么区别？",
+          answer:
+            "on 描述位置（已经在表面上）；onto 描述动作（移动到表面上）。例：He climbed onto the roof. / He is on the roof.",
+        },
+        {
+          question: "on 和 over/above 的区别是什么？",
+          answer:
+            "on 必须接触；over/above 可以只在上方不接触。例：A lamp hangs over the table（悬挂）vs A lamp is on the table（放在桌上）。",
+        },
+        {
+          question: "on 在时间表达里怎么用？",
+          answer:
+            "on 常用于星期与具体日期：on Monday, on July 1。时间点用 at（at 7:00），月份/年份/早中晚等时间段用 in（in July / in 2026 / in the morning）。",
+        },
+        {
+          question: "为什么是 on the bus，但 in the car？",
+          answer:
+            "初学者可先用“平台感”记忆：bus/train/bike 更像站在平台上 -> on；car/taxi 更像封闭空间 -> in。实际用法也会随语境变化，但这是好用的入门规则。",
+        },
+        {
+          question: "初学者用 on 最常见的错误有哪些？",
+          answer:
+            "最常见是把 on 用错到年份/月份（应 in 2010 / in July），或把 in 用错到星期/日期（应 on Monday / on July 1），以及把 taxi/car 误用成 on。",
+        },
+        {
+          question: "如何在 30 秒内记住 on？",
+          answer:
+            "记两条：touching a surface -> on；days/dates -> on。然后复述一对对比：on the box（表面）/ in the box（内部）。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of the preposition on?",
+          answer:
+            "The core meaning is surface contact. Use on when something touches a surface. In time, on is also common with days and specific dates. Example: on the table / on Monday.",
+        },
+        {
+          question: "How do I quickly choose between on and in?",
+          answer:
+            "Ask one question: is it touching a surface? Use on for surface contact, and in for being inside a container or boundary. Example: on the box vs in the box.",
+        },
+        {
+          question: "What is the difference between on and onto?",
+          answer:
+            "On is a position (already on the surface). Onto is movement to the surface. Example: He climbed onto the roof. / He is on the roof.",
+        },
+        {
+          question: "What is the difference between on and over/above?",
+          answer:
+            "On requires contact. Over/above can be above without contact. Example: A lamp hangs over the table vs A lamp is on the table.",
+        },
+        {
+          question: "How is on used for time?",
+          answer:
+            "Use on with days and specific dates: on Monday, on July 1. Use at for exact clock time (at 7:00), and use in for months/years/periods (in July / in 2026 / in the morning).",
+        },
+        {
+          question: "Why do we say on the bus but in the car?",
+          answer:
+            "A beginner rule: buses/trains/bikes feel like platforms, so on is common; cars/taxis feel enclosed, so in is typical. Context can affect the choice, but this rule works well.",
+        },
+        {
+          question: "What are common learner mistakes with on?",
+          answer:
+            "Learners often use on with years/months (use in 2010 / in July), or use in with days/dates (use on Monday / on July 1). Another common confusion is on a taxi (usually in a taxi).",
+        },
+        {
+          question: "What is a 30-second memory rule for on?",
+          answer:
+            "Memorize two cues: touching a surface -> on; days/dates -> on. Then rehearse a contrast pair: on the box (surface) vs in the box (inside).",
+        },
+      ],
+    },
   },
   {
     id: "under",
@@ -2245,6 +2648,2081 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
   },
 ];
 
+type TemporalSeedGroup = {
+  titleEn: string;
+  titleZh: string;
+  meaningPrefixZh: string;
+  items: string[];
+};
+
+type TemporalSeed = {
+  focusEn: string;
+  focusZh: string;
+  contrasts: [string, string];
+  groups: [TemporalSeedGroup, TemporalSeedGroup, TemporalSeedGroup];
+};
+
+const TEMPORAL_DETAIL_IDS = new Set([
+  "at",
+  "in",
+  "on",
+  "by",
+  "between",
+  "through",
+  "over",
+  "around",
+  "from",
+  "to",
+  "past",
+  "within",
+  "throughout",
+  "under",
+  "beyond",
+  "ahead-of",
+  "behind",
+]);
+
+const DYNAMIC_DETAIL_IDS = new Set([
+  "across",
+  "along",
+  "into",
+  "onto",
+  "out-of",
+  "up",
+  "down",
+  "off",
+  "toward",
+  "alongside",
+]);
+
+const TEMPORAL_DETAIL_SEEDS: Record<string, TemporalSeed> = {
+  on: {
+    focusEn: "days and specific calendar dates",
+    focusZh: "星期与具体日期",
+    contrasts: ["in", "at"],
+    groups: [
+      {
+        titleEn: "Calendar days",
+        titleZh: "日期类",
+        meaningPrefixZh: "日期表达",
+        items: [
+          "on Monday",
+          "on Tuesday",
+          "on July 1",
+          "on my birthday",
+          "on New Year's Day",
+          "on Monday morning",
+        ],
+      },
+      {
+        titleEn: "Schedule range",
+        titleZh: "安排类",
+        meaningPrefixZh: "时间安排",
+        items: [
+          "on the weekend",
+          "on weekdays",
+          "on the first day",
+          "on the last day",
+          "on that day",
+          "on day one",
+        ],
+      },
+      {
+        titleEn: "Status & process",
+        titleZh: "状态类",
+        meaningPrefixZh: "进度状态",
+        items: [
+          "on time",
+          "on schedule",
+          "on arrival",
+          "on departure",
+          "on short notice",
+          "on the dot",
+        ],
+      },
+    ],
+  },
+  under: {
+    focusEn: "a limit lower than a threshold",
+    focusZh: "低于某个时间阈值",
+    contrasts: ["over", "within"],
+    groups: [
+      {
+        titleEn: "Duration limits",
+        titleZh: "时长上限类",
+        meaningPrefixZh: "时长上限",
+        items: [
+          "under an hour",
+          "under two minutes",
+          "under three days",
+          "under a week",
+          "under a month",
+          "under a minute",
+        ],
+      },
+      {
+        titleEn: "Time pressure",
+        titleZh: "时间压力类",
+        meaningPrefixZh: "时间压力",
+        items: [
+          "under pressure",
+          "under deadline pressure",
+          "under a tight schedule",
+          "under strict timing",
+          "under time constraints",
+          "under urgent timing",
+        ],
+      },
+      {
+        titleEn: "Progress status",
+        titleZh: "过程状态类",
+        meaningPrefixZh: "过程状态",
+        items: [
+          "under review",
+          "under discussion",
+          "under observation",
+          "under negotiation",
+          "under investigation",
+          "under revision",
+        ],
+      },
+    ],
+  },
+  over: {
+    focusEn: "a duration that spans a period",
+    focusZh: "跨越一段时间",
+    contrasts: ["within", "under"],
+    groups: [
+      {
+        titleEn: "Duration span",
+        titleZh: "时间跨度类",
+        meaningPrefixZh: "时间跨度",
+        items: [
+          "over the weekend",
+          "over the night",
+          "over three days",
+          "over the next month",
+          "over two semesters",
+          "over lunch",
+        ],
+      },
+      {
+        titleEn: "Long-term change",
+        titleZh: "长期变化类",
+        meaningPrefixZh: "长期变化",
+        items: [
+          "over time",
+          "over the years",
+          "over the past year",
+          "over the long term",
+          "over several months",
+          "over the course of the week",
+        ],
+      },
+      {
+        titleEn: "Seasonal windows",
+        titleZh: "阶段时段类",
+        meaningPrefixZh: "阶段时段",
+        items: [
+          "over the holidays",
+          "over summer break",
+          "over winter break",
+          "over exam week",
+          "over the break",
+          "over this quarter",
+        ],
+      },
+    ],
+  },
+  by: {
+    focusEn: "a deadline no later than a point",
+    focusZh: "不晚于某时间点",
+    contrasts: ["at", "on"],
+    groups: [
+      {
+        titleEn: "Deadlines",
+        titleZh: "截止时间类",
+        meaningPrefixZh: "截止时间",
+        items: [
+          "by Monday",
+          "by noon",
+          "by tomorrow",
+          "by next week",
+          "by 5 p.m.",
+          "by the end of the month",
+        ],
+      },
+      {
+        titleEn: "Milestones",
+        titleZh: "里程碑类",
+        meaningPrefixZh: "阶段节点",
+        items: [
+          "by then",
+          "by now",
+          "by age 18",
+          "by this point",
+          "by the deadline",
+          "by the second week",
+        ],
+      },
+      {
+        titleEn: "Day progression",
+        titleZh: "日内进度类",
+        meaningPrefixZh: "日内进度",
+        items: [
+          "by early morning",
+          "by late afternoon",
+          "by night",
+          "by the end of class",
+          "by break time",
+          "by dinner time",
+        ],
+      },
+    ],
+  },
+  behind: {
+    focusEn: "later than planned progress",
+    focusZh: "进度落后于计划",
+    contrasts: ["ahead-of", "by"],
+    groups: [
+      {
+        titleEn: "Schedule delay",
+        titleZh: "进度落后类",
+        meaningPrefixZh: "进度落后",
+        items: [
+          "behind schedule",
+          "behind the plan",
+          "behind the deadline",
+          "behind the target date",
+          "behind the timetable",
+          "days behind",
+        ],
+      },
+      {
+        titleEn: "Work progress",
+        titleZh: "学习工作类",
+        meaningPrefixZh: "学习工作进度",
+        items: [
+          "behind in homework",
+          "behind in reading",
+          "behind in payments",
+          "behind in updates",
+          "behind in production",
+          "behind in training",
+        ],
+      },
+      {
+        titleEn: "Catch-up language",
+        titleZh: "追赶表达类",
+        meaningPrefixZh: "追赶表达",
+        items: [
+          "fall behind",
+          "get behind",
+          "stay behind",
+          "running behind",
+          "months behind",
+          "well behind",
+        ],
+      },
+    ],
+  },
+  between: {
+    focusEn: "a bounded interval with two endpoints",
+    focusZh: "两个端点之间的时间区间",
+    contrasts: ["from", "through"],
+    groups: [
+      {
+        titleEn: "Clock and date ranges",
+        titleZh: "时间区间类",
+        meaningPrefixZh: "时间区间",
+        items: [
+          "between 2 and 3 p.m.",
+          "between Monday and Friday",
+          "between June and August",
+          "between now and noon",
+          "between 1990 and 2000",
+          "between day and night",
+        ],
+      },
+      {
+        titleEn: "Task windows",
+        titleZh: "任务窗口类",
+        meaningPrefixZh: "任务窗口",
+        items: [
+          "between classes",
+          "between meetings",
+          "between two deadlines",
+          "between two shifts",
+          "between tasks",
+          "between appointments",
+        ],
+      },
+      {
+        titleEn: "Process stages",
+        titleZh: "流程阶段类",
+        meaningPrefixZh: "流程阶段",
+        items: [
+          "between semesters",
+          "between projects",
+          "between start and finish",
+          "between lunch and dinner",
+          "between first and second term",
+          "between then and now",
+        ],
+      },
+    ],
+  },
+  around: {
+    focusEn: "approximate time points or periods",
+    focusZh: "大约时间点或时间段",
+    contrasts: ["at", "by"],
+    groups: [
+      {
+        titleEn: "Approximate points",
+        titleZh: "大约时点类",
+        meaningPrefixZh: "大约时点",
+        items: [
+          "around noon",
+          "around 8:00",
+          "around midnight",
+          "around sunrise",
+          "around lunchtime",
+          "around this time",
+        ],
+      },
+      {
+        titleEn: "Approximate dates",
+        titleZh: "大约日期类",
+        meaningPrefixZh: "大约日期",
+        items: [
+          "around Monday",
+          "around July",
+          "around the end of May",
+          "around the holidays",
+          "around the weekend",
+          "around the due date",
+        ],
+      },
+      {
+        titleEn: "Flexible planning",
+        titleZh: "灵活安排类",
+        meaningPrefixZh: "灵活安排",
+        items: [
+          "around then",
+          "around one hour",
+          "around two weeks",
+          "around class time",
+          "around early evening",
+          "around the same period",
+        ],
+      },
+    ],
+  },
+  through: {
+    focusEn: "continuity from start to finish",
+    focusZh: "从头到尾持续",
+    contrasts: ["over", "throughout"],
+    groups: [
+      {
+        titleEn: "Continuous periods",
+        titleZh: "持续时段类",
+        meaningPrefixZh: "持续时段",
+        items: [
+          "through the night",
+          "through the day",
+          "through the week",
+          "through winter",
+          "through the holiday",
+          "through the year",
+        ],
+      },
+      {
+        titleEn: "Learning process",
+        titleZh: "学习流程类",
+        meaningPrefixZh: "学习流程",
+        items: [
+          "through the morning",
+          "through the afternoon",
+          "through the semester",
+          "through the program",
+          "through the process",
+          "through every stage",
+        ],
+      },
+      {
+        titleEn: "Project phases",
+        titleZh: "项目阶段类",
+        meaningPrefixZh: "项目阶段",
+        items: [
+          "through exam season",
+          "through the first quarter",
+          "through the final phase",
+          "through the deadline period",
+          "through implementation",
+          "through review cycles",
+        ],
+      },
+    ],
+  },
+  at: {
+    focusEn: "precise points in time",
+    focusZh: "精确时间点",
+    contrasts: ["on", "in"],
+    groups: [
+      {
+        titleEn: "Exact points",
+        titleZh: "精确时点类",
+        meaningPrefixZh: "精确时点",
+        items: [
+          "at 7:00",
+          "at noon",
+          "at midnight",
+          "at sunrise",
+          "at lunchtime",
+          "at the moment",
+        ],
+      },
+      {
+        titleEn: "Event timing",
+        titleZh: "事件节点类",
+        meaningPrefixZh: "事件节点",
+        items: [
+          "at the beginning",
+          "at the end of the day",
+          "at that time",
+          "at first",
+          "at last",
+          "at the same time",
+        ],
+      },
+      {
+        titleEn: "Schedule moments",
+        titleZh: "日程时刻类",
+        meaningPrefixZh: "日程时刻",
+        items: [
+          "at short notice",
+          "at peak time",
+          "at break time",
+          "at opening time",
+          "at closing time",
+          "at bedtime",
+        ],
+      },
+    ],
+  },
+  to: {
+    focusEn: "an endpoint or final limit",
+    focusZh: "终点或结束界限",
+    contrasts: ["from", "by"],
+    groups: [
+      {
+        titleEn: "End points",
+        titleZh: "终点时间类",
+        meaningPrefixZh: "终点时间",
+        items: [
+          "to Monday",
+          "to Friday",
+          "to midnight",
+          "to 5 p.m.",
+          "to the end of June",
+          "to date",
+        ],
+      },
+      {
+        titleEn: "Range patterns",
+        titleZh: "范围搭配类",
+        meaningPrefixZh: "范围搭配",
+        items: [
+          "from 9 to 5",
+          "Monday to Friday",
+          "from April to June",
+          "10 to 12",
+          "from start to finish",
+          "from dawn to dusk",
+        ],
+      },
+      {
+        titleEn: "Clock expressions",
+        titleZh: "报时表达类",
+        meaningPrefixZh: "报时表达",
+        items: [
+          "five to ten",
+          "ten to six",
+          "quarter to nine",
+          "twenty to eight",
+          "one minute to midnight",
+          "ten minutes to two",
+        ],
+      },
+    ],
+  },
+  from: {
+    focusEn: "the starting point in time",
+    focusZh: "时间起点",
+    contrasts: ["to", "since"],
+    groups: [
+      {
+        titleEn: "Start points",
+        titleZh: "起点时间类",
+        meaningPrefixZh: "起点时间",
+        items: [
+          "from Monday",
+          "from 9 a.m.",
+          "from now on",
+          "from childhood",
+          "from that day",
+          "from early morning",
+        ],
+      },
+      {
+        titleEn: "Range expressions",
+        titleZh: "范围表达类",
+        meaningPrefixZh: "范围表达",
+        items: [
+          "from Monday to Friday",
+          "from April to June",
+          "from 2010 to 2020",
+          "from start to finish",
+          "from dawn to dusk",
+          "from day one",
+        ],
+      },
+      {
+        titleEn: "Continuation",
+        titleZh: "延续表达类",
+        meaningPrefixZh: "延续表达",
+        items: [
+          "from then on",
+          "from this point forward",
+          "from today onward",
+          "from the first week",
+          "from the beginning",
+          "from the deadline date",
+        ],
+      },
+    ],
+  },
+  within: {
+    focusEn: "inside a time limit before it ends",
+    focusZh: "在时限结束前",
+    contrasts: ["in", "by"],
+    groups: [
+      {
+        titleEn: "Time limits",
+        titleZh: "时限表达类",
+        meaningPrefixZh: "时限表达",
+        items: [
+          "within an hour",
+          "within two days",
+          "within a week",
+          "within this month",
+          "within minutes",
+          "within one semester",
+        ],
+      },
+      {
+        titleEn: "Deadline windows",
+        titleZh: "截止窗口类",
+        meaningPrefixZh: "截止窗口",
+        items: [
+          "within the deadline",
+          "within working hours",
+          "within the first quarter",
+          "within the next year",
+          "within the allowed time",
+          "within the time limit",
+        ],
+      },
+      {
+        titleEn: "Constraint language",
+        titleZh: "约束表达类",
+        meaningPrefixZh: "约束表达",
+        items: [
+          "within reason",
+          "within reach",
+          "within budget",
+          "within the plan",
+          "within scope",
+          "within expectations",
+        ],
+      },
+    ],
+  },
+  past: {
+    focusEn: "later than a reference point on the clock",
+    focusZh: "晚于某个参照时刻",
+    contrasts: ["at", "beyond"],
+    groups: [
+      {
+        titleEn: "Clock expressions",
+        titleZh: "钟点表达类",
+        meaningPrefixZh: "钟点表达",
+        items: [
+          "ten past six",
+          "twenty past eight",
+          "half past nine",
+          "five past noon",
+          "just past midnight",
+          "a minute past ten",
+        ],
+      },
+      {
+        titleEn: "After a point",
+        titleZh: "超过节点类",
+        meaningPrefixZh: "超过节点",
+        items: [
+          "past Monday",
+          "past the deadline",
+          "past bedtime",
+          "past lunch time",
+          "past this week",
+          "past due",
+        ],
+      },
+      {
+        titleEn: "Historical context",
+        titleZh: "历史时间类",
+        meaningPrefixZh: "历史时间",
+        items: [
+          "past years",
+          "past records",
+          "past events",
+          "past performance",
+          "past habits",
+          "past experience",
+        ],
+      },
+    ],
+  },
+  throughout: {
+    focusEn: "all parts of an entire period",
+    focusZh: "贯穿整个时间段",
+    contrasts: ["through", "over"],
+    groups: [
+      {
+        titleEn: "Whole-period coverage",
+        titleZh: "全程覆盖类",
+        meaningPrefixZh: "全程覆盖",
+        items: [
+          "throughout the day",
+          "throughout the night",
+          "throughout the week",
+          "throughout the month",
+          "throughout the year",
+          "throughout the semester",
+        ],
+      },
+      {
+        titleEn: "Project coverage",
+        titleZh: "项目覆盖类",
+        meaningPrefixZh: "项目覆盖",
+        items: [
+          "throughout the process",
+          "throughout the course",
+          "throughout the project",
+          "throughout training",
+          "throughout the campaign",
+          "throughout implementation",
+        ],
+      },
+      {
+        titleEn: "Life-stage coverage",
+        titleZh: "人生阶段类",
+        meaningPrefixZh: "人生阶段",
+        items: [
+          "throughout childhood",
+          "throughout adulthood",
+          "throughout exam season",
+          "throughout office hours",
+          "throughout class time",
+          "throughout history",
+        ],
+      },
+    ],
+  },
+  beyond: {
+    focusEn: "later or further than an expected limit",
+    focusZh: "超过预期时间界限",
+    contrasts: ["past", "by"],
+    groups: [
+      {
+        titleEn: "Beyond limits",
+        titleZh: "超出界限类",
+        meaningPrefixZh: "超出界限",
+        items: [
+          "beyond midnight",
+          "beyond this year",
+          "beyond the deadline",
+          "beyond working hours",
+          "beyond the due date",
+          "beyond that point",
+        ],
+      },
+      {
+        titleEn: "Extended windows",
+        titleZh: "延展时段类",
+        meaningPrefixZh: "延展时段",
+        items: [
+          "beyond the first month",
+          "beyond the second quarter",
+          "beyond the trial period",
+          "beyond the schedule",
+          "beyond normal hours",
+          "beyond retirement age",
+        ],
+      },
+      {
+        titleEn: "Abstract extension",
+        titleZh: "抽象延展类",
+        meaningPrefixZh: "抽象延展",
+        items: [
+          "beyond expectations",
+          "beyond control",
+          "beyond memory",
+          "beyond measure",
+          "beyond comparison",
+          "beyond doubt",
+        ],
+      },
+    ],
+  },
+  "ahead-of": {
+    focusEn: "earlier than a schedule or expected time",
+    focusZh: "早于计划时间",
+    contrasts: ["behind", "by"],
+    groups: [
+      {
+        titleEn: "Ahead status",
+        titleZh: "提前状态类",
+        meaningPrefixZh: "提前状态",
+        items: [
+          "ahead of schedule",
+          "ahead of time",
+          "ahead of the deadline",
+          "ahead of launch",
+          "ahead of the meeting",
+          "ahead of exams",
+        ],
+      },
+      {
+        titleEn: "Lead amount",
+        titleZh: "提前幅度类",
+        meaningPrefixZh: "提前幅度",
+        items: [
+          "two weeks ahead of deadline",
+          "days ahead of plan",
+          "months ahead of release",
+          "hours ahead of others",
+          "ahead of target",
+          "ahead of the curve",
+        ],
+      },
+      {
+        titleEn: "Preparation actions",
+        titleZh: "提前动作类",
+        meaningPrefixZh: "提前动作",
+        items: [
+          "plan ahead of time",
+          "book ahead of time",
+          "arrive ahead of schedule",
+          "finish ahead of deadline",
+          "submit ahead of due date",
+          "start ahead of class",
+        ],
+      },
+    ],
+  },
+};
+
+const DYNAMIC_DETAIL_SEEDS: Record<string, TemporalSeed> = {
+  across: {
+    focusEn: "movement from one side to the other",
+    focusZh: "从一侧到另一侧的横向穿越",
+    contrasts: ["through", "along"],
+    groups: [
+      {
+        titleEn: "Crossing paths",
+        titleZh: "横穿路径类",
+        meaningPrefixZh: "横穿路径",
+        items: [
+          "across the street",
+          "across the bridge",
+          "across the river",
+          "across the room",
+          "across the field",
+          "across the road",
+        ],
+      },
+      {
+        titleEn: "Visual movement",
+        titleZh: "视觉移动类",
+        meaningPrefixZh: "视觉移动",
+        items: [
+          "across the screen",
+          "across the page",
+          "across the map",
+          "across the board",
+          "across the line",
+          "across lanes",
+        ],
+      },
+      {
+        titleEn: "Route coverage",
+        titleZh: "路线覆盖类",
+        meaningPrefixZh: "路线覆盖",
+        items: [
+          "across the city",
+          "across town",
+          "across the campus",
+          "across the park",
+          "across the valley",
+          "across the region",
+        ],
+      },
+    ],
+  },
+  along: {
+    focusEn: "movement following a line or edge",
+    focusZh: "沿着线性边界持续移动",
+    contrasts: ["across", "through"],
+    groups: [
+      {
+        titleEn: "Linear routes",
+        titleZh: "线性路线类",
+        meaningPrefixZh: "线性路线",
+        items: [
+          "along the road",
+          "along the river",
+          "along the beach",
+          "along the wall",
+          "along the corridor",
+          "along the street",
+        ],
+      },
+      {
+        titleEn: "Edges and borders",
+        titleZh: "边缘边界类",
+        meaningPrefixZh: "边缘边界",
+        items: [
+          "along the edge",
+          "along the border",
+          "along the line",
+          "along the path",
+          "along the coast",
+          "along the fence",
+        ],
+      },
+      {
+        titleEn: "Abstract paths",
+        titleZh: "抽象路径类",
+        meaningPrefixZh: "抽象路径",
+        items: [
+          "along the timeline",
+          "along the curve",
+          "along the route",
+          "along the track",
+          "along the channel",
+          "along the sequence",
+        ],
+      },
+    ],
+  },
+  into: {
+    focusEn: "movement from outside to inside",
+    focusZh: "从外到内进入目标空间",
+    contrasts: ["in", "onto"],
+    groups: [
+      {
+        titleEn: "Entering spaces",
+        titleZh: "进入空间类",
+        meaningPrefixZh: "进入空间",
+        items: [
+          "into the room",
+          "into the house",
+          "into the classroom",
+          "into the kitchen",
+          "into the office",
+          "into the hall",
+        ],
+      },
+      {
+        titleEn: "Entering containers",
+        titleZh: "进入容器类",
+        meaningPrefixZh: "进入容器",
+        items: [
+          "into the box",
+          "into the bag",
+          "into the bottle",
+          "into the drawer",
+          "into the basket",
+          "into the pocket",
+        ],
+      },
+      {
+        titleEn: "Abstract transition",
+        titleZh: "抽象转变类",
+        meaningPrefixZh: "抽象转变",
+        items: [
+          "into focus",
+          "into detail",
+          "into action",
+          "into use",
+          "into view",
+          "into trouble",
+        ],
+      },
+    ],
+  },
+  onto: {
+    focusEn: "movement to a surface",
+    focusZh: "移动并落到表面上",
+    contrasts: ["on", "into"],
+    groups: [
+      {
+        titleEn: "Surface landing",
+        titleZh: "落到表面类",
+        meaningPrefixZh: "落到表面",
+        items: [
+          "onto the table",
+          "onto the bed",
+          "onto the shelf",
+          "onto the roof",
+          "onto the floor",
+          "onto the stage",
+        ],
+      },
+      {
+        titleEn: "Platform movement",
+        titleZh: "平台移动类",
+        meaningPrefixZh: "平台移动",
+        items: [
+          "onto the platform",
+          "onto the bridge",
+          "onto the path",
+          "onto the board",
+          "onto the map",
+          "onto the screen",
+        ],
+      },
+      {
+        titleEn: "Transport boarding",
+        titleZh: "交通登上类",
+        meaningPrefixZh: "交通登上",
+        items: [
+          "onto the bus",
+          "onto the train",
+          "onto the boat",
+          "onto the bike",
+          "onto the elevator",
+          "onto the escalator",
+        ],
+      },
+    ],
+  },
+  "out-of": {
+    focusEn: "movement from inside to outside",
+    focusZh: "从内部向外离开",
+    contrasts: ["from", "into"],
+    groups: [
+      {
+        titleEn: "Exiting spaces",
+        titleZh: "离开空间类",
+        meaningPrefixZh: "离开空间",
+        items: [
+          "out of the room",
+          "out of the house",
+          "out of the classroom",
+          "out of the building",
+          "out of the office",
+          "out of the hall",
+        ],
+      },
+      {
+        titleEn: "Exiting containers",
+        titleZh: "离开容器类",
+        meaningPrefixZh: "离开容器",
+        items: [
+          "out of the box",
+          "out of the bag",
+          "out of the drawer",
+          "out of the bottle",
+          "out of the basket",
+          "out of the car",
+        ],
+      },
+      {
+        titleEn: "State changes",
+        titleZh: "状态变化类",
+        meaningPrefixZh: "状态变化",
+        items: [
+          "out of danger",
+          "out of trouble",
+          "out of control",
+          "out of patience",
+          "out of energy",
+          "out of time",
+        ],
+      },
+    ],
+  },
+  up: {
+    focusEn: "movement toward a higher position",
+    focusZh: "朝更高位置向上移动",
+    contrasts: ["down", "onto"],
+    groups: [
+      {
+        titleEn: "Vertical paths",
+        titleZh: "垂直上升类",
+        meaningPrefixZh: "垂直上升",
+        items: [
+          "up the stairs",
+          "up the ladder",
+          "up the hill",
+          "up the ramp",
+          "up the escalator",
+          "up the slope",
+        ],
+      },
+      {
+        titleEn: "Route progress",
+        titleZh: "路线推进类",
+        meaningPrefixZh: "路线推进",
+        items: [
+          "up the road",
+          "up the street",
+          "up the river",
+          "up the path",
+          "up the valley",
+          "up the coast",
+        ],
+      },
+      {
+        titleEn: "Chart movement",
+        titleZh: "图表上升类",
+        meaningPrefixZh: "图表上升",
+        items: [
+          "up the chart",
+          "up the ranking",
+          "up the list",
+          "up the timeline",
+          "up the page",
+          "up the screen",
+        ],
+      },
+    ],
+  },
+  down: {
+    focusEn: "movement toward a lower position",
+    focusZh: "朝更低位置向下移动",
+    contrasts: ["up", "off"],
+    groups: [
+      {
+        titleEn: "Vertical descent",
+        titleZh: "垂直下降类",
+        meaningPrefixZh: "垂直下降",
+        items: [
+          "down the stairs",
+          "down the ladder",
+          "down the hill",
+          "down the ramp",
+          "down the escalator",
+          "down the slope",
+        ],
+      },
+      {
+        titleEn: "Route descent",
+        titleZh: "路线下行类",
+        meaningPrefixZh: "路线下行",
+        items: [
+          "down the road",
+          "down the street",
+          "down the river",
+          "down the path",
+          "down the valley",
+          "down the corridor",
+        ],
+      },
+      {
+        titleEn: "Chart movement",
+        titleZh: "图表下降类",
+        meaningPrefixZh: "图表下降",
+        items: [
+          "down the chart",
+          "down the ranking",
+          "down the list",
+          "down the timeline",
+          "down the page",
+          "down the screen",
+        ],
+      },
+    ],
+  },
+  off: {
+    focusEn: "movement away from a surface or attachment",
+    focusZh: "从表面或附着状态脱离",
+    contrasts: ["on", "out-of"],
+    groups: [
+      {
+        titleEn: "Leaving surfaces",
+        titleZh: "离开表面类",
+        meaningPrefixZh: "离开表面",
+        items: [
+          "off the table",
+          "off the shelf",
+          "off the bed",
+          "off the roof",
+          "off the platform",
+          "off the stage",
+        ],
+      },
+      {
+        titleEn: "Transport movement",
+        titleZh: "交通离开类",
+        meaningPrefixZh: "交通离开",
+        items: [
+          "off the bus",
+          "off the train",
+          "off the bike",
+          "off the plane",
+          "off the boat",
+          "off the elevator",
+        ],
+      },
+      {
+        titleEn: "State shifts",
+        titleZh: "状态切换类",
+        meaningPrefixZh: "状态切换",
+        items: [
+          "off schedule",
+          "off duty",
+          "off balance",
+          "off track",
+          "off line",
+          "off guard",
+        ],
+      },
+    ],
+  },
+  toward: {
+    focusEn: "movement in the direction of a target",
+    focusZh: "朝目标方向接近",
+    contrasts: ["to", "past"],
+    groups: [
+      {
+        titleEn: "Directional targets",
+        titleZh: "方向目标类",
+        meaningPrefixZh: "方向目标",
+        items: [
+          "toward the door",
+          "toward the gate",
+          "toward the station",
+          "toward the bridge",
+          "toward the exit",
+          "toward the window",
+        ],
+      },
+      {
+        titleEn: "Goal progress",
+        titleZh: "目标推进类",
+        meaningPrefixZh: "目标推进",
+        items: [
+          "toward the goal",
+          "toward the finish line",
+          "toward the target",
+          "toward the deadline",
+          "toward the answer",
+          "toward the solution",
+        ],
+      },
+      {
+        titleEn: "Route orientation",
+        titleZh: "路线指向类",
+        meaningPrefixZh: "路线指向",
+        items: [
+          "toward the north",
+          "toward downtown",
+          "toward the coast",
+          "toward the checkpoint",
+          "toward the main road",
+          "toward the city center",
+        ],
+      },
+    ],
+  },
+  alongside: {
+    focusEn: "movement parallel and next to something",
+    focusZh: "与参照物并行前进",
+    contrasts: ["along", "beside"],
+    groups: [
+      {
+        titleEn: "Parallel routes",
+        titleZh: "并行路线类",
+        meaningPrefixZh: "并行路线",
+        items: [
+          "alongside the road",
+          "alongside the river",
+          "alongside the wall",
+          "alongside the path",
+          "alongside the track",
+          "alongside the coast",
+        ],
+      },
+      {
+        titleEn: "Moving with people",
+        titleZh: "并肩移动类",
+        meaningPrefixZh: "并肩移动",
+        items: [
+          "alongside the team",
+          "alongside the coach",
+          "alongside the teacher",
+          "alongside the mentor",
+          "alongside the partner",
+          "alongside the guide",
+        ],
+      },
+      {
+        titleEn: "Process alignment",
+        titleZh: "流程并行类",
+        meaningPrefixZh: "流程并行",
+        items: [
+          "alongside the timeline",
+          "alongside the plan",
+          "alongside the process",
+          "alongside the course",
+          "alongside the project",
+          "alongside the campaign",
+        ],
+      },
+    ],
+  },
+};
+
+const DYNAMIC_TIME_EXAMPLES: Record<
+  string,
+  {
+    en: string;
+    zh: string;
+  }
+> = {
+  over: {
+    en: "The trend moved over the target line during the quarter.",
+    zh: "这个季度里，趋势线越过了目标线。",
+  },
+  around: {
+    en: "Our meeting time moved around noon as plans changed.",
+    zh: "随着计划变化，我们的会议时间在中午前后浮动。",
+  },
+  through: {
+    en: "The team worked through the night to finish the release.",
+    zh: "团队通宵工作完成了发布。",
+  },
+  to: {
+    en: "The timeline shifted to next Monday after the update.",
+    zh: "更新后，时间线调整到下周一。",
+  },
+  from: {
+    en: "The workshop moved from Tuesday to Thursday.",
+    zh: "研讨会从周二改到了周四。",
+  },
+  past: {
+    en: "The call ran past midnight during testing.",
+    zh: "测试期间，会议一直开到午夜之后。",
+  },
+};
+
+function getTermWord(idOrWord: string) {
+  const byId = PREPOSITIONS_BASE.find((entry) => entry.id === idOrWord);
+  return byId?.word ?? idOrWord;
+}
+
+function getSeedPhrase(idOrWord: string) {
+  const seed = TEMPORAL_DETAIL_SEEDS[idOrWord];
+  if (seed) {
+    return seed.groups[0].items[0] ?? `${getTermWord(idOrWord)} in context`;
+  }
+  return `${getTermWord(idOrWord)} in context`;
+}
+
+function getDynamicSeedPhrase(idOrWord: string) {
+  const seed = DYNAMIC_DETAIL_SEEDS[idOrWord];
+  if (seed) {
+    return seed.groups[0].items[0] ?? `${getTermWord(idOrWord)} the route`;
+  }
+  return `${getTermWord(idOrWord)} the route`;
+}
+
+function replaceLeadingWord(phrase: string, word: string, replacement: string) {
+  const source = `${word.toLowerCase()} `;
+  if (phrase.toLowerCase().startsWith(source)) {
+    return `${replacement}${phrase.slice(word.length)}`;
+  }
+  return phrase.replace(word, replacement);
+}
+
+function buildPromptFromPhrase(phrase: string, word: string) {
+  const source = `${word.toLowerCase()} `;
+  if (phrase.toLowerCase().startsWith(source)) {
+    const tail = phrase.slice(word.length).trim();
+    return `Choose the correct preposition: ___ ${tail}.`;
+  }
+  return `Choose the best preposition in this context: ${phrase}.`;
+}
+
+function createLocalizedExample(en: string, zh: string): PrepositionExample {
+  return {
+    en,
+    i18n: {
+      "zh-CN": { translation: zh },
+      en: { translation: en },
+    },
+  };
+}
+
+function getPhrase(
+  item:
+    | string
+    | {
+        phrase: string;
+        meaning?: string;
+      },
+) {
+  return typeof item === "string" ? item : item.phrase;
+}
+
+function pickTimePhrase(
+  groups: Record<"zh-CN" | "en", PrepositionCollocationGroup[]> | undefined,
+  fallback: string,
+  groupIndex: number,
+  itemIndex: number,
+) {
+  const enGroup = groups?.en?.[groupIndex];
+  if (enGroup?.items?.[itemIndex]) {
+    return getPhrase(enGroup.items[itemIndex]);
+  }
+  const zhGroup = groups?.["zh-CN"]?.[groupIndex];
+  if (zhGroup?.items?.[itemIndex]) {
+    return getPhrase(zhGroup.items[itemIndex]);
+  }
+  return fallback;
+}
+
+function buildTemporalCategoryExamples(
+  entry: PrepositionEntryBase,
+  groups: Record<"zh-CN" | "en", PrepositionCollocationGroup[]> | undefined,
+): Partial<Record<LearningCategory, PrepositionExample[]>> {
+  const phraseA = pickTimePhrase(
+    groups,
+    `${entry.word} this time`,
+    1,
+    0,
+  );
+  const phraseB = pickTimePhrase(
+    groups,
+    `${entry.word} this period`,
+    1,
+    1,
+  );
+
+  const timeExamples: PrepositionExample[] = [
+    createLocalizedExample(
+      `Practice this time expression: ${phraseA}.`,
+      `练习这个时间表达：${phraseA}。`,
+    ),
+    createLocalizedExample(
+      `Another common pattern is: ${phraseB}.`,
+      `另一个常见表达是：${phraseB}。`,
+    ),
+  ];
+
+  const result: Partial<Record<LearningCategory, PrepositionExample[]>> = {
+    space: entry.examples.slice(0, 2),
+    time: timeExamples,
+  };
+
+  if (entry.scene.animation) {
+    const dynamic = DYNAMIC_TIME_EXAMPLES[entry.id];
+    if (dynamic) {
+      result.dynamic = [createLocalizedExample(dynamic.en, dynamic.zh)];
+    } else {
+      result.dynamic = [
+        createLocalizedExample(
+          `Track how the marker moves ${entry.word} the timeline.`,
+          `观察标记如何沿着时间线 ${entry.word} 地移动。`,
+        ),
+      ];
+    }
+  }
+
+  return result;
+}
+
+function buildDynamicCategoryExamples(
+  entry: PrepositionEntryBase,
+  groups: Record<"zh-CN" | "en", PrepositionCollocationGroup[]> | undefined,
+): Partial<Record<LearningCategory, PrepositionExample[]>> {
+  const phraseA = pickTimePhrase(
+    groups,
+    `${entry.word} the route`,
+    0,
+    0,
+  );
+  const phraseB = pickTimePhrase(
+    groups,
+    `${entry.word} the target`,
+    1,
+    0,
+  );
+
+  return {
+    space: entry.examples.slice(0, 2),
+    dynamic: [
+      createLocalizedExample(
+        `Watch the marker move ${phraseA}.`,
+        `观察标记如何 ${phraseA} 地移动。`,
+      ),
+      createLocalizedExample(
+        `Then trace a second path ${phraseB}.`,
+        `然后再追踪一条 ${phraseB} 的路径。`,
+      ),
+    ],
+  };
+}
+
+function buildTemporalCollocationGroups(
+  seed: TemporalSeed,
+): Record<"zh-CN" | "en", PrepositionCollocationGroup[]> {
+  return {
+    "zh-CN": seed.groups.map((group) => ({
+      title: group.titleZh,
+      items: group.items.map((phrase) => ({
+        phrase,
+        meaning: `${group.meaningPrefixZh}：${phrase}`,
+      })),
+    })),
+    en: seed.groups.map((group) => ({
+      title: group.titleEn,
+      items: [...group.items],
+    })),
+  };
+}
+
+function buildDynamicCollocationGroups(
+  seed: TemporalSeed,
+): Record<"zh-CN" | "en", PrepositionCollocationGroup[]> {
+  return {
+    "zh-CN": seed.groups.map((group) => ({
+      title: group.titleZh,
+      items: group.items.map((phrase) => ({
+        phrase,
+        meaning: `${group.meaningPrefixZh}：${phrase}`,
+      })),
+    })),
+    en: seed.groups.map((group) => ({
+      title: group.titleEn,
+      items: [...group.items],
+    })),
+  };
+}
+
+function buildTemporalComparison(
+  entry: PrepositionEntryBase,
+  seed: TemporalSeed,
+): NonNullable<PrepositionEntryBase["comparison"]> {
+  const [termAId, termBId] = seed.contrasts;
+  const wordPhrase = seed.groups[0].items[0] ?? `${entry.word} in context`;
+  const termAPhrase = getSeedPhrase(termAId);
+  const termBPhrase = getSeedPhrase(termBId);
+  const termAWord = getTermWord(termAId);
+  const termBWord = getTermWord(termBId);
+  return {
+    i18n: {
+      "zh-CN": {
+        summary: `${entry.word} 在时间表达中更强调“${seed.focusZh}”，需要和相近介词区分语义边界。`,
+        differences: [
+          {
+            term: termAWord,
+            description: `${entry.word} 更强调“${seed.focusZh}”；${termAWord} 对应的是另一种时间关系。`,
+            examples: [
+              {
+                term: termAWord,
+                sentence: termAPhrase,
+                translation: `示例表达：${termAPhrase}`,
+              },
+              {
+                term: entry.word,
+                sentence: wordPhrase,
+                translation: `示例表达：${wordPhrase}`,
+              },
+            ],
+          },
+          {
+            term: termBWord,
+            description: `${entry.word} 用于“${seed.focusZh}”；${termBWord} 的语义重点不同。`,
+            examples: [
+              {
+                term: termBWord,
+                sentence: termBPhrase,
+                translation: `示例表达：${termBPhrase}`,
+              },
+              {
+                term: entry.word,
+                sentence: wordPhrase,
+                translation: `示例表达：${wordPhrase}`,
+              },
+            ],
+          },
+        ],
+      },
+      en: {
+        summary: `${entry.word} in time usage mainly signals ${seed.focusEn}; compare it with close alternatives to avoid overlap.`,
+        differences: [
+          {
+            term: termAWord,
+            description: `${entry.word} focuses on ${seed.focusEn}, while ${termAWord} marks a different temporal relation.`,
+            examples: [
+              {
+                term: termAWord,
+                sentence: termAPhrase,
+              },
+              {
+                term: entry.word,
+                sentence: wordPhrase,
+              },
+            ],
+          },
+          {
+            term: termBWord,
+            description: `${entry.word} is for ${seed.focusEn}; ${termBWord} usually serves another time function.`,
+            examples: [
+              {
+                term: termBWord,
+                sentence: termBPhrase,
+              },
+              {
+                term: entry.word,
+                sentence: wordPhrase,
+              },
+            ],
+          },
+        ],
+      },
+    },
+  };
+}
+
+function buildDynamicComparison(
+  entry: PrepositionEntryBase,
+  seed: TemporalSeed,
+): NonNullable<PrepositionEntryBase["comparison"]> {
+  const [termAId, termBId] = seed.contrasts;
+  const wordPhrase = seed.groups[0].items[0] ?? `${entry.word} the route`;
+  const termAPhrase = getDynamicSeedPhrase(termAId);
+  const termBPhrase = getDynamicSeedPhrase(termBId);
+  const termAWord = getTermWord(termAId);
+  const termBWord = getTermWord(termBId);
+  return {
+    i18n: {
+      "zh-CN": {
+        summary: `${entry.word} 强调“${seed.focusZh}”，学习时要和近义动态介词区分路径关系。`,
+        differences: [
+          {
+            term: termAWord,
+            description: `${entry.word} 更强调“${seed.focusZh}”；${termAWord} 常表示不同路径关系。`,
+            examples: [
+              {
+                term: termAWord,
+                sentence: termAPhrase,
+                translation: `示例表达：${termAPhrase}`,
+              },
+              {
+                term: entry.word,
+                sentence: wordPhrase,
+                translation: `示例表达：${wordPhrase}`,
+              },
+            ],
+          },
+          {
+            term: termBWord,
+            description: `${entry.word} 的重点是“${seed.focusZh}”；${termBWord} 的运动方向或终点不同。`,
+            examples: [
+              {
+                term: termBWord,
+                sentence: termBPhrase,
+                translation: `示例表达：${termBPhrase}`,
+              },
+              {
+                term: entry.word,
+                sentence: wordPhrase,
+                translation: `示例表达：${wordPhrase}`,
+              },
+            ],
+          },
+        ],
+      },
+      en: {
+        summary: `${entry.word} mainly shows ${seed.focusEn}; compare it with similar dynamic prepositions to avoid path confusion.`,
+        differences: [
+          {
+            term: termAWord,
+            description: `${entry.word} focuses on ${seed.focusEn}, while ${termAWord} usually marks a different path relation.`,
+            examples: [
+              {
+                term: termAWord,
+                sentence: termAPhrase,
+              },
+              {
+                term: entry.word,
+                sentence: wordPhrase,
+              },
+            ],
+          },
+          {
+            term: termBWord,
+            description: `${entry.word} highlights ${seed.focusEn}; ${termBWord} often changes direction or endpoint meaning.`,
+            examples: [
+              {
+                term: termBWord,
+                sentence: termBPhrase,
+              },
+              {
+                term: entry.word,
+                sentence: wordPhrase,
+              },
+            ],
+          },
+        ],
+      },
+    },
+  };
+}
+
+function buildTemporalMistakes(
+  entry: PrepositionEntryBase,
+  seed: TemporalSeed,
+): Record<"zh-CN" | "en", PrepositionMistakeItem[]> {
+  const [termAId, termBId] = seed.contrasts;
+  const termAWord = getTermWord(termAId);
+  const termBWord = getTermWord(termBId);
+  const phraseA = seed.groups[0].items[0] ?? `${entry.word} in context`;
+  const phraseB = seed.groups[0].items[1] ?? phraseA;
+  const wrongA = replaceLeadingWord(phraseA, entry.word, termAWord);
+  const wrongB = replaceLeadingWord(phraseB, entry.word, termBWord);
+  return {
+    "zh-CN": [
+      {
+        wrong: `We finish ${wrongA}.`,
+        correct: `We finish ${phraseA}.`,
+        reason: `表达“${seed.focusZh}”时优先用 ${entry.word}，而不是 ${termAWord}。`,
+      },
+      {
+        wrong: `The class starts ${wrongB}.`,
+        correct: `The class starts ${phraseB}.`,
+        reason: `${entry.word} 的核心是“${seed.focusZh}”，${termBWord} 表达的时间关系不同。`,
+      },
+    ],
+    en: [
+      {
+        wrong: `We finish ${wrongA}.`,
+        correct: `We finish ${phraseA}.`,
+        reason: `Use ${entry.word} when the meaning is ${seed.focusEn}; ${termAWord} signals a different relation.`,
+      },
+      {
+        wrong: `The class starts ${wrongB}.`,
+        correct: `The class starts ${phraseB}.`,
+        reason: `${entry.word} focuses on ${seed.focusEn}; ${termBWord} is not the best fit here.`,
+      },
+    ],
+  };
+}
+
+function buildDynamicMistakes(
+  entry: PrepositionEntryBase,
+  seed: TemporalSeed,
+): Record<"zh-CN" | "en", PrepositionMistakeItem[]> {
+  const [termAId, termBId] = seed.contrasts;
+  const termAWord = getTermWord(termAId);
+  const termBWord = getTermWord(termBId);
+  const phraseA = seed.groups[0].items[0] ?? `${entry.word} the route`;
+  const phraseB = seed.groups[0].items[1] ?? phraseA;
+  const wrongA = replaceLeadingWord(phraseA, entry.word, termAWord);
+  const wrongB = replaceLeadingWord(phraseB, entry.word, termBWord);
+  return {
+    "zh-CN": [
+      {
+        wrong: `The marker moved ${wrongA}.`,
+        correct: `The marker moved ${phraseA}.`,
+        reason: `这里要表达“${seed.focusZh}”，应用 ${entry.word}，而不是 ${termAWord}。`,
+      },
+      {
+        wrong: `The ball rolled ${wrongB}.`,
+        correct: `The ball rolled ${phraseB}.`,
+        reason: `${entry.word} 更符合该路径关系；${termBWord} 会改变运动语义。`,
+      },
+    ],
+    en: [
+      {
+        wrong: `The marker moved ${wrongA}.`,
+        correct: `The marker moved ${phraseA}.`,
+        reason: `Use ${entry.word} for ${seed.focusEn}; ${termAWord} changes the path relation.`,
+      },
+      {
+        wrong: `The ball rolled ${wrongB}.`,
+        correct: `The ball rolled ${phraseB}.`,
+        reason: `${entry.word} matches the intended motion; ${termBWord} shifts direction or endpoint meaning.`,
+      },
+    ],
+  };
+}
+
+function buildTemporalQuiz(
+  entry: PrepositionEntryBase,
+  seed: TemporalSeed,
+): Record<"zh-CN" | "en", PrepositionQuizItem[]> {
+  const [termAId, termBId] = seed.contrasts;
+  const termAWord = getTermWord(termAId);
+  const termBWord = getTermWord(termBId);
+  const options = Array.from(new Set([entry.word, termAWord, termBWord]));
+  const samples = [
+    seed.groups[0].items[0] ?? `${entry.word} in context`,
+    seed.groups[0].items[1] ?? `${entry.word} this period`,
+    seed.groups[1].items[0] ?? `${entry.word} this stage`,
+  ];
+  return {
+    "zh-CN": samples.map((phrase) => ({
+      prompt: buildPromptFromPhrase(phrase, entry.word),
+      options,
+      answer: entry.word,
+      explanation: `${entry.word} 在这里强调“${seed.focusZh}”，所以应选择 ${entry.word}。`,
+    })),
+    en: samples.map((phrase) => ({
+      prompt: buildPromptFromPhrase(phrase, entry.word),
+      options,
+      answer: entry.word,
+      explanation: `Choose ${entry.word} because this context needs ${seed.focusEn}.`,
+    })),
+  };
+}
+
+function buildDynamicQuiz(
+  entry: PrepositionEntryBase,
+  seed: TemporalSeed,
+): Record<"zh-CN" | "en", PrepositionQuizItem[]> {
+  const [termAId, termBId] = seed.contrasts;
+  const termAWord = getTermWord(termAId);
+  const termBWord = getTermWord(termBId);
+  const options = Array.from(new Set([entry.word, termAWord, termBWord]));
+  const samples = [
+    seed.groups[0].items[0] ?? `${entry.word} the route`,
+    seed.groups[0].items[1] ?? `${entry.word} the path`,
+    seed.groups[1].items[0] ?? `${entry.word} the target`,
+  ];
+  return {
+    "zh-CN": samples.map((phrase) => ({
+      prompt: buildPromptFromPhrase(phrase, entry.word),
+      options,
+      answer: entry.word,
+      explanation: `${entry.word} 在这里表达“${seed.focusZh}”，因此最准确。`,
+    })),
+    en: samples.map((phrase) => ({
+      prompt: buildPromptFromPhrase(phrase, entry.word),
+      options,
+      answer: entry.word,
+      explanation: `Choose ${entry.word} because this sentence needs ${seed.focusEn}.`,
+    })),
+  };
+}
+
+function getClosestTerms(entry: PrepositionEntryBase, limit = 2) {
+  const scored = PREPOSITIONS_BASE.filter((candidate) => candidate.id !== entry.id)
+    .map((candidate) => {
+      const overlap = candidate.tags.filter((tag) => entry.tags.includes(tag)).length;
+      const sameSense = candidate.sense === entry.sense ? 1 : 0;
+      return {
+        word: candidate.word,
+        score: overlap * 10 + sameSense,
+      };
+    })
+    .sort((left, right) => right.score - left.score);
+  const unique: string[] = [];
+  for (const candidate of scored) {
+    if (!unique.includes(candidate.word)) {
+      unique.push(candidate.word);
+    }
+    if (unique.length >= limit) break;
+  }
+  return unique;
+}
+
+function buildGenericPhrases(word: string) {
+  const groupOneTargets = [
+    "the room",
+    "the table",
+    "the box",
+    "the wall",
+    "the door",
+    "the corner",
+  ];
+  const groupTwoTargets = [
+    "the path",
+    "the route",
+    "the gate",
+    "the bridge",
+    "the center",
+    "the line",
+  ];
+  const groupThreeTargets = [
+    "the plan",
+    "the process",
+    "the result",
+    "the idea",
+    "the goal",
+    "the problem",
+  ];
+  return {
+    one: groupOneTargets.map((target) => `${word} ${target}`),
+    two: groupTwoTargets.map((target) => `${word} ${target}`),
+    three: groupThreeTargets.map((target) => `${word} ${target}`),
+  };
+}
+
+function buildGenericCollocationGroups(
+  entry: PrepositionEntryBase,
+): Record<"zh-CN" | "en", PrepositionCollocationGroup[]> {
+  const phrases = buildGenericPhrases(entry.word);
+  return {
+    "zh-CN": [
+      {
+        title: "空间场景类",
+        items: phrases.one.map((phrase) => ({
+          phrase,
+          meaning: `练习搭配：${phrase}`,
+        })),
+      },
+      {
+        title: "路径位置类",
+        items: phrases.two.map((phrase) => ({
+          phrase,
+          meaning: `练习搭配：${phrase}`,
+        })),
+      },
+      {
+        title: "抽象表达类",
+        items: phrases.three.map((phrase) => ({
+          phrase,
+          meaning: `练习搭配：${phrase}`,
+        })),
+      },
+    ],
+    en: [
+      { title: "Spatial contexts", items: phrases.one },
+      { title: "Route positions", items: phrases.two },
+      { title: "Abstract patterns", items: phrases.three },
+    ],
+  };
+}
+
+function buildGenericComparison(
+  entry: PrepositionEntryBase,
+): NonNullable<PrepositionEntryBase["comparison"]> {
+  const terms = getClosestTerms(entry, 2);
+  const termA = terms[0] ?? "in";
+  const termB = terms[1] ?? "on";
+  const entryPhrase = `${entry.word} the area`;
+  const termAPhrase = `${termA} the area`;
+  const termBPhrase = `${termB} the area`;
+  return {
+    i18n: {
+      "zh-CN": {
+        summary: `${entry.word} 的核心语义是“${entry.i18n["zh-CN"]?.meaning ?? entry.word}”，学习时要和近义介词对比。`,
+        differences: [
+          {
+            term: termA,
+            description: `${entry.word} 与 ${termA} 的空间关系焦点不同。`,
+            examples: [
+              {
+                term: termA,
+                sentence: termAPhrase,
+                translation: `示例表达：${termAPhrase}`,
+              },
+              {
+                term: entry.word,
+                sentence: entryPhrase,
+                translation: `示例表达：${entryPhrase}`,
+              },
+            ],
+          },
+          {
+            term: termB,
+            description: `${entry.word} 和 ${termB} 常被混淆，需要看接触、边界或方向。`,
+            examples: [
+              {
+                term: termB,
+                sentence: termBPhrase,
+                translation: `示例表达：${termBPhrase}`,
+              },
+              {
+                term: entry.word,
+                sentence: entryPhrase,
+                translation: `示例表达：${entryPhrase}`,
+              },
+            ],
+          },
+        ],
+      },
+      en: {
+        summary: `${entry.word} focuses on "${entry.i18n.en?.meaning ?? entry.word}", so compare it with close alternatives for beginners.`,
+        differences: [
+          {
+            term: termA,
+            description: `${entry.word} and ${termA} emphasize different spatial relations.`,
+            examples: [
+              { term: termA, sentence: termAPhrase },
+              { term: entry.word, sentence: entryPhrase },
+            ],
+          },
+          {
+            term: termB,
+            description: `${entry.word} is often confused with ${termB}; check contact, boundary, or direction.`,
+            examples: [
+              { term: termB, sentence: termBPhrase },
+              { term: entry.word, sentence: entryPhrase },
+            ],
+          },
+        ],
+      },
+    },
+  };
+}
+
+function buildGenericMistakes(
+  entry: PrepositionEntryBase,
+): Record<"zh-CN" | "en", PrepositionMistakeItem[]> {
+  const [termA, termB] = getClosestTerms(entry, 2);
+  const termOne = termA ?? "in";
+  const termTwo = termB ?? "on";
+  const correctA = `${entry.word} the box`;
+  const correctB = `${entry.word} the table`;
+  return {
+    "zh-CN": [
+      {
+        wrong: `The ball is ${termOne} the box.`,
+        correct: `The ball is ${correctA}.`,
+        reason: `当前语义更符合 ${entry.word} 的用法，不是 ${termOne}。`,
+      },
+      {
+        wrong: `The marker moved ${termTwo} the table.`,
+        correct: `The marker moved ${correctB}.`,
+        reason: `这里应保持 ${entry.word} 的关系表达，避免误换成 ${termTwo}。`,
+      },
+    ],
+    en: [
+      {
+        wrong: `The ball is ${termOne} the box.`,
+        correct: `The ball is ${correctA}.`,
+        reason: `This context matches ${entry.word}, not ${termOne}.`,
+      },
+      {
+        wrong: `The marker moved ${termTwo} the table.`,
+        correct: `The marker moved ${correctB}.`,
+        reason: `Keep ${entry.word} for this relation; ${termTwo} changes the meaning.`,
+      },
+    ],
+  };
+}
+
+function buildGenericQuiz(
+  entry: PrepositionEntryBase,
+): Record<"zh-CN" | "en", PrepositionQuizItem[]> {
+  const [termA, termB] = getClosestTerms(entry, 2);
+  const options = Array.from(
+    new Set([entry.word, termA ?? "in", termB ?? "on"]),
+  );
+  const prompts = [
+    `___ the room`,
+    `___ the path`,
+    `___ the target area`,
+  ];
+  return {
+    "zh-CN": prompts.map((prompt) => ({
+      prompt: `Choose the correct preposition: ${prompt}.`,
+      options,
+      answer: entry.word,
+      explanation: `本题的目标关系按该词页面规则应选择 ${entry.word}。`,
+    })),
+    en: prompts.map((prompt) => ({
+      prompt: `Choose the correct preposition: ${prompt}.`,
+      options,
+      answer: entry.word,
+      explanation: `Use ${entry.word} because it best matches this page's target relation.`,
+    })),
+  };
+}
+
+function enrichTemporalDetails(entry: PrepositionEntryBase): PrepositionEntryBase {
+  if (!TEMPORAL_DETAIL_IDS.has(entry.id)) return entry;
+  const seed = TEMPORAL_DETAIL_SEEDS[entry.id];
+  const resolvedCollocationGroups =
+    entry.collocationGroups ?? (seed ? buildTemporalCollocationGroups(seed) : undefined);
+  const generatedExamplesByCategory = buildTemporalCategoryExamples(
+    entry,
+    resolvedCollocationGroups,
+  );
+  const mergedExamplesByCategory = {
+    ...generatedExamplesByCategory,
+    ...(entry.examplesByCategory ?? {}),
+  };
+  return {
+    ...entry,
+    comparison:
+      entry.comparison ?? (seed ? buildTemporalComparison(entry, seed) : undefined),
+    collocationGroups: resolvedCollocationGroups,
+    commonMistakes:
+      entry.commonMistakes ?? (seed ? buildTemporalMistakes(entry, seed) : undefined),
+    quiz: entry.quiz ?? (seed ? buildTemporalQuiz(entry, seed) : undefined),
+    examplesByCategory: mergedExamplesByCategory,
+  };
+}
+
+function enrichDynamicDetails(entry: PrepositionEntryBase): PrepositionEntryBase {
+  if (!DYNAMIC_DETAIL_IDS.has(entry.id)) return entry;
+  const seed = DYNAMIC_DETAIL_SEEDS[entry.id];
+  if (!seed) return entry;
+  const resolvedCollocationGroups =
+    entry.collocationGroups ?? buildDynamicCollocationGroups(seed);
+  const generatedExamplesByCategory = buildDynamicCategoryExamples(
+    entry,
+    resolvedCollocationGroups,
+  );
+  const mergedExamplesByCategory = {
+    ...generatedExamplesByCategory,
+    ...(entry.examplesByCategory ?? {}),
+  };
+  return {
+    ...entry,
+    comparison: entry.comparison ?? buildDynamicComparison(entry, seed),
+    collocationGroups: resolvedCollocationGroups,
+    commonMistakes: entry.commonMistakes ?? buildDynamicMistakes(entry, seed),
+    quiz: entry.quiz ?? buildDynamicQuiz(entry, seed),
+    examplesByCategory: mergedExamplesByCategory,
+  };
+}
+
+function enrichGenericDetails(entry: PrepositionEntryBase): PrepositionEntryBase {
+  const resolvedCollocationGroups =
+    entry.collocationGroups ?? buildGenericCollocationGroups(entry);
+  return {
+    ...entry,
+    comparison: entry.comparison ?? buildGenericComparison(entry),
+    collocationGroups: resolvedCollocationGroups,
+    commonMistakes: entry.commonMistakes ?? buildGenericMistakes(entry),
+    quiz: entry.quiz ?? buildGenericQuiz(entry),
+  };
+}
+
+const PREPOSITIONS_DETAIL_READY = PREPOSITIONS_BASE.map(enrichTemporalDetails)
+  .map(enrichDynamicDetails)
+  .map(enrichGenericDetails);
+
 const RELATED: Record<string, string[]> = {
   in: ["out-of", "into", "inside", "outside"],
   on: ["off", "onto", "on-top-of", "upon"],
@@ -2298,7 +4776,7 @@ const RELATED: Record<string, string[]> = {
   "far-from": ["near", "beyond", "across", "close-to"],
 };
 
-const FALLBACK_IDS = PREPOSITIONS_BASE.map((entry) => entry.id);
+const FALLBACK_IDS = PREPOSITIONS_DETAIL_READY.map((entry) => entry.id);
 
 function buildRelated(entryId: string) {
   const initial = RELATED[entryId] ?? [];
@@ -2317,7 +4795,7 @@ function buildRelated(entryId: string) {
   return unique.slice(0, 4);
 }
 
-export const PREPOSITIONS: PrepositionEntry[] = PREPOSITIONS_BASE.map((entry) => ({
+export const PREPOSITIONS: PrepositionEntry[] = PREPOSITIONS_DETAIL_READY.map((entry) => ({
   ...entry,
   relatedIds: buildRelated(entry.id),
 }));

@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import type { Locale, PrepositionEntry } from "@/data/types";
-import { getUiText } from "@/data/i18n";
+import { getUiText, localeToPathSegment } from "@/data/i18n";
 import { buttonVariants } from "@/components/ui/button";
 
 type NavPrevNextProps = {
@@ -14,18 +14,19 @@ type NavPrevNextProps = {
 
 export default function NavPrevNext({ prev, next, locale }: NavPrevNextProps) {
   const ui = getUiText(locale);
+  const localePath = localeToPathSegment(locale);
   return (
     <div className="flex flex-wrap items-center gap-3">
       <Link
         className={buttonVariants({ variant: "outline", size: "sm" })}
-        href={`/${locale}`}
+        href={`/${localePath}`}
       >
         {ui.detailBack}
       </Link>
       {prev ? (
         <Link
           className={buttonVariants({ variant: "secondary", size: "sm" })}
-          href={`/${locale}/p/${prev.id}`}
+          href={`/${localePath}/p/${prev.id}`}
         >
           {ui.detailPrev}
         </Link>
@@ -33,7 +34,7 @@ export default function NavPrevNext({ prev, next, locale }: NavPrevNextProps) {
       {next ? (
         <Link
           className={buttonVariants({ variant: "secondary", size: "sm" })}
-          href={`/${locale}/p/${next.id}`}
+          href={`/${localePath}/p/${next.id}`}
         >
           {ui.detailNext}
         </Link>
