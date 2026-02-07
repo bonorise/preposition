@@ -28,7 +28,7 @@ export default function PrepositionCard({
   const imgSrc = `/thumbnails/${entry.id}.${thumbnailFormat}`;
   const isTemporal = category === "time";
   return (
-    <Link href={`/p/${entry.id}`} className="group">
+    <Link href={`/${locale}/p/${entry.id}`} className="group">
       <Card
         className={cn(
           "relative h-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--color-accent)] hover:shadow-[var(--shadow-soft)]",
@@ -39,7 +39,7 @@ export default function PrepositionCard({
         <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <div className="absolute -right-10 -top-14 h-32 w-32 rounded-full bg-[color:var(--color-accent)]/20 blur-3xl" />
         </div>
-        <CardHeader className="relative space-y-3">
+        <CardHeader className="relative space-y-3 pb-2">
           <div
             className={cn(
               "relative rounded-[var(--radius-md)] bg-white/70 p-3",

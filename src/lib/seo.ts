@@ -13,6 +13,25 @@ export function absoluteUrl(path: string) {
   return new URL(path, getSiteUrl()).toString();
 }
 
+type HreflangOptions = {
+  locales: readonly string[];
+  defaultLocale: string;
+  pathBuilder: (locale: string) => string;
+};
+
+export function buildHreflangLanguages({
+  locales,
+  defaultLocale,
+  pathBuilder,
+}: HreflangOptions) {
+  const languages: Record<string, string> = {};
+  for (const locale of locales) {
+    languages[locale] = pathBuilder(locale);
+  }
+  languages["x-default"] = pathBuilder(defaultLocale);
+  return languages;
+}
+
 export function getOpenGraphLocale(locale: string) {
   if (locale === "zh-CN") return "zh_CN";
   if (locale === "en") return "en_US";

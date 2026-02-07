@@ -6,6 +6,7 @@
     "dev": "next dev",
     "generate:thumbnails": "tsx scripts/generate-thumbnails.ts",
     "capture:thumbnails": "tsx scripts/capture-thumbnails.ts",
+    "qa:content": "tsx scripts/qa-content.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

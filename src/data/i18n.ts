@@ -3,6 +3,10 @@ import type { Locale } from "@/data/types";
 export const DEFAULT_LOCALE: Locale = "en";
 export const SUPPORTED_LOCALES: Locale[] = ["zh-CN", "en"];
 
+export function isSupportedLocale(value: string): value is Locale {
+  return SUPPORTED_LOCALES.includes(value as Locale);
+}
+
 export const UI_TEXT: Record<
   Locale,
   {
@@ -29,7 +33,6 @@ export const UI_TEXT: Record<
     emptyBody: string;
     featureChips: string[];
     detailBack: string;
-    detailTipsTitle: string;
     detailExamplesTitle: string;
     detailControlsTitle: string;
     detailResetCamera: string;
@@ -51,6 +54,18 @@ export const UI_TEXT: Record<
     detailComparisonPlaceholder: string;
     detailCollocationsTitle: string;
     detailCollocationsPlaceholder: string;
+    detailMistakesTitle: string;
+    detailMistakesPlaceholder: string;
+    detailQuizTitle: string;
+    detailQuizPlaceholder: string;
+    detailFaqTitle: string;
+    detailFaqPlaceholder: string;
+    detailQuizPromptLabel: string;
+    detailQuizChooseLabel: string;
+    detailQuizCorrect: string;
+    detailQuizIncorrect: string;
+    detailQuizAnswerPrefix: string;
+    detailQuizExplanationLabel: string;
     sectionSpaceTitle: string;
     sectionSpaceDesc: string;
     sectionTimeTitle: string;
@@ -89,7 +104,6 @@ export const UI_TEXT: Record<
     emptyBody: "尝试换一个关键词，或浏览全部列表。",
     featureChips: ["3D 拖拽旋转", "极简线框", "中英例句"],
     detailBack: "返回列表",
-    detailTipsTitle: "空间理解要点",
     detailExamplesTitle: "例句",
     detailControlsTitle: "视角控制",
     detailResetCamera: "重置视角",
@@ -111,6 +125,18 @@ export const UI_TEXT: Record<
     detailComparisonPlaceholder: "内容整理中，后续补充。",
     detailCollocationsTitle: "常见词组组合",
     detailCollocationsPlaceholder: "内容整理中，后续补充。",
+    detailMistakesTitle: "常见错误",
+    detailMistakesPlaceholder: "内容整理中，后续补充。",
+    detailQuizTitle: "微测验",
+    detailQuizPlaceholder: "题库整理中，后续补充。",
+    detailFaqTitle: "高频问答",
+    detailFaqPlaceholder: "问答整理中，后续补充。",
+    detailQuizPromptLabel: "题目",
+    detailQuizChooseLabel: "请选择答案",
+    detailQuizCorrect: "回答正确",
+    detailQuizIncorrect: "回答不正确",
+    detailQuizAnswerPrefix: "正确答案：",
+    detailQuizExplanationLabel: "讲解：",
     sectionSpaceTitle: "空间介词",
     sectionSpaceDesc: "聚焦位置关系：内外、上下、前后、远近。",
     sectionTimeTitle: "时间介词",
@@ -183,7 +209,6 @@ export const UI_TEXT: Record<
     emptyBody: "Try another keyword or browse the full list.",
     featureChips: ["3D Orbit", "Minimal Wireframe", "Bilingual Examples"],
     detailBack: "Back to gallery",
-    detailTipsTitle: "Spatial Tips",
     detailExamplesTitle: "Examples",
     detailControlsTitle: "Controls",
     detailResetCamera: "Reset Camera",
@@ -208,6 +233,18 @@ export const UI_TEXT: Record<
     detailComparisonPlaceholder: "Content coming soon.",
     detailCollocationsTitle: "Common collocations",
     detailCollocationsPlaceholder: "Content coming soon.",
+    detailMistakesTitle: "Common mistakes",
+    detailMistakesPlaceholder: "Content coming soon.",
+    detailQuizTitle: "Mini quiz",
+    detailQuizPlaceholder: "Quiz content coming soon.",
+    detailFaqTitle: "Quick FAQ",
+    detailFaqPlaceholder: "FAQ content coming soon.",
+    detailQuizPromptLabel: "Question",
+    detailQuizChooseLabel: "Choose an answer",
+    detailQuizCorrect: "Correct",
+    detailQuizIncorrect: "Not quite",
+    detailQuizAnswerPrefix: "Answer:",
+    detailQuizExplanationLabel: "Why:",
     sectionSpaceTitle: "Spatial prepositions",
     sectionSpaceDesc: "Focus on location relations: inside/outside, above/below, front/back, near/far.",
     sectionTimeTitle: "Time prepositions",

@@ -1,12 +1,14 @@
 "use client";
 
+import type { Locale } from "@/data/types";
 import { getUiText } from "@/data/i18n";
 import { useLocale } from "@/components/LocaleProvider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function FaqSection() {
-  const { locale } = useLocale();
-  const ui = getUiText(locale);
+export default function FaqSection({ locale }: { locale?: Locale }) {
+  const { locale: contextLocale } = useLocale();
+  const activeLocale = locale ?? contextLocale;
+  const ui = getUiText(activeLocale);
 
   return (
     <section className="space-y-6">

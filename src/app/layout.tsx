@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Chakra_Petch, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 
 import { LocaleProvider } from "@/components/LocaleProvider";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { DEFAULT_LOCALE, isSupportedLocale } from "@/data/i18n";
 import { getOpenGraphLocale, getSiteUrl } from "@/lib/seo";
 const displayFont = Chakra_Petch({
   variable: "--font-display",
@@ -50,15 +52,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headerStore = await headers();
+  const requestedLocale = headerStore.get("x-locale");
+  const activeLocale =
+    requestedLocale && isSupportedLocale(requestedLocale)
+      ? requestedLocale
+      : DEFAULT_LOCALE;
+
   return (
-    <html lang="en">
+    <html lang={activeLocale}>
       <body className={`${displayFont.variable} ${bodyFont.variable} antialiased`}>
-        <LocaleProvider>
+        <LocaleProvider initialLocale={activeLocale}>
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
             <div className="flex-1">{children}</div>

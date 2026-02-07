@@ -41,6 +41,35 @@ export type PrepositionExample = {
   i18n: Record<Locale, { translation: string }>;
 };
 
+export type PrepositionMistakeItem = {
+  wrong: string;
+  correct: string;
+  reason: string;
+};
+
+export type PrepositionQuizItem = {
+  prompt: string;
+  options: string[];
+  answer: string;
+  explanation: string;
+};
+
+export type PrepositionFaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type PrepositionCollocationGroup = {
+  title: string;
+  items: Array<
+    | string
+    | {
+        phrase: string;
+        meaning?: string;
+      }
+  >;
+};
+
 export type PrepositionEntry = {
   id: string;
   word: string;
@@ -69,4 +98,8 @@ export type PrepositionEntry = {
     >;
   };
   collocations?: Record<Locale, string[]>;
+  collocationGroups?: Record<Locale, PrepositionCollocationGroup[]>;
+  commonMistakes?: Record<Locale, PrepositionMistakeItem[]>;
+  quiz?: Record<Locale, PrepositionQuizItem[]>;
+  faq?: Record<Locale, PrepositionFaqItem[]>;
 };

@@ -211,6 +211,252 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         "in the hallway",
       ],
     },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "空间类",
+          items: [
+            { phrase: "in the room", meaning: "在房间里" },
+            { phrase: "in the classroom", meaning: "在教室里" },
+            { phrase: "in the kitchen", meaning: "在厨房里" },
+            { phrase: "in my bag", meaning: "在我的包里" },
+            { phrase: "in the park", meaning: "在公园里" },
+            { phrase: "in the city", meaning: "在城市里" },
+          ],
+        },
+        {
+          title: "时间类",
+          items: [
+            { phrase: "in the morning", meaning: "在早上" },
+            { phrase: "in the afternoon", meaning: "在下午" },
+            { phrase: "in the evening", meaning: "在晚上" },
+            { phrase: "in January", meaning: "在一月" },
+            { phrase: "in 2026", meaning: "在 2026 年" },
+            { phrase: "in two hours", meaning: "两小时后" },
+          ],
+        },
+        {
+          title: "抽象状态类",
+          items: [
+            { phrase: "in trouble", meaning: "陷入麻烦中" },
+            { phrase: "in love", meaning: "在恋爱中 / 相爱" },
+            { phrase: "in a hurry", meaning: "匆忙中" },
+            { phrase: "in danger", meaning: "处于危险中" },
+            { phrase: "in silence", meaning: "在沉默中 / 默默地" },
+            { phrase: "in fact", meaning: "事实上" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Spatial",
+          items: [
+            "in the room",
+            "in the classroom",
+            "in the kitchen",
+            "in my bag",
+            "in the park",
+            "in the city",
+          ],
+        },
+        {
+          title: "Time",
+          items: [
+            "in the morning",
+            "in the afternoon",
+            "in the evening",
+            "in January",
+            "in 2026",
+            "in two hours",
+          ],
+        },
+        {
+          title: "Abstract states",
+          items: [
+            "in trouble",
+            "in love",
+            "in a hurry",
+            "in danger",
+            "in silence",
+            "in fact",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The keys are at my bag.",
+          correct: "The keys are in my bag.",
+          reason: "包是有边界的容器，表达“在里面”用 in，不用 at。",
+        },
+        {
+          wrong: "There is a bird in the roof.",
+          correct: "There is a bird on the roof.",
+          reason: "roof 是表面，强调接触时用 on，不用 in。",
+        },
+        {
+          wrong: "The cat jumped in the box.",
+          correct: "The cat jumped into the box.",
+          reason: "jumped 是动态进入过程，应用 into；in 只描述位置。",
+        },
+        {
+          wrong: "I will finish this in Monday.",
+          correct: "I will finish this on Monday.",
+          reason: "具体到星期几一般用 on；in 常用于月份、年份或较长时间段。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The keys are at my bag.",
+          correct: "The keys are in my bag.",
+          reason: "A bag is an enclosed container, so use in for inside position.",
+        },
+        {
+          wrong: "There is a bird in the roof.",
+          correct: "There is a bird on the roof.",
+          reason: "A roof is treated as a surface, so use on for contact.",
+        },
+        {
+          wrong: "The cat jumped in the box.",
+          correct: "The cat jumped into the box.",
+          reason: "Jumped expresses motion into a space, so into is needed.",
+        },
+        {
+          wrong: "I will finish this in Monday.",
+          correct: "I will finish this on Monday.",
+          reason: "Use on with days; in is for months, years, or longer periods.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "My phone is ___ my bag.",
+          options: ["in", "on", "under"],
+          answer: "in",
+          explanation: "手机在包的内部空间，所以用 in。",
+        },
+        {
+          prompt: "We usually study ___ the morning.",
+          options: ["in", "on", "at"],
+          answer: "in",
+          explanation: "morning 是时间段，固定搭配是 in the morning。",
+        },
+        {
+          prompt: "She walked ___ the room and sat down.",
+          options: ["in", "into", "on"],
+          answer: "into",
+          explanation: "walked 表示进入的动态过程，用 into 更准确。",
+        },
+      ],
+      en: [
+        {
+          prompt: "My phone is ___ my bag.",
+          options: ["in", "on", "under"],
+          answer: "in",
+          explanation: "Use in because the phone is inside an enclosed space.",
+        },
+        {
+          prompt: "We usually study ___ the morning.",
+          options: ["in", "on", "at"],
+          answer: "in",
+          explanation: "Morning is a time period, so the collocation is in the morning.",
+        },
+        {
+          prompt: "She walked ___ the room and sat down.",
+          options: ["in", "into", "on"],
+          answer: "into",
+          explanation: "Use into for movement from outside to inside.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "介词 in 的核心含义是什么？",
+          answer:
+            "in 的核心是“在边界之内”。当人或物体被一个空间包住时，优先用 in。例：The keys are in the bag.",
+        },
+        {
+          question: "in 和 on 的区别怎么快速判断？",
+          answer:
+            "先问“是否接触表面”。接触表面用 on；在容器或空间内部用 in。例：in the box vs on the box。",
+        },
+        {
+          question: "in 和 into 有什么区别？",
+          answer:
+            "in 描述静态位置；into 描述“从外到内”的运动过程。例：The cat is in the box. / The cat jumped into the box.",
+        },
+        {
+          question: "in 在时间表达里怎么用？",
+          answer:
+            "in 常用于较大的时间段：月份、年份、季节、一天中的时段。例：in July, in 2026, in winter, in the morning。",
+        },
+        {
+          question: "in 在时间里什么时候不要用？",
+          answer:
+            "具体日期和星期通常不用 in。用 on Monday / on July 1；具体时刻用 at 7:00。",
+        },
+        {
+          question: "初学者用 in 最常见的错误是什么？",
+          answer:
+            "常把 in 用在“表面接触”场景。应说 on the roof，不说 in the roof；应说 in my bag，不说 at my bag。",
+        },
+        {
+          question: "in 的高频搭配有哪些？",
+          answer:
+            "高频组合：in the room, in the morning, in 2026, in trouble, in a hurry, in love。",
+        },
+        {
+          question: "如何在 30 秒内记住 in 的用法？",
+          answer:
+            "记住一句规则：inside a boundary -> in。再复述两个对比：in the box（内部）/ on the box（表面）。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of the preposition in?",
+          answer:
+            "The core meaning is inside a boundary. Use in when a person or thing is enclosed by a space. Example: The keys are in the bag.",
+        },
+        {
+          question: "How do I quickly choose between in and on?",
+          answer:
+            "Ask one question: is it touching a surface? Use on for surface contact, and in for enclosed space. Example: in the box vs on the box.",
+        },
+        {
+          question: "What is the difference between in and into?",
+          answer:
+            "In is a static position; into is movement from outside to inside. Example: The cat is in the box. / The cat jumped into the box.",
+        },
+        {
+          question: "How is in used in time expressions?",
+          answer:
+            "Use in with larger time units: months, years, seasons, and parts of the day. Example: in July, in 2026, in winter, in the morning.",
+        },
+        {
+          question: "When should I not use in for time?",
+          answer:
+            "Do not use in with specific days or dates. Use on Monday / on July 1, and use at for exact clock time.",
+        },
+        {
+          question: "What is a common learner mistake with in?",
+          answer:
+            "Learners overuse in for surface situations. Say on the roof, not in the roof; say in my bag, not at my bag.",
+        },
+        {
+          question: "What are common collocations with in?",
+          answer:
+            "High-frequency collocations include: in the room, in the morning, in 2026, in trouble, in a hurry, and in love.",
+        },
+        {
+          question: "What is a 30-second memory rule for in?",
+          answer:
+            "Use this rule: inside a boundary -> in. Then rehearse a contrast pair: in the box (inside) vs on the box (surface).",
+        },
+      ],
+    },
   },
   {
     id: "on",

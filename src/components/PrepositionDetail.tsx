@@ -15,6 +15,9 @@ import { useLocale } from "@/components/LocaleProvider";
 import PrepositionRelatedGallery from "@/components/PrepositionRelatedGallery";
 import PrepositionComparison from "@/components/PrepositionComparison";
 import PrepositionCollocations from "@/components/PrepositionCollocations";
+import PrepositionMistakes from "@/components/PrepositionMistakes";
+import PrepositionQuiz from "@/components/PrepositionQuiz";
+import PrepositionFaq from "@/components/PrepositionFaq";
 
 type PrepositionDetailProps = {
   entry: PrepositionEntry;
@@ -47,6 +50,11 @@ export default function PrepositionDetail({
     [entry, activeLocale],
   );
   const hasAnimation = Boolean(entry.scene.animation);
+  const keyPoints = useMemo(() => {
+    const localizedTips =
+      entry.i18n[activeLocale]?.tips ?? entry.i18n["zh-CN"]?.tips ?? [];
+    return localizedTips.slice(0, 3);
+  }, [entry, activeLocale]);
   const enterFullscreen = (element: HTMLDivElement) => {
     const target = element as HTMLDivElement & {
       webkitRequestFullscreen?: () => Promise<void>;
@@ -98,15 +106,14 @@ export default function PrepositionDetail({
             </h1>
             <p className="text-base text-[color:var(--color-muted)]">{meaning}</p>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {entry.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-[color:var(--color-edge)] px-3 py-1 text-[11px] uppercase tracking-wide text-[color:var(--color-ink)]"
-              >
-                {tag}
-              </span>
-            ))}
+          <div className="space-y-2">
+            {keyPoints.length ? (
+              <ul className="list-disc space-y-1 pl-5 text-sm text-[color:var(--color-muted)]">
+                {keyPoints.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </div>
         <NavPrevNext prev={prev} next={next} locale={activeLocale} />
@@ -162,7 +169,6 @@ export default function PrepositionDetail({
         <PrepositionTextPanel
           entry={entry}
           locale={activeLocale}
-          tipsTitle={ui.detailTipsTitle}
           examplesTitle={ui.detailExamplesTitle}
         />
       </div>
@@ -173,6 +179,9 @@ export default function PrepositionDetail({
       />
       <PrepositionComparison entry={entry} locale={activeLocale} />
       <PrepositionCollocations entry={entry} locale={activeLocale} />
+      <PrepositionMistakes entry={entry} locale={activeLocale} />
+      <PrepositionQuiz entry={entry} locale={activeLocale} />
+      <PrepositionFaq entry={entry} locale={activeLocale} />
     </div>
   );
 }

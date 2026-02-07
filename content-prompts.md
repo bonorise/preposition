@@ -114,14 +114,12 @@ Rules:
 
 ## 3) Collocations Prompt (常见词组组合)
 
-**Goal:** Generate a list of common collocations for the target preposition.  
-**Important:** The count must be a **multiple of 3** (e.g., 21, 24).
+**Goal:** Generate grouped common collocations for the target preposition, ready for a 3-column layout.
 
 **Input you provide:**
 - Target preposition: `{word}`
 - Locale: `en` or `zh-CN`
-- Sense profile: `space` | `time` | `both`
-- Count: `{count}` (must be multiple of 3)
+- Group labels: `{group_labels}` (for example: spatial/time/abstract-state)
 
 **Prompt:**
 ```
@@ -129,30 +127,145 @@ You are generating common collocations for English prepositions for beginners.
 
 Target preposition: "{word}"
 Locale: {locale}
-Sense profile: {sense_profile}
-Count: {count} (must be a multiple of 3)
+Group labels: {group_labels}
 
-Output a JSON array of strings. Each entry:
-- Starts with the target preposition exactly.
-- Uses simple everyday contexts (places, time, containers, situations).
-- Avoid duplicates or near-duplicates.
-- No punctuation, no trailing periods.
-- Keep phrases short (2–6 words total).
-- If `sense_profile = both`, include both spatial and temporal collocations.
-- If `sense_profile = both`, keep at least 1/3 spatial + 1/3 temporal items.
-- Keep the final list count as a multiple of 3 so a 3-column grid has no empty cells.
+Output JSON with this shape:
+{
+  "collocationGroups": [
+    {
+      "title": string,
+      "items": [
+        { "phrase": string, "meaning"?: string },
+        ...
+      ]
+    },
+    ...
+  ]
+}
 
-Return only the JSON array.
+Rules:
+- Always return exactly 3 groups (for a 3-column layout).
+- Each group must contain exactly 6 high-frequency items.
+- `phrase` must start with target preposition exactly.
+- Keep phrase length short (2–6 words), no punctuation, no duplicates.
+- Group semantics must be clearly different (e.g. spatial vs time vs abstract state).
+- For `en`: output only `phrase`; do not include `meaning`.
+- For non-English locales (e.g. `zh-CN`): keep `phrase` in English and include concise localized `meaning`.
+- Meanings should be beginner-friendly and literal-first.
+
+Return JSON only.
 ```
 
-**Example (en, count=6):**
+**Example (zh-CN):**
 ```
+{
+  "collocationGroups": [
+    {
+      "title": "空间类",
+      "items": [
+        { "phrase": "in the room", "meaning": "在房间里" },
+        { "phrase": "in my bag", "meaning": "在我的包里" }
+      ]
+    },
+    {
+      "title": "时间类",
+      "items": [
+        { "phrase": "in the morning", "meaning": "在早上" },
+        { "phrase": "in 2026", "meaning": "在 2026 年" }
+      ]
+    },
+    {
+      "title": "抽象状态类",
+      "items": [
+        { "phrase": "in trouble", "meaning": "陷入麻烦中" },
+        { "phrase": "in fact", "meaning": "事实上" }
+      ]
+    }
+  ]
+}
+```
+
+---
+
+## 4) Common Mistakes Prompt (常见错误)
+
+**Goal:** Generate beginner-facing negative contrasts: wrong usage vs correct usage + short reason.
+
+**Input you provide:**
+- Target preposition: `{word}`
+- Locale: `en` or `zh-CN`
+- Count: `{count}` (recommended 4)
+
+**Prompt:**
+```
+You are generating beginner correction content for English prepositions.
+
+Target preposition: "{word}"
+Locale: {locale}
+Count: {count}
+
+Output a JSON array with this shape:
 [
-  "in the room",
-  "in a bag",
-  "in the morning",
-  "in the city",
-  "in a book",
-  "in trouble"
+  {
+    "wrong": string,
+    "correct": string,
+    "reason": string
+  }
 ]
+
+Rules:
+- `wrong` must be a realistic learner mistake.
+- `correct` must minimally fix the same sentence.
+- `reason` must be short, explicit, and rule-based.
+- Cover multiple dimensions when possible: container/surface/time point/time period/motion.
+- Keep language simple and beginner-friendly.
+- Return JSON only.
 ```
+
+---
+
+## 5) Mini Quiz Prompt (微测验)
+
+**Goal:** Generate 3 fill-in-the-blank questions with immediate feedback text.
+
+**Input you provide:**
+- Target preposition: `{word}`
+- Locale: `en` or `zh-CN`
+
+**Prompt:**
+```
+You are generating a mini quiz for beginner preposition learning.
+
+Target preposition: "{word}"
+Locale: {locale}
+
+Output a JSON array with exactly 3 items:
+[
+  {
+    "prompt": string,
+    "options": [string, string, string],
+    "answer": string,
+    "explanation": string
+  }
+]
+
+Rules:
+- Exactly 3 questions.
+- Fill-in-the-blank style only (use ___ in prompt).
+- 3 options per question; only one correct answer.
+- At least one distractor must be a commonly confused preposition.
+- Include at least 1 spatial context and 1 time or motion context when applicable.
+- `explanation` must state why the correct one works; keep it concise.
+- Return JSON only.
+```
+
+---
+
+## 6) Consistency Rules (统一规范)
+
+- Keep output fields strictly aligned with `src/data/types.ts`.
+- If a preposition belongs to multiple categories, ensure examples/quiz cover each applicable category.
+- `comparison.differences` items should stay between 2 and 3.
+- Every difference item should include exactly 2 contrastive examples.
+- Collocation groups must stay at 3 groups × 6 items to fit the 3-column UI.
+- For non-English pages, keep English phrase + localized meaning in grouped collocations.

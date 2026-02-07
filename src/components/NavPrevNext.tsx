@@ -16,13 +16,16 @@ export default function NavPrevNext({ prev, next, locale }: NavPrevNextProps) {
   const ui = getUiText(locale);
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <Link className={buttonVariants({ variant: "outline", size: "sm" })} href="/">
+      <Link
+        className={buttonVariants({ variant: "outline", size: "sm" })}
+        href={`/${locale}`}
+      >
         {ui.detailBack}
       </Link>
       {prev ? (
         <Link
           className={buttonVariants({ variant: "secondary", size: "sm" })}
-          href={`/p/${prev.id}`}
+          href={`/${locale}/p/${prev.id}`}
         >
           {ui.detailPrev}
         </Link>
@@ -30,7 +33,7 @@ export default function NavPrevNext({ prev, next, locale }: NavPrevNextProps) {
       {next ? (
         <Link
           className={buttonVariants({ variant: "secondary", size: "sm" })}
-          href={`/p/${next.id}`}
+          href={`/${locale}/p/${next.id}`}
         >
           {ui.detailNext}
         </Link>

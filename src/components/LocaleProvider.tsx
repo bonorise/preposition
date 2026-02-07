@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 import type { Locale } from "@/data/types";
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/data/i18n";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, isSupportedLocale } from "@/data/i18n";
 
 type LocaleContextValue = {
   locale: Locale;
@@ -13,8 +13,18 @@ type LocaleContextValue = {
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
-export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>(DEFAULT_LOCALE);
+export function LocaleProvider({
+  children,
+  initialLocale = DEFAULT_LOCALE,
+}: {
+  children: React.ReactNode;
+  initialLocale?: Locale;
+}) {
+  const [locale, setLocale] = useState<Locale>(initialLocale);
+
+  useEffect(() => {
+    setLocale(initialLocale);
+  }, [initialLocale]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -45,4 +55,11 @@ export function useLocale() {
     };
   }
   return context;
+}
+
+export function normalizeLocale(value: string): Locale {
+  if (isSupportedLocale(value)) {
+    return value;
+  }
+  return DEFAULT_LOCALE;
 }
