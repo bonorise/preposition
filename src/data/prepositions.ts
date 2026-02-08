@@ -897,35 +897,429 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
   {
     id: "under",
     word: "under",
-    tags: ["space", "below"],
+    tags: ["space", "below", "time", "limit"],
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……下面（遮挡下方）",
-        tips: ["在物体下方，可理解为被上方覆盖。", "under 更有遮挡感，below 更中性。"],
+        meaning: "在……下面；低于（时间/数量上限）",
+        tips: [
+          "空间里：under 常表示在某物正下方，带“被上方覆盖/遮挡”的感觉。",
+          "时间或数量里：under 表示“少于、低于某上限”（如 under an hour）。",
+          "和 below 比：below 更中性，只表示更低，不一定有覆盖关系。",
+        ],
       },
       en: {
-        meaning: "below; covered by something above",
-        tips: ["Underneath, often with something above it.", "Under implies covering; below is neutral."],
+        meaning: "below and often covered by something above; also less than a limit",
+        tips: [
+          "For space, under is often directly below with possible cover from above.",
+          "For time/quantity, under means less than a threshold (under an hour, under $50).",
+          "Compared with below, under usually feels more physical and concrete.",
+        ],
       },
     },
     examples: [
       {
-        en: "The ball is under the box.",
+        en: "The cat is under the table.",
         i18n: {
-          "zh-CN": { translation: "球在盒子下面。" },
-          en: { translation: "The ball is under the box." },
+          "zh-CN": { translation: "猫在桌子下面。" },
+          en: { translation: "The cat is under the table." },
         },
       },
       {
-        en: "The cat is under the chair.",
+        en: "The repair took under an hour.",
         i18n: {
-          "zh-CN": { translation: "猫在椅子下面。" },
-          en: { translation: "The cat is under the chair." },
+          "zh-CN": { translation: "维修不到一小时就完成了。" },
+          en: { translation: "The repair took under an hour." },
         },
       },
     ],
-    scene: makeScene([0, -0.8, 0]),
+    examplesByCategory: {
+      space: [
+        {
+          en: "The cat is under the table.",
+          i18n: {
+            "zh-CN": { translation: "猫在桌子下面。" },
+            en: { translation: "The cat is under the table." },
+          },
+        },
+        {
+          en: "We found the note under the pillow.",
+          i18n: {
+            "zh-CN": { translation: "我们在枕头下面找到了那张纸条。" },
+            en: { translation: "We found the note under the pillow." },
+          },
+        },
+      ],
+      time: [
+        {
+          en: "The repair took under an hour.",
+          i18n: {
+            "zh-CN": { translation: "维修不到一小时就完成了。" },
+            en: { translation: "The repair took under an hour." },
+          },
+        },
+        {
+          en: "Children under five can enter for free.",
+          i18n: {
+            "zh-CN": { translation: "五岁以下儿童可免费入场。" },
+            en: { translation: "Children under five can enter for free." },
+          },
+        },
+      ],
+    },
+    scene: makeScene([0, -0.84, 0]),
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "under 既能表示空间中的“在下方（常有遮挡感）”，也能表示“低于上限”。学习时先判断是空间关系还是“少于”关系。",
+          differences: [
+            {
+              term: "below",
+              description: "below 仅表示更低的位置；under 更强调正下方、覆盖或压在下面。",
+              examples: [
+                {
+                  term: "below",
+                  sentence: "The temperature is below zero.",
+                  translation: "温度在零度以下。",
+                },
+                {
+                  term: "under",
+                  sentence: "The cat is under the table.",
+                  translation: "猫在桌子下面。",
+                },
+              ],
+            },
+            {
+              term: "underneath",
+              description:
+                "underneath 更强调“正下方”且语气更口语；under 更常用、更中性。",
+              examples: [
+                {
+                  term: "underneath",
+                  sentence: "The toy is underneath the sofa.",
+                  translation: "玩具在沙发正下方。",
+                },
+                {
+                  term: "under",
+                  sentence: "The toy is under the sofa.",
+                  translation: "玩具在沙发下面。",
+                },
+              ],
+            },
+            {
+              term: "within",
+              description:
+                "within 强调“在某期限之内完成”；under 强调“少于某时长/数量上限”。",
+              examples: [
+                {
+                  term: "within",
+                  sentence: "Please reply within an hour.",
+                  translation: "请在一小时内回复。",
+                },
+                {
+                  term: "under",
+                  sentence: "We finished in under an hour.",
+                  translation: "我们用不到一小时就完成了。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Under has two high-value uses for beginners: spatial position directly below (often with cover), and limits that are lower than a threshold.",
+          differences: [
+            {
+              term: "below",
+              description:
+                "Below is neutral vertical position. Under is usually more physical: directly below, often with something above it.",
+              examples: [
+                {
+                  term: "below",
+                  sentence: "The temperature is below zero.",
+                },
+                {
+                  term: "under",
+                  sentence: "The cat is under the table.",
+                },
+              ],
+            },
+            {
+              term: "underneath",
+              description:
+                "Underneath emphasizes directly under and sounds a bit more conversational. Under is broader and more common.",
+              examples: [
+                {
+                  term: "underneath",
+                  sentence: "The toy is underneath the sofa.",
+                },
+                {
+                  term: "under",
+                  sentence: "The toy is under the sofa.",
+                },
+              ],
+            },
+            {
+              term: "within",
+              description:
+                "Within means before a deadline inside a time window; under means less than an amount (time/number/price).",
+              examples: [
+                {
+                  term: "within",
+                  sentence: "Please reply within an hour.",
+                },
+                {
+                  term: "under",
+                  sentence: "We finished in under an hour.",
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "空间位置类",
+          items: [
+            { phrase: "under the table", meaning: "在桌子下面" },
+            { phrase: "under the bed", meaning: "在床下面" },
+            { phrase: "under the chair", meaning: "在椅子下面" },
+            { phrase: "under the bridge", meaning: "在桥下" },
+            { phrase: "under the tree", meaning: "在树下" },
+            { phrase: "under the blanket", meaning: "在毯子下面" },
+          ],
+        },
+        {
+          title: "时间/数量上限类",
+          items: [
+            { phrase: "under an hour", meaning: "不到一小时" },
+            { phrase: "under 30 minutes", meaning: "不到 30 分钟" },
+            { phrase: "under a week", meaning: "不到一周" },
+            { phrase: "under $50", meaning: "低于 50 美元" },
+            { phrase: "under 10 people", meaning: "少于 10 人" },
+            { phrase: "under five years old", meaning: "五岁以下" },
+          ],
+        },
+        {
+          title: "状态与过程类",
+          items: [
+            { phrase: "under pressure", meaning: "在压力之下" },
+            { phrase: "under control", meaning: "处于可控状态" },
+            { phrase: "under review", meaning: "在审核中" },
+            { phrase: "under construction", meaning: "在建设中" },
+            { phrase: "under discussion", meaning: "在讨论中" },
+            { phrase: "under investigation", meaning: "在调查中" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Spatial position",
+          items: [
+            "under the table",
+            "under the bed",
+            "under the chair",
+            "under the bridge",
+            "under the tree",
+            "under the blanket",
+          ],
+        },
+        {
+          title: "Time/quantity limits",
+          items: [
+            "under an hour",
+            "under 30 minutes",
+            "under a week",
+            "under $50",
+            "under 10 people",
+            "under five years old",
+          ],
+        },
+        {
+          title: "States and process",
+          items: [
+            "under pressure",
+            "under control",
+            "under review",
+            "under construction",
+            "under discussion",
+            "under investigation",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The cat is below the table.",
+          correct: "The cat is under the table.",
+          reason: "表示“在桌子正下方”时，under 更自然；below 在这里语气偏中性、距离感更强。",
+        },
+        {
+          wrong: "The project took below two hours.",
+          correct: "The project took under two hours.",
+          reason: "表示“少于某时长”时用 under，不用 below。",
+        },
+        {
+          wrong: "Please finish under an hour.",
+          correct: "Please finish within an hour.",
+          reason: "如果强调“在截止时间内完成”，within 更合适；under 更像“总时长少于”。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The cat is below the table.",
+          correct: "The cat is under the table.",
+          reason:
+            "For a physical object directly beneath something, under is more natural than below.",
+        },
+        {
+          wrong: "The project took below two hours.",
+          correct: "The project took under two hours.",
+          reason:
+            "Use under for numeric/time limits. Below is less natural for this pattern.",
+        },
+        {
+          wrong: "Please finish under an hour.",
+          correct: "Please finish within an hour.",
+          reason:
+            "Within stresses deadline completion inside a time window; under stresses amount less than a threshold.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Choose the correct preposition: The shoes are ___ the bed.",
+          options: ["under", "below", "on"],
+          answer: "under",
+          explanation: "这里是具体物体在床正下方，under 最自然。",
+        },
+        {
+          prompt: "Choose the correct preposition: The task took ___ an hour.",
+          options: ["under", "within", "over"],
+          answer: "under",
+          explanation: "表达“不到一小时”时，under 表示低于该时长上限。",
+        },
+        {
+          prompt: "Choose the correct preposition: The report is still ___ review.",
+          options: ["under", "on", "in"],
+          answer: "under",
+          explanation: "固定搭配是 under review。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: The shoes are ___ the bed.",
+          options: ["under", "below", "on"],
+          answer: "under",
+          explanation:
+            "This is a direct physical position beneath the bed, so under is the best choice.",
+        },
+        {
+          prompt: "Choose the correct preposition: The task took ___ an hour.",
+          options: ["under", "within", "over"],
+          answer: "under",
+          explanation:
+            "Under expresses an amount lower than the threshold (less than one hour).",
+        },
+        {
+          prompt: "Choose the correct preposition: The report is still ___ review.",
+          options: ["under", "on", "in"],
+          answer: "under",
+          explanation: "The fixed collocation is under review.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "“under”作为介词最核心的意思是什么？",
+          answer:
+            "核心有两层：空间里表示“在……下面（常有覆盖感）”；时间/数量里表示“低于某上限”（如 under an hour）。",
+        },
+        {
+          question: "under 和 below 的区别是什么？",
+          answer:
+            "under 更像“正下方、被上方覆盖”；below 更中性，只表示更低的位置。比如 under the table 更自然。",
+        },
+        {
+          question: "under 和 underneath 如何区分？",
+          answer:
+            "under 更常见更中性；underneath 更强调“正下方”，口语里更有画面感。",
+        },
+        {
+          question: "under 可以用于时间表达吗？",
+          answer:
+            "可以。常用于“少于某时长/上限”：under an hour, under 30 minutes。",
+        },
+        {
+          question: "under 和 within 在时间上怎么选？",
+          answer:
+            "under 强调总量少于上限；within 强调在截止窗口内完成。对比：in under an hour vs within an hour。",
+        },
+        {
+          question: "under 的高频搭配有哪些？",
+          answer:
+            "常见有 under the table, under pressure, under review, under control, under construction。",
+        },
+        {
+          question: "学习 under 最容易犯什么错？",
+          answer:
+            "常见错是把“少于时长”写成 below two hours，或把“截止时间内”误写成 under an hour。",
+        },
+        {
+          question: "30 秒记住 under 的方法是什么？",
+          answer:
+            "记两条：空间=在下方（有覆盖感）；时间/数量=低于上限。再用两个句子各造一遍即可。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of the under preposition?",
+          answer:
+            "Under mainly means directly below (often with something above), and it also means less than a limit in time/quantity (under an hour, under $50).",
+        },
+        {
+          question: "What is the difference between under and below?",
+          answer:
+            "Under is usually more physical and concrete (directly beneath). Below is more neutral for vertical level.",
+        },
+        {
+          question: "What is the difference between under and underneath?",
+          answer:
+            "Both can mean below, but underneath often sounds more emphatic or conversational for direct physical position.",
+        },
+        {
+          question: "Can under be used for time expressions?",
+          answer:
+            "Yes. Use it for limits lower than a threshold: under an hour, under 30 minutes, under a week.",
+        },
+        {
+          question: "How do I choose between under and within for time?",
+          answer:
+            "Use under for amount less than a limit; use within for completion before a deadline window.",
+        },
+        {
+          question: "What are high-frequency under collocations?",
+          answer:
+            "Common ones include under the table, under pressure, under review, under control, and under construction.",
+        },
+        {
+          question: "What is a common learner mistake with under?",
+          answer:
+            "Many learners use below for numeric limits (below two hours). In this pattern, under is usually the better choice.",
+        },
+        {
+          question: "What is a 30-second memory rule for under?",
+          answer:
+            "Memorize two cues: physical below (often covered) and less-than limit. Then practice one space sentence and one time sentence.",
+        },
+      ],
+    },
   },
   {
     id: "over",
@@ -1008,34 +1402,415 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
   {
     id: "below",
     word: "below",
-    tags: ["space", "below"],
+    tags: ["space", "below", "level"],
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……下方（强调高度）",
-        tips: ["仅表示低于某物。", "below 比 under 更中性。"],
+        meaning: "在……下方；低于（高度/数值/标准）",
+        tips: [
+          "below 强调“更低的位置或水平”，语气中性，不一定有遮挡或贴近感。",
+          "说温度、分数、海拔、标准线时，below 是高频表达。",
+          "如果是具体物体在某物正下方，under 往往更自然。",
+        ],
       },
       en: {
-        meaning: "lower than; beneath",
-        tips: ["Focuses on lower position.", "Below is more neutral than under."],
+        meaning: "at a lower level; lower than a reference point or standard",
+        tips: [
+          "Below is a neutral lower-position word and does not require contact or cover.",
+          "It is common for levels, temperatures, scores, and thresholds.",
+          "For a concrete object directly under something, under is often more natural.",
+        ],
       },
     },
     examples: [
       {
-        en: "The cat is below the shelf.",
+        en: "The valley lies below the village.",
         i18n: {
-          "zh-CN": { translation: "猫在架子下面。" },
-          en: { translation: "The cat is below the shelf." },
+          "zh-CN": { translation: "山谷位于村庄下方。" },
+          en: { translation: "The valley lies below the village." },
         },
       },
       {
-        en: "The village is below the mountain.",
+        en: "Temperatures fell below zero last night.",
         i18n: {
-          "zh-CN": { translation: "村庄在山下。" },
-          en: { translation: "The village is below the mountain." },
+          "zh-CN": { translation: "昨晚气温降到了零度以下。" },
+          en: { translation: "Temperatures fell below zero last night." },
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        {
+          en: "The valley lies below the village.",
+          i18n: {
+            "zh-CN": { translation: "山谷位于村庄下方。" },
+            en: { translation: "The valley lies below the village." },
+          },
+        },
+        {
+          en: "A sign hangs below the screen.",
+          i18n: {
+            "zh-CN": { translation: "屏幕下方挂着一块标牌。" },
+            en: { translation: "A sign hangs below the screen." },
+          },
+        },
+      ],
+      time: [
+        {
+          en: "Temperatures fell below zero last night.",
+          i18n: {
+            "zh-CN": { translation: "昨晚气温降到了零度以下。" },
+            en: { translation: "Temperatures fell below zero last night." },
+          },
+        },
+        {
+          en: "His score was below 60 on the test.",
+          i18n: {
+            "zh-CN": { translation: "他这次测试分数低于 60 分。" },
+            en: { translation: "His score was below 60 on the test." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "below 的核心是“低于参照点/标准线”的中性关系。它能表达空间高低，也常用于温度、分数、价格等数值语境。",
+          differences: [
+            {
+              term: "under",
+              description:
+                "under 更强调“正下方”与具体空间感；below 更偏中性层级，不强调遮挡。",
+              examples: [
+                {
+                  term: "under",
+                  sentence: "The cat is under the table.",
+                  translation: "猫在桌子下面。",
+                },
+                {
+                  term: "below",
+                  sentence: "The temperature is below zero.",
+                  translation: "温度在零度以下。",
+                },
+              ],
+            },
+            {
+              term: "beneath",
+              description:
+                "beneath 语体更正式、文学感更强；below 更口语、通用，尤其适合数据和客观描述。",
+              examples: [
+                {
+                  term: "beneath",
+                  sentence: "The river runs beneath the bridge.",
+                  translation: "河水从桥下流过。",
+                },
+                {
+                  term: "below",
+                  sentence: "The village is below the mountain.",
+                  translation: "村庄在山下。",
+                },
+              ],
+            },
+            {
+              term: "underneath",
+              description:
+                "underneath 常强调“正下方且贴近”，画面更具体；below 只给出“更低”关系。",
+              examples: [
+                {
+                  term: "underneath",
+                  sentence: "There is a drawer underneath the table.",
+                  translation: "桌子正下方有个抽屉。",
+                },
+                {
+                  term: "below",
+                  sentence: "Write your name below the line.",
+                  translation: "在线条下方写下你的名字。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Below marks a neutral lower level relative to a reference point. It works well for physical level and for numbers or standards.",
+          differences: [
+            {
+              term: "under",
+              description:
+                "Under is more concrete and physical for directly beneath objects; below is more level-based and neutral.",
+              examples: [
+                { term: "under", sentence: "The cat is under the table." },
+                { term: "below", sentence: "The temperature is below zero." },
+              ],
+            },
+            {
+              term: "beneath",
+              description:
+                "Beneath sounds more formal or literary; below is plain and high-frequency in everyday and factual writing.",
+              examples: [
+                { term: "beneath", sentence: "The river runs beneath the bridge." },
+                { term: "below", sentence: "The village is below the mountain." },
+              ],
+            },
+            {
+              term: "underneath",
+              description:
+                "Underneath often implies directly under and close to the underside; below simply means lower than.",
+              examples: [
+                {
+                  term: "underneath",
+                  sentence: "There is a drawer underneath the table.",
+                },
+                { term: "below", sentence: "Write your name below the line." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "空间方位类",
+          items: [
+            { phrase: "below the bridge", meaning: "在桥下方" },
+            { phrase: "below the window", meaning: "在窗户下方" },
+            { phrase: "below the line", meaning: "在线条下方" },
+            { phrase: "below the shelf", meaning: "在架子下方" },
+            { phrase: "below sea level", meaning: "低于海平面" },
+            { phrase: "below the mountain", meaning: "在山下" },
+          ],
+        },
+        {
+          title: "数值与标准类",
+          items: [
+            { phrase: "below zero", meaning: "低于零度" },
+            { phrase: "below average", meaning: "低于平均水平" },
+            { phrase: "below 60", meaning: "低于 60" },
+            { phrase: "below the limit", meaning: "低于上限" },
+            { phrase: "below the target", meaning: "低于目标值" },
+            { phrase: "below expectations", meaning: "低于预期" },
+          ],
+        },
+        {
+          title: "文本与图表类",
+          items: [
+            { phrase: "as shown below", meaning: "如下所示" },
+            { phrase: "the chart below", meaning: "下图/下表" },
+            { phrase: "the section below", meaning: "下文部分" },
+            { phrase: "below this paragraph", meaning: "在本段下方" },
+            { phrase: "listed below", meaning: "列在下方" },
+            { phrase: "see below for details", meaning: "详情见下文" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Spatial position",
+          items: [
+            "below the bridge",
+            "below the window",
+            "below the line",
+            "below the shelf",
+            "below sea level",
+            "below the mountain",
+          ],
+        },
+        {
+          title: "Numbers and standards",
+          items: [
+            "below zero",
+            "below average",
+            "below 60",
+            "below the limit",
+            "below the target",
+            "below expectations",
+          ],
+        },
+        {
+          title: "Text and charts",
+          items: [
+            "as shown below",
+            "the chart below",
+            "the section below",
+            "below this paragraph",
+            "listed below",
+            "see below for details",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The cat is below the table.",
+          correct: "The cat is under the table.",
+          reason: "具体物体“在桌子正下方”通常用 under 更自然。",
+        },
+        {
+          wrong: "The temperature is under zero.",
+          correct: "The temperature is below zero.",
+          reason: "表示温度/数值低于标准时，below 是更稳定的搭配。",
+        },
+        {
+          wrong: "Please finish below an hour.",
+          correct: "Please finish in under an hour.",
+          reason: "时长上限常用 under；below 不用于这个结构。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The cat is below the table.",
+          correct: "The cat is under the table.",
+          reason:
+            "For concrete physical position directly beneath an object, under is usually more natural.",
+        },
+        {
+          wrong: "The temperature is under zero.",
+          correct: "The temperature is below zero.",
+          reason:
+            "For temperature and level benchmarks, below is the stable high-frequency choice.",
+        },
+        {
+          wrong: "Please finish below an hour.",
+          correct: "Please finish in under an hour.",
+          reason:
+            "Use under for duration limits. Below is not the normal pattern here.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Choose the correct preposition: The warning sign is ___ the screen.",
+          options: ["below", "under", "on"],
+          answer: "below",
+          explanation: "强调“位于更低位置”时，below 更合适。",
+        },
+        {
+          prompt: "Choose the correct preposition: The temperature is ___ zero.",
+          options: ["below", "under", "over"],
+          answer: "below",
+          explanation: "温度低于零度的固定搭配是 below zero。",
+        },
+        {
+          prompt: "Choose the correct preposition: Details are listed ___.",
+          options: ["below", "under", "inside"],
+          answer: "below",
+          explanation: "文本场景“如下、下文”常用 below。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: The warning sign is ___ the screen.",
+          options: ["below", "under", "on"],
+          answer: "below",
+          explanation:
+            "This sentence describes a lower level, so below is the best fit.",
+        },
+        {
+          prompt: "Choose the correct preposition: The temperature is ___ zero.",
+          options: ["below", "under", "over"],
+          answer: "below",
+          explanation:
+            "The standard collocation is below zero for temperature levels.",
+        },
+        {
+          prompt: "Choose the correct preposition: Details are listed ___.",
+          options: ["below", "under", "inside"],
+          answer: "below",
+          explanation:
+            "In document language, below is used for information that appears later in the text.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "below 的核心意思是什么？",
+          answer:
+            "核心是“低于某个参照点或标准”。它既可表示空间方位，也常用于数值、温度和等级。",
+        },
+        {
+          question: "below 和 under 有什么区别？",
+          answer:
+            "below 更中性，强调层级高低；under 更具体，常表示在某物正下方并有覆盖感。",
+        },
+        {
+          question: "below 可以用于时间吗？",
+          answer:
+            "通常不用 below 表示“不到一小时”这类时长上限。此时更常用 under（in under an hour）。",
+        },
+        {
+          question: "below 和 beneath 如何区分？",
+          answer:
+            "beneath 更正式、更书面；below 更通用，尤其适合客观描述和数据表达。",
+        },
+        {
+          question: "below 和 underneath 怎么选？",
+          answer:
+            "underneath 更强调“正下方且贴近下侧”；below 只表达“位置更低”。",
+        },
+        {
+          question: "below 的高频搭配有哪些？",
+          answer:
+            "如 below zero, below average, below sea level, listed below, as shown below。",
+        },
+        {
+          question: "初学者最常见的 below 错误是什么？",
+          answer:
+            "常见是把 below 用到“不到某时长”里（应 under），或把具体物体下方场景误用 below（常应 under）。",
+        },
+        {
+          question: "30 秒记住 below 的方法？",
+          answer:
+            "记住关键词“低于标准线”。看到温度、分数、海拔、图文位置，优先考虑 below。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of below?",
+          answer:
+            "Below means lower than a reference point or standard. It is used for position and for levels like temperature and scores.",
+        },
+        {
+          question: "What is the difference between below and under?",
+          answer:
+            "Below is neutral and level-based. Under is more concrete for directly beneath an object, often with cover from above.",
+        },
+        {
+          question: "Can below be used for time limits?",
+          answer:
+            "Usually no for duration limits. For 'less than an hour', English prefers under (in under an hour).",
+        },
+        {
+          question: "How is below different from beneath?",
+          answer:
+            "Beneath is more formal or literary. Below is the common all-purpose choice in factual and daily writing.",
+        },
+        {
+          question: "How is below different from underneath?",
+          answer:
+            "Underneath often implies directly under and close to the underside. Below simply marks a lower level.",
+        },
+        {
+          question: "What are common below collocations?",
+          answer:
+            "High-frequency collocations include below zero, below average, below sea level, listed below, and as shown below.",
+        },
+        {
+          question: "What is a common learner mistake with below?",
+          answer:
+            "Learners often use below for duration limits ('below an hour') or use below where under is more natural for concrete objects.",
+        },
+        {
+          question: "What is a quick memory rule for below?",
+          answer:
+            "Think 'lower than a line or standard.' If the sentence is about level, score, temperature, or text position, below is likely correct.",
+        },
+      ],
+    },
     scene: makeScene([0, -1.1, 0]),
   },
   {
@@ -1954,12 +2729,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……下方（较正式）",
-        tips: ["意思接近 under/below。", "语气更书面。"],
+        meaning: "在……下方（较正式）；低于（地位/尊严）",
+        tips: [
+          "beneath 比 under 更正式，常见于书面语或文学表达。",
+          "空间里常表示“在……正下方”并带一点风格化语气。",
+          "抽象表达里可表示“有失身份/不配”（beneath someone）。",
+        ],
       },
       en: {
-        meaning: "beneath; under (formal)",
-        tips: ["Similar to under/below.", "More formal tone."],
+        meaning: "under; below in a formal or literary tone",
+        tips: [
+          "Beneath is more formal than under in many contexts.",
+          "It often highlights directly under in a descriptive or literary style.",
+          "It also appears in abstract status expressions like beneath his dignity.",
+        ],
       },
     },
     examples: [
@@ -1971,46 +2754,758 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
       {
-        en: "He hid beneath the bridge.",
+        en: "Such behavior is beneath him.",
         i18n: {
-          "zh-CN": { translation: "他躲在桥下。" },
-          en: { translation: "He hid beneath the bridge." },
+          "zh-CN": { translation: "这种行为有失他的身份。" },
+          en: { translation: "Such behavior is beneath him." },
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        {
+          en: "The treasure is beneath the floor.",
+          i18n: {
+            "zh-CN": { translation: "宝藏在地板下面。" },
+            en: { translation: "The treasure is beneath the floor." },
+          },
+        },
+        {
+          en: "Shadows gathered beneath the trees.",
+          i18n: {
+            "zh-CN": { translation: "树下聚起了阴影。" },
+            en: { translation: "Shadows gathered beneath the trees." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "beneath 与 under 都表示“在下方”，但 beneath 的语体更正式，也更适合文学描述与抽象身份表达。",
+          differences: [
+            {
+              term: "under",
+              description:
+                "under 是日常高频、通用词；beneath 更书面。口语日常优先 under，正式文体可用 beneath。",
+              examples: [
+                {
+                  term: "under",
+                  sentence: "The cat is under the table.",
+                  translation: "猫在桌子下面。",
+                },
+                {
+                  term: "beneath",
+                  sentence: "The vault lies beneath the city.",
+                  translation: "金库位于城市地下。",
+                },
+              ],
+            },
+            {
+              term: "below",
+              description:
+                "below 更中性，常用于层级与数据；beneath 更有风格化色彩，不是数值表达首选。",
+              examples: [
+                {
+                  term: "below",
+                  sentence: "The temperature is below zero.",
+                  translation: "温度在零度以下。",
+                },
+                {
+                  term: "beneath",
+                  sentence: "A river runs beneath the bridge.",
+                  translation: "一条河从桥下流过。",
+                },
+              ],
+            },
+            {
+              term: "underneath",
+              description:
+                "underneath 偏口语且强调贴近下侧；beneath 偏正式，语体感更强。",
+              examples: [
+                {
+                  term: "underneath",
+                  sentence: "The label is underneath the box.",
+                  translation: "标签贴在盒子底下。",
+                },
+                {
+                  term: "beneath",
+                  sentence: "The roots spread beneath the soil.",
+                  translation: "根系在土层下延展。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Beneath shares core meaning with under, but it carries a more formal or literary tone and supports abstract status meaning.",
+          differences: [
+            {
+              term: "under",
+              description:
+                "Under is the everyday default. Beneath is a stylistic upgrade for formal writing or narrative tone.",
+              examples: [
+                { term: "under", sentence: "The cat is under the table." },
+                { term: "beneath", sentence: "The vault lies beneath the city." },
+              ],
+            },
+            {
+              term: "below",
+              description:
+                "Below is neutral for levels and numbers; beneath is not usually the first choice for numeric thresholds.",
+              examples: [
+                { term: "below", sentence: "The temperature is below zero." },
+                { term: "beneath", sentence: "A river runs beneath the bridge." },
+              ],
+            },
+            {
+              term: "underneath",
+              description:
+                "Underneath is more conversational and often physical. Beneath sounds more formal and literary.",
+              examples: [
+                { term: "underneath", sentence: "The label is underneath the box." },
+                { term: "beneath", sentence: "The roots spread beneath the soil." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "空间方位类",
+          items: [
+            { phrase: "beneath the bridge", meaning: "在桥下" },
+            { phrase: "beneath the floor", meaning: "在地板下" },
+            { phrase: "beneath the surface", meaning: "在表面之下" },
+            { phrase: "beneath the trees", meaning: "在树下" },
+            { phrase: "beneath the ground", meaning: "在地下" },
+            { phrase: "beneath the waves", meaning: "在海浪之下" },
+          ],
+        },
+        {
+          title: "书面表达类",
+          items: [
+            { phrase: "beneath notice", meaning: "不值一提" },
+            { phrase: "beneath contempt", meaning: "令人不屑" },
+            { phrase: "beneath the dignity of", meaning: "有失……身份" },
+            { phrase: "beneath criticism", meaning: "不值得批评" },
+            { phrase: "beneath the city", meaning: "在城市地下" },
+            { phrase: "beneath the soil", meaning: "在土层之下" },
+          ],
+        },
+        {
+          title: "抽象语义类",
+          items: [
+            { phrase: "beneath him", meaning: "有失他的身份" },
+            { phrase: "beneath her", meaning: "有失她的身份" },
+            { phrase: "beneath me", meaning: "有失我的身份" },
+            { phrase: "beneath our standards", meaning: "低于我们的标准" },
+            { phrase: "beneath expectation", meaning: "低于期望（书面）" },
+            { phrase: "beneath the minimum", meaning: "低于最低标准" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Spatial position",
+          items: [
+            "beneath the bridge",
+            "beneath the floor",
+            "beneath the surface",
+            "beneath the trees",
+            "beneath the ground",
+            "beneath the waves",
+          ],
+        },
+        {
+          title: "Formal style",
+          items: [
+            "beneath notice",
+            "beneath contempt",
+            "beneath the dignity of",
+            "beneath criticism",
+            "beneath the city",
+            "beneath the soil",
+          ],
+        },
+        {
+          title: "Abstract meaning",
+          items: [
+            "beneath him",
+            "beneath her",
+            "beneath me",
+            "beneath our standards",
+            "beneath expectation",
+            "beneath the minimum",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The treasure is beneath of the floor.",
+          correct: "The treasure is beneath the floor.",
+          reason: "beneath 后面不加 of，直接接名词。",
+        },
+        {
+          wrong: "The temperature is beneath zero.",
+          correct: "The temperature is below zero.",
+          reason: "温度与数值语境中通常用 below，更自然更常见。",
+        },
+        {
+          wrong: "This job is under my dignity.",
+          correct: "This job is beneath my dignity.",
+          reason: "表达“有失身份”时常用 beneath one's dignity。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The treasure is beneath of the floor.",
+          correct: "The treasure is beneath the floor.",
+          reason: "Beneath takes a noun directly; do not add of.",
+        },
+        {
+          wrong: "The temperature is beneath zero.",
+          correct: "The temperature is below zero.",
+          reason:
+            "For numbers and temperatures, below is the natural high-frequency form.",
+        },
+        {
+          wrong: "This job is under my dignity.",
+          correct: "This job is beneath my dignity.",
+          reason:
+            "The fixed abstract expression is beneath one's dignity.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Choose the correct preposition: A tunnel runs ___ the old town.",
+          options: ["beneath", "below", "under"],
+          answer: "beneath",
+          explanation: "书面描述中，beneath 可表达“在……下方”且语气更正式。",
+        },
+        {
+          prompt: "Choose the correct preposition: Such behavior is ___ her dignity.",
+          options: ["beneath", "under", "below"],
+          answer: "beneath",
+          explanation: "固定表达是 beneath someone's dignity。",
+        },
+        {
+          prompt: "Choose the correct preposition: The roots spread ___ the soil.",
+          options: ["beneath", "on", "over"],
+          answer: "beneath",
+          explanation: "该句强调在土层之下，使用 beneath。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: A tunnel runs ___ the old town.",
+          options: ["beneath", "below", "under"],
+          answer: "beneath",
+          explanation:
+            "Beneath is a strong formal option for 'under' in descriptive writing.",
+        },
+        {
+          prompt: "Choose the correct preposition: Such behavior is ___ her dignity.",
+          options: ["beneath", "under", "below"],
+          answer: "beneath",
+          explanation: "The fixed phrase is beneath someone's dignity.",
+        },
+        {
+          prompt: "Choose the correct preposition: The roots spread ___ the soil.",
+          options: ["beneath", "on", "over"],
+          answer: "beneath",
+          explanation: "The meaning is physically under the soil layer.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "beneath 的核心意思是什么？",
+          answer:
+            "核心是“在……下方”，但语体更正式，常见于书面或文学叙述。",
+        },
+        {
+          question: "beneath 和 under 的主要区别？",
+          answer:
+            "under 更日常、通用；beneath 更正式。多数口语场景可先用 under。",
+        },
+        {
+          question: "beneath 和 below 怎么区分？",
+          answer:
+            "below 适合层级与数值比较（如 below zero）；beneath 更偏风格化空间描述。",
+        },
+        {
+          question: "beneath 可以表示抽象含义吗？",
+          answer:
+            "可以，常见表达为 beneath someone's dignity，表示“有失身份，不屑于”。",
+        },
+        {
+          question: "beneath 的高频搭配有哪些？",
+          answer:
+            "如 beneath the bridge, beneath the surface, beneath notice, beneath contempt。",
+        },
+        {
+          question: "初学者最常见错误是什么？",
+          answer:
+            "一是误写成 beneath of；二是把温度/分数语境误用 beneath（应 below）。",
+        },
+        {
+          question: "什么时候优先不用 beneath？",
+          answer:
+            "在日常口语或简单事实句里，under/below 通常更自然、频率更高。",
+        },
+        {
+          question: "30 秒记忆法？",
+          answer:
+            "把 beneath 记成“formal under”。看到正式写作或身份表达时优先考虑它。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of beneath?",
+          answer:
+            "Beneath means under, with a more formal or literary tone than under.",
+        },
+        {
+          question: "How is beneath different from under?",
+          answer:
+            "Under is everyday and neutral. Beneath is stylistic, often used in formal or descriptive writing.",
+        },
+        {
+          question: "How is beneath different from below?",
+          answer:
+            "Below is usually better for neutral level and number comparisons. Beneath is more stylistic for spatial or abstract tone.",
+        },
+        {
+          question: "Can beneath carry abstract meaning?",
+          answer:
+            "Yes. A common pattern is beneath someone's dignity, meaning unworthy or beneath status.",
+        },
+        {
+          question: "What are common beneath collocations?",
+          answer:
+            "Common collocations include beneath the bridge, beneath the surface, beneath notice, and beneath contempt.",
+        },
+        {
+          question: "What mistakes do learners make with beneath?",
+          answer:
+            "Common errors include adding of (beneath of) and using beneath where below is expected for numbers or temperature.",
+        },
+        {
+          question: "When should I avoid beneath?",
+          answer:
+            "In plain everyday speech, under or below is often more natural and frequent.",
+        },
+        {
+          question: "What is a quick memory rule for beneath?",
+          answer:
+            "Think 'formal under.' Use it when you want a refined tone or abstract status nuance.",
+        },
+      ],
+    },
     scene: makeScene([0, -1.2, 0]),
   },
   {
     id: "underneath",
     word: "underneath",
-    tags: ["space", "below"],
+    tags: ["space", "below", "close"],
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……下面（紧贴下方）",
-        tips: ["强调正下方，常更口语。", "接近 under。"],
+        meaning: "在……正下方（常贴近下侧，偏口语）",
+        tips: [
+          "underneath 常强调“就在下面、贴着下方那一面”的画面感。",
+          "语气通常比 under 更口语、更具体。",
+          "如果只想中性表达“更低”，below 往往更合适。",
+        ],
       },
       en: {
-        meaning: "underneath; directly under",
-        tips: ["Directly under, often informal.", "Close to under."],
+        meaning: "directly under, often close to the underside",
+        tips: [
+          "Underneath is often more vivid than under for direct underside position.",
+          "It is common in conversational descriptions of hidden lower parts.",
+          "Use below when you only need neutral lower-level meaning.",
+        ],
       },
     },
     examples: [
       {
-        en: "The cat sleeps underneath the bed.",
+        en: "There is a sticker underneath the lid.",
         i18n: {
-          "zh-CN": { translation: "猫睡在床下面。" },
-          en: { translation: "The cat sleeps underneath the bed." },
+          "zh-CN": { translation: "盖子底下有一张贴纸。" },
+          en: { translation: "There is a sticker underneath the lid." },
         },
       },
       {
-        en: "There is a drawer underneath the table.",
+        en: "He taped the note underneath the desk.",
         i18n: {
-          "zh-CN": { translation: "桌子下面有个抽屉。" },
-          en: { translation: "There is a drawer underneath the table." },
+          "zh-CN": { translation: "他把便条贴在了书桌底面。" },
+          en: { translation: "He taped the note underneath the desk." },
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        {
+          en: "There is a sticker underneath the lid.",
+          i18n: {
+            "zh-CN": { translation: "盖子底下有一张贴纸。" },
+            en: { translation: "There is a sticker underneath the lid." },
+          },
+        },
+        {
+          en: "He taped the note underneath the desk.",
+          i18n: {
+            "zh-CN": { translation: "他把便条贴在了书桌底面。" },
+            en: { translation: "He taped the note underneath the desk." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "underneath 的重点是“正下方且贴近下侧表面”，语气较口语。它比 below 更具体，比 under 更有画面感。",
+          differences: [
+            {
+              term: "under",
+              description:
+                "under 更中性、覆盖面更广；underneath 更强调“底面下方”的具体位置。",
+              examples: [
+                {
+                  term: "under",
+                  sentence: "The cat is under the table.",
+                  translation: "猫在桌子下面。",
+                },
+                {
+                  term: "underneath",
+                  sentence: "The label is underneath the table.",
+                  translation: "标签在桌子底面下面。",
+                },
+              ],
+            },
+            {
+              term: "below",
+              description:
+                "below 只表示“更低”，不强调贴近底面；underneath 强调具体底部关系。",
+              examples: [
+                {
+                  term: "below",
+                  sentence: "The village is below the mountain.",
+                  translation: "村庄在山下。",
+                },
+                {
+                  term: "underneath",
+                  sentence: "There is dust underneath the bed.",
+                  translation: "床底下面有灰尘。",
+                },
+              ],
+            },
+            {
+              term: "beneath",
+              description:
+                "beneath 更正式、更书面；underneath 更口语、生活化。",
+              examples: [
+                {
+                  term: "beneath",
+                  sentence: "A river flows beneath the bridge.",
+                  translation: "一条河从桥下流过。",
+                },
+                {
+                  term: "underneath",
+                  sentence: "My keys were underneath the sofa.",
+                  translation: "我的钥匙在沙发底下。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Underneath highlights direct position under a surface, often with a vivid everyday tone. It is more concrete than below.",
+          differences: [
+            {
+              term: "under",
+              description:
+                "Under is broader and neutral; underneath is more specific to underside location.",
+              examples: [
+                { term: "under", sentence: "The cat is under the table." },
+                { term: "underneath", sentence: "The label is underneath the table." },
+              ],
+            },
+            {
+              term: "below",
+              description:
+                "Below only marks lower level. Underneath adds close underside relation.",
+              examples: [
+                { term: "below", sentence: "The village is below the mountain." },
+                { term: "underneath", sentence: "There is dust underneath the bed." },
+              ],
+            },
+            {
+              term: "beneath",
+              description:
+                "Beneath sounds formal; underneath is usually more conversational.",
+              examples: [
+                { term: "beneath", sentence: "A river flows beneath the bridge." },
+                { term: "underneath", sentence: "My keys were underneath the sofa." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "底部位置类",
+          items: [
+            { phrase: "underneath the table", meaning: "在桌子底下" },
+            { phrase: "underneath the bed", meaning: "在床底下" },
+            { phrase: "underneath the sofa", meaning: "在沙发底下" },
+            { phrase: "underneath the lid", meaning: "在盖子底下" },
+            { phrase: "underneath the sink", meaning: "在水槽下方" },
+            { phrase: "underneath the stairs", meaning: "在楼梯下面" },
+          ],
+        },
+        {
+          title: "隐藏与收纳类",
+          items: [
+            { phrase: "hide underneath", meaning: "躲在下面" },
+            { phrase: "store underneath", meaning: "收纳在下方" },
+            { phrase: "tape underneath", meaning: "贴在底部" },
+            { phrase: "look underneath", meaning: "查看下面" },
+            { phrase: "crawl underneath", meaning: "爬到下面" },
+            { phrase: "slide underneath", meaning: "滑到下面" },
+          ],
+        },
+        {
+          title: "口语场景类",
+          items: [
+            { phrase: "right underneath", meaning: "就在正下方" },
+            { phrase: "just underneath", meaning: "恰好在下面" },
+            { phrase: "underneath it", meaning: "在它下面" },
+            { phrase: "underneath here", meaning: "这下面" },
+            { phrase: "underneath there", meaning: "那下面" },
+            { phrase: "underneath the surface", meaning: "在表层之下" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Underside position",
+          items: [
+            "underneath the table",
+            "underneath the bed",
+            "underneath the sofa",
+            "underneath the lid",
+            "underneath the sink",
+            "underneath the stairs",
+          ],
+        },
+        {
+          title: "Hiding and storage",
+          items: [
+            "hide underneath",
+            "store underneath",
+            "tape underneath",
+            "look underneath",
+            "crawl underneath",
+            "slide underneath",
+          ],
+        },
+        {
+          title: "Everyday phrasing",
+          items: [
+            "right underneath",
+            "just underneath",
+            "underneath it",
+            "underneath here",
+            "underneath there",
+            "underneath the surface",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The label is underneath of the box.",
+          correct: "The label is underneath the box.",
+          reason: "underneath 后面不加 of，直接接名词。",
+        },
+        {
+          wrong: "The village is underneath the mountain.",
+          correct: "The village is below the mountain.",
+          reason: "这里是中性地理高低关系，用 below 更自然。",
+        },
+        {
+          wrong: "The cat is below the table leg.",
+          correct: "The cat is underneath the table.",
+          reason: "强调“就在桌子底下”的具体位置时，underneath 更贴切。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The label is underneath of the box.",
+          correct: "The label is underneath the box.",
+          reason: "Underneath takes a noun directly, without of.",
+        },
+        {
+          wrong: "The village is underneath the mountain.",
+          correct: "The village is below the mountain.",
+          reason:
+            "For neutral geographic level relations, below is usually more natural.",
+        },
+        {
+          wrong: "The cat is below the table leg.",
+          correct: "The cat is underneath the table.",
+          reason:
+            "When you mean a concrete underside location, underneath gives the clearer picture.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Choose the correct preposition: There is dust ___ the bed.",
+          options: ["underneath", "below", "over"],
+          answer: "underneath",
+          explanation: "强调“床底下面”的具体空间，选 underneath。",
+        },
+        {
+          prompt: "Choose the correct preposition: He taped the note ___ the desk.",
+          options: ["underneath", "below", "on"],
+          answer: "underneath",
+          explanation: "便条贴在桌子底面下方，underneath 更准确。",
+        },
+        {
+          prompt: "Choose the correct preposition: My keys were right ___ the sofa.",
+          options: ["underneath", "at", "into"],
+          answer: "underneath",
+          explanation: "固定口语搭配 right underneath 很常见。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: There is dust ___ the bed.",
+          options: ["underneath", "below", "over"],
+          answer: "underneath",
+          explanation:
+            "The sentence describes a concrete underside location under the bed.",
+        },
+        {
+          prompt: "Choose the correct preposition: He taped the note ___ the desk.",
+          options: ["underneath", "below", "on"],
+          answer: "underneath",
+          explanation:
+            "Underneath fits a physical note attached to the underside of a desk.",
+        },
+        {
+          prompt: "Choose the correct preposition: My keys were right ___ the sofa.",
+          options: ["underneath", "at", "into"],
+          answer: "underneath",
+          explanation:
+            "Right underneath is a common phrase for immediate lower position.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "underneath 的核心意思是什么？",
+          answer:
+            "核心是“正下方、贴近底面”。它比 below 更具体，也比 under 更有口语画面感。",
+        },
+        {
+          question: "underneath 和 under 的差异？",
+          answer:
+            "under 更中性通用；underneath 更强调“底部下方”的具体位置。",
+        },
+        {
+          question: "underneath 和 below 怎么选？",
+          answer:
+            "如果只是中性高低关系选 below；若强调“就在某物底面下”，选 underneath。",
+        },
+        {
+          question: "underneath 和 beneath 的区别？",
+          answer:
+            "beneath 更正式书面；underneath 更日常口语、生活化。",
+        },
+        {
+          question: "underneath 常见搭配有哪些？",
+          answer:
+            "如 underneath the table, underneath the bed, right underneath, look underneath。",
+        },
+        {
+          question: "学习 underneath 最容易错在哪里？",
+          answer:
+            "常见错误是写成 underneath of，或在地理/数值语境里误用 underneath（通常应 below）。",
+        },
+        {
+          question: "underneath 可以用于抽象含义吗？",
+          answer:
+            "少量可以（如 beneath the surface 更常见），但 underneath 主要还是具体空间位置。",
+        },
+        {
+          question: "30 秒记忆法？",
+          answer:
+            "记成“桌底、床底、沙发底”这种贴底画面词：只要想到‘底面下面’，就优先 underneath。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of underneath?",
+          answer:
+            "Underneath means directly under, usually close to the underside of something.",
+        },
+        {
+          question: "How is underneath different from under?",
+          answer:
+            "Under is neutral and broad. Underneath is more specific and vivid for underside position.",
+        },
+        {
+          question: "How do I choose between underneath and below?",
+          answer:
+            "Use below for neutral lower level. Use underneath for concrete underside location.",
+        },
+        {
+          question: "How is underneath different from beneath?",
+          answer:
+            "Beneath sounds formal; underneath is usually more conversational and everyday.",
+        },
+        {
+          question: "What are common underneath collocations?",
+          answer:
+            "Common phrases include underneath the table, underneath the bed, right underneath, and look underneath.",
+        },
+        {
+          question: "What mistakes do learners make with underneath?",
+          answer:
+            "Common issues are adding of (underneath of) and using underneath where below is better for neutral levels.",
+        },
+        {
+          question: "Can underneath be abstract?",
+          answer:
+            "It can be, but its main strength is concrete physical location under an object.",
+        },
+        {
+          question: "What is a quick memory rule for underneath?",
+          answer:
+            "Think 'underside picture': if you can imagine the lower face of an object, underneath is often the right choice.",
+        },
+      ],
+    },
     scene: makeScene([0, -0.95, 0]),
   },
   {

@@ -156,40 +156,48 @@ export const UI_TEXT: Record<
     sectionDynamicTitle: "动态介词",
     sectionDynamicDesc: "聚焦运动过程：路径、方向与起终点变化。",
     sectionEmpty: "当前搜索下暂无该分类词条。",
-    faqTitle: "FAQ · Preposition Learning",
+    faqTitle: "FAQ · 英语介词学习",
     faqSubtitle: "常见问题",
     faqItems: [
       {
-        question: "什么是 preposition words？",
-        answer: "它们表示空间或时间关系，本站用 3D 场景帮助理解。",
+        question: "什么是英语介词学习？初学者该先学什么？",
+        answer:
+          "英语介词学习的核心是先建立空间关系直觉，再过渡到时间与动态用法。建议先学 in/on/under/behind 这类高频词。",
       },
       {
-        question: "哪里可以看到 preposition examples？",
-        answer: "每张卡片都有简短双语句子，聚焦常见空间含义。",
+        question: "in、on、at 怎么快速区分？",
+        answer:
+          "先看语义层级：in 常用于内部或较大范围，on 常用于接触表面，at 常用于具体点位或时刻。",
       },
       {
-        question: "不同的 preposition words 有何区别？",
-        answer: "我们用一个立方体和球体对比接触、距离与方向。",
+        question: "空间介词为什么要配 3D 场景？",
+        answer:
+          "3D 场景能直观看到“接触、内外、前后、远近”，比只看文本更容易减少介词混淆。",
       },
       {
-        question: "有适合初学者的 preposition examples 吗？",
-        answer: "是的，每页两句，配翻译与提示，便于记忆。",
+        question: "时间介词 in / on / at 的判断依据是什么？",
+        answer:
+          "按时间颗粒度判断：at 常对应具体时刻，on 常对应具体一天或日期，in 常对应月份、年份和更长时间段。",
       },
       {
-        question: "哪些 preposition words 带方向性？",
-        answer: "方向性词会沿路径运动，展示 into、across、through、off 等。",
+        question: "为什么总把 on 和 over 用错？",
+        answer:
+          "关键区别是是否接触：on 强调接触表面，over 强调在上方，不一定接触。",
       },
       {
-        question: "每天可以练习 preposition examples 吗？",
-        answer: "建议每天复习几句，形成直觉。",
+        question: "英语介词学习每天练多久更有效？",
+        answer:
+          "每天 15 分钟即可：看 3-5 个介词、读例句、做 3 题微测验，比一次性长时间学习更稳。",
       },
       {
-        question: "为什么要用 3D 展示 preposition words？",
-        answer: "3D 能减少 on / over / under / around 的混淆。",
+        question: "如何把介词真正用到句子里？",
+        answer:
+          "优先练高频搭配（common collocations），再做“错误对比 + 纠正”，最后口头复述一个自己的句子。",
       },
       {
-        question: "后续会增加更多 preposition examples 吗？",
-        answer: "会持续扩充并加入练习模式。",
+        question: "这个网站适合自学还是课堂教学？",
+        answer:
+          "两者都适合：自学可按分类逐个突破，课堂可用 3D 场景做快速演示和即时提问。",
       },
     ],
     metaTitle: "Preposition 3D｜英语介词 3D 空间学习站",
