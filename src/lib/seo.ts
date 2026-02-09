@@ -1,12 +1,11 @@
 export function getSiteUrl() {
-  const raw =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    process.env.VERCEL_URL ??
-    "http://localhost:3000";
-  if (raw.startsWith("http://") || raw.startsWith("https://")) {
-    return raw;
-  }
-  return `https://${raw}`;
+  const fallback = "https://prepositiondino.vercel.app";
+  const raw = (process.env.NEXT_PUBLIC_SITE_URL ?? fallback).trim();
+  const withProtocol =
+    raw.startsWith("http://") || raw.startsWith("https://")
+      ? raw
+      : `https://${raw}`;
+  return withProtocol.replace(/\/+$/, "");
 }
 
 export function absoluteUrl(path: string) {
