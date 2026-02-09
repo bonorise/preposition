@@ -123,23 +123,31 @@ function getNearestPointOnMotionPath(point: THREE.Vector3, motion: MotionSample)
 }
 
 type SpatialPlaygroundProps = {
-  focusedEntry?: PrepositionEntry | null;
+  seedEntry?: PrepositionEntry | null;
 };
 
 export default function SpatialPlayground({
-  focusedEntry = null,
+  seedEntry = null,
 }: SpatialPlaygroundProps) {
   const { locale } = useLocale();
   const ui = getUiText(locale);
-  const [mode, setMode] = useState<PlaygroundMode>("static");
-  const [selectedMotionLabel, setSelectedMotionLabel] = useState(
-    MOTIONS[0]?.label ?? "into",
-  );
-  const [selectedStaticLabel, setSelectedStaticLabel] = useState(
-    STATIC_ANCHORS[0]?.label ?? "in",
-  );
-  const [label, setLabel] = useState(STATIC_ANCHORS[0]?.label ?? "in");
-  const labelRef = useRef(label);
+  const seededWord = seedEntry?.word.toLowerCase() ?? "";
+  const seededMotion = MOTIONS.find((motion) => motion.label === seededWord) ?? null;
+  const seededStatic =
+    STATIC_ANCHORS.find((anchor) => anchor.label === seededWord) ?? null;
+  const initialMode: PlaygroundMode = seededMotion ? "dynamic" : "static";
+  const initialMotionLabel = seededMotion?.label ?? (MOTIONS[0]?.label ?? "into");
+  const initialStaticLabel =
+    seededStatic?.label ?? (STATIC_ANCHORS[0]?.label ?? "in");
+  const initialLabel =
+    seededMotion?.label ?? seededStatic?.label ?? (STATIC_ANCHORS[0]?.label ?? "in");
+
+  const [mode, setMode] = useState<PlaygroundMode>(initialMode);
+  const [selectedMotionLabel, setSelectedMotionLabel] =
+    useState(initialMotionLabel);
+  const [selectedStaticLabel] = useState(initialStaticLabel);
+  const [label, setLabel] = useState(initialLabel);
+  const labelRef = useRef(initialLabel);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const labelMeaningMap = new Map(
     PREPOSITIONS.map((entry) => [
@@ -151,31 +159,6 @@ export default function SpatialPlayground({
     labelMeaningMap.get(label.toLowerCase()) ??
     (mode === "dynamic" ? ui.playgroundMotionHint : ui.playgroundHint);
   const sceneHint = mode === "dynamic" ? ui.playgroundMotionHint : ui.playgroundHint;
-
-  useEffect(() => {
-    if (!focusedEntry) {
-      setSelectedStaticLabel(STATIC_ANCHORS[0]?.label ?? "in");
-      return;
-    }
-    const normalizedWord = focusedEntry.word.toLowerCase();
-    const motionMatch = MOTIONS.find((motion) => motion.label === normalizedWord);
-    if (motionMatch) {
-      setMode("dynamic");
-      setSelectedMotionLabel(motionMatch.label);
-      labelRef.current = motionMatch.label;
-      setLabel(motionMatch.label);
-      return;
-    }
-    const staticMatch = STATIC_ANCHORS.find(
-      (anchor) => anchor.label === normalizedWord,
-    );
-    if (staticMatch) {
-      setMode("static");
-      setSelectedStaticLabel(staticMatch.label);
-      labelRef.current = staticMatch.label;
-      setLabel(staticMatch.label);
-    }
-  }, [focusedEntry]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -523,14 +506,6 @@ export default function SpatialPlayground({
       scene.clear();
     };
   }, [locale, mode, selectedMotionLabel, selectedStaticLabel, ui.directionFront]);
-
-  useEffect(() => {
-    if (mode === "dynamic") return;
-    const defaultLabel = STATIC_ANCHORS[0]?.label ?? "in";
-    if (labelRef.current === defaultLabel) return;
-    labelRef.current = defaultLabel;
-    setLabel(defaultLabel);
-  }, [mode]);
 
   return (
     <section className="space-y-5">

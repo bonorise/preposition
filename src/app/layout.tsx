@@ -10,10 +10,10 @@ import { getOpenGraphLocale, getSiteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
-  title: "Preposition 3D | Spatial learning for English prepositions",
+  title: "Preposition Dino | Spatial learning for English prepositions",
   description:
     "Build spatial intuition for common English prepositions with 3D scenes, search, and bilingual examples.",
-  applicationName: "Preposition 3D",
+  applicationName: "Preposition Dino",
   keywords: [
     "prepositions",
     "English learning",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Preposition 3D | Spatial learning for English prepositions",
+    title: "Preposition Dino | Spatial learning for English prepositions",
     description:
       "Build spatial intuition for common English prepositions with 3D scenes, search, and bilingual examples.",
     type: "website",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Preposition 3D | Spatial learning for English prepositions",
+    title: "Preposition Dino | Spatial learning for English prepositions",
     description:
       "Build spatial intuition for common English prepositions with 3D scenes, search, and bilingual examples.",
   },

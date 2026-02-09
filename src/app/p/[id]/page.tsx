@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
   const meaning = entry.i18n[DEFAULT_LOCALE]?.meaning ?? entry.word;
-  const title = `${entry.word} · ${meaning} | Preposition 3D`;
+  const title = `${entry.word} · ${meaning} | Preposition Dino`;
   return {
     title,
     description: meaning,
@@ -81,13 +81,13 @@ export default async function PrepositionPage({ params, searchParams }: PageProp
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: `${entry.word} | Preposition 3D`,
+    name: `${entry.word} | Preposition Dino`,
     description: meaning,
     url: absoluteUrl(`/p/${entry.id}`),
     inLanguage: ["en", "zh-CN"],
     isPartOf: {
       "@type": "WebSite",
-      name: "Preposition 3D",
+      name: "Preposition Dino",
       url: siteUrl,
     },
     mainEntity: {
@@ -114,7 +114,6 @@ export default async function PrepositionPage({ params, searchParams }: PageProp
       />
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
     </main>

@@ -1,4 +1,4 @@
-# Preposition 3D 项目 Todo（分期）
+# Preposition Dino 项目 Todo（分期）
 
 > 说明：对照 PRD.md 与当前完成情况整理。标记 ✅ 已完成 / ⬜ 未完成。
 

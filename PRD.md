@@ -1,4 +1,4 @@
-# PRD｜Preposition 3D（英语介词 3D 空间学习站）— MVP 需求文档（Codex Vibe Coding 上下文）
+# PRD｜Preposition Dino（英语介词 3D 空间学习站）— MVP 需求文档（Codex Vibe Coding 上下文）
 
 版本：v1.0（基于用户补充信息定稿）  
 目标阶段：**MVP（第一阶段）**  

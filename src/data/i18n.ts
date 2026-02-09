@@ -38,6 +38,11 @@ export const UI_TEXT: Record<
     headerSubtitle: string;
     headerHome: string;
     footerText: string;
+    footerAbout: string;
+    footerPrivacy: string;
+    footerTerms: string;
+    footerContact: string;
+    pageUpdatedLabel: string;
     languageLabel: string;
     languageEnglish: string;
     languageChinese: string;
@@ -93,7 +98,7 @@ export const UI_TEXT: Record<
   }
 > = {
   "zh-CN": {
-    siteTitle: "Preposition 3D",
+    siteTitle: "Preposition Dino",
     heroSloganZhLine1: "让全世界的英语初学者",
     heroSloganZhLine2: "3 秒钟学懂一个介词",
     heroSloganEnLine1: "Help beginners around the world",
@@ -105,10 +110,15 @@ export const UI_TEXT: Record<
     searchPlaceholder: "搜索介词 / 中文释义",
     searchHint: "支持英文或中文释义搜索",
     countLabel: "条介词",
-    headerTitle: "Preposition 3D",
+    headerTitle: "Preposition Dino",
     headerSubtitle: "可能是全世界最好的介词学习网站",
     headerHome: "首页",
-    footerText: "用空间直觉高效理解英语介词。",
+    footerText: "Help English beginners worldwide learn one preposition in 3 seconds",
+    footerAbout: "关于我们",
+    footerPrivacy: "隐私政策",
+    footerTerms: "服务条款",
+    footerContact: "联系",
+    pageUpdatedLabel: "更新日期",
     languageLabel: "语言",
     languageEnglish: "English",
     languageChinese: "中文",
@@ -200,12 +210,12 @@ export const UI_TEXT: Record<
           "两者都适合：自学可按分类逐个突破，课堂可用 3D 场景做快速演示和即时提问。",
       },
     ],
-    metaTitle: "Preposition 3D｜英语介词 3D 空间学习站",
+    metaTitle: "Preposition Dino｜英语介词 3D 空间学习站",
     metaDescription:
       "用 3D 空间直觉快速理解常见英语介词，支持搜索、旋转查看与中英例句。",
   },
   en: {
-    siteTitle: "Preposition 3D",
+    siteTitle: "Preposition Dino",
     heroSloganZhLine1: "让全世界的英语初学者",
     heroSloganZhLine2: "3 秒钟学懂一个介词",
     heroSloganEnLine1: "Help English beginners worldwide",
@@ -218,10 +228,15 @@ export const UI_TEXT: Record<
     searchPlaceholder: "Search prepositions or meanings",
     searchHint: "Search by English word or meaning",
     countLabel: "prepositions",
-    headerTitle: "Preposition 3D",
+    headerTitle: "Preposition Dino",
     headerSubtitle: "Possibly the best preposition learning website in the world",
     headerHome: "Home",
-    footerText: "Build spatial intuition for English prepositions.",
+    footerText: "Help English beginners worldwide learn one preposition in 3 seconds",
+    footerAbout: "About",
+    footerPrivacy: "Privacy",
+    footerTerms: "Terms",
+    footerContact: "Contact",
+    pageUpdatedLabel: "Last updated",
     languageLabel: "Language",
     languageEnglish: "English",
     languageChinese: "中文",
@@ -316,7 +331,7 @@ export const UI_TEXT: Record<
           "We will expand with more examples and practice modes as the library grows.",
       },
     ],
-    metaTitle: "Preposition 3D | Spatial learning for English prepositions",
+    metaTitle: "Preposition Dino | Spatial learning for English prepositions",
     metaDescription:
       "Build spatial intuition for common English prepositions with 3D scenes, search, and bilingual examples.",
   },

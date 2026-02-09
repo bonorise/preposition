@@ -137,6 +137,10 @@ function getPrimarySeoCategory(categories: LearningCategory[]) {
   );
 }
 
+const PRIMARY_SEO_CATEGORY_OVERRIDE: Partial<Record<string, LearningCategory>> = {
+  behind: "space",
+};
+
 function getSeoTitle({
   word,
   locale,
@@ -146,7 +150,7 @@ function getSeoTitle({
   locale: Locale;
   category: LearningCategory;
 }) {
-  return `${word} ${SEO_TEMPLATE[locale][category].titleSuffix} | Preposition 3D`;
+  return `${word} ${SEO_TEMPLATE[locale][category].titleSuffix} | Preposition Dino`;
 }
 
 function getSeoDescription({
@@ -225,7 +229,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const localizedContent = entry.i18n[locale] ?? entry.i18n[DEFAULT_LOCALE];
   const meaning = localizedContent?.meaning ?? entry.word;
   const seoCategories = getSeoCategories(entry);
-  const primarySeoCategory = getPrimarySeoCategory(seoCategories);
+  const primarySeoCategory =
+    PRIMARY_SEO_CATEGORY_OVERRIDE[entry.id] ?? getPrimarySeoCategory(seoCategories);
   const tip = localizedContent?.tips?.[0];
   const categoryExample = entry.examplesByCategory?.[primarySeoCategory]?.[0];
   const fallbackExample = entry.examples[0];
@@ -329,13 +334,13 @@ export default async function LocalePrepositionPage({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: `${entry.word} | Preposition 3D`,
+    name: `${entry.word} | Preposition Dino`,
     description: meaning,
     url: absoluteUrl(`/${localePath}/p/${entry.id}`),
     inLanguage: ["en", "zh-CN"],
     isPartOf: {
       "@type": "WebSite",
-      name: "Preposition 3D",
+      name: "Preposition Dino",
       url: siteUrl,
     },
     mainEntity: {

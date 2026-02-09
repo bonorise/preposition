@@ -6,6 +6,7 @@ const TEMPORAL_IDS = new Set([
   "at",
   "in",
   "on",
+  "after",
   "by",
   "between",
   "through",

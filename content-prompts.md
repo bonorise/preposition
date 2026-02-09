@@ -1,4 +1,4 @@
-# Content Generation Prompts (Preposition 3D)
+# Content Generation Prompts (Preposition Dino)
 
 Use these prompts to generate content for the **“差异解析”**, **“例句”**, and **“常见词组组合”** modules.  
 Outputs should map cleanly into `src/data/prepositions.ts`.

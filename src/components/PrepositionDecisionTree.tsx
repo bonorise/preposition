@@ -16,7 +16,6 @@ export default function PrepositionDecisionTree({
 }: PrepositionDecisionTreeProps) {
   const { locale: contextLocale } = useLocale();
   const activeLocale = locale ?? contextLocale;
-  const localized = entry.i18n[activeLocale] ?? entry.i18n["zh-CN"];
   const comparison =
     entry.comparison?.i18n[activeLocale] ?? entry.comparison?.i18n["zh-CN"];
 
@@ -195,6 +194,295 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> consider beneath; for neutral usage, under is fine.",
       });
     }
+  } else if (word === "close to" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "你要强调的是“非常近/很靠近”的距离感吗？",
+        answer: "是 -> 用 close to。",
+      });
+      questions.push({
+        question: "场景是否必须“紧挨着/并排相邻”，几乎无间隔？",
+        answer: "是 -> next to / beside 更清楚。",
+      });
+      questions.push({
+        question: "你只是想表达“离得不远”，不需要很强的“很近”强调吗？",
+        answer: "是 -> near 更中性。",
+      });
+      questions.push({
+        question: "这是数值/时间的近似（几乎、接近）吗？",
+        answer: "是 -> close to 也常用于近似（close to 100 / close to midnight）。",
+      });
+    } else {
+      questions.push({
+        question: "Do you want to emphasize very short distance?",
+        answer: "Yes -> close to is a strong choice.",
+      });
+      questions.push({
+        question: "Is strict side-by-side adjacency required?",
+        answer: "Yes -> next to / beside is clearer.",
+      });
+      questions.push({
+        question: "Do you only mean general closeness without strong emphasis?",
+        answer: "Yes -> near is more neutral.",
+      });
+      questions.push({
+        question: "Is it an approximation for a number or time?",
+        answer: "Yes -> close to can mean almost (close to 100, close to midnight).",
+      });
+    }
+  } else if (word === "behind" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "这是空间位置：在参照物的后方（看不见/被遮挡的那一侧）吗？",
+        answer: "是 -> 用 behind（与 in front of 相对）。",
+      });
+      questions.push({
+        question: "这是进度语境：落后于计划或他人吗？",
+        answer: "是 -> 用 behind（behind schedule / behind in math / behind on rent）。",
+      });
+      questions.push({
+        question: "你只是表达时间顺序“在……之后/更晚”吗？",
+        answer: "是 -> 用 after，不用 behind。",
+      });
+      questions.push({
+        question: "你要表达的是上下关系（在下面）而不是前后吗？",
+        answer: "是 -> 用 under/below；behind 只描述前后方向。",
+      });
+    } else {
+      questions.push({
+        question: "Is it a spatial back position (opposite of in front of)?",
+        answer: "Yes -> use behind.",
+      });
+      questions.push({
+        question: "Is it progress language (late compared to a plan)?",
+        answer: "Yes -> use behind (behind schedule, behind in math, behind on rent).",
+      });
+      questions.push({
+        question: "Do you only mean time order (later than a time point)?",
+        answer: "Yes -> use after, not behind.",
+      });
+      questions.push({
+        question: "Is it vertical (under/below) rather than front-back?",
+        answer: "Yes -> use under/below; behind is front-back direction.",
+      });
+    }
+  } else if (word === "after" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "你要表达的是时间顺序：在某个时间点/事件之后吗？",
+        answer: "是 -> 用 after（after dinner / after 8 p.m. / after I finish）。",
+      });
+      questions.push({
+        question: "你表达的是“从现在起多久之后”（两小时后/三天后）吗？",
+        answer: "是 -> 多用 in（in two hours），不是 after（除非句子里有明确参照事件）。",
+      });
+      questions.push({
+        question: "after 后面没有宾语，只想表达“之后/然后”吗？",
+        answer: "是 -> 用 afterwards / later。",
+      });
+      questions.push({
+        question: "你要表达的是“从某个时间点持续到现在”吗？",
+        answer: "是 -> 用 since（since 2020 / since Monday），不是 after。",
+      });
+    } else {
+      questions.push({
+        question: "Is it time order: later than a time point or event?",
+        answer: "Yes -> use after (after dinner / after 8 p.m. / after I finish).",
+      });
+      questions.push({
+        question: 'Is it a duration counted from now ("two hours from now")?',
+        answer:
+          'Yes -> prefer in ("in two hours"), not after unless a clear reference event exists.',
+      });
+      questions.push({
+        question: "Is there no object after after and you only mean then?",
+        answer: "Yes -> use afterwards / later.",
+      });
+      questions.push({
+        question: "Is it a continuing state from a starting point up to now?",
+        answer: "Yes -> use since (since 2020 / since Monday), not after.",
+      });
+    }
+  } else if (word === "near" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "你只是想表达“离得不远/在附近”，不要求紧挨吗？",
+        answer: "是 -> 用 near。",
+      });
+      questions.push({
+        question: "场景是否必须“紧挨着/并排/隔壁”，几乎无间隔？",
+        answer: "是 -> 更可能用 next to / beside。",
+      });
+      questions.push({
+        question: "你要强调“非常近”，让人感觉几乎就在旁边吗？",
+        answer: "是 -> close to / right next to 更有力度。",
+      });
+      questions.push({
+        question: "关系其实是“在表面/在内部/在上方或下方”吗？",
+        answer: "是 -> 改用 on / in / above(under)；near 只说明距离。",
+      });
+    } else {
+      questions.push({
+        question: "Do you only mean close by in distance (not strict adjacency)?",
+        answer: "Yes -> use near.",
+      });
+      questions.push({
+        question: "Is immediate side-by-side adjacency required?",
+        answer: "Yes -> next to / beside is often better.",
+      });
+      questions.push({
+        question: "Do you want to emphasize very short distance?",
+        answer: "Yes -> close to / right next to is stronger.",
+      });
+      questions.push({
+        question: "Is the real relation on/in/above-below rather than distance?",
+        answer: "Switch to on/in/above(under); near only describes distance.",
+      });
+    }
+  } else if (word === "next to" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "两者是否“紧挨着、几乎无间隔”地并排？",
+        answer: "是 -> 优先用 next to。",
+      });
+      questions.push({
+        question: "你只是表达“离得近”，但不强调紧邻吗？",
+        answer: "是 -> 优先用 near。",
+      });
+      questions.push({
+        question: "句子关系其实是“在表面/在内部/在上方或下方”吗？",
+        answer: "是 -> 改用 on / in / above(under)；next to 只表示侧向邻接。",
+      });
+      questions.push({
+        question: "你要的是更书面的旁侧表达吗？",
+        answer: "是 -> beside 也可；日常对话和教学优先 next to。",
+      });
+    } else {
+      questions.push({
+        question: "Are the two things directly adjacent with almost no gap?",
+        answer: "Yes -> next to is the best default.",
+      });
+      questions.push({
+        question: "Do you only mean general closeness?",
+        answer: "Yes -> use near.",
+      });
+      questions.push({
+        question: "Is the relation actually on/in/above-below rather than side adjacency?",
+        answer: "Switch to on/in/above(under); next to is only for side relation.",
+      });
+      questions.push({
+        question: "Do you want a slightly more formal side word?",
+        answer: "Use beside. For daily beginner usage, next to is often clearer.",
+      });
+    }
+  } else if (word === "beside" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "你要表达的是“同一侧并排且距离很近”吗？",
+        answer: "是 -> 优先用 beside。",
+      });
+      questions.push({
+        question: "你只是想说“在附近”，并不强调并排同侧吗？",
+        answer: "是 -> 更可能用 near。",
+      });
+      questions.push({
+        question: "你要强调“紧贴、几乎无间隔”的并排吗？",
+        answer: "是 -> next to 往往更直接；一般并排可继续用 beside。",
+      });
+      questions.push({
+        question: "目标其实在表面上、内部或上下方吗？",
+        answer: "是 -> 分别改用 on / in / under(above)；beside 只管“侧边并排”。",
+      });
+    } else {
+      questions.push({
+        question: "Do you mean side-by-side and close on one side?",
+        answer: "Yes -> beside is a strong choice.",
+      });
+      questions.push({
+        question: "Do you only mean general proximity without side orientation?",
+        answer: "Yes -> near is usually better.",
+      });
+      questions.push({
+        question: "Do you want to stress the tightest adjacency?",
+        answer: "Yes -> next to is often the clearest option.",
+      });
+      questions.push({
+        question: "Is the real relation surface/inside/above-below instead of side?",
+        answer: "Use on/in/under(above) accordingly; beside is for side relation only.",
+      });
+    }
+  } else if (word === "on top of" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "这个物体是否接触到下方表面？",
+        answer: "接触 -> 可用 on 或 on top of；不接触 -> 更可能是 above/over。",
+      });
+      questions.push({
+        question: "你要强调“就在最顶部”这个位置吗？",
+        answer: "是 -> 用 on top of；否 -> 一般用 on 更自然。",
+      });
+      questions.push({
+        question: "句子是在表达“移动到顶部”的动作吗？",
+        answer: "是 -> 用 onto；不是动作而是位置 -> 用 on top of。",
+      });
+      questions.push({
+        question: "这是“从上方跨过”而不是停在顶部吗？",
+        answer: "是 -> 用 over；on top of 表示停留在顶面。",
+      });
+    } else {
+      questions.push({
+        question: "Is there contact with the lower surface?",
+        answer: "Contact -> on/on top of are possible; no contact -> think above/over.",
+      });
+      questions.push({
+        question: "Do you need explicit topmost-position emphasis?",
+        answer: "Yes -> use on top of. No -> on is often the natural default.",
+      });
+      questions.push({
+        question: "Is this movement to the top or a final static position?",
+        answer: "Movement to top -> onto. Final static top position -> on top of.",
+      });
+      questions.push({
+        question: "Is it crossing above instead of staying on top?",
+        answer: "Yes -> use over. On top of means staying at the top surface.",
+      });
+    }
+  } else if (word === "above" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "这个物体是否接触到下方表面？",
+        answer: "是 -> 多用 on；否 -> 继续判断 above/over。",
+      });
+      questions.push({
+        question: "你是在描述静态高位，还是“从上方跨过”的动作？",
+        answer: "静态高位 -> 用 above；强调跨越动作 -> 更可能用 over。",
+      });
+      questions.push({
+        question: "这是在比较数值或标准高低吗？",
+        answer: "是 -> 用 above（above average / above zero / above 90%）。",
+      });
+      questions.push({
+        question: "方向是否相反（低于某标准）？",
+        answer: "是 -> 改用 below；above 只表示高于。",
+      });
+    } else {
+      questions.push({
+        question: "Is there surface contact with the lower object?",
+        answer: "Yes -> use on. No contact -> continue with above/over checks.",
+      });
+      questions.push({
+        question: "Is it static higher position or crossing movement?",
+        answer: "Static higher position -> use above. Crossing movement -> over is often better.",
+      });
+      questions.push({
+        question: "Is it about level/number comparison?",
+        answer: "Yes -> use above (above average, above zero, above 90%).",
+      });
+      questions.push({
+        question: "Is the intended meaning lower than a reference?",
+        answer: "Yes -> use below, not above.",
+      });
+    }
   } else if (looksTemporal && !isDynamic) {
     const isUnder = word === "under";
     const a = primaryContrast ?? "at";
@@ -280,7 +568,49 @@ export default function PrepositionDecisionTree({
   } else if (isDynamic) {
     const a = primaryContrast ?? "through";
     const b = secondaryContrast ?? "to";
-    if (activeLocale === "zh-CN") {
+    if (word === "over" && activeLocale === "zh-CN") {
+      questions.push({
+        question: "物体是否与表面接触？",
+        answer: "接触 -> 常用 on；不接触且在上方 -> 再考虑 over/above。",
+      });
+      questions.push({
+        question: "是否有“从上方跨过去”的路径动作？",
+        answer: "有 -> 用 over；若只是静态“更高位置”且无跨越，常用 above。",
+      });
+      questions.push({
+        question: "路径是“从一侧到另一侧”还是“从内部穿过”？",
+        answer: "侧向跨过平面 -> 常是 across；进入内部通道 -> 用 through。",
+      });
+      questions.push({
+        question: "这是在表达“在一段时间里”吗？",
+        answer: "是 -> 可用 over（over the weekend / over time）。",
+      });
+      questions.push({
+        question: "这是在表达“超过某个数值”吗？",
+        answer: "是 -> 用 over（over $50 / over 100 people）。",
+      });
+    } else if (word === "over") {
+      questions.push({
+        question: "Is there direct contact with a surface?",
+        answer: "If yes, use on. If no contact and above relation, then check over/above.",
+      });
+      questions.push({
+        question: "Is there a crossing path above something?",
+        answer: "Yes -> use over. If it is only static higher position, use above.",
+      });
+      questions.push({
+        question: "Is the movement side-to-side or inside an enclosed path?",
+        answer: "Side-to-side across an area -> often across. Inside a channel -> through.",
+      });
+      questions.push({
+        question: "Does it mean during a period of time?",
+        answer: "Yes -> over works (over the weekend, over time).",
+      });
+      questions.push({
+        question: "Does it mean more than a number or limit?",
+        answer: "Yes -> use over (over $50, over 100 people).",
+      });
+    } else if (activeLocale === "zh-CN") {
       questions.push({
         question: "句子里有明显的“运动/路径”吗（走、跑、飞、滚、爬）？",
         answer: `有 -> 优先考虑 ${entry.word}；若只是静态位置，用空间类介词。`,

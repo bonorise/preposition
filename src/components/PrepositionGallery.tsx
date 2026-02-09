@@ -31,16 +31,11 @@ export default function PrepositionGallery({
     ? [ui.heroSloganZhLine1, ui.heroSloganZhLine2]
     : [ui.heroSloganEnLine1, ui.heroSloganEnLine2];
   const [query, setQuery] = useState("");
-  const normalizedQuery = query.toLowerCase().replace(/\s+/g, "").trim();
-  const focusedEntry = useMemo(() => {
-    if (!normalizedQuery) return null;
-    return (
-      entries.find(
-        (entry) =>
-          entry.word.toLowerCase().replace(/\s+/g, "").trim() === normalizedQuery,
-      ) ?? null
-    );
-  }, [entries, normalizedQuery]);
+  const [playgroundSeedId, setPlaygroundSeedId] = useState<string | null>(null);
+  const playgroundSeedEntry = useMemo(() => {
+    if (!playgroundSeedId) return null;
+    return entries.find((entry) => entry.id === playgroundSeedId) ?? null;
+  }, [entries, playgroundSeedId]);
 
   const results = useMemo(
     () => filterPrepositions(entries, query, activeLocale),
@@ -95,7 +90,23 @@ export default function PrepositionGallery({
           <div className="mx-auto grid max-w-2xl gap-4">
             <Input
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => {
+                const value = event.target.value;
+                setQuery(value);
+                const normalized = value.toLowerCase().replace(/\s+/g, "").trim();
+                if (!normalized) {
+                  setPlaygroundSeedId(null);
+                  return;
+                }
+                const match =
+                  entries.find(
+                    (entry) =>
+                      entry.word.toLowerCase().replace(/\s+/g, "").trim() === normalized,
+                  ) ?? null;
+                if (match) {
+                  setPlaygroundSeedId(match.id);
+                }
+              }}
               placeholder={ui.searchPlaceholder}
               aria-label={ui.searchPlaceholder}
               className="mx-auto w-full border-[color:var(--color-edge)] bg-white/70 text-center text-base shadow-[var(--shadow-tight)] focus:placeholder:text-transparent"
@@ -108,7 +119,8 @@ export default function PrepositionGallery({
       </div>
 
       <SpatialPlayground
-        focusedEntry={focusedEntry}
+        key={playgroundSeedId ?? "default"}
+        seedEntry={playgroundSeedEntry}
       />
 
       <div className="space-y-4">

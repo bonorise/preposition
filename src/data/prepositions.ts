@@ -1324,34 +1324,425 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
   {
     id: "over",
     word: "over",
-    tags: ["space", "above", "movement"],
+    tags: ["space", "above", "movement", "time", "more-than"],
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……正上方/跨过（通常不接触）",
-        tips: ["强调高度或跨越，不一定接触。", "over 有“跨过/覆盖”感觉，above 只表示位置。"],
+        meaning: "在……上方并跨越；在……期间；超过（数量/标准）",
+        tips: [
+          "空间上，over 常表示“在上方且跨越”，通常不接触表面。",
+          "时间上，over 常表示“在一段时间里”（over the weekend, over time）。",
+          "数量上，over 表示“超过”（over $50, over 100 people）。",
+        ],
       },
       en: {
-        meaning: "above or moving across",
-        tips: ["Not necessarily touching; can imply movement.", "Over suggests crossing; above is just position."],
+        meaning: "above and across; during a period; more than a number",
+        tips: [
+          "For space, over often means above with crossing, usually without contact.",
+          "For time, over means during a span (over the weekend, over time).",
+          "For quantity, over means more than a threshold (over $50, over 100 people).",
+        ],
       },
     },
     examples: [
       {
-        en: "A bird flies over the box.",
+        en: "A bird flew over the wall.",
         i18n: {
-          "zh-CN": { translation: "鸟飞过盒子上方。" },
-          en: { translation: "A bird flies over the box." },
+          "zh-CN": { translation: "一只鸟飞过了墙上方。" },
+          en: { translation: "A bird flew over the wall." },
         },
       },
       {
-        en: "The bridge goes over the river.",
+        en: "We worked on the report over the weekend.",
         i18n: {
-          "zh-CN": { translation: "桥跨过河。" },
-          en: { translation: "The bridge goes over the river." },
+          "zh-CN": { translation: "我们在周末期间完成了报告。" },
+          en: { translation: "We worked on the report over the weekend." },
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        {
+          en: "A bird flew over the wall.",
+          i18n: {
+            "zh-CN": { translation: "一只鸟飞过了墙上方。" },
+            en: { translation: "A bird flew over the wall." },
+          },
+        },
+        {
+          en: "There is a bridge over the river.",
+          i18n: {
+            "zh-CN": { translation: "河上有一座桥。" },
+            en: { translation: "There is a bridge over the river." },
+          },
+        },
+      ],
+      time: [
+        {
+          en: "We worked on the report over the weekend.",
+          i18n: {
+            "zh-CN": { translation: "我们在周末期间完成了报告。" },
+            en: { translation: "We worked on the report over the weekend." },
+          },
+        },
+        {
+          en: "Sales improved over the past year.",
+          i18n: {
+            "zh-CN": { translation: "过去一年里销售额有所提升。" },
+            en: { translation: "Sales improved over the past year." },
+          },
+        },
+      ],
+      dynamic: [
+        {
+          en: "The drone passed over the stadium.",
+          i18n: {
+            "zh-CN": { translation: "无人机从体育场上空飞过。" },
+            en: { translation: "The drone passed over the stadium." },
+          },
+        },
+        {
+          en: "She jumped over the puddle.",
+          i18n: {
+            "zh-CN": { translation: "她跳过了水坑。" },
+            en: { translation: "She jumped over the puddle." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "over 不是单一“在上方”。它常同时带有“跨越”或“时间跨度/数量超出”的信息，是初学者最容易混淆但也最高频的介词之一。",
+          differences: [
+            {
+              term: "above",
+              description:
+                "above 只强调“更高位置”；over 常暗示覆盖或跨越关系。若只是静态高低对比，用 above 更精确。",
+              examples: [
+                {
+                  term: "above",
+                  sentence: "The clock is above the door.",
+                  translation: "时钟在门上方。",
+                },
+                {
+                  term: "over",
+                  sentence: "A plane flew over the city.",
+                  translation: "一架飞机从城市上空飞过。",
+                },
+              ],
+            },
+            {
+              term: "across",
+              description:
+                "across 强调从一侧到另一侧（常在同一平面上）；over 强调“在上方跨过”。",
+              examples: [
+                {
+                  term: "across",
+                  sentence: "She walked across the street.",
+                  translation: "她走过了街道。",
+                },
+                {
+                  term: "over",
+                  sentence: "She jumped over the fence.",
+                  translation: "她跳过了栅栏。",
+                },
+              ],
+            },
+            {
+              term: "through",
+              description:
+                "through 是“从内部穿过”；over 是“从上方跨过”。看是否进入内部通道即可快速判断。",
+              examples: [
+                {
+                  term: "through",
+                  sentence: "The train went through the tunnel.",
+                  translation: "火车穿过了隧道（内部）。",
+                },
+                {
+                  term: "over",
+                  sentence: "The train went over the bridge.",
+                  translation: "火车从桥上开过去。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Over is not only 'above'. It often adds crossing, duration, or quantity-over-threshold meaning, so choosing the right contrast is key.",
+          differences: [
+            {
+              term: "above",
+              description:
+                "Above is pure higher position. Over often carries crossing or covering nuance in addition to being above.",
+              examples: [
+                { term: "above", sentence: "The clock is above the door." },
+                { term: "over", sentence: "A plane flew over the city." },
+              ],
+            },
+            {
+              term: "across",
+              description:
+                "Across emphasizes side-to-side movement on a surface/area. Over emphasizes movement above something.",
+              examples: [
+                { term: "across", sentence: "She walked across the street." },
+                { term: "over", sentence: "She jumped over the fence." },
+              ],
+            },
+            {
+              term: "through",
+              description:
+                "Through means moving inside an enclosed space; over means passing above it.",
+              examples: [
+                { term: "through", sentence: "The train went through the tunnel." },
+                { term: "over", sentence: "The train went over the bridge." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "空间与跨越类",
+          items: [
+            { phrase: "over the wall", meaning: "越过墙" },
+            { phrase: "over the bridge", meaning: "从桥上经过" },
+            { phrase: "over the river", meaning: "在河上方/跨过河" },
+            { phrase: "over the fence", meaning: "越过篱笆" },
+            { phrase: "over the roof", meaning: "在屋顶上方" },
+            { phrase: "over the city", meaning: "在城市上空" },
+          ],
+        },
+        {
+          title: "时间跨度类",
+          items: [
+            { phrase: "over the weekend", meaning: "在周末期间" },
+            { phrase: "over time", meaning: "随着时间推移" },
+            { phrase: "over the years", meaning: "这些年里" },
+            { phrase: "over the past month", meaning: "过去一个月里" },
+            { phrase: "over the holidays", meaning: "在假期期间" },
+            { phrase: "over three days", meaning: "在三天时间里" },
+          ],
+        },
+        {
+          title: "数量超出类",
+          items: [
+            { phrase: "over $50", meaning: "超过 50 美元" },
+            { phrase: "over 100 people", meaning: "超过 100 人" },
+            { phrase: "over 20%", meaning: "超过 20%" },
+            { phrase: "over 18", meaning: "超过 18 岁" },
+            { phrase: "over 10 miles", meaning: "超过 10 英里" },
+            { phrase: "over the limit", meaning: "超过上限" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Space and crossing",
+          items: [
+            "over the wall",
+            "over the bridge",
+            "over the river",
+            "over the fence",
+            "over the roof",
+            "over the city",
+          ],
+        },
+        {
+          title: "Time span",
+          items: [
+            "over the weekend",
+            "over time",
+            "over the years",
+            "over the past month",
+            "over the holidays",
+            "over three days",
+          ],
+        },
+        {
+          title: "More than",
+          items: [
+            "over $50",
+            "over 100 people",
+            "over 20%",
+            "over 18",
+            "over 10 miles",
+            "over the limit",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The book is over the table. (book touches the table)",
+          correct: "The book is on the table.",
+          reason: "如果有接触，用 on；over 通常不强调接触。",
+        },
+        {
+          wrong: "The train went over the tunnel.",
+          correct: "The train went through the tunnel.",
+          reason: "隧道是内部通道，应用 through，不是 over。",
+        },
+        {
+          wrong: "I will finish it in the weekend.",
+          correct: "I will finish it over the weekend.",
+          reason: "表示“在周末这段时间里”，美式英语常用 over the weekend。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The book is over the table. (when it is touching)",
+          correct: "The book is on the table.",
+          reason:
+            "Use on for surface contact. Over usually does not express direct contact.",
+        },
+        {
+          wrong: "The train went over the tunnel.",
+          correct: "The train went through the tunnel.",
+          reason:
+            "A tunnel is an inside path, so through is the correct relation.",
+        },
+        {
+          wrong: "I will finish it in the weekend.",
+          correct: "I will finish it over the weekend.",
+          reason:
+            "For duration during the weekend, over the weekend is a strong default in American usage.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Choose the correct preposition: The cat jumped ___ the fence.",
+          options: ["over", "through", "on"],
+          answer: "over",
+          explanation: "强调“从上方跨越障碍”时用 over。",
+        },
+        {
+          prompt: "Choose the correct preposition: We talked about it ___ the weekend.",
+          options: ["over", "at", "through"],
+          answer: "over",
+          explanation: "表示“在周末期间”用 over the weekend。",
+        },
+        {
+          prompt: "Choose the correct preposition: The ticket costs ___ $50.",
+          options: ["over", "on", "inside"],
+          answer: "over",
+          explanation: "表达“超过某数量”时用 over。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: The cat jumped ___ the fence.",
+          options: ["over", "through", "on"],
+          answer: "over",
+          explanation: "Over is used for crossing above a barrier.",
+        },
+        {
+          prompt: "Choose the correct preposition: We talked about it ___ the weekend.",
+          options: ["over", "at", "through"],
+          answer: "over",
+          explanation: "Over the weekend expresses duration during that period.",
+        },
+        {
+          prompt: "Choose the correct preposition: The ticket costs ___ $50.",
+          options: ["over", "on", "inside"],
+          answer: "over",
+          explanation: "Over marks a value greater than a threshold.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "over 的核心意思是什么？",
+          answer:
+            "核心是“在上方并常带跨越感”。此外它还能表示“在一段时间里”和“超过某数量”。",
+        },
+        {
+          question: "over 和 above 的区别是什么？",
+          answer:
+            "above 只说“更高位置”；over 常带“跨越/覆盖”的动态或关系信息。",
+        },
+        {
+          question: "over 和 across 怎么区分？",
+          answer:
+            "across 常是从一侧到另一侧（同一平面）；over 更强调从上方越过。",
+        },
+        {
+          question: "over 和 through 如何判断？",
+          answer:
+            "看是否进入内部通道：进入内部用 through；从上方经过用 over。",
+        },
+        {
+          question: "over 可以用于时间表达吗？",
+          answer:
+            "可以。常见于 over the weekend、over time、over the years，表示“在一段时间里”。",
+        },
+        {
+          question: "over 可以表示“超过”吗？",
+          answer:
+            "可以。比如 over $50、over 100 people，表示高于某数值阈值。",
+        },
+        {
+          question: "初学者最常见的 over 错误是什么？",
+          answer:
+            "常见是把有接触场景误用 over（应 on），或把内部穿过误用 over（应 through）。",
+        },
+        {
+          question: "30 秒记住 over 的方法是什么？",
+          answer:
+            "记三条：上方跨越、时间跨度、数量超出。每条造一个短句即可快速内化。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of over?",
+          answer:
+            "Over mainly means above with crossing. It also expresses duration across a period and values greater than a threshold.",
+        },
+        {
+          question: "What is the difference between over and above?",
+          answer:
+            "Above is pure higher position. Over often adds crossing or covering relation.",
+        },
+        {
+          question: "What is the difference between over and across?",
+          answer:
+            "Across is side-to-side across an area; over is movement above something.",
+        },
+        {
+          question: "How do I choose between over and through?",
+          answer:
+            "Use through for movement inside an enclosed space; use over for movement above it.",
+        },
+        {
+          question: "Can over be used for time expressions?",
+          answer:
+            "Yes. Over the weekend, over time, and over the years all express duration during a period.",
+        },
+        {
+          question: "Can over mean more than a number?",
+          answer:
+            "Yes. It is common for quantities: over $50, over 100 people, over 20%.",
+        },
+        {
+          question: "What is a common learner mistake with over?",
+          answer:
+            "Learners often use over where contact is intended (use on) or where internal movement is intended (use through).",
+        },
+        {
+          question: "What is a 30-second memory rule for over?",
+          answer:
+            "Memorize three cues: above-and-crossing, time span, and more-than quantity.",
+        },
+      ],
+    },
     scene: makeScene([0, 1.1, 0], {
       animation: {
         type: "path",
@@ -1369,16 +1760,24 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
   {
     id: "above",
     word: "above",
-    tags: ["space", "above"],
+    tags: ["space", "above", "level", "more-than"],
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……上方（强调高度）",
-        tips: ["只强调位置高，不强调跨越。", "above 不含经过或覆盖。"],
+        meaning: "在……上方（不接触）；高于（标准/数值）",
+        tips: [
+          "above 强调“更高位置”，通常不涉及接触，也不强调跨越路径。",
+          "表达数值/水平高于标准时也常用 above（above average, above zero）。",
+          "若有表面接触用 on；若强调从上方跨过去常用 over。",
+        ],
       },
       en: {
-        meaning: "higher than; vertically above",
-        tips: ["Focuses on height, not movement.", "No crossing or covering implied."],
+        meaning: "at a higher level or position; higher than a standard",
+        tips: [
+          "Above marks higher position without contact.",
+          "It also works for levels and standards (above average, above zero).",
+          "Use on for contact; use over when crossing movement is central.",
+        ],
       },
     },
     examples: [
@@ -1390,13 +1789,363 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
       {
-        en: "The plane is above the clouds.",
+        en: "Her score is above average.",
         i18n: {
-          "zh-CN": { translation: "飞机在云上方。" },
-          en: { translation: "The plane is above the clouds." },
+          "zh-CN": { translation: "她的成绩高于平均水平。" },
+          en: { translation: "Her score is above average." },
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        {
+          en: "The lamp is above the table.",
+          i18n: {
+            "zh-CN": { translation: "灯在桌子上方。" },
+            en: { translation: "The lamp is above the table." },
+          },
+        },
+        {
+          en: "The plane is above the clouds.",
+          i18n: {
+            "zh-CN": { translation: "飞机在云层上方。" },
+            en: { translation: "The plane is above the clouds." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "above 的核心是“位置更高或水平更高”，不强调接触与跨越动作。先判断是否接触、是否跨越，再选 above。",
+          differences: [
+            {
+              term: "over",
+              description:
+                "above 偏静态“更高”；over 常带“从上方跨过/覆盖”的动态关系。",
+              examples: [
+                {
+                  term: "above",
+                  sentence: "The clock is above the door.",
+                  translation: "时钟在门上方。",
+                },
+                {
+                  term: "over",
+                  sentence: "A bird flew over the wall.",
+                  translation: "一只鸟飞过了墙上方。",
+                },
+              ],
+            },
+            {
+              term: "on",
+              description:
+                "on 强调接触表面；above 强调在上方且不接触。",
+              examples: [
+                {
+                  term: "on",
+                  sentence: "The book is on the table.",
+                  translation: "书在桌子上（接触）。",
+                },
+                {
+                  term: "above",
+                  sentence: "The lamp hangs above the table.",
+                  translation: "灯悬挂在桌子上方（不接触）。",
+                },
+              ],
+            },
+            {
+              term: "below",
+              description:
+                "below 与 above 方向相反：below 是低于，above 是高于。",
+              examples: [
+                {
+                  term: "below",
+                  sentence: "The temperature is below zero.",
+                  translation: "温度在零度以下。",
+                },
+                {
+                  term: "above",
+                  sentence: "The temperature is above zero.",
+                  translation: "温度在零度以上。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Above means higher position or higher level, without contact and without necessary crossing movement.",
+          differences: [
+            {
+              term: "over",
+              description:
+                "Above is usually static higher position; over often adds crossing or covering meaning.",
+              examples: [
+                { term: "above", sentence: "The clock is above the door." },
+                { term: "over", sentence: "A bird flew over the wall." },
+              ],
+            },
+            {
+              term: "on",
+              description:
+                "On requires surface contact. Above means higher than without touching.",
+              examples: [
+                { term: "on", sentence: "The book is on the table." },
+                { term: "above", sentence: "The lamp hangs above the table." },
+              ],
+            },
+            {
+              term: "below",
+              description:
+                "Below is the opposite direction. Above means higher than; below means lower than.",
+              examples: [
+                { term: "below", sentence: "The temperature is below zero." },
+                { term: "above", sentence: "The temperature is above zero." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "空间位置类",
+          items: [
+            { phrase: "above the table", meaning: "在桌子上方" },
+            { phrase: "above the door", meaning: "在门上方" },
+            { phrase: "above the clouds", meaning: "在云层上方" },
+            { phrase: "above the roof", meaning: "在屋顶上方" },
+            { phrase: "above the bed", meaning: "在床上方" },
+            { phrase: "above the screen", meaning: "在屏幕上方" },
+          ],
+        },
+        {
+          title: "数值与标准类",
+          items: [
+            { phrase: "above average", meaning: "高于平均水平" },
+            { phrase: "above zero", meaning: "高于零" },
+            { phrase: "above sea level", meaning: "高于海平面" },
+            { phrase: "above 90%", meaning: "高于 90%" },
+            { phrase: "above the limit", meaning: "高于上限" },
+            { phrase: "above the age of 18", meaning: "超过 18 岁" },
+          ],
+        },
+        {
+          title: "抽象表达类",
+          items: [
+            { phrase: "above all", meaning: "最重要的是" },
+            { phrase: "above suspicion", meaning: "无可怀疑" },
+            { phrase: "above criticism", meaning: "无可指摘" },
+            { phrase: "rise above", meaning: "超越（困难/情绪）" },
+            { phrase: "head and shoulders above", meaning: "远胜于" },
+            { phrase: "above board", meaning: "光明正大的" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Spatial position",
+          items: [
+            "above the table",
+            "above the door",
+            "above the clouds",
+            "above the roof",
+            "above the bed",
+            "above the screen",
+          ],
+        },
+        {
+          title: "Numbers and standards",
+          items: [
+            "above average",
+            "above zero",
+            "above sea level",
+            "above 90%",
+            "above the limit",
+            "above the age of 18",
+          ],
+        },
+        {
+          title: "Abstract expressions",
+          items: [
+            "above all",
+            "above suspicion",
+            "above criticism",
+            "rise above",
+            "head and shoulders above",
+            "above board",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The book is above the table. (book touching the table)",
+          correct: "The book is on the table.",
+          reason: "有接触关系时应用 on，不用 above。",
+        },
+        {
+          wrong: "The bird flew above the wall and crossed it.",
+          correct: "The bird flew over the wall.",
+          reason: "强调“跨越动作”时，over 比 above 更自然。",
+        },
+        {
+          wrong: "The score is over average.",
+          correct: "The score is above average.",
+          reason: "表示“高于平均值”的固定搭配是 above average。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The book is above the table. (when touching)",
+          correct: "The book is on the table.",
+          reason: "Use on for surface contact; above means no contact.",
+        },
+        {
+          wrong: "The bird flew above the wall and crossed it.",
+          correct: "The bird flew over the wall.",
+          reason:
+            "When crossing movement is central, over is usually the better choice.",
+        },
+        {
+          wrong: "The score is over average.",
+          correct: "The score is above average.",
+          reason: "The standard collocation is above average.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Choose the correct preposition: The clock is ___ the door.",
+          options: ["above", "on", "through"],
+          answer: "above",
+          explanation: "时钟在门上方且不接触门面，选 above。",
+        },
+        {
+          prompt: "Choose the correct preposition: Her score is ___ average.",
+          options: ["above", "over", "under"],
+          answer: "above",
+          explanation: "固定搭配为 above average。",
+        },
+        {
+          prompt: "Choose the correct preposition: The helicopter hovered ___ the stadium.",
+          options: ["above", "inside", "under"],
+          answer: "above",
+          explanation: "强调“在上方悬停”而非穿越动作，选 above。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: The clock is ___ the door.",
+          options: ["above", "on", "through"],
+          answer: "above",
+          explanation: "The relation is higher position without contact.",
+        },
+        {
+          prompt: "Choose the correct preposition: Her score is ___ average.",
+          options: ["above", "over", "under"],
+          answer: "above",
+          explanation: "The standard expression is above average.",
+        },
+        {
+          prompt: "Choose the correct preposition: The helicopter hovered ___ the stadium.",
+          options: ["above", "inside", "under"],
+          answer: "above",
+          explanation:
+            "This is static higher position, not internal movement or lower position.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "above 的核心意思是什么？",
+          answer:
+            "above 表示“在更高位置”或“高于某标准”，通常不强调接触，也不强调跨越。",
+        },
+        {
+          question: "above 和 over 的区别是什么？",
+          answer:
+            "above 更静态，表示高于；over 常带跨越或覆盖关系，尤其在运动场景中更常见。",
+        },
+        {
+          question: "above 和 on 如何区分？",
+          answer:
+            "关键看接触：接触表面用 on，不接触且在上方用 above。",
+        },
+        {
+          question: "above 可以表示数值关系吗？",
+          answer:
+            "可以，比如 above average、above zero、above 90%，都表示“高于某标准”。",
+        },
+        {
+          question: "above 可以用于时间表达吗？",
+          answer:
+            "一般不作为时间介词核心用法；时间关系通常用 at/in/on/over 等词。",
+        },
+        {
+          question: "学习 above 最常见错误是什么？",
+          answer:
+            "常见错是把接触关系误用 above（应 on），或把跨越动作场景误用 above（常应 over）。",
+        },
+        {
+          question: "above 的高频搭配有哪些？",
+          answer:
+            "常见有 above the table、above average、above sea level、above all。",
+        },
+        {
+          question: "30 秒记住 above 的方法？",
+          answer:
+            "记一个判据：只要是“更高但不接触”，优先想 above；再用 above average 强化数值义。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of above?",
+          answer:
+            "Above means higher position or higher level than a reference point, usually without contact.",
+        },
+        {
+          question: "What is the difference between above and over?",
+          answer:
+            "Above is usually static higher position; over often adds crossing or covering meaning.",
+        },
+        {
+          question: "How is above different from on?",
+          answer:
+            "On requires contact with a surface. Above means higher than without touching.",
+        },
+        {
+          question: "Can above express numeric meaning?",
+          answer:
+            "Yes. It is common in level expressions such as above average, above zero, and above 90%.",
+        },
+        {
+          question: "Can above be used for time expressions?",
+          answer:
+            "Not as a core time preposition in most beginner contexts. Use at/in/on/over for time relations.",
+        },
+        {
+          question: "What is a common learner mistake with above?",
+          answer:
+            "Learners often use above where contact is intended (use on) or where crossing movement is intended (use over).",
+        },
+        {
+          question: "What are common collocations with above?",
+          answer:
+            "High-frequency collocations include above the table, above average, above sea level, and above all.",
+        },
+        {
+          question: "What is a quick memory rule for above?",
+          answer:
+            "Use one test: higher but not touching. Then anchor it with a level phrase like above average.",
+        },
+      ],
+    },
     scene: makeScene([0, 1, 0]),
   },
   {
@@ -1820,12 +2569,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……旁边（紧挨着）",
-        tips: ["强调就在一侧，距离近。", "比 near 更贴近。"],
+        meaning: "在……旁边（同一侧、近距离）",
+        tips: [
+          "beside 强调“在一侧且很近”，常用于具体空间位置。",
+          "与 next to 相比，beside 语气稍书面；与 near 相比，距离更近。",
+          "只表达并排位置，不表达“在上/下/内”等关系。",
+        ],
       },
       en: {
-        meaning: "beside; right at the side",
-        tips: ["Very close at the side.", "Closer than near."],
+        meaning: "at the side of; next to, usually very close",
+        tips: [
+          "Beside marks side-by-side position with short distance.",
+          "It overlaps with next to, but often sounds slightly more formal.",
+          "Use it for side relation only, not top/bottom/inside relations.",
+        ],
       },
     },
     examples: [
@@ -1844,6 +2601,335 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        {
+          en: "Please sit beside me.",
+          i18n: {
+            "zh-CN": { translation: "请坐在我旁边。" },
+            en: { translation: "Please sit beside me." },
+          },
+        },
+        {
+          en: "A small table stands beside the sofa.",
+          i18n: {
+            "zh-CN": { translation: "沙发旁边放着一张小桌子。" },
+            en: { translation: "A small table stands beside the sofa." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "beside 的核心是“同一侧+近距离”。初学者最常混淆的是 next to、by、near：next to 更强调紧贴；by 更口语泛化；near 只表示附近。",
+          differences: [
+            {
+              term: "next to",
+              description: "next to 强调“紧挨着、几乎无间隔”；beside 也近，但语义可稍宽。",
+              examples: [
+                {
+                  term: "next to",
+                  sentence: "She sat next to me on the bus.",
+                  translation: "她在公交车上紧挨着我坐。",
+                },
+                {
+                  term: "beside",
+                  sentence: "She sat beside me during the meeting.",
+                  translation: "会议时她坐在我旁边。",
+                },
+              ],
+            },
+            {
+              term: "by",
+              description: "by 更口语、范围更宽；beside 更聚焦并排侧向位置。",
+              examples: [
+                {
+                  term: "by",
+                  sentence: "Wait by the door.",
+                  translation: "在门边等。",
+                },
+                {
+                  term: "beside",
+                  sentence: "A lamp is beside the bed.",
+                  translation: "床边有一盏灯。",
+                },
+              ],
+            },
+            {
+              term: "near",
+              description: "near 只强调距离不远，不要求同一侧并排。",
+              examples: [
+                {
+                  term: "near",
+                  sentence: "There is a cafe near the station.",
+                  translation: "车站附近有一家咖啡馆。",
+                },
+                {
+                  term: "beside",
+                  sentence: "There is a bench beside the station gate.",
+                  translation: "车站大门旁边有一张长椅。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Beside means side-by-side and close. Learners often mix it with next to, by, and near. The key is whether you mean strict side relation or only general proximity.",
+          differences: [
+            {
+              term: "next to",
+              description:
+                "Next to is the tightest adjacency. Beside is also close, but can be slightly less strict.",
+              examples: [
+                { term: "next to", sentence: "She sat next to me on the bus." },
+                { term: "beside", sentence: "She sat beside me during the meeting." },
+              ],
+            },
+            {
+              term: "by",
+              description:
+                "By is broader and more conversational. Beside is more specific for side relation.",
+              examples: [
+                { term: "by", sentence: "Wait by the door." },
+                { term: "beside", sentence: "A lamp is beside the bed." },
+              ],
+            },
+            {
+              term: "near",
+              description:
+                "Near marks short distance only. Beside adds side-by-side orientation.",
+              examples: [
+                { term: "near", sentence: "There is a cafe near the station." },
+                { term: "beside", sentence: "There is a bench beside the station gate." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "人物与位置",
+          items: [
+            { phrase: "sit beside me", meaning: "坐在我旁边" },
+            { phrase: "stand beside her", meaning: "站在她旁边" },
+            { phrase: "walk beside him", meaning: "和他并排走" },
+            { phrase: "kneel beside the bed", meaning: "跪在床边" },
+            { phrase: "wait beside the door", meaning: "在门旁等候" },
+            { phrase: "stay beside your child", meaning: "陪在孩子身边" },
+          ],
+        },
+        {
+          title: "物体与场景",
+          items: [
+            { phrase: "beside the window", meaning: "在窗边" },
+            { phrase: "beside the sofa", meaning: "在沙发旁" },
+            { phrase: "beside the road", meaning: "在路边" },
+            { phrase: "beside the river", meaning: "在河边" },
+            { phrase: "beside the desk", meaning: "在书桌旁" },
+            { phrase: "beside the gate", meaning: "在大门旁" },
+          ],
+        },
+        {
+          title: "教学高频短句",
+          items: [
+            { phrase: "right beside", meaning: "就在旁边" },
+            { phrase: "sit beside each other", meaning: "并排坐着" },
+            { phrase: "park beside the curb", meaning: "靠路缘停放" },
+            { phrase: "place it beside", meaning: "把它放在旁边" },
+            { phrase: "live beside the park", meaning: "住在公园旁" },
+            { phrase: "work beside experienced teachers", meaning: "与资深老师并肩工作" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "People and Position",
+          items: [
+            "sit beside me",
+            "stand beside her",
+            "walk beside him",
+            "kneel beside the bed",
+            "wait beside the door",
+            "stay beside your child",
+          ],
+        },
+        {
+          title: "Objects and Places",
+          items: [
+            "beside the window",
+            "beside the sofa",
+            "beside the road",
+            "beside the river",
+            "beside the desk",
+            "beside the gate",
+          ],
+        },
+        {
+          title: "High-frequency Chunks",
+          items: [
+            "right beside",
+            "sit beside each other",
+            "park beside the curb",
+            "place it beside",
+            "live beside the park",
+            "work beside experienced teachers",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The cafe is beside the station. (只想表达“附近”)",
+          correct: "The cafe is near the station.",
+          reason: "若只是“离得不远”而非并排同侧，near 更自然。",
+        },
+        {
+          wrong: "Put the cup beside the table. (想表达放在桌面上)",
+          correct: "Put the cup on the table.",
+          reason: "beside 是“在旁边”，不是“在表面上”。",
+        },
+        {
+          wrong: "He sat near me in a very tight seat arrangement.",
+          correct: "He sat beside me.",
+          reason: "座位紧挨并排时，beside/next to 比 near 更准确。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The cafe is beside the station. (when you only mean general proximity)",
+          correct: "The cafe is near the station.",
+          reason: "Use near for broad proximity; beside implies side relation.",
+        },
+        {
+          wrong: "Put the cup beside the table. (when you mean on the surface)",
+          correct: "Put the cup on the table.",
+          reason: "Beside means at the side, not on the surface.",
+        },
+        {
+          wrong: "He sat near me in a tight seating row.",
+          correct: "He sat beside me.",
+          reason: "For clear side-by-side adjacency, beside/next to is stronger than near.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "选择正确介词：Please sit ___ me so we can read together.",
+          options: ["beside", "on", "under"],
+          answer: "beside",
+          explanation: "表达“坐在我旁边”要用 beside。",
+        },
+        {
+          prompt: "选择正确介词：The lamp is ___ the bed, not on it.",
+          options: ["beside", "on", "inside"],
+          answer: "beside",
+          explanation: "灯在床边（侧边），不是在床面上。",
+        },
+        {
+          prompt: "选择更自然的词：The supermarket is ___ the station (只表示附近).",
+          options: ["near", "beside", "on"],
+          answer: "near",
+          explanation: "只表达“附近”时 near 更合适；beside 要求侧向并排感更强。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: Please sit ___ me so we can read together.",
+          options: ["beside", "on", "under"],
+          answer: "beside",
+          explanation: "Beside is used for side-by-side seating.",
+        },
+        {
+          prompt: "Choose the correct preposition: The lamp is ___ the bed, not on it.",
+          options: ["beside", "on", "inside"],
+          answer: "beside",
+          explanation: "The lamp is at the side of the bed, not on the surface.",
+        },
+        {
+          prompt: "Choose the better word: The supermarket is ___ the station (general proximity only).",
+          options: ["near", "beside", "on"],
+          answer: "near",
+          explanation: "Use near for broad proximity; beside implies stronger side relation.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "beside 的核心含义是什么？",
+          answer: "beside 表示“在……旁边、同一侧且距离近”，常用于具体空间位置。",
+        },
+        {
+          question: "beside 和 next to 有什么区别？",
+          answer: "两者都可表示“旁边”。next to 更强调紧贴；beside 常略书面、语气更中性。",
+        },
+        {
+          question: "beside 和 near 如何区分？",
+          answer: "near 只表示“附近”；beside 表示“并排在侧边”。如果没有并排关系，优先 near。",
+        },
+        {
+          question: "beside 和 by 有区别吗？",
+          answer: "by 更口语、范围更宽；beside 对“侧向并排”的空间关系表达更清楚。",
+        },
+        {
+          question: "beside 可以用于时间表达吗？",
+          answer: "通常不用。时间关系优先使用 at/in/on/by 等时间介词。",
+        },
+        {
+          question: "初学者最常见的 beside 错误是什么？",
+          answer: "把 beside 用在“在表面上”（应 on）或“仅附近”（应 near）的场景。",
+        },
+        {
+          question: "有哪些高频搭配适合先记？",
+          answer: "可先记：sit beside me、beside the window、beside the road、right beside。",
+        },
+        {
+          question: "30 秒记住 beside 的方法？",
+          answer: "先问自己：是否“同一侧并排且很近”？是就用 beside；若只是附近，用 near。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of beside?",
+          answer: "Beside means at the side of something, usually with close side-by-side relation.",
+        },
+        {
+          question: "What is the difference between beside and next to?",
+          answer: "Both can mean nearby at the side. Next to is often the tightest adjacency; beside can be slightly less strict and more neutral in tone.",
+        },
+        {
+          question: "How is beside different from near?",
+          answer: "Near means close in distance only. Beside adds side orientation and clearer adjacency.",
+        },
+        {
+          question: "How is beside different from by?",
+          answer: "By is broader and very conversational. Beside is more specific for side-by-side spatial relation.",
+        },
+        {
+          question: "Can beside be used for time expressions?",
+          answer: "Not typically. For time, use prepositions such as at, in, on, and by.",
+        },
+        {
+          question: "What is a common learner mistake with beside?",
+          answer: "Using beside for surface contact (should be on) or for broad proximity without side relation (often near).",
+        },
+        {
+          question: "What collocations should beginners memorize first?",
+          answer: "Useful starters: sit beside me, beside the window, beside the road, right beside.",
+        },
+        {
+          question: "What is a 30-second memory rule for beside?",
+          answer: "Ask one question: Is it side-by-side and close? If yes, choose beside. If it is only nearby, use near.",
+        },
+      ],
+    },
     scene: makeScene([1.05, 0, 0]),
   },
   {
@@ -1853,12 +2939,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "紧挨着……旁边",
-        tips: ["强调紧邻。", "几乎是贴着的一侧。"],
+        meaning: "紧挨着；就在……旁边",
+        tips: [
+          "next to 强调“最紧邻”的并排关系，常用于座位、排队、摆放位置。",
+          "比 near 更近、更明确；与 beside 接近，但 next to 更口语高频。",
+          "next to 只表达侧向邻接，不表达上下、内外、前后关系。",
+        ],
       },
       en: {
-        meaning: "next to; adjacent",
-        tips: ["Directly adjacent.", "Implies very close proximity."],
+        meaning: "immediately beside; directly adjacent to",
+        tips: [
+          "Next to signals the tightest side-by-side adjacency.",
+          "It is stronger and more concrete than near.",
+          "Use it for side relation only, not for on/in/under relations.",
+        ],
       },
     },
     examples: [
@@ -1877,6 +2971,351 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        {
+          en: "Sit next to your partner.",
+          i18n: {
+            "zh-CN": { translation: "坐在你搭档旁边。" },
+            en: { translation: "Sit next to your partner." },
+          },
+        },
+        {
+          en: "The pharmacy is next to the supermarket.",
+          i18n: {
+            "zh-CN": { translation: "药店就在超市旁边。" },
+            en: { translation: "The pharmacy is next to the supermarket." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "next to 的关键是“紧挨着”。它和 beside 含义接近，但更口语常用；和 near 最大差异在于距离与并排关系是否明确。",
+          differences: [
+            {
+              term: "beside",
+              description: "beside 与 next to 都可表示“在旁边”；next to 更口语，beside 稍书面。",
+              examples: [
+                {
+                  term: "next to",
+                  sentence: "Sit next to me.",
+                  translation: "坐我旁边。",
+                },
+                {
+                  term: "beside",
+                  sentence: "She stood beside her father.",
+                  translation: "她站在父亲身旁。",
+                },
+              ],
+            },
+            {
+              term: "near",
+              description: "near 只表示附近，不要求紧邻；next to 要求相邻并排。",
+              examples: [
+                {
+                  term: "near",
+                  sentence: "There is a cafe near the station.",
+                  translation: "车站附近有家咖啡馆。",
+                },
+                {
+                  term: "next to",
+                  sentence: "There is a cafe next to the station exit.",
+                  translation: "车站出口旁边就有家咖啡馆。",
+                },
+              ],
+            },
+            {
+              term: "by",
+              description: "by 更宽泛口语；next to 对“紧挨着”表达更稳定。",
+              examples: [
+                {
+                  term: "by",
+                  sentence: "Wait by the window.",
+                  translation: "在窗边等。",
+                },
+                {
+                  term: "next to",
+                  sentence: "The printer is next to the monitor.",
+                  translation: "打印机紧挨着显示器。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Next to means immediate adjacency. It is very close to beside, but usually more conversational. The key contrast is with near: near is broad proximity, next to is direct side-by-side contact-level closeness.",
+          differences: [
+            {
+              term: "beside",
+              description:
+                "Both mean at the side. Next to is often more conversational; beside can sound slightly more formal.",
+              examples: [
+                { term: "next to", sentence: "Sit next to me." },
+                { term: "beside", sentence: "She stood beside her father." },
+              ],
+            },
+            {
+              term: "near",
+              description:
+                "Near marks short distance only. Next to requires direct adjacency.",
+              examples: [
+                { term: "near", sentence: "There is a cafe near the station." },
+                { term: "next to", sentence: "There is a cafe next to the station exit." },
+              ],
+            },
+            {
+              term: "by",
+              description:
+                "By is broad and flexible in speech. Next to is more precise for immediate adjacency.",
+              examples: [
+                { term: "by", sentence: "Wait by the window." },
+                { term: "next to", sentence: "The printer is next to the monitor." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "座位与人物位置",
+          items: [
+            { phrase: "sit next to me", meaning: "坐在我旁边" },
+            { phrase: "stand next to her", meaning: "站在她旁边" },
+            { phrase: "walk next to him", meaning: "和他并排走" },
+            { phrase: "live next to my parents", meaning: "住在父母隔壁" },
+            { phrase: "line up next to each other", meaning: "并排排队" },
+            { phrase: "park next to the car", meaning: "停在那辆车旁边" },
+          ],
+        },
+        {
+          title: "地点与设施",
+          items: [
+            { phrase: "next to the station", meaning: "在车站旁边" },
+            { phrase: "next to the school", meaning: "在学校旁边" },
+            { phrase: "next to the bank", meaning: "在银行旁边" },
+            { phrase: "next to the office", meaning: "在办公室旁边" },
+            { phrase: "next to the elevator", meaning: "在电梯旁边" },
+            { phrase: "next to the entrance", meaning: "在入口旁边" },
+          ],
+        },
+        {
+          title: "课堂高频短句",
+          items: [
+            { phrase: "right next to", meaning: "就在紧旁边" },
+            { phrase: "next to each other", meaning: "彼此并排" },
+            { phrase: "put it next to", meaning: "把它放在…旁边" },
+            { phrase: "move next to the wall", meaning: "移到墙边" },
+            { phrase: "next to impossible", meaning: "几乎不可能（习语）" },
+            { phrase: "the room next to ours", meaning: "我们隔壁的房间" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "People and Seating",
+          items: [
+            "sit next to me",
+            "stand next to her",
+            "walk next to him",
+            "live next to my parents",
+            "line up next to each other",
+            "park next to the car",
+          ],
+        },
+        {
+          title: "Places and Facilities",
+          items: [
+            "next to the station",
+            "next to the school",
+            "next to the bank",
+            "next to the office",
+            "next to the elevator",
+            "next to the entrance",
+          ],
+        },
+        {
+          title: "High-frequency Chunks",
+          items: [
+            "right next to",
+            "next to each other",
+            "put it next to",
+            "move next to the wall",
+            "next to impossible",
+            "the room next to ours",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The hotel is next to the city center. (只是表示“离市中心近”)",
+          correct: "The hotel is near the city center.",
+          reason: "若不是“紧挨着”，用 near 更自然。",
+        },
+        {
+          wrong: "Put the phone next to the table. (想表达放在桌面上)",
+          correct: "Put the phone on the table.",
+          reason: "next to 只表示旁边，不表示接触桌面。",
+        },
+        {
+          wrong: "He sat near me in a fixed classroom seat order.",
+          correct: "He sat next to me.",
+          reason: "固定座位并排时，next to 更准确。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The hotel is next to the city center. (when you only mean generally close)",
+          correct: "The hotel is near the city center.",
+          reason: "Use near unless there is real immediate adjacency.",
+        },
+        {
+          wrong: "Put the phone next to the table. (when you mean on the surface)",
+          correct: "Put the phone on the table.",
+          reason: "Next to means at the side, not on top.",
+        },
+        {
+          wrong: "He sat near me in a fixed seat row.",
+          correct: "He sat next to me.",
+          reason: "In clear adjacent seating, next to is the better choice.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "选择正确介词：Please sit ___ me.",
+          options: ["next to", "in", "under"],
+          answer: "next to",
+          explanation: "并排坐在旁边，选 next to。",
+        },
+        {
+          prompt: "选择正确介词：The bakery is ___ the post office (两家店相邻).",
+          options: ["next to", "near", "over"],
+          answer: "next to",
+          explanation: "两家店紧挨着时，next to 更准确。",
+        },
+        {
+          prompt: "选择更自然的词：My apartment is ___ downtown (只表示离市中心不远).",
+          options: ["near", "next to", "on"],
+          answer: "near",
+          explanation: "只表达“附近”不用 next to，优先 near。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: Please sit ___ me.",
+          options: ["next to", "in", "under"],
+          answer: "next to",
+          explanation: "For adjacent seating, use next to.",
+        },
+        {
+          prompt: "Choose the correct preposition: The bakery is ___ the post office (the two stores are adjacent).",
+          options: ["next to", "near", "over"],
+          answer: "next to",
+          explanation: "Immediate adjacency calls for next to.",
+        },
+        {
+          prompt: "Choose the better word: My apartment is ___ downtown (general proximity only).",
+          options: ["near", "next to", "on"],
+          answer: "near",
+          explanation: "For broad proximity, near is better than next to.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "next to 的核心意思是什么？",
+          answer:
+            "next to 的核心是“紧挨着、直接相邻”。当两个人/物几乎没有间隔地并排时，优先用 next to。",
+        },
+        {
+          question: "next to 和 beside 的区别大吗？",
+          answer:
+            "意义非常接近。教学上可先当同义词处理：next to 更口语日常，beside 稍书面。先保证“并排紧邻”这个核心判断，再细分语体。",
+        },
+        {
+          question: "next to 和 near 怎么快速区分？",
+          answer:
+            "看距离是否“贴近相邻”。若只是在附近、并不贴着，用 near；若明确是隔壁/并排，用 next to。",
+        },
+        {
+          question: "next to 能用在城市级别位置吗？",
+          answer:
+            "可以，但要真实“相邻”。例如 two towns next to each other。若只是“离城市不远”，通常用 near。",
+        },
+        {
+          question: "next to 常见的语法结构有哪些？",
+          answer:
+            "最常见是 next to + 名词/代词（next to me, next to the station），也常见 right next to 表示“就在旁边”。",
+        },
+        {
+          question: "next to 可以表示“仅次于”吗？",
+          answer:
+            "可以，在抽象表达中 next to 常表示“几乎、仅次于”，如 next to impossible（几乎不可能）。这是高频扩展义。",
+        },
+        {
+          question: "初学者最常见错误是什么？",
+          answer:
+            "一是把 next to 误当 near（距离不够近也用）；二是把 next to 误当 on（本该表达接触表面）。",
+        },
+        {
+          question: "30 秒记忆法怎么做？",
+          answer:
+            "先问：是否“并排且几乎无间隔”？是就 next to；不是就转到 near/on/in 等关系词。再背两个锚点：sit next to me、right next to the door。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of next to?",
+          answer:
+            "Next to means immediately adjacent, with little or no gap. Use it when side-by-side relation is explicit.",
+        },
+        {
+          question: "Is next to very different from beside?",
+          answer:
+            "They are close in meaning. For beginners, treat them as near-synonyms first: next to is more conversational, beside can sound slightly more formal.",
+        },
+        {
+          question: "How do I quickly choose between next to and near?",
+          answer:
+            "Ask one question: Is it directly adjacent? If yes, use next to. If it is only generally close, use near.",
+        },
+        {
+          question: "Can next to be used for larger locations?",
+          answer:
+            "Yes, but only when adjacency is real (for example, two neighboring towns). If you only mean close by, near is better.",
+        },
+        {
+          question: "What are common sentence patterns with next to?",
+          answer:
+            "The core pattern is next to + noun/pronoun (next to me, next to the station). Right next to is a very common intensifier.",
+        },
+        {
+          question: "Can next to express an abstract meaning?",
+          answer:
+            "Yes. In expressions like next to impossible, it means almost/nearly, not physical adjacency.",
+        },
+        {
+          question: "What is a common learner mistake with next to?",
+          answer:
+            "Learners overuse next to for general proximity (should be near) and misuse it where surface contact is needed (should be on).",
+        },
+        {
+          question: "What is a 30-second memory rule for next to?",
+          answer:
+            "Use a two-step test: adjacent side-by-side -> next to; not adjacent -> choose near/on/in by relation type. Anchor it with sit next to me and right next to the door.",
+        },
+      ],
+    },
     scene: makeScene([0.95, 0, 0]),
   },
   {
@@ -1886,12 +3325,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……附近（不一定接触）",
-        tips: ["强调距离近，但不是贴着。", "可有一定距离。"],
+        meaning: "在……附近；离……不远（不强调紧挨）",
+        tips: [
+          "near 强调“距离近”，但不一定是紧挨着或并排。",
+          "若要表达“紧挨着/隔壁/并排”，更常用 next to / beside。",
+          "想强调“非常近”时可用 close to / right next to。",
+        ],
       },
       en: {
-        meaning: "near; at a short distance",
-        tips: ["Close, but not touching.", "Some distance is acceptable."],
+        meaning: "near; close in distance (not necessarily adjacent)",
+        tips: [
+          "Near means close in distance, not necessarily side-by-side.",
+          "For immediate adjacency, use next to / beside.",
+          "For very short distance emphasis, close to is often stronger.",
+        ],
       },
     },
     examples: [
@@ -1910,7 +3357,351 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
     ],
-    scene: makeScene([0.75, 0, 0]),
+    examplesByCategory: {
+      space: [
+        {
+          en: "Meet me near the entrance.",
+          i18n: {
+            "zh-CN": { translation: "在入口附近见。" },
+            en: { translation: "Meet me near the entrance." },
+          },
+        },
+        {
+          en: "I live near the airport.",
+          i18n: {
+            "zh-CN": { translation: "我住在机场附近。" },
+            en: { translation: "I live near the airport." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "near 的核心是“距离近”，不要求紧挨。初学者最常混淆的是 next to/beside（紧邻并排）与 close to（更强的“很近”强调）。",
+          differences: [
+            {
+              term: "next to",
+              description: "next to 强调“紧挨着、直接相邻”；near 只是“离得近”。",
+              examples: [
+                {
+                  term: "near",
+                  sentence: "There is a cafe near the station.",
+                  translation: "车站附近有家咖啡馆。",
+                },
+                {
+                  term: "next to",
+                  sentence: "There is a cafe next to the station exit.",
+                  translation: "车站出口旁边就有家咖啡馆。",
+                },
+              ],
+            },
+            {
+              term: "close to",
+              description: "close to 常比 near 更强调“非常近”；near 更中性。",
+              examples: [
+                {
+                  term: "near",
+                  sentence: "We live near the subway.",
+                  translation: "我们住得离地铁不远。",
+                },
+                {
+                  term: "close to",
+                  sentence: "We live close to the subway entrance.",
+                  translation: "我们住得离地铁口很近。",
+                },
+              ],
+            },
+            {
+              term: "far from",
+              description: "far from 与 near 相反，表示“距离很远”。",
+              examples: [
+                {
+                  term: "near",
+                  sentence: "The hotel is near the beach.",
+                  translation: "酒店离海滩不远。",
+                },
+                {
+                  term: "far from",
+                  sentence: "The hotel is far from the beach.",
+                  translation: "酒店离海滩很远。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Near means close in distance and is less strict than next to/beside. For stronger closeness, close to is common; for the opposite, far from.",
+          differences: [
+            {
+              term: "next to",
+              description:
+                "Next to is immediate adjacency. Near is broad closeness and does not require side-by-side contact-level distance.",
+              examples: [
+                { term: "near", sentence: "There is a cafe near the station." },
+                { term: "next to", sentence: "There is a cafe next to the station exit." },
+              ],
+            },
+            {
+              term: "close to",
+              description:
+                "Close to often emphasizes very short distance. Near is more neutral.",
+              examples: [
+                { term: "near", sentence: "We live near the subway." },
+                { term: "close to", sentence: "We live close to the subway entrance." },
+              ],
+            },
+            {
+              term: "far from",
+              description: "Far from is the opposite of near: long distance.",
+              examples: [
+                { term: "near", sentence: "The hotel is near the beach." },
+                { term: "far from", sentence: "The hotel is far from the beach." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "地点与设施",
+          items: [
+            { phrase: "near the station", meaning: "在车站附近" },
+            { phrase: "near the airport", meaning: "在机场附近" },
+            { phrase: "near the entrance", meaning: "在入口附近" },
+            { phrase: "near the exit", meaning: "在出口附近" },
+            { phrase: "near my house", meaning: "在我家附近" },
+            { phrase: "near the city center", meaning: "在市中心附近" },
+          ],
+        },
+        {
+          title: "自然与地标",
+          items: [
+            { phrase: "near the beach", meaning: "在海滩附近" },
+            { phrase: "near the river", meaning: "在河边附近" },
+            { phrase: "near the park", meaning: "在公园附近" },
+            { phrase: "near the lake", meaning: "在湖边附近" },
+            { phrase: "near the mountain", meaning: "在山附近" },
+            { phrase: "near the border", meaning: "在边境附近" },
+          ],
+        },
+        {
+          title: "学习高频句型",
+          items: [
+            { phrase: "near here", meaning: "在这附近" },
+            { phrase: "near me", meaning: "在我附近" },
+            { phrase: "somewhere near", meaning: "在…附近某处" },
+            { phrase: "near the corner", meaning: "在拐角附近" },
+            { phrase: "near the end of", meaning: "接近…的末尾" },
+            { phrase: "near midnight", meaning: "接近午夜（时间用法）" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Places and Facilities",
+          items: [
+            "near the station",
+            "near the airport",
+            "near the entrance",
+            "near the exit",
+            "near my house",
+            "near the city center",
+          ],
+        },
+        {
+          title: "Nature and Landmarks",
+          items: [
+            "near the beach",
+            "near the river",
+            "near the park",
+            "near the lake",
+            "near the mountain",
+            "near the border",
+          ],
+        },
+        {
+          title: "High-frequency Patterns",
+          items: [
+            "near here",
+            "near me",
+            "somewhere near",
+            "near the corner",
+            "near the end of",
+            "near midnight",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "Sit near me. (需要并排一起看一本书)",
+          correct: "Sit next to me.",
+          reason: "并排紧挨时 next to/beside 更准确；near 可能隔着一点距离。",
+        },
+        {
+          wrong: "My home is near to the school.",
+          correct: "My home is near the school.",
+          reason: "near 作介词时通常不需要 to，直接 near + 名词即可。",
+        },
+        {
+          wrong: "Put the cup near the table. (杯子在桌面上)",
+          correct: "Put the cup on the table.",
+          reason: "near 表示“附近”，不表示“在表面上接触”。",
+        },
+      ],
+      en: [
+        {
+          wrong: "Sit near me. (when you need side-by-side seating to share a book)",
+          correct: "Sit next to me.",
+          reason: "Use next to/beside for immediate adjacency; near can allow a gap.",
+        },
+        {
+          wrong: "My home is near to the school.",
+          correct: "My home is near the school.",
+          reason: "As a preposition, near usually does not take to in modern everyday usage.",
+        },
+        {
+          wrong: "Put the cup near the table. (when the cup is on the table)",
+          correct: "Put the cup on the table.",
+          reason: "Near means close by, not surface contact.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "选择正确介词：There is a convenience store ___ my home (步行 3 分钟).",
+          options: ["near", "next to", "on"],
+          answer: "near",
+          explanation: "表达“离我家不远”用 near。",
+        },
+        {
+          prompt: "选择正确介词：Please sit ___ me. We need to share this book.",
+          options: ["next to", "near", "under"],
+          answer: "next to",
+          explanation: "需要并排紧挨着时，next to 更自然。",
+        },
+        {
+          prompt: "选择更自然的表达：We live ___ the subway entrance (非常近).",
+          options: ["close to", "near", "far from"],
+          answer: "close to",
+          explanation: "强调“非常近”时 close to 往往比 near 更强。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: There is a convenience store ___ my home (a 3-minute walk).",
+          options: ["near", "next to", "on"],
+          answer: "near",
+          explanation: "Near is used for general closeness in distance.",
+        },
+        {
+          prompt: "Choose the correct preposition: Please sit ___ me. We need to share this book.",
+          options: ["next to", "near", "under"],
+          answer: "next to",
+          explanation: "When side-by-side adjacency is required, next to is clearer than near.",
+        },
+        {
+          prompt: "Choose the better phrase: We live ___ the subway entrance (very close).",
+          options: ["close to", "near", "far from"],
+          answer: "close to",
+          explanation: "Close to often emphasizes very short distance.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "near 的核心意思是什么？",
+          answer:
+            "near 的核心是“距离近、离得不远”。它不要求紧挨着，也不要求一定并排，只要在可感知的近距离范围即可。",
+        },
+        {
+          question: "near 和 next to 怎么快速区分？",
+          answer:
+            "问一句：是否必须“紧挨着/隔壁/并排”？如果是，用 next to/beside；如果只是“在附近”，用 near。",
+        },
+        {
+          question: "near 和 close to 的差别是什么？",
+          answer:
+            "close to 常更强调“非常近”，语气更强；near 更中性。两者都正确时，想强调“近得明显”可选 close to。",
+        },
+        {
+          question: "near 和 beside/by 有什么关系？",
+          answer:
+            "beside/by 往往更像“在一侧、在旁边”；near 只讲距离，不强制侧向并排。若你不确定方向关系，只想说近，near 更稳。",
+        },
+        {
+          question: "near 后面需要加 to 吗？",
+          answer:
+            "通常不需要。日常表达更常见 near + 名词（near the station）。near to 存在但偏少见，初学者可先用 near + 名词。",
+        },
+        {
+          question: "near 能用于时间吗？",
+          answer:
+            "可以，用法是“接近某个时间点/阶段”，如 near midnight、near the end of the month。初学者先掌握空间义，再把它当作扩展用法即可。",
+        },
+        {
+          question: "near 的高频句型有哪些？",
+          answer:
+            "常见是 near + 地点/人（near the park, near me），也常搭配 near here（这附近）和 somewhere near（附近某处）。",
+        },
+        {
+          question: "初学者最常见的 near 错误是什么？",
+          answer:
+            "把需要紧挨的场景用 near（应 next to），或把接触表面的关系用 near（应 on），以及写成 near to（不自然）。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of near?",
+          answer:
+            "Near means close in distance. It does not require immediate adjacency or a specific side orientation.",
+        },
+        {
+          question: "How do I quickly choose between near and next to?",
+          answer:
+            "Ask one question: Do you need direct adjacency (side-by-side, no gap)? If yes, use next to/beside. If you only mean close by, use near.",
+        },
+        {
+          question: "What is the difference between near and close to?",
+          answer:
+            "Close to often emphasizes very short distance. Near is more neutral and broad.",
+        },
+        {
+          question: "How is near related to beside/by?",
+          answer:
+            "Beside/by often suggests being at the side. Near focuses on distance only. If direction is not important, near is a safe choice.",
+        },
+        {
+          question: "Do I need 'to' after near?",
+          answer:
+            "In everyday modern usage, near usually works as near + noun (near the station). Near to exists but is less common for beginners.",
+        },
+        {
+          question: "Can near be used for time?",
+          answer:
+            "Yes. It can mean close to a time point or stage (near midnight, near the end of the month). Treat it as an extension after mastering space usage.",
+        },
+        {
+          question: "What are common patterns with near?",
+          answer:
+            "The main pattern is near + place/person (near the park, near me). Near here and somewhere near are also high-frequency.",
+        },
+        {
+          question: "What is a common learner mistake with near?",
+          answer:
+            "Using near when strict adjacency is needed (use next to) or when surface contact is intended (use on).",
+        },
+      ],
+    },
+    scene: makeScene([1.2, 0, 0]),
   },
   {
     id: "by",
@@ -1952,12 +3743,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……后面（从观察者视角）",
-        tips: ["强调在视线的后方。", "与 in front of 相对。"],
+        meaning: "在……后面（后方）",
+        tips: [
+          "空间：在参照物的后方（与 in front of 相对）。",
+          "进度：落后于计划或他人（behind schedule / behind in math / behind on rent）。",
+          "搭配：behind + 名词；behind in + 学习/比赛进度；behind on + 任务/付款。",
+        ],
       },
       en: {
-        meaning: "behind; at the back",
-        tips: ["Located at the back from the viewer.", "Opposite of in front of."],
+        meaning: "at the back of; at the rear (also: late in progress)",
+        tips: [
+          "Space: at the back of something (opposite of in front of).",
+          "Progress: later than planned or others (behind schedule, behind in math, behind on rent).",
+          "Patterns: behind + noun; behind in + subject/progress; behind on + tasks/payments.",
+        ],
       },
     },
     examples: [
@@ -1976,6 +3775,396 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        {
+          en: "The cat is behind the sofa.",
+          i18n: {
+            "zh-CN": { translation: "猫在沙发后面。" },
+            en: { translation: "The cat is behind the sofa." },
+          },
+        },
+        {
+          en: "Stand behind the line.",
+          i18n: {
+            "zh-CN": { translation: "站到线后面。" },
+            en: { translation: "Stand behind the line." },
+          },
+        },
+      ],
+      time: [
+        {
+          en: "We're behind schedule.",
+          i18n: {
+            "zh-CN": { translation: "我们进度落后了。" },
+            en: { translation: "We're behind schedule." },
+          },
+        },
+        {
+          en: "I'm behind in math this semester.",
+          i18n: {
+            "zh-CN": { translation: "这学期我的数学进度落后了。" },
+            en: { translation: "I'm behind in math this semester." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "behind 的核心是“在后方”。它还常引申表示“进度落后”（behind schedule / behind in/on）。若表达纯时间顺序“更晚”，通常用 after，而不是 behind。",
+          differences: [
+            {
+              term: "in front of",
+              description:
+                "in front of 是“在前面”；behind 是“在后面”。两者是最直接的一对反义空间关系。",
+              examples: [
+                {
+                  term: "in front of",
+                  sentence: "The ball is in front of the box.",
+                  translation: "球在盒子前面。",
+                },
+                {
+                  term: "behind",
+                  sentence: "The ball is behind the box.",
+                  translation: "球在盒子后面。",
+                },
+              ],
+            },
+            {
+              term: "ahead of",
+              description:
+                "ahead of 常表示“领先/提前”；behind 表示“落后/拖后”。在进度表达里它们很常成对出现。",
+              examples: [
+                {
+                  term: "ahead of",
+                  sentence: "We're ahead of schedule.",
+                  translation: "我们进度提前了。",
+                },
+                {
+                  term: "behind",
+                  sentence: "We're behind schedule.",
+                  translation: "我们进度落后了。",
+                },
+              ],
+            },
+            {
+              term: "in back of",
+              description:
+                "in back of 是较口语的美式表达，含义接近 behind；behind 更通用也更常见。",
+              examples: [
+                {
+                  term: "behind",
+                  sentence: "The garage is behind the house.",
+                  translation: "车库在房子后面。",
+                },
+                {
+                  term: "in back of",
+                  sentence: "The garage is in back of the house.",
+                  translation: "车库在房子后面（口语/美式）。",
+                },
+              ],
+            },
+            {
+              term: "after",
+              description:
+                "after 表示时间顺序“在……之后”；behind 更像“进度落后”，不等于“时间点更晚”。",
+              examples: [
+                {
+                  term: "after",
+                  sentence: "The meeting is after 3 p.m.",
+                  translation: "会议在下午三点之后。",
+                },
+                {
+                  term: "behind",
+                  sentence: "We're behind schedule.",
+                  translation: "我们进度落后了。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            'Behind mainly means "at the back." It also commonly expresses being late in progress (behind schedule, behind in/on). For simple time order, English usually uses after, not behind.',
+          differences: [
+            {
+              term: "in front of",
+              description:
+                "In front of is the direct opposite: front vs back position.",
+              examples: [
+                { term: "in front of", sentence: "The ball is in front of the box." },
+                { term: "behind", sentence: "The ball is behind the box." },
+              ],
+            },
+            {
+              term: "ahead of",
+              description:
+                "Ahead of often means earlier/ahead in progress; behind means late/behind in progress.",
+              examples: [
+                { term: "ahead of", sentence: "We're ahead of schedule." },
+                { term: "behind", sentence: "We're behind schedule." },
+              ],
+            },
+            {
+              term: "in back of",
+              description:
+                "In back of is a more conversational American variant. Behind is the general all-purpose option.",
+              examples: [
+                { term: "behind", sentence: "The garage is behind the house." },
+                { term: "in back of", sentence: "The garage is in back of the house." },
+              ],
+            },
+            {
+              term: "after",
+              description:
+                "After is time order. Behind is about position or progress, not simply a later clock time.",
+              examples: [
+                { term: "after", sentence: "The meeting is after 3 p.m." },
+                { term: "behind", sentence: "We're behind schedule." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "真实空间类",
+          items: [
+            { phrase: "behind the box", meaning: "在盒子后面" },
+            { phrase: "behind the door", meaning: "在门后面" },
+            { phrase: "behind the car", meaning: "在车后面" },
+            { phrase: "behind the tree", meaning: "在树后面" },
+            { phrase: "behind the curtain", meaning: "在帘子后面" },
+            { phrase: "behind the building", meaning: "在楼后面" },
+          ],
+        },
+        {
+          title: "进度落后类",
+          items: [
+            { phrase: "behind schedule", meaning: "进度落后" },
+            { phrase: "behind in math", meaning: "数学进度落后" },
+            { phrase: "behind on rent", meaning: "房租拖欠" },
+            { phrase: "behind on payments", meaning: "付款/还款拖欠" },
+            { phrase: "behind on homework", meaning: "作业没跟上" },
+            { phrase: "two weeks behind", meaning: "落后两周" },
+          ],
+        },
+        {
+          title: "高频固定表达类",
+          items: [
+            { phrase: "behind the scenes", meaning: "在幕后；暗中" },
+            { phrase: "behind bars", meaning: "在监狱里" },
+            { phrase: "behind closed doors", meaning: "私下；不公开" },
+            { phrase: "behind your back", meaning: "背着你；在你背后" },
+            { phrase: "behind the wheel", meaning: "开车；在方向盘后" },
+            { phrase: "behind the times", meaning: "落伍；跟不上时代" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Physical position",
+          items: [
+            "behind the box",
+            "behind the door",
+            "behind the car",
+            "behind the tree",
+            "behind the curtain",
+            "behind the building",
+          ],
+        },
+        {
+          title: "Behind in progress",
+          items: [
+            "behind schedule",
+            "behind in math",
+            "behind on rent",
+            "behind on payments",
+            "behind on homework",
+            "two weeks behind",
+          ],
+        },
+        {
+          title: "Fixed phrases",
+          items: [
+            "behind the scenes",
+            "behind bars",
+            "behind closed doors",
+            "behind your back",
+            "behind the wheel",
+            "behind the times",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The bag is behind of the chair.",
+          correct: "The bag is behind the chair.",
+          reason: "behind 后面不需要 of，直接 behind + 名词。",
+        },
+        {
+          wrong: "The meeting is behind 3 p.m.",
+          correct: "The meeting is after 3 p.m.",
+          reason: "表达时间顺序“在……之后”用 after，不用 behind。",
+        },
+        {
+          wrong: "I'm behind on math this week.",
+          correct: "I'm behind in math this week.",
+          reason: "学科/学习进度常用 behind in；任务/账单更常用 behind on。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The bag is behind of the chair.",
+          correct: "The bag is behind the chair.",
+          reason: "Do not add of after behind in this pattern.",
+        },
+        {
+          wrong: "The meeting is behind 3 p.m.",
+          correct: "The meeting is after 3 p.m.",
+          reason: "Use after for simple time order. Behind is not a clock-time preposition.",
+        },
+        {
+          wrong: "I'm behind on math this week.",
+          correct: "I'm behind in math this week.",
+          reason: "Behind in often fits subjects/skills; behind on fits tasks/payments.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "选择正确介词：The cat is ___ the sofa.",
+          options: ["behind", "in front of", "under"],
+          answer: "behind",
+          explanation: "在沙发后方的位置关系，用 behind。",
+        },
+        {
+          prompt: "选择正确介词：We're ___ schedule, so we need to speed up.",
+          options: ["behind", "over", "between"],
+          answer: "behind",
+          explanation: "进度落后常用 behind schedule。",
+        },
+        {
+          prompt: "选择更自然的表达：The meeting is ___ 3 p.m.",
+          options: ["after", "behind", "by"],
+          answer: "after",
+          explanation: "时间顺序“在……之后”用 after；behind 不表示具体时间点顺序。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: The cat is ___ the sofa.",
+          options: ["behind", "in front of", "under"],
+          answer: "behind",
+          explanation: "Behind expresses back position relative to the sofa.",
+        },
+        {
+          prompt: "Choose the correct preposition: We're ___ schedule, so we need to speed up.",
+          options: ["behind", "over", "between"],
+          answer: "behind",
+          explanation: "Behind schedule is the standard progress expression.",
+        },
+        {
+          prompt: "Choose the better word: The meeting is ___ 3 p.m.",
+          options: ["after", "behind", "by"],
+          answer: "after",
+          explanation: "Use after for time order. Behind is not used for clock-time sequencing.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "behind 的核心含义是什么？",
+          answer:
+            "behind 的核心是“在后方”。空间上表示在某物后面；引申义常表示“进度落后”，如 behind schedule。",
+        },
+        {
+          question: "什么时候用 behind？",
+          answer:
+            "当你要表达“在后面/后方”或“进度落后于计划”时用 behind。例：The car is behind the bus / We're behind schedule。",
+        },
+        {
+          question: "behind 和 in front of 有什么区别？",
+          answer:
+            "它们是空间反义：in front of 在前面；behind 在后面。例：The ball is in front of the box vs behind the box。",
+        },
+        {
+          question: "behind 和 ahead of 有什么区别？",
+          answer:
+            "在进度语境中，ahead of 表示领先/提前；behind 表示落后/拖后。例：ahead of schedule vs behind schedule。",
+        },
+        {
+          question: "behind 和 after 能互换吗？",
+          answer:
+            "通常不能。after 表示时间顺序“在……之后”；behind 表示位置或进度落后。表达时间点顺序用 after。",
+        },
+        {
+          question: "behind in 和 behind on 怎么区分？",
+          answer:
+            "behind in 常接学科/技能/进度（behind in math/reading）；behind on 常接任务/账单（behind on homework/rent/payments）。",
+        },
+        {
+          question: "初学者最常见错误是什么？",
+          answer:
+            "最常见是误加 of（behind of ❌），正确是 behind + 名词。另一个常见是把 behind 当作时间顺序词（应 after）。",
+        },
+        {
+          question: "30 秒记住 behind 的方法？",
+          answer:
+            "记两个锚点：空间画面“在后方”（behind the box）+ 进度表达“落后计划”（behind schedule）。遇到时间顺序就改用 after。",
+        },
+      ],
+      en: [
+        {
+          question: "What does \"behind\" mean?",
+          answer:
+            "Behind mainly means at the back of something. It can also mean late in progress, as in behind schedule.",
+        },
+        {
+          question: "When should I use \"behind\"?",
+          answer:
+            "Use behind for back position or late progress. Example: The car is behind the bus. We're behind schedule.",
+        },
+        {
+          question: "What is the difference between \"behind\" and \"in front of\"?",
+          answer:
+            "They are opposites in space: in front of is front position, behind is back position. Example: in front of the box vs behind the box.",
+        },
+        {
+          question: "What is the difference between \"behind\" and \"ahead of\"?",
+          answer:
+            "In progress language, ahead of means early/leading; behind means late/lagging. Example: ahead of schedule vs behind schedule.",
+        },
+        {
+          question: "Is \"behind\" the same as \"after\"?",
+          answer:
+            "Usually no. After is time order. Behind is position or progress. For clock-time order, use after.",
+        },
+        {
+          question: "How do I choose between \"behind in\" and \"behind on\"?",
+          answer:
+            "Behind in often fits subjects/skills (behind in math, behind in reading). Behind on often fits tasks/payments (behind on rent, behind on homework).",
+        },
+        {
+          question: "What is a common learner mistake with \"behind\"?",
+          answer:
+            'A common mistake is adding "of" (behind of). Use behind + noun: behind the chair. Another mistake is using behind for time order (use after).',
+        },
+        {
+          question: "What is a 30-second memory rule for \"behind\"?",
+          answer:
+            "Memorize two anchors: behind the box (space) and behind schedule (progress). Use after for simple time order.",
+        },
+      ],
+    },
     scene: makeScene([0, 0, -1.1]),
   },
   {
@@ -2516,6 +4705,424 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
       },
     ],
     scene: makeScene([0.4, 0, 0.4]),
+  },
+  {
+    id: "after",
+    word: "after",
+    tags: ["time", "sequence", "later"],
+    sense: "space",
+    i18n: {
+      "zh-CN": {
+        meaning: "在……之后（时间顺序）",
+        tips: [
+          "表示时间顺序：在某个时间点/事件之后。",
+          "after 后面通常接“事件/时间点/从句”：after dinner / after I finish。",
+          "表示“从现在起多久之后”多用 in：in two hours（除非有明确参照事件）。",
+        ],
+      },
+      en: {
+        meaning: "later than; following in time",
+        tips: [
+          "Use after for time order: later than a time or event.",
+          "After usually takes an object: after dinner / after I finish.",
+          'For duration from now, prefer in: "in two hours" (unless a clear reference event exists).',
+        ],
+      },
+    },
+    examples: [
+      {
+        en: "We went home after the movie.",
+        i18n: {
+          "zh-CN": { translation: "我们在电影结束后回家了。" },
+          en: { translation: "We went home after the movie." },
+        },
+      },
+      {
+        en: "Call me after 8 p.m.",
+        i18n: {
+          "zh-CN": { translation: "晚上 8 点以后给我打电话。" },
+          en: { translation: "Call me after 8 p.m." },
+        },
+      },
+    ],
+    examplesByCategory: {
+      time: [
+        {
+          en: "I usually shower after work.",
+          i18n: {
+            "zh-CN": { translation: "我通常下班后洗澡。" },
+            en: { translation: "I usually shower after work." },
+          },
+        },
+        {
+          en: "Let's talk after class.",
+          i18n: {
+            "zh-CN": { translation: "我们下课后再聊。" },
+            en: { translation: "Let's talk after class." },
+          },
+        },
+      ],
+      space: [
+        {
+          en: "The dog ran after the boy.",
+          i18n: {
+            "zh-CN": { translation: "狗追着男孩跑。" },
+            en: { translation: "The dog ran after the boy." },
+          },
+        },
+        {
+          en: "The runners came in after the leader.",
+          i18n: {
+            "zh-CN": { translation: "选手们在领跑者之后冲线。" },
+            en: { translation: "The runners came in after the leader." },
+          },
+        },
+      ],
+    },
+    scene: makeScene([0.9, 0, 0]),
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "after 用来表达时间顺序“在……之后”。最常见的混淆是：later/afterwards（副词不用宾语）、in（从现在起多久之后）、since（从某点持续到现在）。",
+          differences: [
+            {
+              term: "later",
+              description:
+                "later 是副词，常不接宾语；after 是介词，后面要跟时间/事件/从句。",
+              examples: [
+                {
+                  term: "later",
+                  sentence: "I'll call you later.",
+                  translation: "我晚点给你打电话。",
+                },
+                {
+                  term: "after",
+                  sentence: "I'll call you after dinner.",
+                  translation: "我晚饭后给你打电话。",
+                },
+              ],
+            },
+            {
+              term: "afterwards",
+              description:
+                "afterwards 也是副词，强调“那之后”（不需要具体宾语）；after 更常接具体参照。",
+              examples: [
+                {
+                  term: "afterwards",
+                  sentence: "We ate dinner and went for a walk afterwards.",
+                  translation: "我们吃完饭，之后去散步。",
+                },
+                {
+                  term: "after",
+                  sentence: "We went for a walk after dinner.",
+                  translation: "我们吃完饭后去散步。",
+                },
+              ],
+            },
+            {
+              term: "in",
+              description:
+                "in + 时间段表示“从现在起多久之后”；after + 时间段通常需要参照事件（after two hours of waiting）。",
+              examples: [
+                {
+                  term: "in",
+                  sentence: "I'll be back in two hours.",
+                  translation: "我两小时后回来。（从现在算）",
+                },
+                {
+                  term: "after",
+                  sentence: "I'll leave after two hours of waiting.",
+                  translation: "我等了两小时后就走。（有参照：等待）",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            'After expresses time order "later than...". Common confusions: later/afterwards (adverbs), in (from now), and since (continuing from a starting point).',
+          differences: [
+            {
+              term: "later",
+              description:
+                "Later is an adverb and often has no object; after is a preposition that takes an object (time/event/clause).",
+              examples: [
+                { term: "later", sentence: "I'll call you later." },
+                { term: "after", sentence: "I'll call you after dinner." },
+              ],
+            },
+            {
+              term: "afterwards",
+              description:
+                "Afterwards is an adverb meaning then; after usually introduces a specific reference point.",
+              examples: [
+                { term: "afterwards", sentence: "We ate dinner and went for a walk afterwards." },
+                { term: "after", sentence: "We went for a walk after dinner." },
+              ],
+            },
+            {
+              term: "in",
+              description:
+                'In + duration is counted from now ("in two hours"); after + duration usually needs a reference event ("after two hours of waiting").',
+              examples: [
+                { term: "in", sentence: "I'll be back in two hours." },
+                { term: "after", sentence: "I'll leave after two hours of waiting." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "时间点/事件之后",
+          items: [
+            { phrase: "after school", meaning: "放学后" },
+            { phrase: "after work", meaning: "下班后" },
+            { phrase: "after class", meaning: "下课后" },
+            { phrase: "after dinner", meaning: "晚饭后" },
+            { phrase: "after the meeting", meaning: "会议后" },
+            { phrase: "after lunch", meaning: "午饭后" },
+          ],
+        },
+        {
+          title: "after + 从句/动作",
+          items: [
+            { phrase: "after I finish", meaning: "在我完成之后" },
+            { phrase: "after you arrive", meaning: "在你到达之后" },
+            { phrase: "after we get home", meaning: "在我们到家之后" },
+            { phrase: "after she left", meaning: "在她离开之后" },
+            { phrase: "after finishing work", meaning: "完成工作之后" },
+            { phrase: "after talking to him", meaning: "和他谈过之后" },
+          ],
+        },
+        {
+          title: "固定搭配",
+          items: [
+            { phrase: "after all", meaning: "毕竟；终究" },
+            { phrase: "after a while", meaning: "过了一会儿" },
+            { phrase: "after that", meaning: "在那之后" },
+            { phrase: "after midnight", meaning: "午夜之后" },
+            { phrase: "after dark", meaning: "天黑以后" },
+            { phrase: "after the fact", meaning: "事后；事后看来" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "After a time or event",
+          items: [
+            "after school",
+            "after work",
+            "after class",
+            "after dinner",
+            "after the meeting",
+            "after lunch",
+          ],
+        },
+        {
+          title: "After + clause / -ing",
+          items: [
+            "after I finish",
+            "after you arrive",
+            "after we get home",
+            "after she left",
+            "after finishing work",
+            "after talking to him",
+          ],
+        },
+        {
+          title: "Fixed phrases",
+          items: [
+            "after all",
+            "after a while",
+            "after that",
+            "after midnight",
+            "after dark",
+            "after the fact",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "I'll be home after two hours.",
+          correct: "I'll be home in two hours.",
+          reason:
+            "从“现在起过多久”通常用 in。after two hours 更需要参照事件（after two hours of driving/waiting）。",
+        },
+        {
+          wrong: "I'll call you later dinner.",
+          correct: "I'll call you after dinner.",
+          reason: "later 是副词，不能直接接宾语；after 后面可以接事件/时间点。",
+        },
+        {
+          wrong: "After, we went home.",
+          correct: "Afterwards, we went home. / After dinner, we went home.",
+          reason: "after 作为介词需要宾语；不带宾语时用 afterwards，或补上参照事件。",
+        },
+        {
+          wrong: "I haven't seen her after Monday.",
+          correct: "I haven't seen her since Monday.",
+          reason:
+            "since 表示“从某个时间点持续到现在”；after 表示时间顺序，不表示持续。",
+        },
+      ],
+      en: [
+        {
+          wrong: "I'll be home after two hours.",
+          correct: "I'll be home in two hours.",
+          reason:
+            "Use in for duration counted from now. After two hours usually needs a reference event (after two hours of driving/waiting).",
+        },
+        {
+          wrong: "I'll call you later dinner.",
+          correct: "I'll call you after dinner.",
+          reason: "Later is an adverb and does not take an object; after can.",
+        },
+        {
+          wrong: "After, we went home.",
+          correct: "Afterwards, we went home. / After dinner, we went home.",
+          reason: "After needs an object; without an object, use afterwards or add the reference.",
+        },
+        {
+          wrong: "I haven't seen her after Monday.",
+          correct: "I haven't seen her since Monday.",
+          reason: "Since means starting then and continuing to now; after is only sequence.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "I'll call you ___ dinner.",
+          options: ["after", "later", "in"],
+          answer: "after",
+          explanation: "after 需要接一个参照事件/时间点：after dinner。",
+        },
+        {
+          prompt: "I'll be back ___ two hours.",
+          options: ["in", "after", "since"],
+          answer: "in",
+          explanation: "从现在起的时间段用 in：in two hours。",
+        },
+        {
+          prompt: "We finished dinner and went for a walk ___.",
+          options: ["afterwards", "after", "since"],
+          answer: "afterwards",
+          explanation: "句尾不带宾语时用 afterwards（= then）。",
+        },
+      ],
+      en: [
+        {
+          prompt: "I'll call you ___ dinner.",
+          options: ["after", "later", "in"],
+          answer: "after",
+          explanation: "Use after because it introduces a reference event: after dinner.",
+        },
+        {
+          prompt: "I'll be back ___ two hours.",
+          options: ["in", "after", "since"],
+          answer: "in",
+          explanation: "Use in for a duration counted from now: in two hours.",
+        },
+        {
+          prompt: "We finished dinner and went for a walk ___.",
+          options: ["afterwards", "after", "since"],
+          answer: "afterwards",
+          explanation: "Use afterwards when you mean then and have no object.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "after 的核心含义是什么？",
+          answer:
+            "after 表示时间顺序“在……之后”。它通常引出一个参照点：after dinner / after 8 p.m.",
+        },
+        {
+          question: "after 后面接什么最常见？",
+          answer:
+            "最常见三种：名词（after class）、时间点（after 8 p.m.）、从句（after I finish）。after 作为介词一般需要宾语。",
+        },
+        {
+          question: "after 和 later 的区别是什么？",
+          answer:
+            "later 是副词，常不接宾语：I'll call you later. after 是介词，需要宾语：I'll call you after dinner.",
+        },
+        {
+          question: "after 和 afterwards 的区别是什么？",
+          answer:
+            "afterwards 是副词= then，常放句尾或句首：We left afterwards. after 需要宾语：We left after dinner.",
+        },
+        {
+          question: "after 和 in two hours 怎么选？",
+          answer:
+            "in two hours 通常从“现在”开始算：I'll be back in two hours. after two hours 多需要参照事件：after two hours of waiting/driving。",
+        },
+        {
+          question: "after 和 since 怎么快速区分？",
+          answer:
+            "since 表示“从某点持续到现在”：I have lived here since 2020. after 只是顺序：I moved here after 2020.（= 2020 之后搬来）",
+        },
+        {
+          question: "初学者最常见的 after 错误是什么？",
+          answer:
+            "把 after 当成“从现在起多久之后”。多数场景应说 in two hours，不说 after two hours（除非句子里有参照事件）。",
+        },
+        {
+          question: "after 的高频搭配有哪些？",
+          answer:
+            "高频组合：after school, after work, after class, after dinner, after the meeting, after a while。",
+        },
+      ],
+      en: [
+        {
+          question: 'What does "after" mean?',
+          answer:
+            '"After" expresses time order: later than a time or event. It usually introduces a reference point (after dinner, after 8 p.m.).',
+        },
+        {
+          question: 'What can come after "after"?',
+          answer:
+            "Three common patterns: a noun (after class), a time point (after 8 p.m.), or a clause (after I finish). As a preposition, after usually needs an object.",
+        },
+        {
+          question: 'After vs later: what is the difference?',
+          answer:
+            'Later is an adverb and often has no object: "I\'ll call you later." After is a preposition and needs an object: "I\'ll call you after dinner."',
+        },
+        {
+          question: 'After vs afterwards: what is the difference?',
+          answer:
+            'Afterwards is an adverb meaning then: "We left afterwards." After needs an object: "We left after dinner."',
+        },
+        {
+          question: 'After vs "in two hours": which one should I use?',
+          answer:
+            '"In two hours" is counted from now: "I\'ll be back in two hours." "After two hours" usually needs a reference event: "after two hours of waiting/driving."',
+        },
+        {
+          question: 'After vs since: how do I choose?',
+          answer:
+            'Since means starting then and continuing to now: "I have lived here since 2020." After is only sequence: "I moved here after 2020."',
+        },
+        {
+          question: "What is a common beginner mistake with after?",
+          answer:
+            'Using after for "from now" duration. In most cases you want "in two hours", not "after two hours" unless a reference event is explicit.',
+        },
+        {
+          question: 'What are common collocations with "after"?',
+          answer:
+            "High-frequency examples: after school, after work, after class, after dinner, after the meeting, after a while.",
+        },
+      ],
+    },
   },
   {
     id: "to",
@@ -3944,16 +6551,24 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
   {
     id: "on-top-of",
     word: "on top of",
-    tags: ["space", "surface", "position"],
+    tags: ["space", "surface", "top", "contact"],
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……顶部",
-        tips: ["强调“在顶上”的位置。", "比 on 更强调顶部。"],
+        meaning: "在……顶部（接触最上方）",
+        tips: [
+          "on top of 强调“就在最上面”，通常有接触，位置感比 on 更强。",
+          "如果只是一般“在表面上”，用 on 常更自然简洁。",
+          "如果是“移动到顶部”，要用 onto，不用 on top of。",
+        ],
       },
       en: {
-        meaning: "on top of; at the top surface",
-        tips: ["Emphasizes the top area.", "Stronger than on."],
+        meaning: "on the highest surface of something, usually with contact",
+        tips: [
+          "On top of emphasizes the very top position with contact.",
+          "Use on for neutral surface contact when top emphasis is not needed.",
+          "Use onto for movement to the top, not static position.",
+        ],
       },
     },
     examples: [
@@ -3965,13 +6580,361 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
       {
-        en: "There is a hat on top of the shelf.",
+        en: "Put the lamp on top of the bookcase.",
         i18n: {
-          "zh-CN": { translation: "架子顶上有顶帽子。" },
-          en: { translation: "There is a hat on top of the shelf." },
+          "zh-CN": { translation: "把台灯放在书柜顶部。" },
+          en: { translation: "Put the lamp on top of the bookcase." },
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        {
+          en: "The cat sits on top of the box.",
+          i18n: {
+            "zh-CN": { translation: "猫坐在盒子顶部。" },
+            en: { translation: "The cat sits on top of the box." },
+          },
+        },
+        {
+          en: "Put the lamp on top of the bookcase.",
+          i18n: {
+            "zh-CN": { translation: "把台灯放在书柜顶部。" },
+            en: { translation: "Put the lamp on top of the bookcase." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "on top of 的核心是“接触并处在最上方”。它比 on 更强调‘顶端位置’，但不是动作方向词。",
+          differences: [
+            {
+              term: "on",
+              description:
+                "on 是一般表面接触；on top of 强调“就在顶部”，语义更具体。",
+              examples: [
+                {
+                  term: "on",
+                  sentence: "The keys are on the table.",
+                  translation: "钥匙在桌子上。",
+                },
+                {
+                  term: "on top of",
+                  sentence: "The toy is on top of the wardrobe.",
+                  translation: "玩具在衣柜顶上。",
+                },
+              ],
+            },
+            {
+              term: "onto",
+              description:
+                "onto 表示“移动到顶部”这一过程；on top of 表示已经处在顶部的状态。",
+              examples: [
+                {
+                  term: "onto",
+                  sentence: "The cat jumped onto the box.",
+                  translation: "猫跳到了盒子上。",
+                },
+                {
+                  term: "on top of",
+                  sentence: "The cat is on top of the box.",
+                  translation: "猫在盒子顶部。",
+                },
+              ],
+            },
+            {
+              term: "over",
+              description:
+                "over 常表示“在上方/跨过”且不一定接触；on top of 强调接触并位于最上面。",
+              examples: [
+                {
+                  term: "over",
+                  sentence: "A plane flew over the house.",
+                  translation: "一架飞机从房子上空飞过。",
+                },
+                {
+                  term: "on top of",
+                  sentence: "There is snow on top of the house.",
+                  translation: "房顶上有积雪。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "On top of means contact at the highest point. It is more specific than on, and it is not a movement preposition.",
+          differences: [
+            {
+              term: "on",
+              description:
+                "On is neutral surface contact. On top of highlights the very top position.",
+              examples: [
+                { term: "on", sentence: "The keys are on the table." },
+                { term: "on top of", sentence: "The toy is on top of the wardrobe." },
+              ],
+            },
+            {
+              term: "onto",
+              description:
+                "Onto expresses movement to the top; on top of expresses the final static position.",
+              examples: [
+                { term: "onto", sentence: "The cat jumped onto the box." },
+                { term: "on top of", sentence: "The cat is on top of the box." },
+              ],
+            },
+            {
+              term: "over",
+              description:
+                "Over can mean above or crossing without contact. On top of requires contact at the top surface.",
+              examples: [
+                { term: "over", sentence: "A plane flew over the house." },
+                { term: "on top of", sentence: "There is snow on top of the house." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "真实空间类",
+          items: [
+            { phrase: "on top of the box", meaning: "在盒子顶上" },
+            { phrase: "on top of the shelf", meaning: "在架子顶上" },
+            { phrase: "on top of the mountain", meaning: "在山顶上" },
+            { phrase: "on top of the fridge", meaning: "在冰箱顶上" },
+            { phrase: "on top of the table", meaning: "在桌面最上方" },
+            { phrase: "on top of the building", meaning: "在楼顶上" },
+          ],
+        },
+        {
+          title: "课堂高频类",
+          items: [
+            { phrase: "put it on top of", meaning: "把它放在……上面" },
+            { phrase: "stack on top of", meaning: "叠放在……上面" },
+            { phrase: "sit on top of", meaning: "坐在……顶部" },
+            { phrase: "stand on top of", meaning: "站在……顶部" },
+            { phrase: "write on top of", meaning: "写在……上方位置" },
+            { phrase: "place on top of", meaning: "放置在……顶上" },
+          ],
+        },
+        {
+          title: "引申表达类",
+          items: [
+            { phrase: "on top of that", meaning: "除此之外；更进一步" },
+            { phrase: "on top of everything", meaning: "在各种问题之外还……" },
+            { phrase: "on top of the list", meaning: "位居榜首" },
+            { phrase: "on top of the news", meaning: "及时掌握信息" },
+            { phrase: "stay on top of", meaning: "及时跟进并掌控" },
+            { phrase: "get on top of", meaning: "把……控制住" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Physical top position",
+          items: [
+            "on top of the box",
+            "on top of the shelf",
+            "on top of the mountain",
+            "on top of the fridge",
+            "on top of the table",
+            "on top of the building",
+          ],
+        },
+        {
+          title: "Classroom high-frequency",
+          items: [
+            "put it on top of",
+            "stack on top of",
+            "sit on top of",
+            "stand on top of",
+            "write on top of",
+            "place on top of",
+          ],
+        },
+        {
+          title: "Extended usage",
+          items: [
+            "on top of that",
+            "on top of everything",
+            "on top of the list",
+            "on top of the news",
+            "stay on top of",
+            "get on top of",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The cat is on the wardrobe. (需要强调在顶端)",
+          correct: "The cat is on top of the wardrobe.",
+          reason: "当要强调“就在最上方”时，on top of 更准确。",
+        },
+        {
+          wrong: "The cat jumped on top of the box.",
+          correct: "The cat jumped onto the box.",
+          reason: "jumped 表示动作过程，应用 onto。",
+        },
+        {
+          wrong: "A plane flew on top of the city.",
+          correct: "A plane flew over the city.",
+          reason: "飞机与城市不接触，应使用 over。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The cat is on the wardrobe. (when top emphasis matters)",
+          correct: "The cat is on top of the wardrobe.",
+          reason: "Use on top of when you want explicit topmost-position emphasis.",
+        },
+        {
+          wrong: "The cat jumped on top of the box.",
+          correct: "The cat jumped onto the box.",
+          reason: "Jumped expresses movement, so onto is the better form.",
+        },
+        {
+          wrong: "A plane flew on top of the city.",
+          correct: "A plane flew over the city.",
+          reason: "No contact is implied, so over is correct.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Choose the correct preposition: The vase is ___ the shelf.",
+          options: ["on top of", "onto", "over"],
+          answer: "on top of",
+          explanation: "这是静态位置，且强调在顶部。",
+        },
+        {
+          prompt: "Choose the correct preposition: The boy climbed ___ the wall.",
+          options: ["onto", "on top of", "under"],
+          answer: "onto",
+          explanation: "climbed 表示移动到顶部，应用 onto。",
+        },
+        {
+          prompt: "Choose the correct preposition: ___ that, we need more time.",
+          options: ["On top of", "Inside", "Below"],
+          answer: "On top of",
+          explanation: "On top of that 是高频固定表达，意为“除此之外”。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: The vase is ___ the shelf.",
+          options: ["on top of", "onto", "over"],
+          answer: "on top of",
+          explanation: "This is a static top position with clear top emphasis.",
+        },
+        {
+          prompt: "Choose the correct preposition: The boy climbed ___ the wall.",
+          options: ["onto", "on top of", "under"],
+          answer: "onto",
+          explanation: "Climbed shows motion to a destination, so onto fits better.",
+        },
+        {
+          prompt: "Choose the correct preposition: ___ that, we need more time.",
+          options: ["On top of", "Inside", "Below"],
+          answer: "On top of",
+          explanation: "On top of that is a common discourse connector.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "on top of 的核心意思是什么？",
+          answer:
+            "核心是“接触并位于最上方”。它比 on 更强调‘顶部位置’。",
+        },
+        {
+          question: "on top of 和 on 有什么区别？",
+          answer:
+            "on 是一般表面接触；on top of 是“就在顶端”的更强表达。",
+        },
+        {
+          question: "on top of 和 onto 怎么区分？",
+          answer:
+            "onto 表示移动到顶部；on top of 表示已经在顶部。",
+        },
+        {
+          question: "on top of 和 over 的差异？",
+          answer:
+            "over 常不接触，表示上方或跨越；on top of 必须有接触且在顶部。",
+        },
+        {
+          question: "on top of 能用于时间表达吗？",
+          answer:
+            "通常不用作时间介词核心表达，它主要是空间位置和引申短语。",
+        },
+        {
+          question: "初学者常见错误是什么？",
+          answer:
+            "最常见是把动作句误用 on top of（应 onto），或把不接触场景误用 on top of（应 over）。",
+        },
+        {
+          question: "有哪些高频搭配值得先记？",
+          answer:
+            "先记 on top of the box、on top of the shelf、on top of that、stay on top of。",
+        },
+        {
+          question: "30 秒记忆法是什么？",
+          answer:
+            "记一个判据：要不要强调“最上面且接触”。需要就用 on top of。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of on top of?",
+          answer:
+            "It means being in contact at the highest surface, with explicit top-position emphasis.",
+        },
+        {
+          question: "What is the difference between on top of and on?",
+          answer:
+            "On is neutral surface contact. On top of highlights the topmost location.",
+        },
+        {
+          question: "How do I choose between on top of and onto?",
+          answer:
+            "Use onto for movement to the top; use on top of for the final static position.",
+        },
+        {
+          question: "How is on top of different from over?",
+          answer:
+            "Over often has no contact and may express crossing. On top of requires contact on the top surface.",
+        },
+        {
+          question: "Can on top of be used for time expressions?",
+          answer:
+            "Not as a core time preposition. It is mainly a spatial phrase plus some discourse patterns.",
+        },
+        {
+          question: "What is a common learner mistake with on top of?",
+          answer:
+            "Learners often use on top of for motion (should be onto) or for no-contact scenes (should be over).",
+        },
+        {
+          question: "What collocations should beginners memorize first?",
+          answer:
+            "Start with on top of the box, on top of the shelf, on top of that, and stay on top of.",
+        },
+        {
+          question: "What is a 30-second memory rule for on top of?",
+          answer:
+            "Ask one question: do I need 'topmost + contact' emphasis? If yes, choose on top of.",
+        },
+      ],
+    },
     scene: makeScene([0, 0.9, 0]),
   },
   {
@@ -4082,12 +7045,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "靠近……（很近）",
-        tips: ["强调距离很近。", "比 near 更近。"],
+        meaning: "靠近……；离……很近（强调很近）",
+        tips: [
+          "close to 强调“非常近”的距离感，常比 near 更强。",
+          "若要表达“紧挨着/并排相邻”，优先 next to / beside。",
+          "close 作为形容词时通常要接 to：close to + 名词/代词/动名词。",
+        ],
       },
       en: {
-        meaning: "close to; very near",
-        tips: ["Very near in distance.", "Closer than near."],
+        meaning: "very near; at a short distance from",
+        tips: [
+          "Close to emphasizes very short distance, often stronger than near.",
+          "For strict adjacency (side-by-side), next to / beside is clearer.",
+          "The common pattern is close to + noun/pronoun/gerund.",
+        ],
       },
     },
     examples: [
@@ -4106,6 +7077,350 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        {
+          en: "Stay close to the wall.",
+          i18n: {
+            "zh-CN": { translation: "靠墙走（离墙近点）。" },
+            en: { translation: "Stay close to the wall." },
+          },
+        },
+        {
+          en: "We sat close to the stage.",
+          i18n: {
+            "zh-CN": { translation: "我们坐得离舞台很近。" },
+            en: { translation: "We sat close to the stage." },
+          },
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "close to 侧重“非常近”的距离感；near 更中性更宽；next to/beside 更强调紧挨并排；far from 是反义“很远”。",
+          differences: [
+            {
+              term: "near",
+              description: "near 表示“离得不远”；close to 更强调“非常近”。",
+              examples: [
+                {
+                  term: "near",
+                  sentence: "We live near the subway.",
+                  translation: "我们住得离地铁不远。",
+                },
+                {
+                  term: "close to",
+                  sentence: "We live close to the subway entrance.",
+                  translation: "我们住得离地铁口很近。",
+                },
+              ],
+            },
+            {
+              term: "next to",
+              description: "next to 强调“紧挨着/相邻并排”；close to 只说“距离很近”。",
+              examples: [
+                {
+                  term: "close to",
+                  sentence: "Sit close to me.",
+                  translation: "坐近一点。",
+                },
+                {
+                  term: "next to",
+                  sentence: "Sit next to me.",
+                  translation: "坐我旁边（紧挨着）。",
+                },
+              ],
+            },
+            {
+              term: "far from",
+              description: "far from 与 close to 相反，表示“距离很远”。",
+              examples: [
+                {
+                  term: "close to",
+                  sentence: "The hotel is close to the beach.",
+                  translation: "酒店离海滩很近。",
+                },
+                {
+                  term: "far from",
+                  sentence: "The hotel is far from the beach.",
+                  translation: "酒店离海滩很远。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Close to emphasizes very short distance. Near is broader. Next to/beside is for strict adjacency. Far from is the opposite.",
+          differences: [
+            {
+              term: "near",
+              description:
+                "Near means generally close; close to often sounds stronger for very short distance.",
+              examples: [
+                { term: "near", sentence: "We live near the subway." },
+                { term: "close to", sentence: "We live close to the subway entrance." },
+              ],
+            },
+            {
+              term: "next to",
+              description:
+                "Next to signals immediate adjacency. Close to is about distance and can allow some gap and different directions.",
+              examples: [
+                { term: "close to", sentence: "Sit close to me." },
+                { term: "next to", sentence: "Sit next to me." },
+              ],
+            },
+            {
+              term: "far from",
+              description: "Far from is the opposite: large distance.",
+              examples: [
+                { term: "close to", sentence: "The hotel is close to the beach." },
+                { term: "far from", sentence: "The hotel is far from the beach." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "地点距离（很近）",
+          items: [
+            { phrase: "close to the station", meaning: "离车站很近" },
+            { phrase: "close to the airport", meaning: "离机场很近" },
+            { phrase: "close to the city center", meaning: "离市中心很近" },
+            { phrase: "close to the subway", meaning: "离地铁很近" },
+            { phrase: "close to the beach", meaning: "离海滩很近" },
+            { phrase: "close to home", meaning: "离家很近" },
+          ],
+        },
+        {
+          title: "物体位置（贴近但不一定紧挨）",
+          items: [
+            { phrase: "close to the door", meaning: "靠近门" },
+            { phrase: "close to the window", meaning: "靠近窗" },
+            { phrase: "close to the wall", meaning: "靠近墙" },
+            { phrase: "close to the edge", meaning: "靠近边缘" },
+            { phrase: "close to the screen", meaning: "靠近屏幕" },
+            { phrase: "close to the stage", meaning: "靠近舞台" },
+          ],
+        },
+        {
+          title: "近似含义（几乎、接近）",
+          items: [
+            { phrase: "close to 100", meaning: "接近 100（大约 100）" },
+            { phrase: "close to midnight", meaning: "接近午夜" },
+            { phrase: "close to the end", meaning: "接近尾声" },
+            { phrase: "close to perfect", meaning: "几乎完美" },
+            { phrase: "close to finishing", meaning: "快要完成" },
+            { phrase: "close to zero", meaning: "接近 0" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Places (very near)",
+          items: [
+            "close to the station",
+            "close to the airport",
+            "close to the city center",
+            "close to the subway",
+            "close to the beach",
+            "close to home",
+          ],
+        },
+        {
+          title: "Objects (very close)",
+          items: [
+            "close to the door",
+            "close to the window",
+            "close to the wall",
+            "close to the edge",
+            "close to the screen",
+            "close to the stage",
+          ],
+        },
+        {
+          title: "Approximation (almost)",
+          items: [
+            "close to 100",
+            "close to midnight",
+            "close to the end",
+            "close to perfect",
+            "close to finishing",
+            "close to zero",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "My house is close the station.",
+          correct: "My house is close to the station.",
+          reason: "close 作形容词表达距离时，通常需要 to：close to + 名词。",
+        },
+        {
+          wrong: "Please sit close to me. (需要并排紧挨一起看书)",
+          correct: "Please sit next to me.",
+          reason: "需要“并排相邻”时，next to/beside 更清楚；close to 只强调距离近。",
+        },
+        {
+          wrong: "I'm close to finish the report.",
+          correct: "I'm close to finishing the report.",
+          reason: "close to 后面常接名词或动名词（-ing），不直接接动词原形。",
+        },
+      ],
+      en: [
+        {
+          wrong: "My house is close the station.",
+          correct: "My house is close to the station.",
+          reason: "For distance, the common pattern is close to + noun.",
+        },
+        {
+          wrong: "Please sit close to me. (when side-by-side adjacency is required)",
+          correct: "Please sit next to me.",
+          reason: "Next to/beside is clearer for strict adjacency; close to is distance-focused.",
+        },
+        {
+          wrong: "I'm close to finish the report.",
+          correct: "I'm close to finishing the report.",
+          reason: "Close to commonly takes a noun or gerund (-ing), not a bare verb.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "选择正确介词：Our hotel is ___ the beach (步行 5 分钟).",
+          options: ["close to", "far from", "under"],
+          answer: "close to",
+          explanation: "强调“离海滩很近”，用 close to。",
+        },
+        {
+          prompt: "更自然的表达：Please sit ___ me so we can share this book.",
+          options: ["next to", "close to", "near"],
+          answer: "next to",
+          explanation: "需要并排紧挨时，next to 更准确；close to 只表示靠近。",
+        },
+        {
+          prompt: "选择正确介词：The price is ___ $50 (大约 50 美元).",
+          options: ["close to", "over", "between"],
+          answer: "close to",
+          explanation: "close to 可表示“接近/大约”，适用于数值近似。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: Our hotel is ___ the beach (a 5-minute walk).",
+          options: ["close to", "far from", "under"],
+          answer: "close to",
+          explanation: "Close to emphasizes very short distance.",
+        },
+        {
+          prompt: "Choose the more natural option: Please sit ___ me so we can share this book.",
+          options: ["next to", "close to", "near"],
+          answer: "next to",
+          explanation: "For strict side-by-side adjacency, next to is clearer than close to.",
+        },
+        {
+          prompt: "Choose the correct phrase: The price is ___ $50 (about $50).",
+          options: ["close to", "over", "between"],
+          answer: "close to",
+          explanation: "Close to can express approximation for numbers and amounts.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "close to 的核心含义是什么？",
+          answer:
+            "close to 的核心是“非常近”。它强调短距离，常比 near 更强，适合表达“离某处很近、靠得很近”。",
+        },
+        {
+          question: "close to 和 near 的区别是什么？",
+          answer:
+            "near 更中性、范围更宽；close to 更强调“非常近”。两者都对时，想突出“近得明显”用 close to 更合适。",
+        },
+        {
+          question: "close to 和 next to 怎么选？",
+          answer:
+            "next to 更像“并排相邻/隔壁/紧挨着”，方向更明确；close to 只强调距离很近，可能在任意方向，不一定并排。",
+        },
+        {
+          question: "close 后面一定要有 to 吗？",
+          answer:
+            "在距离表达里，常用 close to + 名词（close to the station）。不加 to（close the station）会变成“关闭车站”的动词结构。",
+        },
+        {
+          question: "close to 可以表示“差不多/接近”吗？",
+          answer:
+            "可以，close to 常用于数值或时间的近似：close to 100、close to $50、close to midnight，意思是“接近/几乎”。",
+        },
+        {
+          question: "close to 的常见语法结构有哪些？",
+          answer:
+            "常见结构是 close to + 名词/代词（close to me），以及 close to + 动名词（close to finishing）。",
+        },
+        {
+          question: "初学者最常见错误是什么？",
+          answer:
+            "常见错是漏掉 to（close the station），或把 close to 当成 next to（需要并排时更自然的是 next to）。",
+        },
+        {
+          question: "30 秒记忆法怎么做？",
+          answer:
+            "先问：是否要强调“很近/几乎”？是就 close to；若要表达“紧挨着并排”，改用 next to/beside；若只是“离得不远”，用 near。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of close to?",
+          answer:
+            "Close to means very near. It emphasizes short distance and is often stronger than near.",
+        },
+        {
+          question: "How is close to different from near?",
+          answer:
+            "Near is broader and more neutral. Close to often highlights very short distance more strongly.",
+        },
+        {
+          question: "How do I choose between close to and next to?",
+          answer:
+            "Next to is strict adjacency (side-by-side). Close to is distance-focused and can be close in any direction, not necessarily adjacent.",
+        },
+        {
+          question: "Do I need 'to' after close?",
+          answer:
+            "For distance, yes in the common pattern: close to + noun (close to the station). Without to, close becomes a verb (close the station).",
+        },
+        {
+          question: "Can close to mean 'almost'?",
+          answer:
+            "Yes. It is common for approximations: close to 100, close to $50, close to midnight.",
+        },
+        {
+          question: "What are common grammar patterns with close to?",
+          answer:
+            "Common patterns include close to + noun/pronoun (close to me) and close to + gerund (close to finishing).",
+        },
+        {
+          question: "What is a common learner mistake with close to?",
+          answer:
+            "Common mistakes include dropping to and using close to where next to is needed for strict adjacency.",
+        },
+        {
+          question: "What is a 30-second memory rule for close to?",
+          answer:
+            "If you want to emphasize very short distance, use close to. If you need strict adjacency, use next to/beside. If you only mean generally close, use near.",
+        },
+      ],
+    },
     scene: makeScene([0.85, 0, 0]),
   },
   {

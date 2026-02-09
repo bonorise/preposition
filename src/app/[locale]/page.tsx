@@ -124,6 +124,14 @@ export default async function LocaleHome({ params }: PageProps) {
       <div className="mt-16">
         <FaqSection locale={locale} />
       </div>
+      <div className="mt-16 w-full">
+        <p
+          aria-hidden="true"
+          className="w-full select-none whitespace-nowrap text-center font-display text-[clamp(3rem,10.5vw,9rem)] font-semibold leading-none tracking-tight text-[color:var(--color-ink)]/15"
+        >
+          Preposition Dino
+        </p>
+      </div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
