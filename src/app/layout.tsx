@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import Script from "next/script";
 import "./globals.css";
 
 import { LocaleProvider } from "@/components/LocaleProvider";
@@ -55,6 +56,17 @@ export default async function RootLayout({
   return (
     <html lang={activeLocale}>
       <body className="antialiased">
+        <Script
+          id="google-tag-manager-src"
+          src="https://www.googletagmanager.com/gtag/js?id=G-EDMLRLP33R"
+          strategy="beforeInteractive"
+        />
+        <Script id="google-tag-manager-init" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-EDMLRLP33R');`}
+        </Script>
         <LocaleProvider initialLocale={activeLocale}>
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
