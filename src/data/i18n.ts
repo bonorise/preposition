@@ -61,6 +61,22 @@ export const UI_TEXT: Record<
     detailViewerHint: string;
     detailViewerHelper: string;
     detailRelatedTitle: string;
+    detailSceneCategoryLabel: string;
+    detailSceneCategorySpace: string;
+    detailSceneCategoryTime: string;
+    detailSceneCategoryDynamic: string;
+    timeAxisLabelNow: string;
+    timeAxisLabelStart: string;
+    timeAxisLabelEnd: string;
+    timeAxisLabelPoint: string;
+    timeAxisLabelRange: string;
+    timeAxisLabelDuration: string;
+    timeAxisLabelDeadline: string;
+    timeAxisLabelBeforeDeadline: string;
+    timeAxisLabelWindow: string;
+    timeAxisLabelLimit: string;
+    timeAxisLabelAfter: string;
+    timeAxisLabelDate: string;
     directionFront: string;
     playgroundTitle: string;
     playgroundHint: string;
@@ -138,12 +154,28 @@ export const UI_TEXT: Record<
     detailViewerHint: "拖拽旋转 / 滚轮缩放 / 双指缩放",
     detailViewerHelper: "部分介词需要动态表达，MVP 先用静态位置 + 文字说明。",
     detailRelatedTitle: "相关介词",
+    detailSceneCategoryLabel: "示意图类别",
+    detailSceneCategorySpace: "空间",
+    detailSceneCategoryTime: "时间",
+    detailSceneCategoryDynamic: "动态",
+    timeAxisLabelNow: "现在",
+    timeAxisLabelStart: "起点",
+    timeAxisLabelEnd: "终点",
+    timeAxisLabelPoint: "时间点",
+    timeAxisLabelRange: "时间范围",
+    timeAxisLabelDuration: "时间段",
+    timeAxisLabelDeadline: "截止",
+    timeAxisLabelBeforeDeadline: "截止前",
+    timeAxisLabelWindow: "时限内",
+    timeAxisLabelLimit: "阈值",
+    timeAxisLabelAfter: "之后",
+    timeAxisLabelDate: "具体日期",
     directionFront: "前",
     playgroundTitle: "拖动小球识别介词",
     playgroundHint: "拖动紫色小球，观察它与立方体的相对位置。",
     playgroundModeStatic: "静态介词",
     playgroundModeDynamic: "动态介词",
-    playgroundMotionHint: "切到动态介词后，沿虚线路径拖动小球，感受方向与过程。",
+    playgroundMotionHint: "沿虚线路径拖动小球，感受方向与过程。",
     playgroundViewDetail: "查看详情",
     detailComparisonTitle: "差异解析",
     detailComparisonPlaceholder: "内容整理中，后续补充。",
@@ -258,6 +290,22 @@ export const UI_TEXT: Record<
     detailViewerHelper:
       "Some prepositions need motion; MVP shows a static cue + notes.",
     detailRelatedTitle: "Related prepositions",
+    detailSceneCategoryLabel: "Scene category",
+    detailSceneCategorySpace: "Space",
+    detailSceneCategoryTime: "Time",
+    detailSceneCategoryDynamic: "Dynamic",
+    timeAxisLabelNow: "Now",
+    timeAxisLabelStart: "Start",
+    timeAxisLabelEnd: "End",
+    timeAxisLabelPoint: "Point",
+    timeAxisLabelRange: "Range",
+    timeAxisLabelDuration: "Duration",
+    timeAxisLabelDeadline: "Deadline",
+    timeAxisLabelBeforeDeadline: "Before deadline",
+    timeAxisLabelWindow: "Within window",
+    timeAxisLabelLimit: "Limit",
+    timeAxisLabelAfter: "After",
+    timeAxisLabelDate: "Date",
     directionFront: "Front",
     playgroundTitle: "Drag the ball to learn prepositions",
     playgroundHint:

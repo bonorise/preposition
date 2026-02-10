@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120" viewBox="0 0 200 120" fill="none">
+  <g transform="translate(100 60) scale(2) translate(-60 -60)">
+    
+    <line x1="14" y1="60" x2="106" y2="60" stroke="#94a3b8" stroke-width="0.8" stroke-linecap="round" />
+    <line x1="14.00" y1="60" x2="83.00" y2="60" stroke="#0f172a" stroke-width="1.05" stroke-linecap="round" />
+    <line x1="83.00" y1="49.00" x2="83.00" y2="71.00" stroke="#64748b" stroke-width="1" stroke-dasharray="2 2" />
+    <g stroke="#64748b" stroke-width="1" stroke-linecap="round"><line x1="14.00" y1="56.00" x2="14.00" y2="64.00" /><line x1="106.00" y1="56.00" x2="106.00" y2="64.00" /><line x1="83.00" y1="56.00" x2="83.00" y2="64.00" /></g>
+    <circle cx="55.40" cy="60" r="6.3" fill="#7c3aed" />
+    <text x="83.00" y="84.00" fill="#475569" font-size="8" font-weight="600" text-anchor="middle">截止</text>
+    <text x="48.50" y="44.00" fill="#475569" font-size="8" font-weight="600" text-anchor="middle">截止前</text>
+  
+  </g>
+</svg>

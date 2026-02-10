@@ -2,8 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import type { Locale, PrepositionEntry } from "@/data/types";
+import type { LearningCategory, Locale, PrepositionEntry } from "@/data/types";
 import { getUiText } from "@/data/i18n";
+import { getSceneForCategory } from "@/lib/categoryScene";
+import { getEntryCategories } from "@/lib/prepositionCategory";
+import { clearSourceCategory, consumeSourceCategory } from "@/lib/sceneCategorySession";
 import type { ThumbnailFormat } from "@/lib/thumbnail";
 import PrepositionViewer3D, {
   type ViewerHandle,
@@ -29,6 +32,8 @@ type PrepositionDetailProps = {
   thumbnailFormat?: ThumbnailFormat;
 };
 
+const CATEGORY_PRIORITY: LearningCategory[] = ["space", "time", "dynamic"];
+
 export default function PrepositionDetail({
   entry,
   prev,
@@ -45,16 +50,54 @@ export default function PrepositionDetail({
   const viewerContainerRef = useRef<HTMLDivElement | null>(null);
   const fullscreenIntentRef = useRef(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [userSelection, setUserSelection] = useState<{
+    entryId: string;
+    category: LearningCategory;
+  } | null>(null);
+  const categories = useMemo(() => getEntryCategories(entry), [entry]);
+  const fallbackCategory = useMemo(
+    () =>
+      CATEGORY_PRIORITY.find((category) => categories.includes(category)) ??
+      categories[0] ??
+      "space",
+    [categories],
+  );
+  const sourceCategory = useMemo(
+    () => consumeSourceCategory(entry.id, categories),
+    [entry.id, categories],
+  );
+  const activeCategory = useMemo(() => {
+    if (
+      userSelection &&
+      userSelection.entryId === entry.id &&
+      categories.includes(userSelection.category)
+    ) {
+      return userSelection.category;
+    }
+    if (sourceCategory && categories.includes(sourceCategory)) {
+      return sourceCategory;
+    }
+    return fallbackCategory;
+  }, [userSelection, entry.id, categories, sourceCategory, fallbackCategory]);
   const meaning = useMemo(
     () => entry.i18n[activeLocale]?.meaning ?? entry.i18n["zh-CN"].meaning,
     [entry, activeLocale],
   );
-  const hasAnimation = Boolean(entry.scene.animation);
+  const activeScene = useMemo(
+    () => getSceneForCategory(entry, activeCategory, activeLocale),
+    [entry, activeCategory, activeLocale],
+  );
+  const hasAnimation = Boolean(activeScene.animation);
   const keyPoints = useMemo(() => {
     const localizedTips =
       entry.i18n[activeLocale]?.tips ?? entry.i18n["zh-CN"]?.tips ?? [];
     return localizedTips.slice(0, 3);
   }, [entry, activeLocale]);
+  const categoryLabels: Record<LearningCategory, string> = {
+    space: ui.detailSceneCategorySpace,
+    time: ui.detailSceneCategoryTime,
+    dynamic: ui.detailSceneCategoryDynamic,
+  };
   const enterFullscreen = (element: HTMLDivElement) => {
     const target = element as HTMLDivElement & {
       webkitRequestFullscreen?: () => Promise<void>;
@@ -80,6 +123,10 @@ export default function PrepositionDetail({
     fullscreenIntentRef.current = true;
     enterFullscreen(element);
   };
+
+  useEffect(() => {
+    clearSourceCategory();
+  }, [entry.id]);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -127,12 +174,34 @@ export default function PrepositionDetail({
               isFullscreen ? "flex h-full w-full flex-col rounded-none" : "rounded-[var(--radius-lg)]"
             }`}
           >
+            {categories.length > 1 ? (
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[color:var(--color-edge)] bg-white/75 px-5 py-3">
+                <p className="text-[11px] uppercase tracking-[0.24em] text-[color:var(--color-muted)]">
+                  {ui.detailSceneCategoryLabel}
+                </p>
+                <div className="flex flex-wrap items-center gap-2">
+                  {categories.map((category) => (
+                    <Button
+                      key={category}
+                      variant={activeCategory === category ? "secondary" : "outline"}
+                      size="sm"
+                      onClick={() =>
+                        setUserSelection({ entryId: entry.id, category })
+                      }
+                    >
+                      {categoryLabels[category]}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
             <PrepositionViewer3D
               ref={viewerRef}
               entry={entry}
+              sceneOverride={activeScene}
               frontLabel={ui.directionFront}
               showGroundOverride={showGroundOverride}
-              className={isFullscreen ? "flex-1 h-full rounded-none border-b border-[color:var(--color-edge)]" : undefined}
+              className={isFullscreen ? "flex-1 h-full rounded-none" : undefined}
             />
             <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[color:var(--color-edge)] bg-white/70 px-5 py-4 text-sm">
               <div className="space-y-1 text-[color:var(--color-muted)]">

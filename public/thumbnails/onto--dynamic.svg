@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  
+  <g stroke="#cbd5e1" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="42.63" y1="77.45" x2="69.85" y2="90.33" />
+    <line x1="42.63" y1="45.01" x2="42.63" y2="77.45" />
+    <line x1="42.63" y1="77.45" x2="15.41" y2="90.33" />
+  </g>
+  
+  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="69.85" y1="90.33" x2="73.26" y2="53.75" />
+    <line x1="73.26" y1="53.75" x2="42.63" y2="45.01" />
+    <line x1="15.41" y1="90.33" x2="42.63" y2="108.00" />
+    <line x1="12.00" y1="53.75" x2="15.41" y2="90.33" />
+    <line x1="69.85" y1="90.33" x2="42.63" y2="108.00" />
+    <line x1="42.63" y1="45.01" x2="12.00" y2="53.75" />
+  </g>
+  
+  <defs>
+    <marker id="motion-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#9ca3af" />
+    </marker>
+  </defs>
+  <path d="M42.63 12.00 L42.63 44.44" fill="none" stroke="#9ca3af" stroke-opacity="0.8" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="4 4" marker-end="url(#motion-arrow)" />
+  <circle cx="42.63" cy="44.44" r="9.86" fill="#7c3aed" />
+  
+  
+  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="42.63" y1="108.00" x2="42.63" y2="66.25" />
+    <line x1="42.63" y1="66.25" x2="12.00" y2="53.75" />
+    <line x1="73.26" y1="53.75" x2="42.63" y2="66.25" />
+  </g>
+</svg>

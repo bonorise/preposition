@@ -6,6 +6,7 @@ const TEMPORAL_IDS = new Set([
   "at",
   "in",
   "on",
+  "upon",
   "after",
   "by",
   "between",
@@ -24,7 +25,7 @@ const TEMPORAL_IDS = new Set([
 ]);
 
 export function isSpatialPreposition(entry: PrepositionEntry) {
-  return entry.sense === "space" || entry.tags.includes("space");
+  return entry.tags.includes("space");
 }
 
 export function isDynamicPreposition(entry: PrepositionEntry) {
@@ -33,6 +34,14 @@ export function isDynamicPreposition(entry: PrepositionEntry) {
 
 export function isTemporalPreposition(entry: PrepositionEntry) {
   return TEMPORAL_IDS.has(entry.id);
+}
+
+export function getEntryCategories(entry: PrepositionEntry): LearningCategory[] {
+  const categories: LearningCategory[] = [];
+  if (isSpatialPreposition(entry)) categories.push("space");
+  if (isTemporalPreposition(entry)) categories.push("time");
+  if (isDynamicPreposition(entry)) categories.push("dynamic");
+  return categories;
 }
 
 export function getHomeCategory(entry: PrepositionEntry): HomeCategory {

@@ -157,6 +157,18 @@ const SEO_METADATA_OVERRIDES: Partial<
         "between 表示“两端点之间”的关系（空间/时间）。固定搭配：between A and B（不是 between A to B）。例句：Call me between 7 and 9 p.m.",
     },
   },
+  upon: {
+    en: {
+      title: "upon: meaning & examples (upon vs on) | Preposition Dino",
+      description:
+        'upon is a formal version of on for surface contact. Use upon + noun/gerund for "when/as soon as" (upon arrival). In daily speech, prefer on/when.',
+    },
+    "zh-CN": {
+      title: "upon 介词用法：含义与例句（更正式的 on） | Preposition Dino",
+      description:
+        "upon 是较正式的 on（接触表面）。常见结构：upon + 名词/动名词，表示“在……时/一……就”（upon arrival / upon arriving）。口语多用 on/when。",
+    },
+  },
 };
 
 function getSeoTitle({

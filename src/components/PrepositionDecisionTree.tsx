@@ -194,6 +194,44 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> consider beneath; for neutral usage, under is fine.",
       });
     }
+  } else if (word === "upon" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "你是否需要较正式/书面/故事语气？",
+        answer: "是 -> 可用 upon（≈ on）；日常口语一般用 on 更自然。",
+      });
+      questions.push({
+        question: "是否是固定搭配 once upon a time？",
+        answer: "是 -> 用 upon。",
+      });
+      questions.push({
+        question: "你要表达“在……时/一……就”（upon + 名词/动名词）吗？",
+        answer:
+          "是 -> 用 upon arrival / upon arriving；不要说 Upon I arrived（完整从句用 when/after）。",
+      });
+      questions.push({
+        question: "是否是“移动到表面并到达”的动作？",
+        answer: "是 -> 用 onto；upon 多用于状态或书面表达。",
+      });
+    } else {
+      questions.push({
+        question: "Is it formal or literary writing (not everyday chat)?",
+        answer: "Yes -> upon works (≈ on). In daily speech, on is more natural.",
+      });
+      questions.push({
+        question: "Is it the fixed phrase \"once upon a time\"?",
+        answer: "Yes -> use upon.",
+      });
+      questions.push({
+        question: "Do you mean \"when/as soon as\" (upon + noun/-ing)?",
+        answer:
+          "Yes -> upon arrival / upon arriving. Avoid \"Upon I arrived\" (use when/after for a full clause).",
+      });
+      questions.push({
+        question: "Is it movement to a surface (reach an endpoint)?",
+        answer: "Yes -> use onto; upon is usually static contact/formal style.",
+      });
+    }
   } else if (word === "close to" && !isDynamic) {
     if (activeLocale === "zh-CN") {
       questions.push({

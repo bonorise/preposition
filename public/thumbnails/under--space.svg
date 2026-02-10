@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  
+  <g stroke="#cbd5e1" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="58.20" y1="60.94" x2="99.25" y2="80.35" />
+    <line x1="58.20" y1="12.00" x2="58.20" y2="60.94" />
+    <line x1="58.20" y1="60.94" x2="17.15" y2="80.35" />
+  </g>
+  
+  
+  <circle cx="58.20" cy="96.41" r="10.54" fill="#7c3aed" />
+  
+  
+  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="99.25" y1="80.35" x2="104.40" y2="25.19" />
+    <line x1="104.40" y1="25.19" x2="58.20" y2="12.00" />
+    <line x1="17.15" y1="80.35" x2="58.20" y2="107.01" />
+    <line x1="58.20" y1="107.01" x2="58.20" y2="44.04" />
+    <line x1="58.20" y1="44.04" x2="12.00" y2="25.19" />
+    <line x1="12.00" y1="25.19" x2="17.15" y2="80.35" />
+    <line x1="99.25" y1="80.35" x2="58.20" y2="107.01" />
+    <line x1="104.40" y1="25.19" x2="58.20" y2="44.04" />
+    <line x1="58.20" y1="12.00" x2="12.00" y2="25.19" />
+  </g>
+</svg>

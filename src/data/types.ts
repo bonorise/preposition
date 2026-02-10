@@ -3,6 +3,24 @@ export type LearningCategory = "space" | "time" | "dynamic";
 
 export type SceneVariant = "singleCube" | "twoCubes" | "ringCubes";
 
+export type TimeAxisKind =
+  | "point"
+  | "range"
+  | "duration"
+  | "deadline"
+  | "threshold"
+  | "after";
+
+export type TimeAxisConfig = {
+  kind: TimeAxisKind;
+  dotPosition: number;
+  rangeStart?: number;
+  rangeEnd?: number;
+  markerStartLabel?: string;
+  markerEndLabel?: string;
+  centerLabel?: string;
+};
+
 export type SceneRenderOptions = {
   showGround?: boolean;
   shadows?: boolean;
@@ -25,6 +43,7 @@ export type SceneConfig = {
   };
   render?: SceneRenderOptions;
   variant?: SceneVariant;
+  timeAxis?: TimeAxisConfig;
   animation?: {
     type: "path" | "keyframes";
     duration: number;
@@ -80,6 +99,7 @@ export type PrepositionEntry = {
   examplesByCategory?: Partial<Record<LearningCategory, PrepositionExample[]>>;
   relatedIds: string[];
   scene: SceneConfig;
+  scenesByCategory?: Partial<Record<LearningCategory, SceneConfig>>;
   comparison?: {
     i18n: Record<
       Locale,

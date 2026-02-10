@@ -82,7 +82,7 @@ export default function PrepositionTextPanel({
           {exampleSections.map((section) => (
             <div
               key={section.category}
-              className="space-y-3 rounded-[var(--radius-md)] border border-[color:var(--color-edge)]/70 bg-white/70 p-3"
+              className="space-y-3 rounded-[var(--radius-md)] bg-white/70 p-3"
             >
               <h3 className="text-[10px] uppercase tracking-[0.24em] text-[color:var(--color-muted)]">
                 {section.title}

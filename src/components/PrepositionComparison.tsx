@@ -48,7 +48,7 @@ export default function PrepositionComparison({
                 {comparison.differences.map((item) => {
                   const trimmedTerm = item.term.trim();
                   const termId =
-                    /^[a-z\\s-]+$/i.test(trimmedTerm) ? toPrepositionId(trimmedTerm) : null;
+                    /^[a-z\s-]+$/i.test(trimmedTerm) ? toPrepositionId(trimmedTerm) : null;
                   const termHref = termId ? `/${localePath}/p/${termId}` : null;
 
                   return (

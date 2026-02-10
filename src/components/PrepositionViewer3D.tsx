@@ -9,7 +9,7 @@ import {
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-import type { PrepositionEntry, SceneConfig } from "@/data/types";
+import type { PrepositionEntry, SceneConfig, TimeAxisConfig } from "@/data/types";
 import { cn } from "@/lib/utils";
 
 export type ViewerHandle = {
@@ -19,6 +19,7 @@ export type ViewerHandle = {
 
 type PrepositionViewer3DProps = {
   entry: PrepositionEntry;
+  sceneOverride?: SceneConfig;
   frontLabel?: string;
   showGroundOverride?: boolean;
   className?: string;
@@ -29,7 +30,22 @@ const cubeFaceColor = 0xffffff;
 const ballColor = 0x7c3aed;
 const groundColor = 0xe6e6e6;
 const motionPathColor = 0x9ca3af;
+const timelineBaseColor = 0x9ca3af;
+const timelineActiveColor = 0x0f172a;
+const timelineMarkerColor = 0x64748b;
 const animationEase = (t: number) => t * t * (3 - 2 * t);
+
+const timelineXStart = -1.35;
+const timelineXEnd = 1.35;
+
+function clamp01(value: number) {
+  return Math.min(1, Math.max(0, value));
+}
+
+function toTimelineX(position: number) {
+  const t = clamp01(position);
+  return timelineXStart + (timelineXEnd - timelineXStart) * t;
+}
 
 function resolveAnimationPath(scene: SceneConfig) {
   const animation = scene.animation;
@@ -37,9 +53,7 @@ function resolveAnimationPath(scene: SceneConfig) {
 
   const durationMs = Math.max(animation.duration, 0.1) * 1000;
   if (animation.path && animation.path.length >= 2) {
-    const points = animation.path.map(
-      (point) => new THREE.Vector3(...point),
-    );
+    const points = animation.path.map((point) => new THREE.Vector3(...point));
     return {
       durationMs,
       curve: new THREE.CatmullRomCurve3(
@@ -128,8 +142,234 @@ function buildCubeGroup(scene: SceneConfig) {
   return { group, geometries, materials };
 }
 
+function createLabelMesh({
+  text,
+  width,
+  height,
+  fontSize,
+  renderer,
+  color = "#475569",
+}: {
+  text: string;
+  width: number;
+  height: number;
+  fontSize: number;
+  renderer: THREE.WebGLRenderer;
+  color?: string;
+}) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 192;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "rgba(255,255,255,0)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = color;
+  ctx.font = `600 ${fontSize}px sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  const material = new THREE.MeshBasicMaterial({
+    map: texture,
+    transparent: true,
+    opacity: 0.92,
+    depthWrite: false,
+  });
+  const geometry = new THREE.PlaneGeometry(width, height);
+  const mesh = new THREE.Mesh(geometry, material);
+
+  return { mesh, geometry, material, texture };
+}
+
+function pushLine(
+  group: THREE.Group,
+  points: THREE.Vector3[],
+  material: THREE.Material,
+  geometries: THREE.BufferGeometry[],
+) {
+  const geometry = new THREE.BufferGeometry().setFromPoints(points);
+  geometries.push(geometry);
+  const line = new THREE.Line(geometry, material);
+  group.add(line);
+}
+
+function buildTimeAxisGroup({
+  timeAxis,
+  renderer,
+}: {
+  timeAxis: TimeAxisConfig;
+  renderer: THREE.WebGLRenderer;
+}) {
+  const group = new THREE.Group();
+  const geometries: THREE.BufferGeometry[] = [];
+  const materials: THREE.Material[] = [];
+  const textures: THREE.Texture[] = [];
+
+  const axisY = 0;
+
+  const baseMaterial = new THREE.LineBasicMaterial({
+    color: timelineBaseColor,
+    transparent: true,
+    opacity: 0.9,
+  });
+  materials.push(baseMaterial);
+  pushLine(
+    group,
+    [
+      new THREE.Vector3(timelineXStart, axisY, 0),
+      new THREE.Vector3(timelineXEnd, axisY, 0),
+    ],
+    baseMaterial,
+    geometries,
+  );
+
+  const start = clamp01(timeAxis.rangeStart ?? 0);
+  const end = clamp01(timeAxis.rangeEnd ?? 1);
+  const rangeStart = Math.min(start, end);
+  const rangeEnd = Math.max(start, end);
+
+  const hasRange =
+    typeof timeAxis.rangeStart === "number" || typeof timeAxis.rangeEnd === "number";
+  if (hasRange) {
+    const activeMaterial = new THREE.LineBasicMaterial({
+      color: timelineActiveColor,
+      transparent: true,
+      opacity: 0.95,
+    });
+    materials.push(activeMaterial);
+    pushLine(
+      group,
+      [
+        new THREE.Vector3(toTimelineX(rangeStart), axisY, 0),
+        new THREE.Vector3(toTimelineX(rangeEnd), axisY, 0),
+      ],
+      activeMaterial,
+      geometries,
+    );
+  }
+
+  const tickMaterial = new THREE.LineBasicMaterial({
+    color: timelineMarkerColor,
+    transparent: true,
+    opacity: 0.8,
+  });
+  materials.push(tickMaterial);
+
+  const tickSet = new Set<number>([0, 1]);
+  if (hasRange) {
+    tickSet.add(rangeStart);
+    tickSet.add(rangeEnd);
+  }
+
+  const referenceByKind: Partial<Record<TimeAxisConfig["kind"], number>> = {
+    point: timeAxis.rangeStart ?? timeAxis.rangeEnd ?? 0.5,
+    deadline: timeAxis.rangeEnd ?? timeAxis.rangeStart ?? 0.75,
+    threshold: timeAxis.rangeEnd ?? timeAxis.rangeStart ?? 0.67,
+    after: timeAxis.rangeStart ?? timeAxis.rangeEnd ?? 0.5,
+  };
+  const referencePosition = referenceByKind[timeAxis.kind];
+  if (typeof referencePosition === "number") {
+    tickSet.add(clamp01(referencePosition));
+  }
+
+  tickSet.forEach((tick) => {
+    const x = toTimelineX(tick);
+    pushLine(
+      group,
+      [new THREE.Vector3(x, axisY - 0.09, 0), new THREE.Vector3(x, axisY + 0.09, 0)],
+      tickMaterial,
+      geometries,
+    );
+  });
+
+  if (typeof referencePosition === "number") {
+    const referenceX = toTimelineX(referencePosition);
+    const referenceMaterial = new THREE.LineDashedMaterial({
+      color: timelineMarkerColor,
+      transparent: true,
+      opacity: 0.7,
+      dashSize: 0.06,
+      gapSize: 0.045,
+    });
+    materials.push(referenceMaterial);
+    const referenceGeometry = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(referenceX, axisY - 0.24, 0),
+      new THREE.Vector3(referenceX, axisY + 0.24, 0),
+    ]);
+    geometries.push(referenceGeometry);
+    const referenceLine = new THREE.Line(referenceGeometry, referenceMaterial);
+    referenceLine.computeLineDistances();
+    group.add(referenceLine);
+  }
+
+  const addLabel = ({
+    text,
+    normalized,
+    y,
+    fontSize,
+  }: {
+    text?: string;
+    normalized: number;
+    y: number;
+    fontSize: number;
+  }) => {
+    if (!text) return;
+    const result = createLabelMesh({
+      text,
+      width: 0.86,
+      height: 0.22,
+      fontSize,
+      renderer,
+    });
+    if (!result) return;
+    result.mesh.position.set(toTimelineX(normalized), y, 0.02);
+    group.add(result.mesh);
+    geometries.push(result.geometry);
+    materials.push(result.material);
+    textures.push(result.texture);
+  };
+
+  addLabel({
+    text: timeAxis.markerStartLabel,
+    normalized: hasRange ? rangeStart : 0,
+    y: -0.24,
+    fontSize: 36,
+  });
+  addLabel({
+    text: timeAxis.markerEndLabel,
+    normalized: hasRange ? rangeEnd : 1,
+    y: -0.24,
+    fontSize: 36,
+  });
+
+  const center = hasRange
+    ? (rangeStart + rangeEnd) / 2
+    : clamp01(timeAxis.dotPosition);
+  addLabel({
+    text: timeAxis.centerLabel,
+    normalized: center,
+    y: 0.27,
+    fontSize: 40,
+  });
+
+  const ballPosition = new THREE.Vector3(toTimelineX(timeAxis.dotPosition), axisY, 0);
+
+  return {
+    group,
+    geometries,
+    materials,
+    textures,
+    ballPosition,
+  };
+}
+
 const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
-  ({ entry, frontLabel, showGroundOverride, className }, ref) => {
+  ({ entry, sceneOverride, frontLabel, showGroundOverride, className }, ref) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const animationRef = useRef<{
       isPlaying: boolean;
@@ -178,8 +418,9 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
       const container = containerRef.current;
       if (!container) return undefined;
 
+      const sceneConfig = sceneOverride ?? entry.scene;
       const scene = new THREE.Scene();
-      const { camera: cameraConfig } = entry.scene;
+      const { camera: cameraConfig } = sceneConfig;
 
       const width = container.clientWidth || 1;
       const height = container.clientHeight || 1;
@@ -201,11 +442,10 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
       const showGround =
         typeof showGroundOverride === "boolean"
           ? showGroundOverride
-          : (entry.scene.render?.showGround ?? true);
-      const enableShadows = entry.scene.render?.shadows ?? false;
+          : (sceneConfig.render?.showGround ?? true);
+      const enableShadows = sceneConfig.render?.shadows ?? false;
 
       renderer.shadowMap.enabled = enableShadows;
-
       container.appendChild(renderer.domElement);
 
       const controls = new OrbitControls(camera, renderer.domElement);
@@ -223,11 +463,55 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
       mainLight.castShadow = enableShadows;
       scene.add(mainLight);
 
-      const { group: cubeGroup, geometries, materials } = buildCubeGroup(
-        entry.scene,
-      );
+      const geometries: THREE.BufferGeometry[] = [];
+      const materials: THREE.Material[] = [];
       const textures: THREE.Texture[] = [];
-      scene.add(cubeGroup);
+
+      let structureGroup: THREE.Group | null = null;
+      let ballPosition = new THREE.Vector3(...sceneConfig.ball.position);
+
+      if (sceneConfig.timeAxis) {
+        const timeline = buildTimeAxisGroup({
+          timeAxis: sceneConfig.timeAxis,
+          renderer,
+        });
+        structureGroup = timeline.group;
+        geometries.push(...timeline.geometries);
+        materials.push(...timeline.materials);
+        textures.push(...timeline.textures);
+        ballPosition = timeline.ballPosition.clone();
+        scene.add(structureGroup);
+      } else {
+        const cubeResult = buildCubeGroup(sceneConfig);
+        structureGroup = cubeResult.group;
+        geometries.push(...cubeResult.geometries);
+        materials.push(...cubeResult.materials);
+        scene.add(structureGroup);
+
+        const frontLabelText = frontLabel ?? "前";
+        if (frontLabelText) {
+          const frontLabelMesh = createLabelMesh({
+            text: frontLabelText,
+            width: sceneConfig.cube.size * 0.5,
+            height: sceneConfig.cube.size * 0.26,
+            fontSize: 96,
+            renderer,
+            color: "#4b5563",
+          });
+          if (frontLabelMesh) {
+            const zOffset = sceneConfig.cube.size / 2 + 0.002;
+            frontLabelMesh.mesh.position.set(
+              sceneConfig.cube.position[0],
+              sceneConfig.cube.position[1],
+              sceneConfig.cube.position[2] + zOffset,
+            );
+            structureGroup.add(frontLabelMesh.mesh);
+            geometries.push(frontLabelMesh.geometry);
+            materials.push(frontLabelMesh.material);
+            textures.push(frontLabelMesh.texture);
+          }
+        }
+      }
 
       const ballMaterial = new THREE.MeshStandardMaterial({
         color: ballColor,
@@ -237,18 +521,14 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         emissiveIntensity: 0.22,
       });
       materials.push(ballMaterial);
-      const ballGeometry = new THREE.SphereGeometry(
-        entry.scene.ball.radius,
-        48,
-        48,
-      );
+      const ballGeometry = new THREE.SphereGeometry(sceneConfig.ball.radius, 48, 48);
       geometries.push(ballGeometry);
       const ball = new THREE.Mesh(ballGeometry, ballMaterial);
-      ball.position.set(...entry.scene.ball.position);
+      ball.position.copy(ballPosition);
       ball.castShadow = enableShadows;
       scene.add(ball);
 
-      const animationPath = resolveAnimationPath(entry.scene);
+      const animationPath = resolveAnimationPath(sceneConfig);
       if (animationPath) {
         const startTime = performance.now();
         animationRef.current = {
@@ -257,7 +537,7 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
           durationMs: animationPath.durationMs,
           start: animationPath.start,
           end: animationPath.end,
-          rest: new THREE.Vector3(...entry.scene.ball.position),
+          rest: ballPosition.clone(),
           ball,
           curve: animationPath.curve,
           loop: animationPath.loop,
@@ -277,7 +557,7 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
           });
           geometries.push(pathGeometry);
           materials.push(pathMaterial);
-          const isClosedPath = Boolean(entry.scene.animation?.closed);
+          const isClosedPath = Boolean(sceneConfig.animation?.closed);
           const pathLine = isClosedPath
             ? new THREE.LineLoop(pathGeometry, pathMaterial)
             : new THREE.Line(pathGeometry, pathMaterial);
@@ -318,45 +598,6 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         animationRef.current = null;
       }
 
-      const frontLabelText = frontLabel ?? "前";
-      if (frontLabelText) {
-        const canvas = document.createElement("canvas");
-        canvas.width = 256;
-        canvas.height = 128;
-        const ctx = canvas.getContext("2d");
-        if (ctx) {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.fillStyle = "rgba(255,255,255,0)";
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-          ctx.fillStyle = "#4b5563";
-          ctx.font = "bold 46px sans-serif";
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          ctx.fillText(frontLabelText, canvas.width / 2, canvas.height / 2);
-          const texture = new THREE.CanvasTexture(canvas);
-          texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-          const material = new THREE.MeshBasicMaterial({
-            map: texture,
-            transparent: true,
-            opacity: 0.9,
-          });
-          const labelWidth = entry.scene.cube.size * 0.5;
-          const labelHeight = entry.scene.cube.size * 0.26;
-          const geometry = new THREE.PlaneGeometry(labelWidth, labelHeight);
-          const mesh = new THREE.Mesh(geometry, material);
-          const zOffset = entry.scene.cube.size / 2 + 0.002;
-          mesh.position.set(
-            entry.scene.cube.position[0],
-            entry.scene.cube.position[1],
-            entry.scene.cube.position[2] + zOffset,
-          );
-          cubeGroup.add(mesh);
-          materials.push(material);
-          geometries.push(geometry);
-          textures.push(texture);
-        }
-      }
-
       let ground: THREE.Mesh | null = null;
       if (showGround) {
         const groundGeometry = new THREE.PlaneGeometry(6, 6);
@@ -369,9 +610,10 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         geometries.push(groundGeometry);
         ground = new THREE.Mesh(groundGeometry, groundMaterial);
         ground.rotation.x = -Math.PI / 2;
-        const cubeBottom =
-          entry.scene.cube.position[1] - entry.scene.cube.size / 2;
-        const ballBottom = entry.scene.ball.position[1] - entry.scene.ball.radius;
+        const cubeBottom = sceneConfig.timeAxis
+          ? ballPosition.y - sceneConfig.ball.radius
+          : sceneConfig.cube.position[1] - sceneConfig.cube.size / 2;
+        const ballBottom = ballPosition.y - sceneConfig.ball.radius;
         const groundY = Math.min(cubeBottom, ballBottom) - 0.08;
         ground.position.y = groundY;
         ground.receiveShadow = enableShadows;
@@ -428,12 +670,12 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
       const resizeObserver = new ResizeObserver((entries) => {
         const entryBox = entries[0];
         if (!entryBox) return;
-        const width = entryBox.contentRect.width;
-        const height = entryBox.contentRect.height;
-        if (width === 0 || height === 0) return;
-        camera.aspect = width / height;
+        const observerWidth = entryBox.contentRect.width;
+        const observerHeight = entryBox.contentRect.height;
+        if (observerWidth === 0 || observerHeight === 0) return;
+        camera.aspect = observerWidth / observerHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize(width, height);
+        renderer.setSize(observerWidth, observerHeight);
       });
       resizeObserver.observe(container);
 
@@ -448,7 +690,9 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         if (ground) {
           scene.remove(ground);
         }
-        scene.remove(cubeGroup);
+        if (structureGroup) {
+          scene.remove(structureGroup);
+        }
         scene.remove(ball);
         scene.clear();
         animationRef.current = null;
@@ -456,14 +700,14 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
           container.removeChild(renderer.domElement);
         }
       };
-    }, [entry, frontLabel, showGroundOverride]);
+    }, [entry, sceneOverride, frontLabel, showGroundOverride]);
 
     return (
       <div
         ref={containerRef}
         data-viewer="preposition"
         className={cn(
-          "relative w-full overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--color-edge)] bg-white/60",
+          "relative w-full overflow-hidden rounded-[var(--radius-lg)] bg-white/60",
           className ?? "h-[320px] md:h-[420px] lg:h-[460px]",
         )}
       />

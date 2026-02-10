@@ -8,8 +8,11 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import type { PrepositionEntry } from "@/data/types";
 import { getUiText, localeToPathSegment } from "@/data/i18n";
 import { PREPOSITIONS, getRelatedPrepositions } from "@/data/prepositions";
+import { getSceneForCategory } from "@/lib/categoryScene";
+import { isSpatialPreposition, isTemporalPreposition } from "@/lib/prepositionCategory";
 import { DEFAULT_CAMERA, DEFAULT_CUBE } from "@/lib/scenePreset";
 import { useLocale } from "@/components/LocaleProvider";
+import PrepositionViewer3D from "@/components/PrepositionViewer3D";
 
 const ballColor = 0x7c3aed;
 const cubeLineColor = 0x0f1c2e;
@@ -19,6 +22,7 @@ const cubeSize = DEFAULT_CUBE.size;
 const ballRadius = 0.22;
 const bounds = { x: 2.5, y: 1.35, z: 2.35 };
 type PlaygroundMode = "static" | "dynamic";
+type StaticSceneCategory = "space" | "time";
 
 type MotionDefinition = {
   label: string;
@@ -137,12 +141,13 @@ export default function SpatialPlayground({
   const seededMotion = MOTIONS.find((motion) => motion.label === seededWord) ?? null;
   const seededStatic =
     STATIC_ANCHORS.find((anchor) => anchor.label === seededWord) ?? null;
+  const fallbackStaticLabel = STATIC_ANCHORS[0]?.label ?? "in";
   const initialMode: PlaygroundMode = seededMotion ? "dynamic" : "static";
   const initialMotionLabel = seededMotion?.label ?? (MOTIONS[0]?.label ?? "into");
   const initialStaticLabel =
-    seededStatic?.label ?? (STATIC_ANCHORS[0]?.label ?? "in");
+    seededStatic?.label ?? (seededWord || fallbackStaticLabel);
   const initialLabel =
-    seededMotion?.label ?? seededStatic?.label ?? (STATIC_ANCHORS[0]?.label ?? "in");
+    seededWord || seededMotion?.label || seededStatic?.label || fallbackStaticLabel;
 
   const [mode, setMode] = useState<PlaygroundMode>(initialMode);
   const [selectedMotionLabel, setSelectedMotionLabel] =
@@ -150,6 +155,10 @@ export default function SpatialPlayground({
   const [selectedStaticLabel, setSelectedStaticLabel] =
     useState(initialStaticLabel);
   const [label, setLabel] = useState(initialLabel);
+  const [staticSceneSelection, setStaticSceneSelection] = useState<{
+    label: string;
+    category: StaticSceneCategory;
+  } | null>(null);
   const labelRef = useRef(initialLabel);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const prepositionByWordMap = new Map(
@@ -161,8 +170,16 @@ export default function SpatialPlayground({
       entry.i18n[locale]?.meaning ?? entry.i18n["zh-CN"]?.meaning ?? entry.word,
     ]),
   );
-  const currentStaticEntry =
-    mode === "static" ? prepositionByWordMap.get(label.toLowerCase()) ?? null : null;
+  const currentEntry = prepositionByWordMap.get(label.toLowerCase()) ?? null;
+  const hasSpatial = currentEntry ? isSpatialPreposition(currentEntry) : false;
+  const hasTemporal = currentEntry ? isTemporalPreposition(currentEntry) : false;
+  const defaultStaticSceneCategory: StaticSceneCategory =
+    hasTemporal && !hasSpatial ? "time" : "space";
+  const staticSceneCategory =
+    staticSceneSelection?.label === label
+      ? staticSceneSelection.category
+      : defaultStaticSceneCategory;
+  const currentStaticEntry = mode === "static" ? currentEntry : null;
   const staticRelatedEntries = currentStaticEntry
     ? getRelatedPrepositions(currentStaticEntry.id, 5)
     : [];
@@ -170,8 +187,13 @@ export default function SpatialPlayground({
     labelMeaningMap.get(label.toLowerCase()) ??
     (mode === "dynamic" ? ui.playgroundMotionHint : ui.playgroundHint);
   const sceneHint = mode === "dynamic" ? ui.playgroundMotionHint : ui.playgroundHint;
-  const detailEntry =
-    mode === "static" ? prepositionByWordMap.get(label.toLowerCase()) ?? null : null;
+  const detailEntry = currentEntry;
+  const shouldRenderSpatialScene =
+    mode === "dynamic" || (mode === "static" && staticSceneCategory === "space");
+  const timeScene =
+    mode === "static" && staticSceneCategory === "time" && currentEntry && hasTemporal
+      ? getSceneForCategory(currentEntry, "time", locale)
+      : null;
 
   const handleRelatedStaticClick = (word: string) => {
     const normalizedWord = word.toLowerCase();
@@ -187,11 +209,33 @@ export default function SpatialPlayground({
     );
     if (staticMatch) {
       setSelectedStaticLabel(staticMatch.label);
+      setLabel(staticMatch.label);
+      setMode("static");
+      return;
+    }
+
+    const entryMatch = prepositionByWordMap.get(normalizedWord);
+    if (entryMatch) {
+      setSelectedStaticLabel(entryMatch.word.toLowerCase());
+      setLabel(entryMatch.word.toLowerCase());
       setMode("static");
     }
   };
 
+  const handleStaticCategoryChange = (category: StaticSceneCategory) => {
+    if (category === "space") {
+      const anchorMatch = STATIC_ANCHORS.find(
+        (anchor) => anchor.label === label.toLowerCase(),
+      );
+      if (anchorMatch) {
+        setSelectedStaticLabel(anchorMatch.label);
+      }
+    }
+    setStaticSceneSelection({ label, category });
+  };
+
   useEffect(() => {
+    if (!shouldRenderSpatialScene) return undefined;
     const container = containerRef.current;
     if (!container) return undefined;
 
@@ -396,12 +440,16 @@ export default function SpatialPlayground({
       if (selectedAnchor) {
         const [x, y, z] = selectedAnchor.point;
         ball.position.set(x, y, z);
-      } else {
-        ball.position.set(0, 0, 0);
+        lastPosition.copy(ball.position);
+        setRenderedMotion(null);
+        setLabelSafe(getStaticPrepositionLabel(ball.position));
+        return;
       }
+
+      ball.position.set(0, 0, 0);
       lastPosition.copy(ball.position);
       setRenderedMotion(null);
-      setLabelSafe(getStaticPrepositionLabel(ball.position));
+      setLabelSafe(selectedStaticLabel);
     };
 
     const activateDynamicMode = () => {
@@ -423,6 +471,7 @@ export default function SpatialPlayground({
         return;
       }
 
+      if (staticSceneCategory !== "space") return;
       setRenderedMotion(null);
       setLabelSafe(getStaticPrepositionLabel(position));
     };
@@ -536,7 +585,15 @@ export default function SpatialPlayground({
       }
       scene.clear();
     };
-  }, [locale, mode, selectedMotionLabel, selectedStaticLabel, ui.directionFront]);
+  }, [
+    locale,
+    mode,
+    selectedMotionLabel,
+    selectedStaticLabel,
+    staticSceneCategory,
+    ui.directionFront,
+    shouldRenderSpatialScene,
+  ]);
 
   return (
     <section className="space-y-5">
@@ -574,12 +631,12 @@ export default function SpatialPlayground({
               <p className="flex-1 text-sm leading-relaxed text-[color:var(--color-muted)]">
                 {labelMeaning}
               </p>
-              {mode === "static" && detailEntry ? (
+              {detailEntry ? (
                 <Link
                   href={`/${localePath}/p/${detailEntry.id}`}
-                  className="inline-flex h-[1.4rem] shrink-0 items-center rounded-full border border-[color:var(--color-edge)] bg-white/75 px-2 text-xs text-[color:var(--color-muted)] transition hover:border-[color:var(--color-accent)]/60 hover:text-[color:var(--color-accent)]"
+                  className="shrink-0 text-xs leading-relaxed text-[color:var(--color-muted)] transition hover:text-[color:var(--color-accent)]"
                 >
-                  {ui.playgroundViewDetail}
+                  {ui.playgroundViewDetail} &gt;
                 </Link>
               ) : null}
             </div>
@@ -620,10 +677,40 @@ export default function SpatialPlayground({
             <p className="pointer-events-none absolute left-4 top-4 z-10 text-xs text-[color:var(--color-muted)]">
               {sceneHint}
             </p>
+            {mode === "static" && hasSpatial && hasTemporal ? (
+              <div className="absolute right-4 top-4 z-10 flex items-center gap-2">
+                {(["space", "time"] as const).map((category) => (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => handleStaticCategoryChange(category)}
+                    className={`rounded-full border px-3 py-1 text-xs transition ${
+                      staticSceneCategory === category
+                        ? "border-2 border-[color:var(--color-accent)] bg-white text-[color:var(--color-accent)]"
+                        : "border-[color:var(--color-edge)] bg-white/70 text-[color:var(--color-muted)] hover:border-[color:var(--color-accent)]/60"
+                    }`}
+                  >
+                    {category === "space"
+                      ? ui.detailSceneCategorySpace
+                      : ui.detailSceneCategoryTime}
+                  </button>
+                ))}
+              </div>
+            ) : null}
             <div
               ref={containerRef}
-              className="relative h-[320px] w-full overflow-hidden bg-white/60 md:h-[420px]"
+              className={`relative h-[320px] w-full overflow-hidden bg-white/60 md:h-[420px] ${
+                shouldRenderSpatialScene ? "block" : "hidden"
+              }`}
             />
+            {!shouldRenderSpatialScene && timeScene && currentEntry ? (
+              <PrepositionViewer3D
+                entry={currentEntry}
+                sceneOverride={timeScene}
+                frontLabel={ui.directionFront}
+                className="h-[320px] md:h-[420px]"
+              />
+            ) : null}
           </div>
         </div>
       </div>

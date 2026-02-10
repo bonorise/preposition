@@ -6670,30 +6670,376 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……之上（较正式）",
-        tips: ["意义接近 on。", "常用于书面或固定表达。"],
+        meaning: "在……之上（较正式）；（upon + 名词/动名词）在……时/一……就",
+        tips: [
+          "upon 是 on 的较正式说法，通常表示接触表面。",
+          "常见结构：upon + 名词/动名词，表示“在……时/一……就”（upon arrival / upon arriving）。",
+          "口语里通常用 on / when / after；upon 更偏书面与固定搭配。",
+        ],
       },
       en: {
-        meaning: "upon; on (formal)",
-        tips: ["Similar to on.", "More formal or literary."],
+        meaning: "upon; on (formal); (upon + noun) when/as soon as",
+        tips: [
+          "Formal alternative to on for surface contact.",
+          'Common pattern: upon + noun/gerund = "when/as soon as" (upon arrival, upon hearing...).',
+          "In everyday conversation, on/when is usually more natural.",
+        ],
       },
     },
     examples: [
-      {
-        en: "Snow fell upon the roof.",
-        i18n: {
-          "zh-CN": { translation: "雪落在屋顶上。" },
-          en: { translation: "Snow fell upon the roof." },
-        },
-      },
-      {
-        en: "The letter lay upon the table.",
-        i18n: {
-          "zh-CN": { translation: "信放在桌上。" },
-          en: { translation: "The letter lay upon the table." },
-        },
-      },
+      createLocalizedExample("Snow fell upon the roof.", "雪落在屋顶上。"),
+      createLocalizedExample("The letter lay upon the table.", "信放在桌上。"),
     ],
+    examplesByCategory: {
+      space: [
+        createLocalizedExample("Snow fell upon the roof.", "雪落在屋顶上。"),
+        createLocalizedExample("The letter lay upon the table.", "信放在桌上。"),
+      ],
+      time: [
+        createLocalizedExample(
+          "Upon arrival, please check in at the front desk.",
+          "到达后请在前台登记。",
+        ),
+        createLocalizedExample(
+          "Upon hearing the news, she called her mom.",
+          "一听到消息，她就给妈妈打了电话。",
+        ),
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "upon 是较正式的 on（接触表面），也常出现在 upon arrival 这类结构中表示“在……时/一……就”。学习时重点对比 on/onto/on top of。",
+          differences: [
+            {
+              term: "on",
+              description:
+                "on 更中性、口语最常用；upon 更书面/文学化（含义常接近）。",
+              examples: [
+                {
+                  term: "on",
+                  sentence: "The book is on the table.",
+                  translation: "书在桌子上。",
+                },
+                {
+                  term: "upon",
+                  sentence: "The book lay upon the table.",
+                  translation: "书放在桌上（更书面）。",
+                },
+              ],
+            },
+            {
+              term: "onto",
+              description:
+                "onto 强调“移动到表面并到达”；upon 通常描述已在表面上（或用于更正式的时间触发表达）。",
+              examples: [
+                {
+                  term: "onto",
+                  sentence: "He put the book onto the table.",
+                  translation: "他把书放到桌子上（强调动作到达）。",
+                },
+                {
+                  term: "upon",
+                  sentence: "The book lay upon the table.",
+                  translation: "书放在桌上（状态）。",
+                },
+              ],
+            },
+            {
+              term: "on top of",
+              description:
+                "on top of 强调“在最上面/顶部”；upon 不强调“顶”，更多是书面版 on。",
+              examples: [
+                {
+                  term: "on top of",
+                  sentence: "The cat is on top of the box.",
+                  translation: "猫在盒子顶部（强调最上面）。",
+                },
+                {
+                  term: "upon",
+                  sentence: "The cat sat upon the box.",
+                  translation: "猫坐在盒子上（更书面）。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            'Upon is a more formal version of "on" (surface contact). It also appears in phrases like "upon arrival" to mean "when/as soon as". Compare it with on/onto/on top of.',
+          differences: [
+            {
+              term: "on",
+              description:
+                "On is neutral and common in everyday speech; upon is more formal/literary (often similar in meaning).",
+              examples: [
+                { term: "on", sentence: "The book is on the table." },
+                { term: "upon", sentence: "The book lay upon the table." },
+              ],
+            },
+            {
+              term: "onto",
+              description:
+                "Onto emphasizes movement to a surface; upon is usually a (formal) on-position or a formal time-trigger phrase.",
+              examples: [
+                { term: "onto", sentence: "He put the book onto the table." },
+                { term: "upon", sentence: "The book lay upon the table." },
+              ],
+            },
+            {
+              term: "on top of",
+              description:
+                'On top of emphasizes the very top position; upon does not emphasize "top" and mainly signals formal style.',
+              examples: [
+                { term: "on top of", sentence: "The cat is on top of the box." },
+                { term: "upon", sentence: "The cat sat upon the box." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "书面位置（≈ on）",
+          items: [
+            { phrase: "upon the table", meaning: "在桌面上（更书面）" },
+            { phrase: "upon the roof", meaning: "在屋顶上" },
+            { phrase: "upon the ground", meaning: "在地面上" },
+            { phrase: "upon the desk", meaning: "在桌面/书桌上" },
+            { phrase: "upon his shoulder", meaning: "在他的肩上" },
+            { phrase: "upon the page", meaning: "在纸页上（书面）" },
+          ],
+        },
+        {
+          title: "upon + 事件（在……时/一……就）",
+          items: [
+            { phrase: "upon arrival", meaning: "到达后/一到就" },
+            { phrase: "upon request", meaning: "应要求/按需" },
+            { phrase: "upon completion", meaning: "完成后/一完成就" },
+            { phrase: "upon entry", meaning: "进入时/入场时" },
+            { phrase: "upon hearing", meaning: "一听到……就" },
+            { phrase: "upon signing", meaning: "签署后/一签就" },
+          ],
+        },
+        {
+          title: "常见固定句式",
+          items: [
+            { phrase: "once upon a time", meaning: "从前/很久以前（故事开头）" },
+            { phrase: "upon reflection", meaning: "仔细想想/回想之后" },
+            { phrase: "upon closer inspection", meaning: "仔细一看" },
+            { phrase: "upon further review", meaning: "进一步审查后" },
+            { phrase: "upon consideration", meaning: "考虑之后" },
+            { phrase: "upon inquiry", meaning: "询问/调查后（书面）" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Formal on (surface)",
+          items: [
+            "upon the table",
+            "upon the roof",
+            "upon the ground",
+            "upon the desk",
+            "upon his shoulder",
+            "upon the page",
+          ],
+        },
+        {
+          title: "Upon + event",
+          items: [
+            "upon arrival",
+            "upon request",
+            "upon completion",
+            "upon entry",
+            "upon hearing",
+            "upon signing",
+          ],
+        },
+        {
+          title: "Set phrases",
+          items: [
+            "once upon a time",
+            "upon reflection",
+            "upon closer inspection",
+            "upon further review",
+            "upon consideration",
+            "upon inquiry",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "Upon I arrived, I called you.",
+          correct: "Upon arriving, I called you.",
+          reason:
+            "upon 后接名词/动名词：upon arrival / upon arriving；完整从句更常用 when/after。",
+        },
+        {
+          wrong: "I’ll see you upon Monday.",
+          correct: "I’ll see you on Monday.",
+          reason:
+            "星期/日期一般用 on；upon 更书面且不常用于这类时间点表达。",
+        },
+        {
+          wrong: "I put my keys upon the table. (everyday speech)",
+          correct: "I put my keys on the table.",
+          reason:
+            "口语更自然的是 on；upon 多用于书面、文学或固定表达。",
+        },
+      ],
+      en: [
+        {
+          wrong: "Upon I arrived, I called you.",
+          correct: "Upon arriving, I called you.",
+          reason:
+            'Use a noun or gerund after upon (upon + noun/-ing). Use "when/after" for a full clause.',
+        },
+        {
+          wrong: "I’ll see you upon Monday.",
+          correct: "I’ll see you on Monday.",
+          reason: "Use on with days and dates (on Monday, on July 1).",
+        },
+        {
+          wrong: "I put my keys upon the table. (everyday speech)",
+          correct: "I put my keys on the table.",
+          reason:
+            "Upon sounds formal/literary; on is usually more natural in daily speech.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Fixed phrase: Once ___ a time, there was a dragon.",
+          options: ["upon", "on", "onto"],
+          answer: "upon",
+          explanation: "once upon a time 是固定搭配（常见故事开头）。",
+        },
+        {
+          prompt: "Formal writing: The letter lay ___ the table.",
+          options: ["upon", "on", "onto"],
+          answer: "upon",
+          explanation: "书面语里 upon 可作为更正式的 on（接触表面）。",
+        },
+        {
+          prompt: "Formal notice: ___ arrival, please check in at the front desk.",
+          options: ["upon", "on", "in"],
+          answer: "upon",
+          explanation:
+            'upon + 名词 常表示“在……时/一……就”（如 upon arrival）。',
+        },
+      ],
+      en: [
+        {
+          prompt: "Fixed phrase: Once ___ a time, there was a dragon.",
+          options: ["upon", "on", "onto"],
+          answer: "upon",
+          explanation: '"Once upon a time" is a fixed story phrase.',
+        },
+        {
+          prompt: "Formal writing: The letter lay ___ the table.",
+          options: ["upon", "on", "onto"],
+          answer: "upon",
+          explanation: "Upon is a more formal alternative to on for surface contact.",
+        },
+        {
+          prompt: "Formal notice: ___ arrival, please check in at the front desk.",
+          options: ["upon", "on", "in"],
+          answer: "upon",
+          explanation: 'Upon + noun is a formal way to mean \"when/as soon as\".',
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "“upon”是什么意思？",
+          answer:
+            "upon 是 on 的较正式说法，常表示接触表面：upon the table。",
+        },
+        {
+          question: "upon 和 on 有什么区别？",
+          answer:
+            "含义常接近，但 upon 更书面/文学；日常对话一般用 on 更自然。",
+        },
+        {
+          question: "upon 可以表达时间吗？",
+          answer:
+            "可以，常见结构：upon + 名词/动名词 = “在……时/一……就”（upon arrival / upon arriving）。",
+        },
+        {
+          question: "为什么不能说 “Upon I arrived”？",
+          answer:
+            "upon 后不直接接完整从句；用 upon arriving / upon my arrival，或改用 when/after（When I arrived...）。",
+        },
+        {
+          question: "upon 和 onto 有什么区别？",
+          answer:
+            "onto 强调“移动到表面并到达”；upon 多为“在表面上（书面）/在……时（一……就）”。",
+        },
+        {
+          question: "once upon a time 是什么意思？",
+          answer: "固定故事开头：从前/很久以前。",
+        },
+        {
+          question: "什么时候不建议用 upon？",
+          answer:
+            "日常对话更自然的是 on/when；upon 可能显得过于正式，建议只在书面或固定搭配中使用。",
+        },
+        {
+          question: "如何快速记住 upon？",
+          answer:
+            "记两件事：1) formal on（接触表面）；2) upon + 名词/动名词 表示“在……时/一……就”（upon arrival）。",
+        },
+      ],
+      en: [
+        {
+          question: 'What does \"upon\" mean?',
+          answer:
+            "Upon is a more formal version of on. It often means surface contact (upon the table).",
+        },
+        {
+          question: "Upon vs on: what's the difference?",
+          answer:
+            "Meaning is often similar, but upon sounds formal/literary. In everyday conversation, on is more natural.",
+        },
+        {
+          question: "Can \"upon\" be used for time?",
+          answer:
+            'Yes. In formal phrases, upon + noun/gerund can mean \"when/as soon as\": upon arrival, upon hearing the news.',
+        },
+        {
+          question: 'Can I say \"Upon I arrived\"?',
+          answer:
+            'No. Use \"upon arriving\" / \"upon my arrival\", or use \"when/after\" with a full clause (When I arrived...).',
+        },
+        {
+          question: "Upon vs onto: what's the difference?",
+          answer:
+            "Onto shows movement to a surface. Upon is (formal) on, or a formal time-trigger phrase. Example: He put the book onto the table. / The book lay upon the table.",
+        },
+        {
+          question: "What is a common fixed phrase with \"upon\"?",
+          answer: "Once upon a time is a fixed phrase used to start stories.",
+        },
+        {
+          question: "Is \"upon\" common in modern English?",
+          answer:
+            "It is common in formal writing and set phrases, but less common in daily speech.",
+        },
+        {
+          question: "Quick tip to remember \"upon\"?",
+          answer:
+            'Think: \"formal on\" + \"upon + noun/-ing\" for immediate time (upon arrival).',
+        },
+      ],
+    },
     scene: makeScene([0, 0.75, 0]),
   },
   {

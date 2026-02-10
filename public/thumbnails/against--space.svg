@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  
+  <g stroke="#cbd5e1" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="58.17" y1="60.91" x2="99.20" y2="80.31" />
+    <line x1="58.17" y1="12.00" x2="58.17" y2="60.91" />
+    <line x1="58.17" y1="60.91" x2="17.14" y2="80.31" />
+  </g>
+  
+  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="99.20" y1="80.31" x2="104.34" y2="25.18" />
+    <line x1="104.34" y1="25.18" x2="58.17" y2="12.00" />
+    <line x1="17.14" y1="80.31" x2="58.17" y2="106.95" />
+    <line x1="12.00" y1="25.18" x2="17.14" y2="80.31" />
+    <line x1="99.20" y1="80.31" x2="58.17" y2="106.95" />
+    <line x1="58.17" y1="12.00" x2="12.00" y2="25.18" />
+  </g>
+  
+  <circle cx="92.60" cy="69.79" r="14.00" fill="#7c3aed" />
+  
+  
+  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="58.17" y1="106.95" x2="58.17" y2="44.02" />
+    <line x1="58.17" y1="44.02" x2="12.00" y2="25.18" />
+    <line x1="104.34" y1="25.18" x2="58.17" y2="44.02" />
+  </g>
+</svg>
