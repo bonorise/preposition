@@ -19,7 +19,6 @@ const TEMPORAL_IDS = new Set([
   "within",
   "throughout",
   "under",
-  "beyond",
   "ahead-of",
   "behind",
 ]);

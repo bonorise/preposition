@@ -276,6 +276,50 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> consider near / next to / beside.",
       });
     }
+  } else if (word === "beyond" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "这是空间距离：在某个点/边界的那边更远处吗？",
+        answer: "是 -> 用 beyond（beyond the river / beyond the bridge）。",
+      });
+      questions.push({
+        question: "你只是想表达“走过/经过某点”（路过）吗？",
+        answer: "是 -> 多用 past（walk past the bridge）；beyond 更像“更远那边”。",
+      });
+      questions.push({
+        question: "这是“超出界限/范围/预算/能力”这类抽象限制吗？",
+        answer: "是 -> 用 beyond（beyond our budget / beyond control）。",
+      });
+      questions.push({
+        question: "你表达的是数量“超过”（100 多人/50 美元以上）吗？",
+        answer: "是 -> 多用 over（over 100 people）；beyond 更偏界限/抽象表达。",
+      });
+      questions.push({
+        question: "你要表达“在对面/跨过街道”吗？",
+        answer: "是 -> 用 across；beyond 是“更远那边”，不等于对面。",
+      });
+    } else {
+      questions.push({
+        question: "Is it distance on the far side of a point/boundary?",
+        answer: "Yes -> use beyond (beyond the river / beyond the bridge).",
+      });
+      questions.push({
+        question: "Do you only mean passing a point (not a farther location)?",
+        answer: "Yes -> use past (walk past the bridge).",
+      });
+      questions.push({
+        question: 'Is it an abstract limit (budget/control/scope/ability)?',
+        answer: "Yes -> use beyond (beyond our budget, beyond control).",
+      });
+      questions.push({
+        question: "Is it a number meaning more than?",
+        answer: "Yes -> prefer over (over 100 people).",
+      });
+      questions.push({
+        question: "Do you mean on the other side (across a street/river)?",
+        answer: "Yes -> use across; beyond means farther than a point.",
+      });
+    }
   } else if (word === "close to" && !isDynamic) {
     if (activeLocale === "zh-CN") {
       questions.push({

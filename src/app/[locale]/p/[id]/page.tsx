@@ -181,6 +181,18 @@ const SEO_METADATA_OVERRIDES: Partial<
         "outside 表示位置：在边界/房间/建筑外（outside the house）。若强调从里到外的动作，用 out of（go out of the room）。不要和 without（缺少/没带）混淆。",
     },
   },
+  beyond: {
+    en: {
+      title: "beyond: meaning & examples (vs past, over) | Preposition Dino",
+      description:
+        'beyond means "farther than a point" or "outside a limit" (beyond the river, beyond our budget). Use past for passing a point, and over for numbers (over 100).',
+    },
+    "zh-CN": {
+      title: "beyond 介词用法：含义与例句（对比 past/over） | Preposition Dino",
+      description:
+        "beyond 表示“在更远那边/超出界限”（beyond the river, beyond our budget）。past 更像“走过某点”，over 常用于数量“超过”（over 100）。",
+    },
+  },
 };
 
 function getSeoTitle({
