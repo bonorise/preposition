@@ -118,6 +118,17 @@ function normalizePoints(points: Vec2[]) {
   };
 }
 
+function edgeGroupMarkup(
+  lines: string[],
+  opts: { stroke: string; opacity: number; width: number },
+) {
+  if (!lines.length) return "";
+  return `
+  <g stroke="${opts.stroke}" stroke-opacity="${opts.opacity}" stroke-width="${opts.width}" stroke-linecap="round" stroke-linejoin="round">
+    ${lines.join("\n    ")}
+  </g>`;
+}
+
 function ballProjectedRadius(center: Vec3, radius: number, camera: THREE.PerspectiveCamera) {
   const centerProjected = project(center, camera).point;
   const axisOffsets: Vec3[] = [
@@ -261,8 +272,8 @@ function buildSvg(scene: SceneConfig) {
       )
     : [];
 
-  const frontEdges: string[] = [];
-  const backEdges: string[] = [];
+  const frontEdges: Array<{ line: string; depth: number }> = [];
+  const backEdges: Array<{ line: string; depth: number }> = [];
   let vertexIndex = 0;
   cubes.forEach((cube) => {
     const faceVisibility = FACE_INDEXES.map((face) => {
@@ -282,25 +293,51 @@ function buildSvg(scene: SceneConfig) {
     });
 
     EDGE_INDEXES.forEach(([start, end]) => {
-      const a = normalizedVertices[vertexIndex + start];
-      const b = normalizedVertices[vertexIndex + end];
+      const startIndex = vertexIndex + start;
+      const endIndex = vertexIndex + end;
+      const a = normalizedVertices[startIndex];
+      const b = normalizedVertices[endIndex];
       const line = `<line x1="${a[0].toFixed(2)}" y1="${a[1].toFixed(
         2,
       )}" x2="${b[0].toFixed(2)}" y2="${b[1].toFixed(2)}" />`;
+      const depth =
+        (projectedVertices[startIndex].depth + projectedVertices[endIndex].depth) / 2;
       const isFront = FACE_INDEXES.some((face, index) => {
         if (!faceVisibility[index]) return false;
         return face.includes(start) && face.includes(end);
       });
       if (isFront) {
-        frontEdges.push(line);
+        frontEdges.push({ line, depth });
       } else {
-        backEdges.push(line);
+        backEdges.push({ line, depth });
       }
     });
     vertexIndex += 8;
   });
 
   const projectedBallRadius = ballRadiusProjected * scale;
+  const ballDepth = ballProjected.depth;
+  const depthEpsilon = 0.002;
+  const backEdgesBehindBall: string[] = [];
+  const backEdgesInFrontOfBall: string[] = [];
+  const frontEdgesBehindBall: string[] = [];
+  const frontEdgesInFrontOfBall: string[] = [];
+
+  backEdges.forEach((edge) => {
+    if (edge.depth < ballDepth - depthEpsilon) {
+      backEdgesInFrontOfBall.push(edge.line);
+      return;
+    }
+    backEdgesBehindBall.push(edge.line);
+  });
+
+  frontEdges.forEach((edge) => {
+    if (edge.depth < ballDepth - depthEpsilon) {
+      frontEdgesInFrontOfBall.push(edge.line);
+      return;
+    }
+    frontEdgesBehindBall.push(edge.line);
+  });
 
   let motionPathMarkup = "";
   if (normalizedMotion.length >= 2) {
@@ -322,16 +359,30 @@ function buildSvg(scene: SceneConfig) {
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${SIZE}" height="${SIZE}" viewBox="0 0 ${SIZE} ${SIZE}" fill="none">
-  <g stroke="${BACK_STROKE}" stroke-opacity="${BACK_OPACITY}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    ${backEdges.join("\n    ")}
-  </g>
-  <g stroke="${FRONT_STROKE}" stroke-opacity="${FRONT_OPACITY}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    ${frontEdges.join("\n    ")}
-  </g>
+  ${edgeGroupMarkup(backEdgesBehindBall, {
+    stroke: BACK_STROKE,
+    opacity: BACK_OPACITY,
+    width: 1.5,
+  })}
+  ${edgeGroupMarkup(frontEdgesBehindBall, {
+    stroke: FRONT_STROKE,
+    opacity: FRONT_OPACITY,
+    width: 1.6,
+  })}
   ${motionPathMarkup}
   <circle cx="${normalizedBall[0].toFixed(2)}" cy="${normalizedBall[1].toFixed(
     2,
   )}" r="${projectedBallRadius.toFixed(2)}" fill="${BALL_COLOR}" />
+  ${edgeGroupMarkup(backEdgesInFrontOfBall, {
+    stroke: BACK_STROKE,
+    opacity: BACK_OPACITY,
+    width: 1.5,
+  })}
+  ${edgeGroupMarkup(frontEdgesInFrontOfBall, {
+    stroke: FRONT_STROKE,
+    opacity: FRONT_OPACITY,
+    width: 1.6,
+  })}
 </svg>`;
 }
 

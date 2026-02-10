@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
+
 import type { Locale, PrepositionEntry } from "@/data/types";
-import { getUiText } from "@/data/i18n";
+import { getUiText, localeToPathSegment } from "@/data/i18n";
 import { useLocale } from "@/components/LocaleProvider";
 import PrepositionDecisionTree from "@/components/PrepositionDecisionTree";
 
@@ -16,10 +18,19 @@ export default function PrepositionComparison({
 }: PrepositionComparisonProps) {
   const { locale: contextLocale } = useLocale();
   const activeLocale = locale ?? contextLocale;
+  const localePath = localeToPathSegment(activeLocale);
   const ui = getUiText(activeLocale);
   const comparison =
     entry.comparison?.i18n[activeLocale] ??
     entry.comparison?.i18n["zh-CN"];
+  const toPrepositionId = (value: string) => {
+    const normalized = value
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+    return normalized.length ? normalized : null;
+  };
 
   return (
     <section className="space-y-4 pt-8">
@@ -34,14 +45,29 @@ export default function PrepositionComparison({
                 {comparison.summary}
               </p>
               <div className="grid gap-3 md:grid-cols-3">
-                {comparison.differences.map((item) => (
-                  <div
-                    key={item.term}
-                    className="rounded-[var(--radius-md)] bg-white/80 p-4"
-                  >
-                    <p className="text-sm font-semibold text-[color:var(--color-ink)]">
-                      {item.term}
-                    </p>
+                {comparison.differences.map((item) => {
+                  const trimmedTerm = item.term.trim();
+                  const termId =
+                    /^[a-z\\s-]+$/i.test(trimmedTerm) ? toPrepositionId(trimmedTerm) : null;
+                  const termHref = termId ? `/${localePath}/p/${termId}` : null;
+
+                  return (
+                    <div
+                      key={item.term}
+                      className="rounded-[var(--radius-md)] bg-white/80 p-4"
+                    >
+                      <p className="text-sm font-semibold text-[color:var(--color-ink)]">
+                        {termHref ? (
+                          <Link
+                            href={termHref}
+                            className="decoration-[color:var(--color-accent)] underline-offset-4 hover:underline"
+                          >
+                            {item.term}
+                          </Link>
+                        ) : (
+                          item.term
+                        )}
+                      </p>
                     <p className="mt-2 text-xs text-[color:var(--color-muted)]">
                       {item.description}
                     </p>
@@ -68,7 +94,8 @@ export default function PrepositionComparison({
                       </div>
                     ) : null}
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ) : (

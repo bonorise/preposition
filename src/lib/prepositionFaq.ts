@@ -76,6 +76,14 @@ const FAQ_TEXT: Record<Locale, FaqTextBundle> = {
   },
 };
 
+function ensureTerminalPunctuation(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) return trimmed;
+  if (/[.!?。！？]$/.test(trimmed)) return trimmed;
+  const punctuation = /[a-zA-Z]/.test(trimmed) ? "." : "。";
+  return `${trimmed}${punctuation}`;
+}
+
 function pickMeaning(entry: PrepositionEntry, locale: Locale) {
   return entry.i18n[locale]?.meaning ?? entry.i18n["zh-CN"]?.meaning ?? entry.word;
 }
@@ -138,7 +146,9 @@ export function getPrepositionFaqItems(
 
   faqs.push({
     question: text.meaningQ(entry.word),
-    answer: `${meaning}${tips[0] ? ` ${text.rulePrefix} ${tips[0]}` : ""}`,
+    answer: [ensureTerminalPunctuation(meaning), tips[0] ? `${text.rulePrefix} ${tips[0]}` : ""]
+      .filter(Boolean)
+      .join(" "),
   });
 
   faqs.push({
@@ -159,7 +169,11 @@ export function getPrepositionFaqItems(
     const first = mistakes[0];
     faqs.push({
       question: text.mistakesQ(entry.word),
-      answer: `${text.commonMistakePrefix} ${text.avoidPrefix}: ${first.wrong}. ${text.usePrefix}: ${first.correct}. ${text.reasonPrefix}: ${first.reason}`,
+      answer: `${text.commonMistakePrefix} ${text.avoidPrefix}: ${ensureTerminalPunctuation(
+        first.wrong,
+      )} ${text.usePrefix}: ${ensureTerminalPunctuation(
+        first.correct,
+      )} ${text.reasonPrefix}: ${ensureTerminalPunctuation(first.reason)}`,
     });
   }
 

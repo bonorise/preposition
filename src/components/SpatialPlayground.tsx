@@ -1,12 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 import type { PrepositionEntry } from "@/data/types";
-import { getUiText } from "@/data/i18n";
-import { PREPOSITIONS } from "@/data/prepositions";
+import { getUiText, localeToPathSegment } from "@/data/i18n";
+import { PREPOSITIONS, getRelatedPrepositions } from "@/data/prepositions";
 import { DEFAULT_CAMERA, DEFAULT_CUBE } from "@/lib/scenePreset";
 import { useLocale } from "@/components/LocaleProvider";
 
@@ -131,6 +132,7 @@ export default function SpatialPlayground({
 }: SpatialPlaygroundProps) {
   const { locale } = useLocale();
   const ui = getUiText(locale);
+  const localePath = localeToPathSegment(locale);
   const seededWord = seedEntry?.word.toLowerCase() ?? "";
   const seededMotion = MOTIONS.find((motion) => motion.label === seededWord) ?? null;
   const seededStatic =
@@ -145,20 +147,49 @@ export default function SpatialPlayground({
   const [mode, setMode] = useState<PlaygroundMode>(initialMode);
   const [selectedMotionLabel, setSelectedMotionLabel] =
     useState(initialMotionLabel);
-  const [selectedStaticLabel] = useState(initialStaticLabel);
+  const [selectedStaticLabel, setSelectedStaticLabel] =
+    useState(initialStaticLabel);
   const [label, setLabel] = useState(initialLabel);
   const labelRef = useRef(initialLabel);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const prepositionByWordMap = new Map(
+    PREPOSITIONS.map((entry) => [entry.word.toLowerCase(), entry] as const),
+  );
   const labelMeaningMap = new Map(
     PREPOSITIONS.map((entry) => [
       entry.word.toLowerCase(),
       entry.i18n[locale]?.meaning ?? entry.i18n["zh-CN"]?.meaning ?? entry.word,
     ]),
   );
+  const currentStaticEntry =
+    mode === "static" ? prepositionByWordMap.get(label.toLowerCase()) ?? null : null;
+  const staticRelatedEntries = currentStaticEntry
+    ? getRelatedPrepositions(currentStaticEntry.id, 5)
+    : [];
   const labelMeaning =
     labelMeaningMap.get(label.toLowerCase()) ??
     (mode === "dynamic" ? ui.playgroundMotionHint : ui.playgroundHint);
   const sceneHint = mode === "dynamic" ? ui.playgroundMotionHint : ui.playgroundHint;
+  const detailEntry =
+    mode === "static" ? prepositionByWordMap.get(label.toLowerCase()) ?? null : null;
+
+  const handleRelatedStaticClick = (word: string) => {
+    const normalizedWord = word.toLowerCase();
+    const motionMatch = MOTIONS.find((motion) => motion.label === normalizedWord);
+    if (motionMatch) {
+      setSelectedMotionLabel(motionMatch.label);
+      setMode("dynamic");
+      return;
+    }
+
+    const staticMatch = STATIC_ANCHORS.find(
+      (anchor) => anchor.label === normalizedWord,
+    );
+    if (staticMatch) {
+      setSelectedStaticLabel(staticMatch.label);
+      setMode("static");
+    }
+  };
 
   useEffect(() => {
     const container = containerRef.current;
@@ -539,9 +570,33 @@ export default function SpatialPlayground({
             <h2 className="mt-5 font-display text-4xl font-semibold tracking-tight text-[color:var(--color-ink)]">
               {label}
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-[color:var(--color-muted)]">
-              {labelMeaning}
-            </p>
+            <div className="mt-2 flex items-start gap-2">
+              <p className="flex-1 text-sm leading-relaxed text-[color:var(--color-muted)]">
+                {labelMeaning}
+              </p>
+              {mode === "static" && detailEntry ? (
+                <Link
+                  href={`/${localePath}/p/${detailEntry.id}`}
+                  className="inline-flex h-[1.4rem] shrink-0 items-center rounded-full border border-[color:var(--color-edge)] bg-white/75 px-2 text-xs text-[color:var(--color-muted)] transition hover:border-[color:var(--color-accent)]/60 hover:text-[color:var(--color-accent)]"
+                >
+                  {ui.playgroundViewDetail}
+                </Link>
+              ) : null}
+            </div>
+            {mode === "static" && staticRelatedEntries.length ? (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {staticRelatedEntries.map((entry) => (
+                  <button
+                    key={entry.id}
+                    type="button"
+                    onClick={() => handleRelatedStaticClick(entry.word)}
+                    className="rounded-full border border-[color:var(--color-edge)] bg-white/75 px-3 py-1.5 text-xs uppercase tracking-[0.14em] text-[color:var(--color-muted)] transition hover:border-[color:var(--color-accent)]/60"
+                  >
+                    {entry.word}
+                  </button>
+                ))}
+              </div>
+            ) : null}
             {mode === "dynamic" ? (
               <div className="mt-4 flex flex-wrap gap-2">
                 {MOTIONS.map((motion) => (

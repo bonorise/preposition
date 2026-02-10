@@ -57,10 +57,12 @@ export default function PrepositionCard({
                 className="h-20 w-full object-contain"
               />
             ) : (
-              <img
+              <Image
                 src={imgSrc}
                 alt={`${entry.word} spatial thumbnail`}
-                loading="lazy"
+                width={150}
+                height={120}
+                unoptimized
                 className="h-20 w-full object-contain"
               />
             )}

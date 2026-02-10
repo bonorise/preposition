@@ -7,6 +7,7 @@ import {
   PREPOSITIONS,
   getPrepositionById,
   getPrepositionIndex,
+  getRelatedPrepositions,
 } from "@/data/prepositions";
 import { getThumbnailFormat } from "@/lib/thumbnail";
 import { absoluteUrl, getOpenGraphLocale, getSiteUrl } from "@/lib/seo";
@@ -73,9 +74,7 @@ export default async function PrepositionPage({ params, searchParams }: PageProp
   const index = getPrepositionIndex(resolvedParams.id);
   const prev = index > 0 ? PREPOSITIONS[index - 1] : undefined;
   const next = index >= 0 && index < PREPOSITIONS.length - 1 ? PREPOSITIONS[index + 1] : undefined;
-  const related = entry.relatedIds
-    .map((id) => getPrepositionById(id))
-    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const related = getRelatedPrepositions(entry.id);
   const siteUrl = getSiteUrl();
   const meaning = entry.i18n[DEFAULT_LOCALE]?.meaning ?? entry.word;
   const structuredData = {

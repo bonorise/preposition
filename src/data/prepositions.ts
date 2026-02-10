@@ -4208,11 +4208,19 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     i18n: {
       "zh-CN": {
         meaning: "在……之间（两个物体）",
-        tips: ["通常是两个之间。", "多于两个通常用 among。"],
+        tips: [
+          "between 强调“两端点之间”的关系（人/物/时间范围）。",
+          "among 强调“在一群里”；但如果是清晰的端点/对应关系，三个及以上也可用 between。",
+          "固定搭配：between A and B（不是 between A to B）。",
+        ],
       },
       en: {
         meaning: "between; in the middle of two",
-        tips: ["Usually between two things.", "Use among for three or more."],
+        tips: [
+          "Between links two endpoints (people/things, or a time range with A and B).",
+          "Among means inside a group; but between can also work with 3+ when the endpoints/relationships are clear.",
+          "Pattern: between A and B (not between A to B).",
+        ],
       },
     },
     examples: [
@@ -4231,6 +4239,146 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
     ],
+    examplesByCategory: {
+      time: [
+        createLocalizedExample(
+          "Call me between 7 and 9 p.m.",
+          "请在晚上 7 点到 9 点之间给我打电话。",
+        ),
+        createLocalizedExample(
+          "I grabbed a coffee between classes.",
+          "我在两节课之间去买了杯咖啡。",
+        ),
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "between 强调“两端点之间”的关系（空间/时间范围）；和 among/from/through 对比能更快避免混用。",
+          differences: [
+            {
+              term: "among",
+              description:
+                "among 表示“在一群里/群体之中”；between 表示“端点之间/两方之间”的关系。",
+              examples: [
+                {
+                  term: "among",
+                  sentence: "He sat among his friends.",
+                  translation: "他坐在朋友们中间（在一群人里）。",
+                },
+                {
+                  term: "between",
+                  sentence: "Keep this between you and me.",
+                  translation: "这件事只在你我之间保密。",
+                },
+              ],
+            },
+            {
+              term: "from",
+              description:
+                "between 表示有两个端点的范围；from 表示起点，常和 to/until 搭配说明终点。",
+              examples: [
+                {
+                  term: "between",
+                  sentence: "I’m free between 2 and 3 p.m.",
+                  translation: "我 2 点到 3 点之间有空。",
+                },
+                {
+                  term: "from",
+                  sentence: "I’m free from 2 to 3 p.m.",
+                  translation: "我从 2 点到 3 点有空。",
+                },
+              ],
+            },
+            {
+              term: "through",
+              description:
+                "between 表示被两个端点“夹住”的区间；through 强调从开始到结束“持续不断”。",
+              examples: [
+                {
+                  term: "between",
+                  sentence: "The office is closed between 12 and 1 p.m.",
+                  translation: "办公室在 12 点到 1 点之间关闭。",
+                },
+                {
+                  term: "through",
+                  sentence: "The office stayed open through the afternoon.",
+                  translation: "办公室整个下午都保持开放。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Between links endpoints (space or time ranges). Compare it with among/from/through to avoid overlap.",
+          differences: [
+            {
+              term: "among",
+              description:
+                "Among means inside a group; between links endpoints or one-to-one relationships.",
+              examples: [
+                { term: "among", sentence: "He sat among his friends." },
+                { term: "between", sentence: "Keep this between you and me." },
+              ],
+            },
+            {
+              term: "from",
+              description:
+                "Between is a range with two endpoints; from marks the starting point (often paired with to/until).",
+              examples: [
+                { term: "between", sentence: "I’m free between 2 and 3 p.m." },
+                { term: "from", sentence: "I’m free from 2 to 3 p.m." },
+              ],
+            },
+            {
+              term: "through",
+              description:
+                "Between is a bounded interval; through emphasizes continuous coverage until an end.",
+              examples: [
+                {
+                  term: "between",
+                  sentence: "The office is closed between 12 and 1 p.m.",
+                },
+                {
+                  term: "through",
+                  sentence: "The office stayed open through the afternoon.",
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "Call me between 7 to 9 p.m.",
+          correct: "Call me between 7 and 9 p.m.",
+          reason:
+            "固定结构是 between A and B；不要用 between A to B。",
+        },
+        {
+          wrong: "Between you and I, this is hard.",
+          correct: "Between you and me, this is hard.",
+          reason:
+            "介词后用宾格：between you and me（不是 between you and I）。",
+        },
+      ],
+      en: [
+        {
+          wrong: "Call me between 7 to 9 p.m.",
+          correct: "Call me between 7 and 9 p.m.",
+          reason: 'Use "between A and B" (not "between A to B").',
+        },
+        {
+          wrong: "Between you and I, this is hard.",
+          correct: "Between you and me, this is hard.",
+          reason: "Use object pronouns after a preposition (me, him, her, us, them).",
+        },
+      ],
+    },
     scene: makeScene([0, 0, 0], {
       variant: "twoCubes",
     }),
@@ -8770,12 +8918,18 @@ function replaceLeadingWord(phrase: string, word: string, replacement: string) {
 }
 
 function buildPromptFromPhrase(phrase: string, word: string) {
+  const ensureTerminalPunctuation = (value: string) => {
+    const trimmed = value.trim();
+    if (!trimmed) return trimmed;
+    if (/[.!?。！？]$/.test(trimmed)) return trimmed;
+    return `${trimmed}.`;
+  };
   const source = `${word.toLowerCase()} `;
   if (phrase.toLowerCase().startsWith(source)) {
     const tail = phrase.slice(word.length).trim();
-    return `Choose the correct preposition: ___ ${tail}.`;
+    return ensureTerminalPunctuation(`Choose the correct preposition: ___ ${tail}`);
   }
-  return `Choose the best preposition in this context: ${phrase}.`;
+  return ensureTerminalPunctuation(`Choose the best preposition in this context: ${phrase}`);
 }
 
 function createLocalizedExample(en: string, zh: string): PrepositionExample {
@@ -9610,10 +9764,34 @@ export const PREPOSITIONS: PrepositionEntry[] = PREPOSITIONS_DETAIL_READY.map((e
   relatedIds: buildRelated(entry.id),
 }));
 
+const PREPOSITIONS_BY_ID = new Map(
+  PREPOSITIONS.map((entry) => [entry.id, entry] as const),
+);
+
 export function getPrepositionById(id: string) {
-  return PREPOSITIONS.find((entry) => entry.id === id);
+  return PREPOSITIONS_BY_ID.get(id);
 }
 
 export function getPrepositionIndex(id: string) {
   return PREPOSITIONS.findIndex((entry) => entry.id === id);
+}
+
+export function getRelatedPrepositions(entryId: string, limit = 4) {
+  const entry = getPrepositionById(entryId);
+  if (!entry) return [];
+
+  const safeLimit = Math.max(0, limit);
+  const related: PrepositionEntry[] = [];
+  const seen = new Set<string>();
+
+  for (const relatedId of entry.relatedIds) {
+    if (related.length >= safeLimit) break;
+    if (seen.has(relatedId)) continue;
+    const relatedEntry = getPrepositionById(relatedId);
+    if (!relatedEntry || relatedEntry.id === entry.id) continue;
+    seen.add(relatedEntry.id);
+    related.push(relatedEntry);
+  }
+
+  return related;
 }

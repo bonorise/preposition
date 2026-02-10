@@ -22,8 +22,8 @@ export default function PrepositionMistakes({
     [];
   const labels =
     activeLocale === "zh-CN"
-      ? { avoid: "不建议", use: "建议", reason: "原因" }
-      : { avoid: "Avoid", use: "Use", reason: "Reason" };
+      ? { avoid: "不建议：", use: "建议：", reason: "原因：" }
+      : { avoid: "Avoid:", use: "Use:", reason: "Reason:" };
 
   return (
     <section className="space-y-4 pt-8">
@@ -42,12 +42,14 @@ export default function PrepositionMistakes({
                   <span className="mr-2 rounded bg-rose-50 px-2 py-0.5 text-xs font-semibold text-rose-600">
                     {labels.avoid}
                   </span>
+                  {" "}
                   {item.wrong}
                 </p>
                 <p className="mt-2 text-sm text-[color:var(--color-ink)]">
                   <span className="mr-2 rounded bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-600">
                     {labels.use}
                   </span>
+                  {" "}
                   {item.correct}
                 </p>
                 <p className="mt-3 text-xs leading-relaxed text-[color:var(--color-muted)]">

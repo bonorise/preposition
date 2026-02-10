@@ -14,6 +14,7 @@ import {
   PREPOSITIONS,
   getPrepositionById,
   getPrepositionIndex,
+  getRelatedPrepositions,
 } from "@/data/prepositions";
 import { getThumbnailFormat } from "@/lib/thumbnail";
 import {
@@ -141,6 +142,23 @@ const PRIMARY_SEO_CATEGORY_OVERRIDE: Partial<Record<string, LearningCategory>> =
   behind: "space",
 };
 
+const SEO_METADATA_OVERRIDES: Partial<
+  Record<string, Partial<Record<Locale, Pick<Metadata, "title" | "description">>>>
+> = {
+  between: {
+    en: {
+      title: "between preposition: meaning & examples | Preposition Dino",
+      description:
+        "between links two endpoints (A and B) in space or time. Pattern: between A and B (not between A to B). Example: Call me between 7 and 9 p.m.",
+    },
+    "zh-CN": {
+      title: "between 介词用法：含义与例句 | Preposition Dino",
+      description:
+        "between 表示“两端点之间”的关系（空间/时间）。固定搭配：between A and B（不是 between A to B）。例句：Call me between 7 and 9 p.m.",
+    },
+  },
+};
+
 function getSeoTitle({
   word,
   locale,
@@ -253,6 +271,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     tip,
     example,
   });
+  const overrides = SEO_METADATA_OVERRIDES[entry.id]?.[locale];
+  const resolvedTitle = overrides?.title ?? title;
+  const resolvedDescription = overrides?.description ?? description;
   const keywords = getSeoKeywords({
     entry,
     locale,
@@ -271,16 +292,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   ];
 
   return {
-    title,
-    description,
+    title: resolvedTitle,
+    description: resolvedDescription,
     keywords,
     alternates: {
       canonical: `/${locale === "zh-CN" ? "zh" : locale}/p/${entry.id}`,
       languages,
     },
     openGraph: {
-      title,
-      description,
+      title: resolvedTitle,
+      description: resolvedDescription,
       type: "article",
       url: `/${locale === "zh-CN" ? "zh" : locale}/p/${entry.id}`,
       locale: getOpenGraphLocale(locale),
@@ -288,8 +309,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      title: resolvedTitle,
+      description: resolvedDescription,
       images: socialImage.map((image) => image.url),
     },
   };
@@ -321,9 +342,7 @@ export default async function LocalePrepositionPage({
     index >= 0 && index < PREPOSITIONS.length - 1
       ? PREPOSITIONS[index + 1]
       : undefined;
-  const related = entry.relatedIds
-    .map((id) => getPrepositionById(id))
-    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const related = getRelatedPrepositions(entry.id);
 
   const siteUrl = getSiteUrl();
   const meaning =
@@ -354,6 +373,24 @@ export default async function LocalePrepositionPage({
       },
     },
   };
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: locale === "zh-CN" ? "首页" : "Home",
+        item: absoluteUrl(`/${localePath}`),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: entry.word,
+        item: absoluteUrl(`/${localePath}/p/${entry.id}`),
+      },
+    ],
+  };
   const faqStructuredData = faqItems.length
     ? {
         "@context": "https://schema.org",
@@ -383,6 +420,10 @@ export default async function LocalePrepositionPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
       {faqStructuredData ? (
         <script

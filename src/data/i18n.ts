@@ -67,6 +67,7 @@ export const UI_TEXT: Record<
     playgroundModeStatic: string;
     playgroundModeDynamic: string;
     playgroundMotionHint: string;
+    playgroundViewDetail: string;
     detailComparisonTitle: string;
     detailComparisonPlaceholder: string;
     detailCollocationsTitle: string;
@@ -143,6 +144,7 @@ export const UI_TEXT: Record<
     playgroundModeStatic: "静态介词",
     playgroundModeDynamic: "动态介词",
     playgroundMotionHint: "切到动态介词后，沿虚线路径拖动小球，感受方向与过程。",
+    playgroundViewDetail: "查看详情",
     detailComparisonTitle: "差异解析",
     detailComparisonPlaceholder: "内容整理中，后续补充。",
     detailCollocationsTitle: "常见词组组合",
@@ -263,7 +265,8 @@ export const UI_TEXT: Record<
     playgroundModeStatic: "Static preps",
     playgroundModeDynamic: "Dynamic preps",
     playgroundMotionHint:
-      "Switch to dynamic mode and drag the ball along the dashed path to feel direction and motion.",
+      "Drag the ball along the dashed path to feel direction and motion.",
+    playgroundViewDetail: "View detail",
     detailComparisonTitle: "Key differences",
     detailComparisonPlaceholder: "Content coming soon.",
     detailCollocationsTitle: "Common collocations",

@@ -11,6 +11,7 @@ import {
   pathSegmentToLocale,
 } from "@/data/i18n";
 import { useLocale } from "@/components/LocaleProvider";
+import DinoLogo from "@/components/DinoLogo";
 
 export default function SiteHeader() {
   const { locale, setLocale } = useLocale();
@@ -37,28 +38,13 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-[color:var(--color-edge)] bg-white/70 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-5 md:flex-row md:items-center md:justify-between">
         <div className="flex items-start gap-3">
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 56 56"
-            className="h-[52px] w-[52px] shrink-0"
-            role="img"
+          <Link
+            href={`/${localeToPathSegment(locale)}`}
+            aria-label={ui.headerHome}
+            className="shrink-0"
           >
-            <ellipse cx="28" cy="34" rx="18" ry="12" fill="#f59a23" />
-            <circle cx="42" cy="26" r="8" fill="#f59a23" />
-            <circle cx="44" cy="24" r="2.6" fill="#6f35f4" />
-            <circle cx="44" cy="24" r="0.9" fill="#ffffff" />
-            <path d="M20 24 L14 14 L24 18 Z" fill="#f59a23" />
-            <path d="M28 22 L24 12 L34 16 Z" fill="#f59a23" />
-            <circle cx="18" cy="42" r="3" fill="#f59a23" />
-            <circle cx="28" cy="43" r="3" fill="#f59a23" />
-            <path
-              d="M10 34 Q6 31 6 26 Q6 20 12 20"
-              fill="none"
-              stroke="#f59a23"
-              strokeWidth="4"
-              strokeLinecap="round"
-            />
-          </svg>
+            <DinoLogo className="h-[52px] w-[52px]" />
+          </Link>
           <div className="space-y-1">
             <Link
               href={`/${localeToPathSegment(locale)}`}

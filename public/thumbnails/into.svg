@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  
   <g stroke="#cbd5e1" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
     <line x1="72.68" y1="49.41" x2="104.07" y2="64.25" />
     <line x1="72.68" y1="12.00" x2="72.68" y2="49.41" />
     <line x1="72.68" y1="49.41" x2="41.29" y2="64.25" />
   </g>
+  
   <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
     <line x1="104.07" y1="64.25" x2="108.00" y2="22.08" />
     <line x1="108.00" y1="22.08" x2="72.68" y2="12.00" />
-    <line x1="41.29" y1="64.25" x2="72.68" y2="84.64" />
-    <line x1="72.68" y1="84.64" x2="72.68" y2="36.50" />
-    <line x1="72.68" y1="36.50" x2="37.36" y2="22.08" />
     <line x1="37.36" y1="22.08" x2="41.29" y2="64.25" />
-    <line x1="104.07" y1="64.25" x2="72.68" y2="84.64" />
-    <line x1="108.00" y1="22.08" x2="72.68" y2="36.50" />
     <line x1="72.68" y1="12.00" x2="37.36" y2="22.08" />
   </g>
   
@@ -24,4 +21,13 @@
   </defs>
   <path d="M12.00 71.59 L69.30 45.93" fill="none" stroke="#9ca3af" stroke-opacity="0.8" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="4 4" marker-end="url(#motion-arrow)" />
   <circle cx="69.30" cy="45.93" r="9.62" fill="#7c3aed" />
+  
+  
+  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="41.29" y1="64.25" x2="72.68" y2="84.64" />
+    <line x1="72.68" y1="84.64" x2="72.68" y2="36.50" />
+    <line x1="72.68" y1="36.50" x2="37.36" y2="22.08" />
+    <line x1="104.07" y1="64.25" x2="72.68" y2="84.64" />
+    <line x1="108.00" y1="22.08" x2="72.68" y2="36.50" />
+  </g>
 </svg>
