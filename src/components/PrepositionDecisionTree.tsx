@@ -232,6 +232,50 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> use onto; upon is usually static contact/formal style.",
       });
     }
+  } else if (word === "outside" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "这是位置：不在某个房间/建筑/边界内部，而是在外面吗？",
+        answer: "是 -> 用 outside（outside the house / outside the room）。",
+      });
+      questions.push({
+        question: "这是动作：从里面出来/离开（从内到外）吗？",
+        answer: "是 -> 用 out of（go out of the room）；outside 主要描述位置。",
+      });
+      questions.push({
+        question: "你要表达“超出范围/不在规定内/不在时间段内”吗？",
+        answer: "是 -> 用 outside（outside the scope / outside office hours）。",
+      });
+      questions.push({
+        question: "你要表达“没带/缺少/没有”吗？",
+        answer: "是 -> 用 without（without money / without my keys）。",
+      });
+      questions.push({
+        question: "你只是想表达“在附近/旁边”，不强调边界内外吗？",
+        answer: "是 -> 用 near/next to/beside；outside 强调“边界之外”。",
+      });
+    } else {
+      questions.push({
+        question: "Is it a location (not inside a boundary/building/room)?",
+        answer: "Yes -> use outside (outside the house / outside the room).",
+      });
+      questions.push({
+        question: "Is it movement from inside to outside (leaving)?",
+        answer: "Yes -> use out of (go out of the room). Outside is mainly location.",
+      });
+      questions.push({
+        question: 'Do you mean "beyond a range" (scope/rules/hours)?',
+        answer: "Yes -> use outside (outside the scope, outside office hours).",
+      });
+      questions.push({
+        question: 'Do you mean "lacking / not having"?',
+        answer: "Yes -> use without (without money, without my keys).",
+      });
+      questions.push({
+        question: "Do you only mean near a place (not boundary-based)?",
+        answer: "Yes -> consider near / next to / beside.",
+      });
+    }
   } else if (word === "close to" && !isDynamic) {
     if (activeLocale === "zh-CN") {
       questions.push({

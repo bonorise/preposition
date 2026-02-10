@@ -169,6 +169,18 @@ const SEO_METADATA_OVERRIDES: Partial<
         "upon 是较正式的 on（接触表面）。常见结构：upon + 名词/动名词，表示“在……时/一……就”（upon arrival / upon arriving）。口语多用 on/when。",
     },
   },
+  outside: {
+    en: {
+      title: "outside vs out of: meaning & examples | Preposition Dino",
+      description:
+        "outside is a location preposition: not inside a boundary (outside the house). For leaving/movement, use out of (go out of the room). Don't confuse it with without (lacking).",
+    },
+    "zh-CN": {
+      title: "outside 介词：含义与例句（对比 out of） | Preposition Dino",
+      description:
+        "outside 表示位置：在边界/房间/建筑外（outside the house）。若强调从里到外的动作，用 out of（go out of the room）。不要和 without（缺少/没带）混淆。",
+    },
+  },
 };
 
 function getSeoTitle({
