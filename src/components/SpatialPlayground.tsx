@@ -335,6 +335,97 @@ export default function SpatialPlayground({
     ball.position.set(0, 0, 0);
     scene.add(ball);
 
+    const eyeWhiteMaterial = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      side: THREE.DoubleSide,
+      polygonOffset: true,
+      polygonOffsetFactor: -4,
+      polygonOffsetUnits: -4,
+    });
+    const eyePupilMaterial = new THREE.MeshBasicMaterial({
+      color: 0x111111,
+      side: THREE.DoubleSide,
+      polygonOffset: true,
+      polygonOffsetFactor: -6,
+      polygonOffsetUnits: -6,
+    });
+    const eyeGeometries: THREE.BufferGeometry[] = [];
+    const eyeGroup = new THREE.Group();
+    const buildCurvedDiscGeometry = (
+      radius: number,
+      segments: number,
+      normal: THREE.Vector3,
+      tangentX: THREE.Vector3,
+      tangentY: THREE.Vector3,
+      surfaceOffset: number,
+      centerOffset: THREE.Vector2,
+    ) => {
+      const geometry = new THREE.CircleGeometry(radius, segments);
+      const positions = geometry.attributes.position as THREE.BufferAttribute;
+      const point = new THREE.Vector3();
+      for (let i = 0; i < positions.count; i += 1) {
+        const x = positions.getX(i) + centerOffset.x;
+        const y = positions.getY(i) + centerOffset.y;
+        point
+          .copy(normal)
+          .multiplyScalar(ballRadius)
+          .addScaledVector(tangentX, x)
+          .addScaledVector(tangentY, y)
+          .normalize()
+          .multiplyScalar(ballRadius + surfaceOffset);
+        positions.setXYZ(i, point.x, point.y, point.z);
+      }
+      positions.needsUpdate = true;
+      geometry.computeVertexNormals();
+      geometry.computeBoundingSphere();
+      return geometry;
+    };
+    const createEye = (x: number, y: number) => {
+      const eye = new THREE.Group();
+      const z = Math.sqrt(
+        Math.max(ballRadius * ballRadius - x * x - y * y, 0.0001),
+      );
+      const normal = new THREE.Vector3(x, y, z).normalize();
+      const up = new THREE.Vector3(0, 1, 0);
+      const tangentY = up
+        .clone()
+        .sub(normal.clone().multiplyScalar(up.dot(normal)));
+      if (tangentY.lengthSq() < 0.00001) {
+        tangentY.set(0, 0, 1);
+      } else {
+        tangentY.normalize();
+      }
+      const tangentX = new THREE.Vector3()
+        .crossVectors(tangentY, normal)
+        .normalize();
+
+      const whiteGeometry = buildCurvedDiscGeometry(
+        0.082,
+        40,
+        normal,
+        tangentX,
+        tangentY,
+        0.0032,
+        new THREE.Vector2(0, 0),
+      );
+      const pupilGeometry = buildCurvedDiscGeometry(
+        0.032,
+        28,
+        normal,
+        tangentX,
+        tangentY,
+        0.0044,
+        new THREE.Vector2(0, 0.02),
+      );
+      eyeGeometries.push(whiteGeometry, pupilGeometry);
+      const white = new THREE.Mesh(whiteGeometry, eyeWhiteMaterial);
+      const pupil = new THREE.Mesh(pupilGeometry, eyePupilMaterial);
+      eye.add(white, pupil);
+      return eye;
+    };
+    eyeGroup.add(createEye(-0.07, 0.055), createEye(0.07, 0.055));
+    ball.add(eyeGroup);
+
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
     const dragPlane = new THREE.Plane();
@@ -573,6 +664,9 @@ export default function SpatialPlayground({
       renderer.dispose();
       ballGeometry.dispose();
       ballMaterial.dispose();
+      eyeGeometries.forEach((geometry) => geometry.dispose());
+      eyeWhiteMaterial.dispose();
+      eyePupilMaterial.dispose();
       cubeGeometry.dispose();
       cubeMaterial.dispose();
       edges.dispose();
