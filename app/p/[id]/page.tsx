@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 import { DEFAULT_LOCALE } from "@/data/i18n";
 
@@ -8,5 +8,5 @@ type PageProps = {
 
 export default async function LegacyPrepositionRedirect({ params }: PageProps) {
   const resolvedParams = await Promise.resolve(params);
-  redirect(`/${DEFAULT_LOCALE}/p/${resolvedParams.id}`);
+  permanentRedirect(`/${DEFAULT_LOCALE}/p/${resolvedParams.id}`);
 }
