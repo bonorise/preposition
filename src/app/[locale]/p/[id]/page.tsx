@@ -193,6 +193,18 @@ const SEO_METADATA_OVERRIDES: Partial<
         "beyond 表示“在更远那边/超出界限”（beyond the river, beyond our budget）。past 更像“走过某点”，over 常用于数量“超过”（over 100）。",
     },
   },
+  across: {
+    en: {
+      title: "across vs through: meaning & examples | Preposition Dino",
+      description:
+        'across means "from one side to the other" (across the street). through goes inside a space/passage (through the tunnel). Example: She ran across the street.',
+    },
+    "zh-CN": {
+      title: "across 介词用法：含义与例句（对比 through） | Preposition Dino",
+      description:
+        "across 表示“到对面/横穿”（across the street）；through 表示“穿过内部/通道”（through the tunnel）。例句：She ran across the street.",
+    },
+  },
 };
 
 function getSeoTitle({
