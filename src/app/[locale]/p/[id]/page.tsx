@@ -145,6 +145,18 @@ const PRIMARY_SEO_CATEGORY_OVERRIDE: Partial<Record<string, LearningCategory>> =
 const SEO_METADATA_OVERRIDES: Partial<
   Record<string, Partial<Record<Locale, Pick<Metadata, "title" | "description">>>>
 > = {
+  "in-back-of": {
+    en: {
+      title: "in back of vs behind: meaning & examples | Preposition Dino",
+      description:
+        "in back of is informal AmE for behind (physical location). For figurative/formal uses, use behind. Not the same as in the back of (= inside). Example: The garage is in back of the house.",
+    },
+    "zh-CN": {
+      title: "in back of：美式口语“在后面”（vs behind） | Preposition Dino",
+      description:
+        "in back of 表示“在……后面”（美式口语，≈ behind）。正式/书面与抽象义用 behind。不要和 in the back of（在……里面靠后）混淆。例句：The garage is in back of the house.",
+    },
+  },
   between: {
     en: {
       title: "between preposition: meaning & examples | Preposition Dino",
@@ -203,6 +215,66 @@ const SEO_METADATA_OVERRIDES: Partial<
       title: "across 介词用法：含义与例句（对比 through） | Preposition Dino",
       description:
         "across 表示“到对面/横穿”（across the street）；through 表示“穿过内部/通道”（through the tunnel）。例句：She ran across the street.",
+    },
+  },
+  through: {
+    en: {
+      title: "through vs across: meaning & examples | Preposition Dino",
+      description:
+        'through means passing inside a space/passage (through the tunnel). across crosses an area/surface (across the street). Example: The train went through the tunnel.',
+    },
+    "zh-CN": {
+      title: "through 介词用法：含义与例句（对比 across） | Preposition Dino",
+      description:
+        "through 表示“穿过内部/通道”（through the tunnel）；across 表示“跨越表面/区域到另一侧”（across the street）。例句：The train went through the tunnel.",
+    },
+  },
+  opposite: {
+    en: {
+      title: "opposite vs across from: meaning & examples | Preposition Dino",
+      description:
+        'opposite means directly facing on the other side (sit opposite me, the cafe is opposite the school). across from is very close in meaning and common in American English. Don\'t confuse opposite with in front of.',
+    },
+    "zh-CN": {
+      title: "opposite 介词用法：含义与例句（对比 across from） | Preposition Dino",
+      description:
+        "opposite 表示“在对面/正对（面对面）”：sit opposite me / The cafe is opposite the school。across from 多数情况下近似（美式更常见）。不要把 opposite 和 in front of（同侧前方）混淆。",
+    },
+  },
+  past: {
+    en: {
+      title: "past vs to (clock time): meaning & examples | Preposition Dino",
+      description:
+        'past means passing a point and going beyond it (walk past the school). In time it can mean later than a time (It\'s past 3 o\'clock) and clock reading (ten past six). Contrast: ten past six vs ten to six.',
+    },
+    "zh-CN": {
+      title: "past 介词用法：含义与例句（对比 to） | Preposition Dino",
+      description:
+        "past 的核心画面是“经过某点继续往前”：walk past the school。时间里可表示“超过某时间点”（It's past 3 o'clock）以及钟表读法（ten past six）。对比：ten past six（过六点十分）vs ten to six（差十分到六点）。",
+    },
+  },
+  "far-from": {
+    en: {
+      title: "far from vs near: meaning & examples | Preposition Dino",
+      description:
+        'far from means a long distance away (far from home, far from here). Contrast: near/close to for short distance. Also common: "far from perfect" = not at all perfect.',
+    },
+    "zh-CN": {
+      title: "far from 介词用法：含义与例句（对比 near） | Preposition Dino",
+      description:
+        "far from 表示“离……很远”：far from home / far from here。对比 near/close to 表示近。常见固定表达：far from perfect = 远非完美/一点也不完美。",
+    },
+  },
+  against: {
+    en: {
+      title: "against vs on: meaning & examples | Preposition Dino",
+      description:
+        'against means touching with pressure/support (against the wall). on is on top of a surface (on the table). Example: The ladder is against the wall.',
+    },
+    "zh-CN": {
+      title: "against 介词用法：含义与例句（对比 on） | Preposition Dino",
+      description:
+        "against 表示“贴着/靠着”（against the wall）；on 表示“在表面上方并接触”（on the table）。例句：The ladder is against the wall.",
     },
   },
 };

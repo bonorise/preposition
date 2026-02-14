@@ -5289,12 +5289,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "穿过……（从一侧到另一侧）",
-        tips: ["通常表示经过内部。", "强调进入并穿出。"],
+        meaning: "穿过……内部/通道；从一侧到另一侧",
+        tips: [
+          "核心画面：进入内部（通道/空间）并穿出另一侧。",
+          "对比 across：across 跨越表面/区域；through 强调“穿过内部”。",
+          "时间用法常见：through + 时间段 = 贯穿到结束（through the night / through the morning）。",
+        ],
       },
       en: {
-        meaning: "through; from one side to the other",
-        tips: ["Passing within or inside.", "Goes into and out of."],
+        meaning: "through; by going inside (passing within)",
+        tips: [
+          "Passing within/inside a space or passage.",
+          "Across crosses an area/surface; through goes inside (a tunnel, a door, a forest).",
+          "Time use: through + a period = continuing until it ends (through the night).",
+        ],
       },
     },
     examples: [
@@ -5313,6 +5321,361 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
     ],
+    examplesByCategory: {
+      time: [
+        createLocalizedExample(
+          "I'll be busy through the morning.",
+          "我整个上午都会很忙。",
+        ),
+        createLocalizedExample(
+          "We worked through the night.",
+          "我们干了一整夜。",
+        ),
+      ],
+      dynamic: [
+        createLocalizedExample(
+          "The train went through the tunnel.",
+          "火车穿过隧道。",
+        ),
+        createLocalizedExample(
+          "She walked through the forest.",
+          "她穿过树林。",
+        ),
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "through 的关键是“穿过内部/通道”，常见对比是 across（跨越表面/区域）和 throughout（遍及整个范围）。",
+          differences: [
+            {
+              term: "across",
+              description:
+                "across 强调跨越表面/区域到另一侧；through 强调穿过内部（通道/空间）。",
+              examples: [
+                {
+                  term: "across",
+                  sentence: "She ran across the street.",
+                  translation: "她跑过马路（到对面）。",
+                },
+                {
+                  term: "through",
+                  sentence: "The train went through the tunnel.",
+                  translation: "火车穿过隧道（内部通道）。",
+                },
+              ],
+            },
+            {
+              term: "throughout",
+              description:
+                "throughout 表示“在整个范围内到处/贯穿全程”；through 更像“穿过一条路径/通道”。",
+              examples: [
+                {
+                  term: "throughout",
+                  sentence: "It rained throughout the day.",
+                  translation: "雨下了一整天（贯穿全天）。",
+                },
+                {
+                  term: "through",
+                  sentence: "We walked through the park.",
+                  translation: "我们穿过公园（从一边到另一边）。",
+                },
+              ],
+            },
+            {
+              term: "over",
+              description:
+                "over 常用于“在一段时间里/期间”；through 更强调“持续到结束”或“艰难地完成”。",
+              examples: [
+                {
+                  term: "over",
+                  sentence: "We talked over the weekend.",
+                  translation: "我们在周末期间聊了聊。",
+                },
+                {
+                  term: "through",
+                  sentence: "We worked through the night.",
+                  translation: "我们干了一整夜（直到结束）。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Through focuses on going inside a space/passage and coming out the other side. Compare it with across and throughout to avoid confusion.",
+          differences: [
+            {
+              term: "across",
+              description:
+                "Across crosses an area/surface; through goes inside a passage or space.",
+              examples: [
+                { term: "across", sentence: "She ran across the street." },
+                { term: "through", sentence: "The train went through the tunnel." },
+              ],
+            },
+            {
+              term: "throughout",
+              description:
+                "Throughout means in all parts of a whole area/period; through is a path/passage idea.",
+              examples: [
+                { term: "throughout", sentence: "It rained throughout the day." },
+                { term: "through", sentence: "We walked through the park." },
+              ],
+            },
+            {
+              term: "over",
+              description:
+                "Over often means during a period. Through often suggests continuing until the end (or completing something).",
+              examples: [
+                { term: "over", sentence: "We talked over the weekend." },
+                { term: "through", sentence: "We worked through the night." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "空间通道",
+          items: [
+            { phrase: "through the door", meaning: "穿过门" },
+            { phrase: "through the tunnel", meaning: "穿过隧道" },
+            { phrase: "through the window", meaning: "穿过窗户" },
+            { phrase: "through the forest", meaning: "穿过树林" },
+            { phrase: "through the park", meaning: "穿过公园" },
+            { phrase: "through the crowd", meaning: "穿过人群" },
+          ],
+        },
+        {
+          title: "时间贯穿",
+          items: [
+            { phrase: "through the night", meaning: "整夜/直到天亮" },
+            { phrase: "through the morning", meaning: "整个上午" },
+            { phrase: "through the day", meaning: "一整天" },
+            { phrase: "through the weekend", meaning: "整个周末" },
+            { phrase: "through the summer", meaning: "整个夏天" },
+            { phrase: "through the year", meaning: "全年/一整年" },
+          ],
+        },
+        {
+          title: "方式/完成",
+          items: [
+            { phrase: "through a friend", meaning: "通过朋友（渠道）" },
+            { phrase: "through email", meaning: "通过邮件" },
+            { phrase: "get through the exam", meaning: "熬过/通过考试" },
+            { phrase: "work through a problem", meaning: "把问题一步步解决" },
+            { phrase: "talk through the plan", meaning: "把计划讲清/过一遍" },
+            { phrase: "go through the documents", meaning: "浏览/检查文件" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Passages / inside",
+          items: [
+            "through the door",
+            "through the tunnel",
+            "through the window",
+            "through the forest",
+            "through the park",
+            "through the crowd",
+          ],
+        },
+        {
+          title: "Time: until the end",
+          items: [
+            "through the night",
+            "through the morning",
+            "through the day",
+            "through the weekend",
+            "through the summer",
+            "through the year",
+          ],
+        },
+        {
+          title: "Means / completion",
+          items: [
+            "through a friend",
+            "through email",
+            "get through the exam",
+            "work through a problem",
+            "talk through the plan",
+            "go through the documents",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "She ran through the street.（想表达“跑到对面”）",
+          correct: "She ran across the street.",
+          reason:
+            "到对面/横穿街道优先用 across；through 更像穿过内部通道（through the tunnel）。",
+        },
+        {
+          wrong: "It rained through the day.（想表达“全天到处都在下雨”）",
+          correct: "It rained throughout the day.",
+          reason:
+            "throughout 表示“贯穿/遍及整个范围”；through 更偏路径或“持续到结束”的语感。",
+        },
+        {
+          wrong: "I got the job by a friend.",
+          correct: "I got the job through a friend.",
+          reason: "through 可表示“通过某渠道/介绍”，by 在这里不自然。",
+        },
+      ],
+      en: [
+        {
+          wrong: "She ran through the street. (meaning: to the other side)",
+          correct: "She ran across the street.",
+          reason:
+            "Across reaches the other side. Through is for going inside a passage/space.",
+        },
+        {
+          wrong: "It rained through the day. (meaning: all parts of the day)",
+          correct: "It rained throughout the day.",
+          reason: "Throughout means in all parts of the whole period.",
+        },
+        {
+          wrong: "I got the job by a friend.",
+          correct: "I got the job through a friend.",
+          reason: 'Through can mean "by means of / via a connection".',
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "选择正确的介词：The train went ___ the tunnel.",
+          options: ["through", "across", "throughout", "over"],
+          answer: "through",
+          explanation: "隧道是内部通道：go through the tunnel。",
+        },
+        {
+          prompt: "选择正确的介词：I'll be busy ___ the morning.",
+          options: ["through", "across", "between", "under"],
+          answer: "through",
+          explanation: "through + 时间段：持续到结束（整个上午）。",
+        },
+        {
+          prompt: "选择正确的介词：I got the job ___ a friend.",
+          options: ["through", "by", "over", "outside"],
+          answer: "through",
+          explanation: "through 可表示“通过某渠道/介绍”。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: The train went ___ the tunnel.",
+          options: ["through", "across", "throughout", "over"],
+          answer: "through",
+          explanation: "A tunnel is an inside passage: go through the tunnel.",
+        },
+        {
+          prompt: "Choose the correct preposition: I'll be busy ___ the morning.",
+          options: ["through", "across", "between", "under"],
+          answer: "through",
+          explanation: "Through + a period means continuing until it ends.",
+        },
+        {
+          prompt: "Choose the correct preposition: I got the job ___ a friend.",
+          options: ["through", "by", "over", "outside"],
+          answer: "through",
+          explanation: 'Through can mean "via a connection / by means of".',
+        },
+      ],
+    },
+    faq: {
+      en: [
+        {
+          question: 'What does "through" mean?',
+          answer:
+            'Through means passing within/inside a space or passage and coming out the other side. Example: The train went through the tunnel.',
+        },
+        {
+          question: 'What is the difference between "through" and "across"?',
+          answer:
+            "Across crosses an area/surface (across the street). Through goes inside a passage/space (through the tunnel, through the forest).",
+        },
+        {
+          question: 'What is the difference between "through" and "throughout"?',
+          answer:
+            "Throughout means in all parts of the whole area/period (throughout the day). Through is a path/passage idea (walk through the park).",
+        },
+        {
+          question: 'Can "through" be used for time?',
+          answer:
+            'Yes. Through + a period means continuing until it ends: through the night, through the morning.',
+        },
+        {
+          question: 'Can "through" mean "by means of / via"?',
+          answer:
+            'Yes. Example: I got the job through a friend. It means "via a connection/channel".',
+        },
+        {
+          question: 'Is "through" a preposition or an adverb?',
+          answer:
+            'Both. Preposition: through + noun (through the door). Adverb: We are through (= finished) is also common.',
+        },
+        {
+          question: 'What are common collocations with "through"?',
+          answer:
+            "through the door, through the tunnel, through the night, through a friend, get through the exam, work through a problem.",
+        },
+        {
+          question: 'How can I remember "through" quickly?',
+          answer:
+            'Picture going inside a tube and coming out: in one side, out the other side.',
+        },
+      ],
+      "zh-CN": [
+        {
+          question: "through 是什么意思？",
+          answer:
+            "through 表示“穿过内部/通道并到另一侧”。例句：The train went through the tunnel.（火车穿过隧道。）",
+        },
+        {
+          question: "through 和 across 的区别是什么？",
+          answer:
+            "across 跨越表面/区域到对面（across the street）；through 强调穿过内部通道/空间（through the tunnel / through the forest）。",
+        },
+        {
+          question: "through 和 throughout 的区别是什么？",
+          answer:
+            "throughout 表示“贯穿整个范围/到处”（throughout the day）；through 更像“穿过一条路径/通道”（walk through the park）。",
+        },
+        {
+          question: "through 可以用于时间吗？",
+          answer:
+            "可以。through + 时间段表示“持续到结束”：through the night / through the morning。",
+        },
+        {
+          question: "through 可以表示“通过/借助”吗？",
+          answer:
+            "可以。表示渠道/介绍：I got the job through a friend.（我通过朋友介绍得到这份工作。）",
+        },
+        {
+          question: "through 是介词还是副词？",
+          answer:
+            "两者都可以。介词：through + 名词（through the door）。副词：We are through（我们结束了）。",
+        },
+        {
+          question: "through 的高频搭配有哪些？",
+          answer:
+            "through the door/tunnel, through the night, through a friend, get through the exam, work through a problem。",
+        },
+        {
+          question: "如何快速记住 through？",
+          answer:
+            "想象“穿过一根管子”：从一边进去，从另一边出来，这就是 through。",
+        },
+      ],
+    },
     scene: makeScene([0, 0, 0.4], {
       animation: {
         type: "path",
@@ -5333,12 +5696,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "靠着……/贴着",
-        tips: ["强调接触并有支撑感。", "不是“远离”，而是紧贴。"],
+        meaning: "靠着/贴着（接触并有支撑）",
+        tips: [
+          "核心画面：接触表面，并有“倚靠/支撑/受力”的感觉。",
+          "对比 on：on 是在表面上；against 多是贴着侧面（墙/门/玻璃）。",
+          "也可表示“反对/对抗”：vote against / fight against（扩展用法）。",
+        ],
       },
       en: {
-        meaning: "against; touching and supported",
-        tips: ["Touching with support.", "Close contact, not away."],
+        meaning: "against; touching with pressure or support",
+        tips: [
+          "Touching a surface, often with pressure/support (lean against a wall).",
+          "On = on top of a surface; against = pressed to the side of a surface.",
+          'It can also mean "opposed to" (vote against, fight against) as an extension.',
+        ],
       },
     },
     examples: [
@@ -5358,6 +5729,339 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
       },
     ],
     scene: makeScene([0.7, 0, 0]),
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "against 的关键是“接触 + 倚靠/受力”。初学者常与 on、next to 混淆。",
+          differences: [
+            {
+              term: "on",
+              description:
+                "on 是在表面上（通常在上方并接触）；against 是贴着侧面并有支撑/压力感。",
+              examples: [
+                {
+                  term: "on",
+                  sentence: "The book is on the table.",
+                  translation: "书在桌子上（上表面）。",
+                },
+                {
+                  term: "against",
+                  sentence: "The ladder is against the wall.",
+                  translation: "梯子靠在墙上（侧面贴靠）。",
+                },
+              ],
+            },
+            {
+              term: "next to",
+              description:
+                "next to 只表示在旁边（不一定接触）；against 强调接触并贴靠。",
+              examples: [
+                {
+                  term: "next to",
+                  sentence: "The chair is next to the wall.",
+                  translation: "椅子在墙边（不一定挨着）。",
+                },
+                {
+                  term: "against",
+                  sentence: "The chair is against the wall.",
+                  translation: "椅子紧贴墙（接触）。",
+                },
+              ],
+            },
+            {
+              term: "in front of",
+              description:
+                "in front of 是相对位置（前方）；against 是贴靠接触（可在任何方向）。",
+              examples: [
+                {
+                  term: "in front of",
+                  sentence: "The chair is in front of the wall.",
+                  translation: "椅子在墙前方（不强调接触）。",
+                },
+                {
+                  term: "against",
+                  sentence: "The chair is against the wall.",
+                  translation: "椅子贴着墙（强调接触）。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Against is about contact plus pressure/support. Beginners often confuse it with on and next to.",
+          differences: [
+            {
+              term: "on",
+              description:
+                "On is on top of a surface; against is pressed to the side of a surface.",
+              examples: [
+                { term: "on", sentence: "The book is on the table." },
+                { term: "against", sentence: "The ladder is against the wall." },
+              ],
+            },
+            {
+              term: "next to",
+              description:
+                "Next to means beside (not necessarily touching). Against implies touching/pressure.",
+              examples: [
+                { term: "next to", sentence: "The chair is next to the wall." },
+                { term: "against", sentence: "The chair is against the wall." },
+              ],
+            },
+            {
+              term: "in front of",
+              description:
+                "In front of is relative position; against is contact (can be any direction).",
+              examples: [
+                { term: "in front of", sentence: "The chair is in front of the wall." },
+                { term: "against", sentence: "The chair is against the wall." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "空间贴靠",
+          items: [
+            { phrase: "against the wall", meaning: "靠墙/贴着墙" },
+            { phrase: "against the door", meaning: "靠着门" },
+            { phrase: "against the window", meaning: "贴着窗户" },
+            { phrase: "against the glass", meaning: "贴着玻璃" },
+            { phrase: "against the fence", meaning: "靠着栅栏" },
+            { phrase: "against the corner", meaning: "靠在角落/墙角" },
+          ],
+        },
+        {
+          title: "常用动词",
+          items: [
+            { phrase: "lean against", meaning: "倚靠在……上" },
+            { phrase: "press against", meaning: "压在/贴在……上" },
+            { phrase: "rest against", meaning: "靠着（休息/支撑）" },
+            { phrase: "push against", meaning: "顶/推着" },
+            { phrase: "hold against", meaning: "按住/贴住" },
+            { phrase: "bang against", meaning: "撞到/敲到" },
+          ],
+        },
+        {
+          title: "扩展：反对/对抗",
+          items: [
+            { phrase: "vote against", meaning: "投反对票" },
+            { phrase: "fight against", meaning: "对抗/反抗" },
+            { phrase: "be against the rules", meaning: "违反规则" },
+            { phrase: "against the law", meaning: "违法" },
+            { phrase: "against the odds", meaning: "逆势/困难重重" },
+            { phrase: "against my better judgment", meaning: "明知不妥仍去做" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Contact / support",
+          items: [
+            "against the wall",
+            "against the door",
+            "against the window",
+            "against the glass",
+            "against the fence",
+            "against the corner",
+          ],
+        },
+        {
+          title: "Verbs + against",
+          items: [
+            "lean against",
+            "press against",
+            "rest against",
+            "push against",
+            "hold against",
+            "bang against",
+          ],
+        },
+        {
+          title: "Opposition (extension)",
+          items: [
+            "vote against",
+            "fight against",
+            "against the rules",
+            "against the law",
+            "against the odds",
+            "against my better judgment",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The ladder is on the wall.",
+          correct: "The ladder is against the wall.",
+          reason:
+            "梯子不是“在墙上方表面”，而是贴靠墙面（侧面接触），用 against。",
+        },
+        {
+          wrong: "He stood next to the door and pushed it.（想表达“用力顶着门”）",
+          correct: "He stood against the door and pushed.",
+          reason:
+            "next to 只是旁边；表达身体贴靠/施力更适合用 against。",
+        },
+        {
+          wrong: "I am against the table.（想表达“我在桌子旁边”）",
+          correct: "I am next to the table.",
+          reason:
+            "against 表示贴着接触；只是位置在旁边且不强调接触，用 next to。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The ladder is on the wall.",
+          correct: "The ladder is against the wall.",
+          reason: "A ladder is pressed to the wall (contact/support), not on top of it.",
+        },
+        {
+          wrong: "He stood next to the door and pushed it. (meaning: pressed to it)",
+          correct: "He stood against the door and pushed.",
+          reason: "Next to is just beside; against implies contact/pressure.",
+        },
+        {
+          wrong: "I am against the table. (meaning: beside it)",
+          correct: "I am next to the table.",
+          reason: "Against implies touching; next to is the neutral beside position.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "选择正确的介词：The ladder is ___ the wall.",
+          options: ["against", "on", "next to", "in"],
+          answer: "against",
+          explanation: "靠墙贴靠并有支撑：against the wall。",
+        },
+        {
+          prompt: "选择正确的介词：He leaned ___ the door.",
+          options: ["against", "on", "in front of", "between"],
+          answer: "against",
+          explanation: "lean against 是固定搭配：倚靠在……上。",
+        },
+        {
+          prompt: "选择正确的介词：It's ___ the rules to smoke here.",
+          options: ["against", "along", "through", "inside"],
+          answer: "against",
+          explanation: "against the rules 表示“违反规则”（扩展用法）。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: The ladder is ___ the wall.",
+          options: ["against", "on", "next to", "in"],
+          answer: "against",
+          explanation: "Against shows contact/support: against the wall.",
+        },
+        {
+          prompt: "Choose the correct preposition: He leaned ___ the door.",
+          options: ["against", "on", "in front of", "between"],
+          answer: "against",
+          explanation: 'Common collocation: "lean against".',
+        },
+        {
+          prompt: "Choose the correct preposition: It's ___ the rules to smoke here.",
+          options: ["against", "along", "through", "inside"],
+          answer: "against",
+          explanation: 'Against can mean "opposed to": against the rules.',
+        },
+      ],
+    },
+    faq: {
+      en: [
+        {
+          question: 'What does "against" mean?',
+          answer:
+            'Against often means touching with pressure or support. Example: The ladder is against the wall.',
+        },
+        {
+          question: 'What is the difference between "against" and "on"?',
+          answer:
+            "On is on top of a surface (on the table). Against is pressed to the side (against the wall).",
+        },
+        {
+          question: 'What is the difference between "against" and "next to"?',
+          answer:
+            "Next to is beside (not necessarily touching). Against implies touching/pressure.",
+        },
+        {
+          question: 'When do I use "lean against"?',
+          answer:
+            'Use it when someone/something rests with support: He leaned against the door.',
+        },
+        {
+          question: 'Can "against" mean "opposed to"?',
+          answer:
+            'Yes. Example: vote against the plan / fight against the disease / against the rules.',
+        },
+        {
+          question: 'What are common collocations with "against"?',
+          answer:
+            "against the wall, lean against, press against, push against, against the rules, against the law.",
+        },
+        {
+          question: 'Is "against" used for time expressions?',
+          answer:
+            "Not usually for basic time expressions. It is mainly about contact/support or opposition.",
+        },
+        {
+          question: 'How can I remember "against" quickly?',
+          answer:
+            'Think "A is pushed to B": contact plus pressure/support (against the wall).',
+        },
+      ],
+      "zh-CN": [
+        {
+          question: "against 是什么意思？",
+          answer:
+            "against 常表示“贴着/靠着”（接触并有支撑或压力）。例句：The ladder is against the wall.（梯子靠在墙上。）",
+        },
+        {
+          question: "against 和 on 的区别是什么？",
+          answer:
+            "on 在表面上方并接触（on the table）；against 多是贴着侧面（against the wall）。",
+        },
+        {
+          question: "against 和 next to 的区别是什么？",
+          answer:
+            "next to 只是旁边（不一定接触）；against 强调接触并贴靠/受力。",
+        },
+        {
+          question: "lean against 怎么用？",
+          answer:
+            "表示“倚靠在……上”：He leaned against the door.（他靠在门上。）",
+        },
+        {
+          question: "against 还能表示“反对”吗？",
+          answer:
+            "可以。vote against（投反对票）、fight against（对抗）、against the rules（违反规则）。",
+        },
+        {
+          question: "against 的高频搭配有哪些？",
+          answer:
+            "against the wall/door, lean against, press against, push against, against the rules, against the law。",
+        },
+        {
+          question: "against 用于时间表达吗？",
+          answer:
+            "通常不用于基础时间表达，它主要描述“贴靠/对抗”。",
+        },
+        {
+          question: "如何快速记住 against？",
+          answer:
+            "想成“把 A 挤到 B 上”：接触 + 压力/支撑（against the wall）。",
+        },
+      ],
+    },
   },
   {
     id: "along",
@@ -7039,12 +7743,18 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "经过/越过……",
-        tips: ["强调从旁边经过并越过。", "常用于路线经过。"],
+        meaning: "经过/越过；（时间）几点过……",
+        tips: [
+          "空间：从某个点/地方旁边经过，并继续往前（walk past the school）。",
+          "时间：表示“超过某个时间点”（It's past 3 o'clock）或钟表读法“几点过几分”（ten past six）。",
+        ],
       },
       en: {
-        meaning: "past; beyond while passing",
-        tips: ["Move beyond a point.", "Often for passing a place."],
+        meaning: "past; beyond a point (passing it)",
+        tips: [
+          "Space: pass a point/place and continue (walk past the school).",
+          "Time: later than a time (It's past 3 o'clock) or clock-reading (ten past six).",
+        ],
       },
     },
     examples: [
@@ -7076,6 +7786,347 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         ],
       },
     }),
+    examplesByCategory: {
+      time: [
+        createLocalizedExample("It's ten past six.", "现在是六点十分。"),
+        createLocalizedExample("It's just past midnight.", "刚过午夜。"),
+        createLocalizedExample("It's past 3 o'clock.", "已经三点多了（过三点了）。"),
+      ],
+      dynamic: [
+        createLocalizedExample("Go past the bank and turn left.", "经过银行再左转。"),
+        createLocalizedExample("A car sped past us.", "一辆车从我们身边飞驰而过。"),
+      ],
+    },
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "past 的核心画面是“经过某点并继续往前”；在时间里它常表示“超过某时间点”，钟表读法里是“几点过几分”。初学者最常混的是 past vs to（钟表）以及 past vs after（时间顺序）。",
+          differences: [
+            {
+              term: "to",
+              description:
+                "钟表读法：past 表示“过了几点几分”；to 表示“差几分到几点”。",
+              examples: [
+                {
+                  term: "past",
+                  sentence: "It's ten past six.",
+                  translation: "六点十分（过六点 10 分）。",
+                },
+                {
+                  term: "to",
+                  sentence: "It's ten to six.",
+                  translation: "五点五十（差 10 分到六点）。",
+                },
+              ],
+            },
+            {
+              term: "after",
+              description:
+                "after 强调时间顺序“在……之后”（after class）；past 常用于“已经超过某时间点”（It's past midnight）或路线经过。",
+              examples: [
+                {
+                  term: "after",
+                  sentence: "I'll call you after class.",
+                  translation: "我下课后给你打电话。",
+                },
+                {
+                  term: "past",
+                  sentence: "It's past midnight.",
+                  translation: "已经过了午夜。",
+                },
+              ],
+            },
+            {
+              term: "beyond",
+              description:
+                "beyond 更像“在更远那边/超出界限”；past 更像“经过某点并继续”。",
+              examples: [
+                {
+                  term: "past",
+                  sentence: "Walk past the school and you'll see the park.",
+                  translation: "从学校旁边走过去，你会看到公园。",
+                },
+                {
+                  term: "beyond",
+                  sentence: "The park is beyond the school.",
+                  translation: "公园在学校更远的那边。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            'Past mainly means "passing a point and going beyond it". In time, it can mean "later than a time" (It\'s past 3 o\'clock) or clock-reading (ten past six). Learners often mix past vs to (clock) and past vs after (sequence).',
+          differences: [
+            {
+              term: "to",
+              description:
+                "Clock reading: past is minutes after the hour; to is minutes before the next hour.",
+              examples: [
+                { term: "past", sentence: "It's ten past six." },
+                { term: "to", sentence: "It's ten to six." },
+              ],
+            },
+            {
+              term: "after",
+              description:
+                "After is simple time order (after class). Past is common for later than a time (It's past midnight) or passing a place.",
+              examples: [
+                { term: "after", sentence: "I'll call you after class." },
+                { term: "past", sentence: "It's past midnight." },
+              ],
+            },
+            {
+              term: "beyond",
+              description:
+                "Beyond focuses on being farther than a point/limit. Past focuses on moving past a point and continuing.",
+              examples: [
+                { term: "past", sentence: "Walk past the school and you'll see the park." },
+                { term: "beyond", sentence: "The park is beyond the school." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "路线/经过（空间）",
+          items: [
+            { phrase: "walk past the school", meaning: "从学校旁边走过去" },
+            { phrase: "go past the bank", meaning: "经过银行继续走" },
+            { phrase: "drive past the station", meaning: "开车驶过车站" },
+            { phrase: "run past me", meaning: "从我身边跑过" },
+            { phrase: "past the stop", meaning: "过站/驶过站点" },
+            { phrase: "past the entrance", meaning: "经过入口往前" },
+          ],
+        },
+        {
+          title: "钟表时间（几点过几分）",
+          items: [
+            { phrase: "ten past six", meaning: "六点十分" },
+            { phrase: "half past seven", meaning: "七点半" },
+            { phrase: "a quarter past five", meaning: "五点一刻（五点十五）" },
+            { phrase: "just past midnight", meaning: "刚过午夜" },
+            { phrase: "past noon", meaning: "过了中午" },
+            { phrase: "past 3 o'clock", meaning: "三点多/过三点" },
+          ],
+        },
+        {
+          title: "超过某点/界限",
+          items: [
+            { phrase: "past the deadline", meaning: "过了截止时间" },
+            { phrase: "past the end", meaning: "超过末端/尽头" },
+            { phrase: "past the limit", meaning: "超过上限/界限" },
+            { phrase: "past the point of no return", meaning: "过了“不可回头”的点" },
+            { phrase: "past my bedtime", meaning: "过了我睡觉时间" },
+            { phrase: "past the age of 60", meaning: "超过 60 岁" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Routes and passing (space)",
+          items: [
+            "walk past the school",
+            "go past the bank",
+            "drive past the station",
+            "run past me",
+            "past the stop",
+            "past the entrance",
+          ],
+        },
+        {
+          title: "Clock time",
+          items: [
+            "ten past six",
+            "half past seven",
+            "a quarter past five",
+            "just past midnight",
+            "past noon",
+            "past 3 o'clock",
+          ],
+        },
+        {
+          title: "Beyond a point/limit",
+          items: [
+            "past the deadline",
+            "past the end",
+            "past the limit",
+            "past the point of no return",
+            "past my bedtime",
+            "past the age of 60",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "It's ten past six. (when it is 5:50)",
+          correct: "It's ten to six.",
+          reason: "钟表里：past 是“过…点”；to 是“差…分到…点”。",
+        },
+        {
+          wrong: "The bus past the stop.",
+          correct: "The bus went past the stop.",
+          reason: "past 是介词，需要和动词搭配（go/walk/drive past）。",
+        },
+        {
+          wrong: "I saw him past week.",
+          correct: "I saw him last week.",
+          reason: "表达“上周/上个月”用 last；past 不这样直接修饰 week。",
+        },
+      ],
+      en: [
+        {
+          wrong: "It's ten past six. (when it is 5:50)",
+          correct: "It's ten to six.",
+          reason: "In clock time, past = minutes after; to = minutes before the next hour.",
+        },
+        {
+          wrong: "The bus past the stop.",
+          correct: "The bus went past the stop.",
+          reason: "Past is a preposition, so it needs a verb phrase like go/walk/drive past.",
+        },
+        {
+          wrong: "I saw him past week.",
+          correct: "I saw him last week.",
+          reason: 'Use last for \"previous\" time periods (last week/month).',
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Choose the correct preposition: It's ten ___ six.",
+          options: ["past", "to", "in"],
+          answer: "past",
+          explanation: "钟表读法：ten past six = 六点十分。",
+        },
+        {
+          prompt: "Choose the correct preposition: Go ___ the bank and turn left.",
+          options: ["past", "behind", "inside"],
+          answer: "past",
+          explanation: "强调“经过某处继续往前”，用 past。",
+        },
+        {
+          prompt: "Choose the correct preposition: We're already ___ the deadline.",
+          options: ["past", "between", "under"],
+          answer: "past",
+          explanation: "past + 时间点/界限：表示“超过/过了”。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: It's ten ___ six.",
+          options: ["past", "to", "in"],
+          answer: "past",
+          explanation: "Ten past six means 6:10.",
+        },
+        {
+          prompt: "Choose the correct preposition: Go ___ the bank and turn left.",
+          options: ["past", "behind", "inside"],
+          answer: "past",
+          explanation: "Past fits the meaning: pass a point and continue.",
+        },
+        {
+          prompt: "Choose the correct preposition: We're already ___ the deadline.",
+          options: ["past", "between", "under"],
+          answer: "past",
+          explanation: "Past can mean beyond a time point or limit.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "past 的核心意思是什么？",
+          answer:
+            "核心画面是“经过某点并继续往前”：walk past the school（从学校旁边走过去）。",
+        },
+        {
+          question: "past 可以表示时间吗？",
+          answer:
+            "可以。它常表示“超过某时间点”：It's past 3 o'clock（过三点了）；也用于钟表读法：ten past six（六点十分）。",
+        },
+        {
+          question: "past 和 to（钟表）怎么区分？",
+          answer:
+            "past 是“过…点”（分钟在 1–30 分）；to 是“差…分到…点”（通常 31–59 分）。例：6:10 ten past six；5:50 ten to six。",
+        },
+        {
+          question: "past 和 after 有什么区别？",
+          answer:
+            "after 更通用，表示时间顺序“在……之后”：after class。past 更像“已经超过某时间点/界限”：It's past midnight / past the deadline。",
+        },
+        {
+          question: "past 和 beyond 有什么区别？",
+          answer:
+            "past 强调“经过并越过”；beyond 强调“在更远那边/超出界限”。walk past the school（经过学校继续走） vs beyond the school（在学校更远处）。",
+        },
+        {
+          question: "past 可以单独用吗？",
+          answer:
+            "作为介词时通常需要宾语：past the bank。作为形容词/名词时也常见：past experience, the past，但那不是介词用法。",
+        },
+        {
+          question: "学习 past 最常见错误是什么？",
+          answer:
+            "最常见是把钟表里的 past/to 搞反，或把 past 当成动词用（应说 went past / walked past）。",
+        },
+        {
+          question: "30 秒记住 past 的方法？",
+          answer:
+            "记两张图：1）路上“经过一个点继续往前”；2）钟表“过了…点几分”。看到 go/walk/drive 这种动词，优先想到 past。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of past?",
+          answer:
+            "Past means passing a point/place and going beyond it (walk past the school).",
+        },
+        {
+          question: "Can past be used for time?",
+          answer:
+            "Yes. It can mean later than a time (It's past 3 o'clock) and it is common in clock reading (ten past six).",
+        },
+        {
+          question: "Past vs to in clock time?",
+          answer:
+            "Past is minutes after the hour (usually 1–30). To is minutes before the next hour (usually 31–59).",
+        },
+        {
+          question: "Past vs after: what's the difference?",
+          answer:
+            "After is general time order (after class). Past often means beyond a time point/limit (past midnight, past the deadline).",
+        },
+        {
+          question: "Past vs beyond: what's the difference?",
+          answer:
+            "Past focuses on passing a point and continuing. Beyond focuses on being farther than a point or outside a limit.",
+        },
+        {
+          question: "Do I need an object after past?",
+          answer:
+            "As a preposition, yes: past + noun phrase (past the bank). Past can also be an adjective/noun (past experience, the past), but that is not the preposition use.",
+        },
+        {
+          question: "What are common learner mistakes with past?",
+          answer:
+            "Mixing up past vs to in clock time, and treating past like a verb (say went past / walked past).",
+        },
+        {
+          question: "A 30-second memory rule for past?",
+          answer:
+            'Picture two scenes: (1) a path passing a point and continuing, (2) a clock with minutes past the hour. If there is motion (go/walk/drive), past is often the match.',
+        },
+      ],
+    },
   },
   {
     id: "toward",
@@ -7157,12 +8208,18 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……对面/正对",
-        tips: ["强调正对面的位置。", "常与 across from 类似。"],
+        meaning: "在……对面/正对（面对面）",
+        tips: [
+          "核心画面：两者正对着，中间隔着一段空间（桌子/马路/房间）。",
+          "常和 across from 意思接近；opposite 更强调“正对/面对”。",
+        ],
       },
       en: {
-        meaning: "opposite; facing across",
-        tips: ["Facing directly across.", "Similar to across from."],
+        meaning: "opposite; facing directly across",
+        tips: [
+          "Facing each other across a space (table/street/room).",
+          "Often similar to across from, with a stronger \"face-to-face\" feeling.",
+        ],
       },
     },
     examples: [
@@ -7182,6 +8239,338 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
       },
     ],
     scene: makeScene([-1.6, 0, 0]),
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "opposite 表示“在……正对面/面对面”。它常和 across from 近似；但 opposite 更强调“正对、面对”。初学者也常把 opposite 和 in front of（同侧的前方）混淆。",
+          differences: [
+            {
+              term: "across from",
+              description:
+                "across from 与 opposite 很接近；across from 在美式口语里更常见，opposite 更像“正对/面对”。",
+              examples: [
+                {
+                  term: "opposite",
+                  sentence: "She sat opposite me.",
+                  translation: "她坐在我对面（面对面）。",
+                },
+                {
+                  term: "across from",
+                  sentence: "She sat across from me.",
+                  translation: "她坐在我对面。",
+                },
+              ],
+            },
+            {
+              term: "in front of",
+              description:
+                "in front of 是“在前面（同一侧）”；opposite 是“在对面（隔着空间）”。",
+              examples: [
+                {
+                  term: "in front of",
+                  sentence: "The car is in front of the house.",
+                  translation: "车在房子前面（同侧）。",
+                },
+                {
+                  term: "opposite",
+                  sentence: "The bus stop is opposite the house.",
+                  translation: "公交站在房子对面（隔着马路/空间）。",
+                },
+              ],
+            },
+            {
+              term: "across",
+              description:
+                "across 常表达“从一侧到另一侧”的跨越/穿越；opposite 更偏静态位置“在对面”。",
+              examples: [
+                {
+                  term: "across",
+                  sentence: "She ran across the street.",
+                  translation: "她跑过马路（到对面）。",
+                },
+                {
+                  term: "opposite",
+                  sentence: "The cafe is opposite the school.",
+                  translation: "咖啡店在学校对面。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Opposite means face-to-face across a space. It is often similar to across from, but opposite can feel more directly facing. Learners also confuse opposite with in front of (same-side front).",
+          differences: [
+            {
+              term: "across from",
+              description:
+                "Across from is very close in meaning and common in American English; opposite often feels more directly facing.",
+              examples: [
+                { term: "opposite", sentence: "She sat opposite me." },
+                { term: "across from", sentence: "She sat across from me." },
+              ],
+            },
+            {
+              term: "in front of",
+              description:
+                "In front of is on the same side, in the front position. Opposite is on the other side across a space.",
+              examples: [
+                { term: "in front of", sentence: "The car is in front of the house." },
+                { term: "opposite", sentence: "The bus stop is opposite the house." },
+              ],
+            },
+            {
+              term: "across",
+              description:
+                "Across often highlights crossing from one side to the other. Opposite is usually a static position: on the other side.",
+              examples: [
+                { term: "across", sentence: "She ran across the street." },
+                { term: "opposite", sentence: "The cafe is opposite the school." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "地点在对面",
+          items: [
+            { phrase: "opposite the school", meaning: "在学校对面" },
+            { phrase: "opposite the bank", meaning: "在银行对面" },
+            { phrase: "opposite the station", meaning: "在车站对面" },
+            { phrase: "opposite the park", meaning: "在公园对面" },
+            { phrase: "opposite the hotel", meaning: "在酒店对面" },
+            { phrase: "opposite the entrance", meaning: "在入口对面/正对入口" },
+          ],
+        },
+        {
+          title: "面对面（人/座位）",
+          items: [
+            { phrase: "sit opposite me", meaning: "坐在我对面" },
+            { phrase: "sit opposite each other", meaning: "面对面坐着" },
+            { phrase: "stand opposite each other", meaning: "彼此相对站着" },
+            { phrase: "directly opposite", meaning: "正对着/正对面" },
+            { phrase: "right opposite", meaning: "（英式口语）就在正对面" },
+            { phrase: "opposite him", meaning: "在他对面" },
+            { phrase: "opposite each other", meaning: "彼此相对/面对面" },
+          ],
+        },
+        {
+          title: "隔着房间/大厅",
+          items: [
+            { phrase: "opposite the door", meaning: "在门对面" },
+            { phrase: "opposite the window", meaning: "在窗户对面" },
+            { phrase: "opposite the fireplace", meaning: "在壁炉对面" },
+            { phrase: "opposite the counter", meaning: "在柜台对面" },
+            { phrase: "opposite the TV", meaning: "在电视对面（面对电视）" },
+            { phrase: "opposite the stage", meaning: "在舞台对面" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Places opposite",
+          items: [
+            "opposite the school",
+            "opposite the bank",
+            "opposite the station",
+            "opposite the park",
+            "opposite the hotel",
+            "opposite the entrance",
+          ],
+        },
+        {
+          title: "Face-to-face (people/seats)",
+          items: [
+            "sit opposite me",
+            "sit opposite each other",
+            "stand opposite each other",
+            "directly opposite",
+            "right opposite",
+            "opposite him",
+            "opposite each other",
+          ],
+        },
+        {
+          title: "Across a room",
+          items: [
+            "opposite the door",
+            "opposite the window",
+            "opposite the fireplace",
+            "opposite the counter",
+            "opposite the TV",
+            "opposite the stage",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The cafe is opposite to the school.",
+          correct: "The cafe is opposite the school.",
+          reason: "入门阶段把 opposite 当介词用时，通常不用 to。",
+        },
+        {
+          wrong: "The bank is in front of the school. (meaning: on the other side)",
+          correct: "The bank is opposite the school.",
+          reason: "in front of 是同侧的前方；对面要用 opposite / across from。",
+        },
+        {
+          wrong: "She walked opposite the street.",
+          correct: "She walked across the street.",
+          reason: "opposite 主要是位置关系；“横穿马路”要用 across。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The cafe is opposite to the school.",
+          correct: "The cafe is opposite the school.",
+          reason: "As a beginner pattern, use opposite + noun phrase (no to).",
+        },
+        {
+          wrong: "The bank is in front of the school. (meaning: on the other side)",
+          correct: "The bank is opposite the school.",
+          reason: "In front of is same-side front; opposite/across from is across a space.",
+        },
+        {
+          wrong: "She walked opposite the street.",
+          correct: "She walked across the street.",
+          reason: "Opposite is mostly position; across is for crossing movement.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Choose the correct preposition: She sat ___ me at the table.",
+          options: ["opposite", "next to", "inside"],
+          answer: "opposite",
+          explanation: "面对面坐着，用 opposite。",
+        },
+        {
+          prompt: "Choose the correct preposition: The pharmacy is ___ the supermarket, on the other side of the street.",
+          options: ["opposite", "behind", "under"],
+          answer: "opposite",
+          explanation: "强调“在对面”，用 opposite。",
+        },
+        {
+          prompt: "Choose the correct preposition: Their houses are ___ each other.",
+          options: ["opposite", "between", "near"],
+          answer: "opposite",
+          explanation: "固定搭配 opposite each other（彼此相对）。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: She sat ___ me at the table.",
+          options: ["opposite", "next to", "inside"],
+          answer: "opposite",
+          explanation: "Opposite shows face-to-face seating across a space.",
+        },
+        {
+          prompt: "Choose the correct preposition: The pharmacy is ___ the supermarket, on the other side of the street.",
+          options: ["opposite", "behind", "under"],
+          answer: "opposite",
+          explanation: "Opposite means on the other side, directly facing.",
+        },
+        {
+          prompt: "Choose the correct preposition: Their houses are ___ each other.",
+          options: ["opposite", "between", "near"],
+          answer: "opposite",
+          explanation: "Opposite each other is a common pattern for face-to-face positions.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "opposite 的核心意思是什么？",
+          answer:
+            "opposite 表示“在对面、正对着”，常有“面对面”的画面：sit opposite me（坐我对面）。",
+        },
+        {
+          question: "opposite 和 across from 有区别吗？",
+          answer:
+            "多数情况下意思非常接近。across from 更常见于美式口语；opposite 往往更强调“正对/面对”。",
+        },
+        {
+          question: "opposite 和 in front of 怎么区分？",
+          answer:
+            "in front of 是同一侧的前方；opposite 是隔着空间在对面（常隔着路/桌子/房间）。",
+        },
+        {
+          question: "opposite 能表达“在马路对面”吗？",
+          answer:
+            "可以表达“在对面”：opposite my house / opposite the bank。若强调隔着马路，美式更常说 across the street / across from；英式也常用 opposite + 地点（隐含在路对面）。",
+        },
+        {
+          question: "opposite 要不要加 to？",
+          answer:
+            "入门阶段建议用 opposite + 名词短语：opposite the school。opposite to 也存在，但不必优先学。",
+        },
+        {
+          question: "opposite each other 是什么意思？",
+          answer:
+            "表示“彼此相对/面对面”：They sat opposite each other.（他们面对面坐着。）",
+        },
+        {
+          question: "opposite 还能作别的词性吗？",
+          answer:
+            "可以作形容词：opposite sides（相对的两边）；作名词：the opposite of...（……的反面）。但这两种不是介词用法。",
+        },
+        {
+          question: "30 秒记住 opposite 的方法？",
+          answer:
+            "记一个画面：两个人隔着桌子面对面。只要有“正对面/面对面”，就优先想到 opposite / across from。",
+        },
+      ],
+      en: [
+        {
+          question: "What is the core meaning of opposite?",
+          answer:
+            "Opposite means on the other side, often face-to-face across a space (sit opposite me).",
+        },
+        {
+          question: "Opposite vs across from?",
+          answer:
+            "They are very close. Across from is very common in American English; opposite can feel more directly facing.",
+        },
+        {
+          question: "Opposite vs in front of?",
+          answer:
+            "In front of is on the same side, in the front position. Opposite is across a space, on the other side.",
+        },
+        {
+          question: "Can opposite describe \"across the street\"?",
+          answer:
+            "Yes. You can say opposite + place (opposite my house / opposite the bank). If you want to emphasize the street itself, across the street or across from is very common.",
+        },
+        {
+          question: "Do I need to say opposite to?",
+          answer:
+            "For a beginner pattern, use opposite + noun phrase (opposite the school). Opposite to exists, but you do not need it first.",
+        },
+        {
+          question: "What does opposite each other mean?",
+          answer:
+            "It means facing each other: They sat opposite each other.",
+        },
+        {
+          question: "Can opposite be other parts of speech?",
+          answer:
+            "Yes: opposite sides (adjective) and the opposite of... (noun phrase). Those are not the preposition use.",
+        },
+        {
+          question: "A 30-second memory rule for opposite?",
+          answer:
+            "Picture two people facing each other across a table. If it's face-to-face on the other side, think opposite/across from.",
+        },
+      ],
+    },
   },
   {
     id: "throughout",
@@ -8532,20 +9921,28 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……后面（口语）",
-        tips: ["与 behind 意义相近。", "更口语化。"],
+        meaning: "在……后面（美式口语）",
+        tips: [
+          "≈ behind（更口语、更偏美式，主要用于具体位置）。",
+          "正式/书面或抽象含义通常用 behind。",
+          "不要和 in the back of（在……里面靠后）混淆。",
+        ],
       },
       en: {
-        meaning: "in back of; behind (informal)",
-        tips: ["Similar to behind.", "More informal usage."],
+        meaning: "behind (informal AmE)",
+        tips: [
+          "An informal American way to say behind (mostly physical location).",
+          "In formal writing or figurative meanings, prefer behind.",
+          "Don't confuse it with in the back of (= inside the rear part).",
+        ],
       },
     },
     examples: [
       {
-        en: "The bike is in back of the house.",
+        en: "The garage is in back of the house.",
         i18n: {
-          "zh-CN": { translation: "自行车在房子后面。" },
-          en: { translation: "The bike is in back of the house." },
+          "zh-CN": { translation: "车库在房子后面（更口语/美式）。" },
+          en: { translation: "The garage is in back of the house." },
         },
       },
       {
@@ -8557,6 +9954,324 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
       },
     ],
     scene: makeScene([0, 0, -1.4]),
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "in back of 是较口语的美式表达，含义≈ behind（多用于具体位置）。正式/书面与抽象义通常用 behind；不要和 in the back of（在……里面靠后）混淆。",
+          differences: [
+            {
+              term: "behind",
+              description:
+                "两者多为近义：in back of 更口语/更偏美式；behind 更通用，也能用于书面与抽象义（behind schedule / the reason behind...）。",
+              examples: [
+                {
+                  term: "behind",
+                  sentence: "The garage is behind the house.",
+                  translation: "车库在房子后面。",
+                },
+                {
+                  term: "in back of",
+                  sentence: "The garage is in back of the house.",
+                  translation: "车库在房子后面（更口语/美式）。",
+                },
+              ],
+            },
+            {
+              term: "in the back of",
+              description:
+                "in back of = 在……后面（通常在外部）；in the back of = 在……里面的后部/靠后位置（在内部）。",
+              examples: [
+                {
+                  term: "in the back of",
+                  sentence: "My bag is in the back of the car.",
+                  translation: "我的包在车里后面（车内）。",
+                },
+                {
+                  term: "in back of",
+                  sentence: "The bike is in back of the car.",
+                  translation: "自行车在车后面（车外）。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "in back of is an informal American variant of behind (mostly physical location). In formal writing and figurative meanings, behind is safer. Don't confuse it with in the back of (= inside the rear part).",
+          differences: [
+            {
+              term: "behind",
+              description:
+                "Mostly the same meaning. in back of sounds more casual/AmE; behind is the neutral default and works for figurative uses.",
+              examples: [
+                { term: "behind", sentence: "The garage is behind the house." },
+                { term: "in back of", sentence: "The garage is in back of the house." },
+              ],
+            },
+            {
+              term: "in the back of",
+              description:
+                "in back of = behind (outside). in the back of = inside the rear part of something (inside).",
+              examples: [
+                { term: "in the back of", sentence: "My bag is in the back of the car." },
+                { term: "in back of", sentence: "The bike is in back of the car." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "地点/建筑",
+          items: [
+            { phrase: "in back of the house", meaning: "在房子后面（房子外部）" },
+            { phrase: "in back of the store", meaning: "在商店后面" },
+            { phrase: "in back of the school", meaning: "在学校后面" },
+            { phrase: "in back of the building", meaning: "在楼后面" },
+            { phrase: "in back of the restaurant", meaning: "在餐馆后面" },
+            { phrase: "in back of the garage", meaning: "在车库后面" },
+          ],
+        },
+        {
+          title: "日常物体",
+          items: [
+            { phrase: "in back of the car", meaning: "在车后面（车外）" },
+            { phrase: "in back of the bus", meaning: "在公交车后面（车外）" },
+            { phrase: "in back of the truck", meaning: "在卡车后面（车外）" },
+            { phrase: "in back of the box", meaning: "在盒子后面" },
+            { phrase: "in back of the tree", meaning: "在树后面" },
+            { phrase: "in back of the shed", meaning: "在小棚子后面" },
+          ],
+        },
+        {
+          title: "人/队伍位置",
+          items: [
+            { phrase: "in back of me", meaning: "在我后面" },
+            { phrase: "in back of you", meaning: "在你后面" },
+            { phrase: "in back of him", meaning: "在他后面" },
+            { phrase: "in back of her", meaning: "在她后面" },
+            { phrase: "in back of us", meaning: "在我们后面" },
+            { phrase: "in back of the line", meaning: "在队伍后面（更口语）" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Places & buildings",
+          items: [
+            "in back of the house",
+            "in back of the store",
+            "in back of the school",
+            "in back of the building",
+            "in back of the restaurant",
+            "in back of the garage",
+          ],
+        },
+        {
+          title: "Everyday objects",
+          items: [
+            "in back of the car",
+            "in back of the bus",
+            "in back of the truck",
+            "in back of the box",
+            "in back of the tree",
+            "in back of the shed",
+          ],
+        },
+        {
+          title: "People & positions",
+          items: [
+            "in back of me",
+            "in back of you",
+            "in back of him",
+            "in back of her",
+            "in back of us",
+            "in back of the line",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The garage is in back the house.",
+          correct: "The garage is in back of the house.",
+          reason: "固定搭配是 in back of + 名词，不能漏掉 of。",
+        },
+        {
+          wrong: "My bag is in back of the car. (inside)",
+          correct: "My bag is in the back of the car.",
+          reason:
+            "in back of 表示“在车后面（车外）”；in the back of 表示“在车里靠后（车内）”。",
+        },
+        {
+          wrong: "The reason is in back of the delay.",
+          correct: "The reason is behind the delay.",
+          reason:
+            "抽象含义（原因/进度落后）通常用 behind；in back of 主要用于具体位置且更口语。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The garage is in back the house.",
+          correct: "The garage is in back of the house.",
+          reason: "The fixed phrase is in back of + noun. Don't drop of.",
+        },
+        {
+          wrong: "My bag is in back of the car. (inside)",
+          correct: "My bag is in the back of the car.",
+          reason:
+            "in back of means behind the car (outside). in the back of means inside the rear part.",
+        },
+        {
+          wrong: "The reason is in back of the delay.",
+          correct: "The reason is behind the delay.",
+          reason:
+            "For figurative meanings (reason/progress), behind is natural. in back of is mainly physical and informal.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt:
+            "选择更口语的美式说法：The garage is ___ the house.",
+          options: ["in back of", "behind", "in the back of"],
+          answer: "in back of",
+          explanation:
+            "表示具体“在……后面”时，in back of 与 behind 多数都能用；in back of 更口语、更偏美式。in the back of 表示“在……里面靠后”。",
+        },
+        {
+          prompt:
+            "选择更合适的短语：My backpack is ___ the car.（在车里靠后）",
+          options: ["in the back of", "in back of", "behind"],
+          answer: "in the back of",
+          explanation:
+            "in the back of 表示在内部的后部位置（车内/房间内）；in back of/behind 表示在外部的后方。",
+        },
+        {
+          prompt: "选择更自然的表达：We're ___ schedule.",
+          options: ["behind", "in back of", "in the back of"],
+          answer: "behind",
+          explanation:
+            "进度落后、原因等抽象表达用 behind（behind schedule / behind in math）。in back of 主要用于具体位置。",
+        },
+      ],
+      en: [
+        {
+          prompt:
+            "Choose the more casual American option: The garage is ___ the house.",
+          options: ["in back of", "behind", "in the back of"],
+          answer: "in back of",
+          explanation:
+            "For physical location, in back of and behind both work; in back of is the more informal American choice. in the back of means inside the rear part.",
+        },
+        {
+          prompt:
+            "Choose the best phrase: My backpack is ___ the car (inside, near the trunk).",
+          options: ["in the back of", "in back of", "behind"],
+          answer: "in the back of",
+          explanation:
+            "in the back of means inside the rear part. in back of/behind means behind the car (outside).",
+        },
+        {
+          prompt: "Choose the natural option: We're ___ schedule.",
+          options: ["behind", "in back of", "in the back of"],
+          answer: "behind",
+          explanation:
+            'Figurative uses like "late" or "the reason" use behind. in back of is mainly physical and informal.',
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "“in back of”是什么意思？",
+          answer:
+            "表示“在……后面”（多用于具体位置），属于较口语、偏美式的说法，含义≈ behind。",
+        },
+        {
+          question: "什么时候该用“in back of”？",
+          answer:
+            "日常口语里描述具体位置“在后面”时可用：The garage is in back of the house.（更口语/美式）。",
+        },
+        {
+          question: "“in back of”和“behind”有什么区别？",
+          answer:
+            "大多数空间场景近义。in back of 更口语/更偏美式；behind 更通用、也更适合书面，并且可用于抽象义（behind schedule / the reason behind...）。",
+        },
+        {
+          question: "“in back of”和“in the back of”有什么区别？",
+          answer:
+            "in back of（≈ behind）通常表示在外部的后方；in the back of 表示在内部的后部（车里/房间里靠后）。例：My bag is in the back of the car.（车内） vs The bike is in back of the car.（车外）。",
+        },
+        {
+          question: "“in back of”可以用于时间表达吗？",
+          answer:
+            "通常不用于时间核心表达。进度/时间语境更常用 behind（behind schedule）。",
+        },
+        {
+          question: "使用“in back of”最常见的错误是什么？",
+          answer:
+            "两类最常见：1）漏掉 of（in back the house ✗）；2）把 in back of（车外后方）和 in the back of（车内靠后）混淆。",
+        },
+        {
+          question: "“in back of”有哪些高频搭配？",
+          answer:
+            "高频搭配示例：in back of the house, in back of the store, in back of the school, in back of the building, in back of the car, in back of the line。",
+        },
+        {
+          question: "如何快速记住“in back of”的用法？",
+          answer:
+            "记成一句话：in back of = behind（更口语/美式，偏具体位置）。再补一个对比：in the back of = 在里面靠后。",
+        },
+      ],
+      en: [
+        {
+          question: "What does \"in back of\" mean?",
+          answer:
+            "It means behind (informal, mostly American English), usually for physical location.",
+        },
+        {
+          question: "When should I use \"in back of\"?",
+          answer:
+            "Use it in casual spoken American English to describe physical position behind something: The garage is in back of the house.",
+        },
+        {
+          question: "What is the difference between \"in back of\" and \"behind\"?",
+          answer:
+            "In most spatial situations they mean the same. in back of is more casual/AmE; behind is the neutral default and is also used in formal writing and figurative meanings (behind schedule, the reason behind...).",
+        },
+        {
+          question: "What is the difference between \"in back of\" and \"in the back of\"?",
+          answer:
+            "in back of (≈ behind) usually means behind something outside. in the back of means inside the rear part. Example: My bag is in the back of the car (inside) vs The bike is in back of the car (outside).",
+        },
+        {
+          question: "Can \"in back of\" be used for time expressions?",
+          answer:
+            "Mostly no. For progress/time language, behind is much more common (behind schedule).",
+        },
+        {
+          question: "What is a common mistake when using \"in back of\"?",
+          answer:
+            "Two common mistakes: dropping of (in back the house ✗) and confusing in back of (outside) with in the back of (inside).",
+        },
+        {
+          question: "What are common collocations with \"in back of\"?",
+          answer:
+            "High-frequency examples: in back of the house, in back of the store, in back of the school, in back of the building, in back of the car, in back of the line.",
+        },
+        {
+          question: "How can I remember \"in back of\" quickly?",
+          answer:
+            "Memorize one pair: in back of = behind (casual AmE, mostly physical). Then add the contrast: in the back of = inside the rear part.",
+        },
+      ],
+    },
   },
   {
     id: "ahead-of",
@@ -8983,12 +10698,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "远离……",
-        tips: ["强调距离很远。", "与 close to 相对。"],
+        meaning: "离……很远/远离……",
+        tips: [
+          "核心：距离很远（far from the city / far from here）。",
+          "对比：near/close to 表示近；far from 表示远。",
+          "常见固定表达：far from perfect = 远非完美/一点也不完美（不是空间义）。",
+        ],
       },
       en: {
         meaning: "far from; distant from",
-        tips: ["Very far in distance.", "Opposite of close to."],
+        tips: [
+          "A long distance away (far from the city, far from here).",
+          "Opposite of near / close to.",
+          'Common fixed phrase: "far from perfect" = not at all perfect (not spatial).',
+        ],
       },
     },
     examples: [
@@ -9007,7 +10730,342 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
     ],
+    examplesByCategory: {
+      space: [
+        createLocalizedExample("The hotel is far from the beach.", "这家酒店离海滩很远。"),
+        createLocalizedExample("Our office is far from the station.", "我们办公室离车站很远。"),
+      ],
+    },
     scene: makeScene([2.2, 0, 0]),
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "far from 表示“距离很远”。它最常与 near/close to（近）对比；如果你更想表达“离开一点、别靠太近”的动作/方向感，常用 away from。",
+          differences: [
+            {
+              term: "near",
+              description: "near 表示“在附近/离得不远”；far from 表示“离得很远”。",
+              examples: [
+                {
+                  term: "near",
+                  sentence: "The hotel is near the beach.",
+                  translation: "酒店离海滩不远。",
+                },
+                {
+                  term: "far from",
+                  sentence: "The hotel is far from the beach.",
+                  translation: "酒店离海滩很远。",
+                },
+              ],
+            },
+            {
+              term: "close to",
+              description:
+                "close to 常比 near 更强调“非常近”；far from 强调“非常远”。",
+              examples: [
+                {
+                  term: "close to",
+                  sentence: "We live close to the subway entrance.",
+                  translation: "我们住得离地铁口很近。",
+                },
+                {
+                  term: "far from",
+                  sentence: "We live far from the subway.",
+                  translation: "我们住得离地铁很远。",
+                },
+              ],
+            },
+            {
+              term: "away from",
+              description:
+                "away from 常带“离开、别靠近”的动作/方向感；far from 更像静态描述距离。",
+              examples: [
+                {
+                  term: "away from",
+                  sentence: "Please stand away from the edge.",
+                  translation: "请离边缘远一点（别靠太近）。",
+                },
+                {
+                  term: "far from",
+                  sentence: "The edge is far from here.",
+                  translation: "边缘离这里很远。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Far from means a long distance away. It contrasts most often with near/close to. If you want a movement/direction idea (keep your distance), away from is common.",
+          differences: [
+            {
+              term: "near",
+              description:
+                "Near means close in distance; far from means a long distance away.",
+              examples: [
+                { term: "near", sentence: "The hotel is near the beach." },
+                { term: "far from", sentence: "The hotel is far from the beach." },
+              ],
+            },
+            {
+              term: "close to",
+              description:
+                "Close to often emphasizes very short distance; far from emphasizes very long distance.",
+              examples: [
+                { term: "close to", sentence: "We live close to the subway entrance." },
+                { term: "far from", sentence: "We live far from the subway." },
+              ],
+            },
+            {
+              term: "away from",
+              description:
+                "Away from often carries a 'keep your distance / move away' feeling; far from is more of a static distance description.",
+              examples: [
+                { term: "away from", sentence: "Please stand away from the edge." },
+                { term: "far from", sentence: "The edge is far from here." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "地点距离（空间）",
+          items: [
+            { phrase: "far from the city", meaning: "离城市很远" },
+            { phrase: "far from here", meaning: "离这里很远" },
+            { phrase: "far from home", meaning: "离家很远" },
+            { phrase: "far from the station", meaning: "离车站很远" },
+            { phrase: "far from the city center", meaning: "离市中心很远" },
+            { phrase: "far from the beach", meaning: "离海滩很远" },
+          ],
+        },
+        {
+          title: "句型搭配",
+          items: [
+            { phrase: "be far from", meaning: "离……很远" },
+            { phrase: "live far from", meaning: "住得离……很远" },
+            { phrase: "work far from", meaning: "上班地点离……很远" },
+            { phrase: "far from any shops", meaning: "离任何商店都很远" },
+            { phrase: "far from everything", meaning: "离一切都很远（偏夸张）" },
+            { phrase: "not far from", meaning: "离……不远" },
+          ],
+        },
+        {
+          title: "固定表达（非空间义为主）",
+          items: [
+            { phrase: "far from perfect", meaning: "远非完美/一点也不完美" },
+            { phrase: "far from ideal", meaning: "远非理想" },
+            { phrase: "far from easy", meaning: "一点也不容易" },
+            { phrase: "far from the truth", meaning: "与事实相去甚远" },
+            { phrase: "far from certain", meaning: "远不确定" },
+            { phrase: "far from finished", meaning: "远没结束" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Places and distance",
+          items: [
+            "far from the city",
+            "far from here",
+            "far from home",
+            "far from the station",
+            "far from the city center",
+            "far from the beach",
+          ],
+        },
+        {
+          title: "Patterns",
+          items: [
+            "be far from",
+            "live far from",
+            "work far from",
+            "far from any shops",
+            "far from everything",
+            "not far from",
+          ],
+        },
+        {
+          title: "Fixed phrases (not mainly spatial)",
+          items: [
+            "far from perfect",
+            "far from ideal",
+            "far from easy",
+            "far from the truth",
+            "far from certain",
+            "far from finished",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The cafe is far from the street. (meaning: on the other side)",
+          correct: "The cafe is across the street / across from the school.",
+          reason: "far from 是“距离很远”；“在对面”不等于“很远”。",
+        },
+        {
+          wrong: "He is far the station from here.",
+          correct: "The station is far from here.",
+          reason: "常用结构是 far from + 地点；或 The station is far from here。",
+        },
+        {
+          wrong: "Stand far from the edge! (as a safety instruction)",
+          correct: "Stand away from the edge.",
+          reason: "安全提示更常用 away from（离开/别靠近的动作感）。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The cafe is far from the street. (meaning: on the other side)",
+          correct: "The cafe is across the street / across from the school.",
+          reason: "Far from is about distance. Opposite/across is about the other side.",
+        },
+        {
+          wrong: "He is far the station from here.",
+          correct: "The station is far from here.",
+          reason: "Use the common pattern: far from + place (The station is far from here).",
+        },
+        {
+          wrong: "Stand far from the edge! (as a safety instruction)",
+          correct: "Stand away from the edge.",
+          reason: "Away from is more natural for instructions about keeping distance.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "Choose the correct preposition: The hotel is ___ the beach.",
+          options: ["far from", "near", "on"],
+          answer: "far from",
+          explanation: "表示距离很远，用 far from。",
+        },
+        {
+          prompt: "Choose the correct preposition: Please stand ___ the edge.",
+          options: ["away from", "far from", "between"],
+          answer: "away from",
+          explanation: "安全提示更常用 away from，表示“离开/别靠近”。",
+        },
+        {
+          prompt: "Choose the correct preposition: His answer is ___ the truth.",
+          options: ["far from", "near", "across"],
+          answer: "far from",
+          explanation: "固定表达 far from the truth，表示“与事实相去甚远”。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the correct preposition: The hotel is ___ the beach.",
+          options: ["far from", "near", "on"],
+          answer: "far from",
+          explanation: "Far from means a long distance away.",
+        },
+        {
+          prompt: "Choose the correct preposition: Please stand ___ the edge.",
+          options: ["away from", "far from", "between"],
+          answer: "away from",
+          explanation: "Away from is more natural for keep-distance instructions.",
+        },
+        {
+          prompt: "Choose the correct preposition: His answer is ___ the truth.",
+          options: ["far from", "near", "across"],
+          answer: "far from",
+          explanation: 'Far from the truth means \"not true at all\".',
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "far from 的核心意思是什么？",
+          answer:
+            "far from 表示“离……很远/远离……”：The village is far from the city（村子离城市很远）。",
+        },
+        {
+          question: "什么时候用 far from？",
+          answer:
+            "当你只想描述“距离很远”时用 far from：far from here / far from home / far from the station。",
+        },
+        {
+          question: "far from 和 near 的区别是什么？",
+          answer:
+            "near 表示“近”；far from 表示“远”。可用同一句做最小对比：The hotel is near the beach vs far from the beach。",
+        },
+        {
+          question: "far from 和 close to 的区别是什么？",
+          answer:
+            "close to 往往更强调“非常近”；far from 强调“非常远”。",
+        },
+        {
+          question: "far from 和 away from 有什么区别？",
+          answer:
+            "away from 更常带“离开/别靠近”的动作感（Stand away from the edge）；far from 更像静态描述距离（The edge is far from here）。",
+        },
+        {
+          question: "far from perfect 是什么意思？",
+          answer:
+            "far from perfect 是固定表达，意思是“远非完美/一点也不完美”，不强调空间距离：The plan is far from perfect。",
+        },
+        {
+          question: "far away 和 far from 怎么用？",
+          answer:
+            "far away 常当副词/形容词用：It's far away. far from 更常接宾语：far from home / far from the city。",
+        },
+        {
+          question: "30 秒记住 far from 的方法？",
+          answer:
+            "记一个对照：near/close to = 近；far from = 远。再加一个固定搭配 far from perfect（远非）。",
+        },
+      ],
+      en: [
+        {
+          question: "What does \"far from\" mean?",
+          answer:
+            "Far from means a long distance away: The village is far from the city.",
+        },
+        {
+          question: "When should I use \"far from\"?",
+          answer:
+            "Use far from when you simply describe long distance: far from here, far from home, far from the station.",
+        },
+        {
+          question: "Far from vs near: what's the difference?",
+          answer:
+            "Near means close; far from means a long distance away. Compare: The hotel is near the beach vs far from the beach.",
+        },
+        {
+          question: "Far from vs close to: what's the difference?",
+          answer:
+            "Close to often emphasizes very short distance; far from emphasizes very long distance.",
+        },
+        {
+          question: "Far from vs away from: what's the difference?",
+          answer:
+            "Away from often sounds more natural for instructions (Stand away from the edge). Far from is more like a static distance description (The edge is far from here).",
+        },
+        {
+          question: "What does \"far from perfect\" mean?",
+          answer:
+            "It is a fixed phrase meaning not at all perfect: The plan is far from perfect.",
+        },
+        {
+          question: "Far away vs far from?",
+          answer:
+            "Far away can stand alone (It's far away). Far from commonly takes an object (far from home).",
+        },
+        {
+          question: "A 30-second memory rule for \"far from\"?",
+          answer:
+            "Think in pairs: near/close to = close; far from = far. Then remember far from perfect = not perfect at all.",
+        },
+      ],
+    },
   },
 ];
 

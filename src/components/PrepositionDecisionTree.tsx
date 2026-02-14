@@ -56,7 +56,51 @@ export default function PrepositionDecisionTree({
 
   const questions: Array<{ question: string; answer: string }> = [];
 
-  if (isLowerGroup && !isDynamic) {
+  if (word === "in back of" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "你表达的是具体位置：在参照物后方（外部）吗？",
+        answer: "是 -> 口语里可用 in back of（≈ behind）。",
+      });
+      questions.push({
+        question: "你在写正式/书面内容，或者想用最稳妥的通用表达吗？",
+        answer: "是 -> 用 behind（更通用、更中性）。",
+      });
+      questions.push({
+        question: "你要表达的是“在……里面的后部/靠后位置”（车里/房间里）吗？",
+        answer: "是 -> 用 in the back of（在内部后部）。",
+      });
+      questions.push({
+        question: "这是抽象含义：落后进度/原因在于……吗？",
+        answer: "是 -> 用 behind（behind schedule / the reason behind...）。",
+      });
+      questions.push({
+        question: "你是不是漏写了 of？",
+        answer: "是 -> 记住固定搭配：in back of + 名词。",
+      });
+    } else {
+      questions.push({
+        question: "Is it a physical location behind something (outside)?",
+        answer: "Yes -> in back of works in casual AmE (≈ behind).",
+      });
+      questions.push({
+        question: "Is it formal writing, or do you want the safest neutral choice?",
+        answer: "Yes -> use behind.",
+      });
+      questions.push({
+        question: "Do you mean inside the rear part (in a car/room/bus)?",
+        answer: "Yes -> use in the back of.",
+      });
+      questions.push({
+        question: "Is it figurative (progress/reason) rather than physical location?",
+        answer: "Yes -> use behind (behind schedule, the reason behind...).",
+      });
+      questions.push({
+        question: "Did you forget of?",
+        answer: "Yes -> the fixed phrase is in back of + noun.",
+      });
+    }
+  } else if (isLowerGroup && !isDynamic) {
     if (word === "under" && activeLocale === "zh-CN") {
       questions.push({
         question: "这是“在某物正下方”，且有覆盖/压在上方的画面吗？",
@@ -320,6 +364,50 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> use across; beyond means farther than a point.",
       });
     }
+  } else if (word === "against" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "这是“贴着/靠着”某个表面，并有支撑/受力的感觉吗？",
+        answer: "是 -> 用 against（The ladder is against the wall.）。",
+      });
+      questions.push({
+        question: "你只是表达“在表面上方并接触”（在桌面/地面上）吗？",
+        answer: "是 -> 用 on（on the table / on the floor）。",
+      });
+      questions.push({
+        question: "你只是想说“在旁边/附近”，不一定接触吗？",
+        answer: "是 -> 用 next to/near；against 强调接触。",
+      });
+      questions.push({
+        question: "句子在表达“反对/对抗”吗？",
+        answer: "是 -> 仍用 against（vote against / fight against / against the rules）。",
+      });
+      questions.push({
+        question: "你要表达的是“撞到/碰到”某物吗？",
+        answer: "是 -> 也常用 against（He bumped his head against the door.）。",
+      });
+    } else {
+      questions.push({
+        question: "Is it touching with pressure/support (pressed to a surface)?",
+        answer: "Yes -> use against (The ladder is against the wall.).",
+      });
+      questions.push({
+        question: "Is it on top of a surface with contact?",
+        answer: "Yes -> use on (on the table / on the floor).",
+      });
+      questions.push({
+        question: "Do you only mean beside/near (not necessarily touching)?",
+        answer: "Yes -> use next to/near. Against implies contact.",
+      });
+      questions.push({
+        question: "Does it mean opposed to / in opposition to?",
+        answer: "Yes -> use against (vote against, fight against, against the rules).",
+      });
+      questions.push({
+        question: "Is it a collision/impact idea?",
+        answer: "Yes -> against is common (bump into/against).",
+      });
+    }
   } else if (word === "close to" && !isDynamic) {
     if (activeLocale === "zh-CN") {
       questions.push({
@@ -354,6 +442,42 @@ export default function PrepositionDecisionTree({
       questions.push({
         question: "Is it an approximation for a number or time?",
         answer: "Yes -> close to can mean almost (close to 100, close to midnight).",
+      });
+    }
+  } else if (word === "far from" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "你要表达的是“距离很远/远离……”的纯距离关系吗？",
+        answer: "是 -> 用 far from（far from home / far from here）。",
+      });
+      questions.push({
+        question: "你只是想说“在附近/离得不远”，而不是“很远”吗？",
+        answer: "是 -> 用 near；想更强调“很近”，用 close to。",
+      });
+      questions.push({
+        question: "你是在做安全提示或让人“离开一点、别靠太近”的动作/方向感吗？",
+        answer: "是 -> 常用 away from（Stand away from the edge）。",
+      });
+      questions.push({
+        question: "你其实想表达“在对面/另一边”，而不是“很远”吗？",
+        answer: "是 -> 用 opposite/across from（对面不等于很远）。",
+      });
+    } else {
+      questions.push({
+        question: "Do you mean a long distance away (pure distance)?",
+        answer: "Yes -> use far from (far from home, far from here).",
+      });
+      questions.push({
+        question: "Do you only mean close by, not very far?",
+        answer: "Yes -> use near; for stronger closeness, use close to.",
+      });
+      questions.push({
+        question: "Is it an instruction to keep distance / move away a bit?",
+        answer: "Yes -> away from is often more natural (Stand away from the edge).",
+      });
+      questions.push({
+        question: "Do you actually mean on the other side (opposite), not far?",
+        answer: "Yes -> use opposite/across from (opposite is not the same as far).",
       });
     }
   } else if (word === "behind" && !isDynamic) {
@@ -392,6 +516,42 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> use under/below; behind is front-back direction.",
       });
     }
+  } else if (word === "opposite" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "你要表达的是“在对面/正对面”（隔着桌子/路/房间的那一边）吗？",
+        answer: "是 -> 用 opposite（或 across from）。",
+      });
+      questions.push({
+        question: "你强调的是“面对面”（座位/人正对着）吗？",
+        answer: "是 -> opposite 很贴切：She sat opposite me.",
+      });
+      questions.push({
+        question: "你其实想说的是“在前面（同一侧）”，不是“在对面”吗？",
+        answer: "是 -> 用 in front of，而不是 opposite。",
+      });
+      questions.push({
+        question: "句子在表达“横穿过去到另一边”（有走/跑/过马路的动作）吗？",
+        answer: "是 -> 更可能用 across；opposite 更偏静态位置。",
+      });
+    } else {
+      questions.push({
+        question: "Do you mean on the other side (across a space), facing directly?",
+        answer: "Yes -> use opposite (or across from).",
+      });
+      questions.push({
+        question: "Is it face-to-face seating/position across a table or room?",
+        answer: "Yes -> opposite fits well (She sat opposite me).",
+      });
+      questions.push({
+        question: "Do you actually mean same-side front position (not across)?",
+        answer: "Yes -> use in front of, not opposite.",
+      });
+      questions.push({
+        question: "Is it about crossing to the other side (movement)?",
+        answer: "Yes -> across is usually the better choice; opposite is mostly static position.",
+      });
+    }
   } else if (word === "after" && !isDynamic) {
     if (activeLocale === "zh-CN") {
       questions.push({
@@ -427,6 +587,50 @@ export default function PrepositionDecisionTree({
       questions.push({
         question: "Is it a continuing state from a starting point up to now?",
         answer: "Yes -> use since (since 2020 / since Monday), not after.",
+      });
+    }
+  } else if (word === "past") {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "这是钟表读法：几点过几分/差几分到几点吗？",
+        answer: "过…点（1–30 分）-> past；差…分到…点（31–59 分）-> to。",
+      });
+      questions.push({
+        question: "你要表达的是“已经超过某时间点/界限”（过三点/过截止）吗？",
+        answer: "是 -> 用 past：It's past 3 o'clock / past the deadline。",
+      });
+      questions.push({
+        question: "句子里有路线/运动：经过某地继续往前吗？",
+        answer: "是 -> 用 past：go/walk/drive past the bank。",
+      });
+      questions.push({
+        question: "你只是表达时间顺序“在……之后”（某事发生后）吗？",
+        answer: "是 -> 用 after；past 更像“超过某点”。",
+      });
+      questions.push({
+        question: "你想表达“更远那边/超出范围”，但不强调经过吗？",
+        answer: "是 -> 更可能用 beyond。",
+      });
+    } else {
+      questions.push({
+        question: "Is it clock reading (minutes after/before an hour)?",
+        answer: "After the hour (1–30) -> past; before the next hour (31–59) -> to.",
+      });
+      questions.push({
+        question: "Do you mean later than a time point or beyond a limit?",
+        answer: "Yes -> past works (It's past 3 o'clock, past the deadline).",
+      });
+      questions.push({
+        question: "Is there a route/motion meaning: pass a place and continue?",
+        answer: "Yes -> use past (go/walk/drive past the bank).",
+      });
+      questions.push({
+        question: "Do you only mean time order after an event?",
+        answer: "Yes -> use after; past is more about being beyond a point.",
+      });
+      questions.push({
+        question: "Do you mean farther than a point/limit without a passing idea?",
+        answer: "Yes -> beyond may be better than past.",
       });
     }
   } else if (word === "near" && !isDynamic) {
