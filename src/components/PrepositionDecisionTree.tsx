@@ -100,6 +100,50 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> the fixed phrase is in back of + noun.",
       });
     }
+  } else if (word === "in front of" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "你表达的是具体位置：在某物外部的前方（面对观察者）吗？",
+        answer: "是 -> 用 in front of。",
+      });
+      questions.push({
+        question: "你要表达的是“在……里面的前部/靠前位置”（车里/房间里）吗？",
+        answer: "是 -> 用 in the front of（在内部前部）。",
+      });
+      questions.push({
+        question: "你表达的是时间先后：在……之前吗？",
+        answer: "是 -> 用 before（不是 in front of）。",
+      });
+      questions.push({
+        question: "你表达的是“领先/排在前面/进度提前”吗？",
+        answer: "是 -> 常用 ahead of（ahead of me / ahead of schedule）。",
+      });
+      questions.push({
+        question: "你是不是漏写了 of？",
+        answer: "是 -> 固定搭配：in front of + 名词。",
+      });
+    } else {
+      questions.push({
+        question: "Is it an outside position before something (in your view)?",
+        answer: "Yes -> use in front of.",
+      });
+      questions.push({
+        question: "Do you mean inside the front part (in a car/room/bus)?",
+        answer: "Yes -> use in the front of.",
+      });
+      questions.push({
+        question: "Is it time order (earlier than)?",
+        answer: "Yes -> use before (not in front of).",
+      });
+      questions.push({
+        question: "Does it mean leading/further forward (line, schedule, route)?",
+        answer: "Yes -> often use ahead of.",
+      });
+      questions.push({
+        question: "Did you forget of?",
+        answer: "Yes -> the fixed phrase is in front of + noun.",
+      });
+    }
   } else if (isLowerGroup && !isDynamic) {
     if (word === "under" && activeLocale === "zh-CN") {
       questions.push({

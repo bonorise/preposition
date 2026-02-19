@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         destination: "/en/p/in-back-of",
         permanent: true,
       },
+      {
+        source: "/in-front-of",
+        destination: "/en/p/in-front-of",
+        permanent: true,
+      },
     ];
   },
 };

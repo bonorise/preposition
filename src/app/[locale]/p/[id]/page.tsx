@@ -157,6 +157,18 @@ const SEO_METADATA_OVERRIDES: Partial<
         "in back of 表示“在……后面”（美式口语，≈ behind）。正式/书面与抽象义用 behind。不要和 in the back of（在……里面靠后）混淆。例句：The garage is in back of the house.",
     },
   },
+  "in-front-of": {
+    en: {
+      title: "in front of vs in the front of: meaning & examples | Preposition Dino",
+      description:
+        "in front of is an outside position before something (often facing). in the front of is inside the front part. For time order, use before. Example: The car is parked in front of the house.",
+    },
+    "zh-CN": {
+      title: "in front of vs in the front of：区别与例句 | Preposition Dino",
+      description:
+        "in front of 表示外部前方；in the front of 表示在……里面的前部。表示时间先后用 before。例句：The car is parked in front of the house.",
+    },
+  },
   between: {
     en: {
       title: "between preposition: meaning & examples | Preposition Dino",

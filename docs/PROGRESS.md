@@ -35,7 +35,7 @@
 - [ ] 例句“复制”按钮（PRD 9.2 可选）。（阻塞：详情页与例句面板未提供 copy 交互。）
 - [x] SEO 完整化（结构化数据、扩展 meta）
 - [x] SEO 路由规范化：/p/[id] 永久重定向至 /en/p/[id]，避免重复收录
-- [ ] SEO｜详情页内容优化清单（初学者+SEO评分>=85 视为完成；2026-02-14；完成 39/51）
+- [ ] SEO｜详情页内容优化清单（初学者+SEO评分>=85 视为完成；2026-02-14；完成 40/51）
 - [x] in (/in) score=95
 - [x] on (/on) score=95
 - [x] under (/under) score=95
@@ -47,7 +47,7 @@
 - [x] near (/near) score=95
 - [x] by (/by) score=90
 - [x] behind (/behind) score=91
-- [ ] in front of (/in-front-of) score=80
+- [x] in front of (/in-front-of) score=90（2026-02-19：主打 in front of vs in the front of；补齐对比/易错/测验/FAQ；去模板化搭配；补齐 /in-front-of 短链跳转）
 - [x] between (/between) score=90
 - [ ] among (/among) score=80
 - [ ] around (/around) score=80
