@@ -7,6 +7,7 @@
     "generate:thumbnails": "tsx scripts/generate-thumbnails.ts",
     "capture:thumbnails": "tsx scripts/capture-thumbnails.ts",
     "qa:content": "tsx scripts/qa-content.ts",
+    "seo:simple": "bash scripts/seo-simple.sh",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

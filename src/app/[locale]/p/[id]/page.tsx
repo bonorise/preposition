@@ -140,11 +140,113 @@ function getPrimarySeoCategory(categories: LearningCategory[]) {
 
 const PRIMARY_SEO_CATEGORY_OVERRIDE: Partial<Record<string, LearningCategory>> = {
   behind: "space",
+  around: "time",
 };
 
 const SEO_METADATA_OVERRIDES: Partial<
   Record<string, Partial<Record<Locale, Pick<Metadata, "title" | "description">>>>
 > = {
+  from: {
+    en: {
+      title:
+        "from (preposition): meaning (origin, source, range) + examples | Preposition Dino",
+      description:
+        "Learn the preposition from: origin/source, key patterns (from A to B, from now on), common mistakes (since/out of), plus examples, quiz, and FAQ.",
+    },
+    "zh-CN": {
+      title: "from 介词用法：来源/起点、from A to B（范围）＋例句｜Preposition Dino",
+      description:
+        "from 表示“从……（起点/来源）”。本页包含最常用结构（from A to B / from now on）、易混点（since/out of）、例句、易错点、小测验与 FAQ。",
+    },
+  },
+  to: {
+    en: {
+      title:
+        "to (preposition): meaning (destination, recipient, range) + examples | Preposition Dino",
+      description:
+        "The preposition to marks an endpoint: direction/destination (go to school), a recipient (give it to me), or a range limit (from 9 to 5). Includes quick to vs infinitive-to tips, examples, common mistakes, quiz, and FAQ.",
+    },
+    "zh-CN": {
+      title: "to 介词用法：到/向、给/对、到…为止（范围终点）｜Preposition Dino",
+      description:
+        "to 作为介词表示“指向终点/目标”：去向终点（go to…）、受事/接受者（give to…）、范围终点（from…to…）。本页含 to vs 不定式 to 速辨、例句、易错点、小测验与 FAQ。",
+    },
+  },
+  inside: {
+    en: {
+      title:
+        "inside (preposition): A1/A2 rules, inside vs in/into, examples + quiz | Preposition Dino",
+      description:
+        "inside means within a boundary/enclosure (inside the box). Learn a simple A1/A2 choice rule (inside vs in vs into), see natural examples, avoid common mistakes, and take a short quiz.",
+    },
+    "zh-CN": {
+      title: "inside 介词用法：A1/A2 快速规则 + inside vs in/into 对比｜Preposition Dino",
+      description:
+        "inside 表示在边界/容器的内部（inside the box），比 in 更强调“在里面/别越界”。包含 A1/A2 三选一规则（inside/in/into）、常见错误、对比例句与小测验。",
+    },
+  },
+  around: {
+    en: {
+      title:
+        "around (preposition): meaning (surrounding, approximately) + examples | Preposition Dino",
+      description:
+        "around means (1) surrounding/encircling (sit around the table) and (2) approximately with time or numbers (around 5 pm / around 20 people). Quick rules, natural examples, and common comparisons.",
+    },
+    "zh-CN": {
+      title: "around 介词用法：在……周围 / 大约（约）＋例句 | Preposition Dino",
+      description:
+        "around 常用两大义项：（1）在……周围/环绕（sit around the table）；（2）表示“大约/差不多”，用于时间或数量（around 5 pm / around 20 people）。本页给出规则与自然例句，帮助快速上手。",
+    },
+  },
+  "across-from": {
+    en: {
+      title: "across from: meaning + examples (vs opposite, across) | Preposition Dino",
+      description:
+        "across from means ‘on the opposite side’ across a space (street, river, hall). Learn across from vs opposite vs across, with clear examples and common learner mistakes.",
+    },
+    "zh-CN": {
+      title: "across from 用法：在……对面（对比 opposite/across）| Preposition Dino",
+      description:
+        "across from 表示“在……对面”（隔着街道、河流或空间）。本页讲清 across from vs opposite vs across 的区别，配自然例句与常见错误。",
+    },
+  },
+  amid: {
+    en: {
+      title: "amid: meaning + examples (amid vs among) | Preposition Dino",
+      description:
+        "amid means ‘in the middle of/surrounded by,’ often in formal contexts (amid chaos, amid criticism). Compare amid vs among with practical examples and quick rules.",
+    },
+    "zh-CN": {
+      title: "amid 用法：在……之中（书面）｜与 among 区别 | Preposition Dino",
+      description:
+        "amid 表示“在……之中/在……环境下”，语气较正式，常见于 amid chaos / amid criticism。含 amid vs among 对比、例句与易错点。",
+    },
+  },
+  amidst: {
+    en: {
+      title: "amidst: meaning + examples (amidst vs amid) | Preposition Dino",
+      description:
+        "amidst has the same core meaning as amid (‘in the middle of’), but often sounds more literary. Learn when to use amidst, with examples and comparison to amid/among.",
+    },
+    "zh-CN": {
+      title: "amidst 用法：在……之中（较文学/正式）｜与 amid 区别 | Preposition Dino",
+      description:
+        "amidst 与 amid 基本同义，表示“在……之中”，但语气更文学或正式。包含 amidst vs amid/among 区别、常见搭配与例句。",
+    },
+  },
+  "in-the-middle-of": {
+    en: {
+      title:
+        "in the middle of: meaning + examples (center position & process) | Preposition Dino",
+      description:
+        "in the middle of means at the center of a place/group or during a process (in the middle of class). Learn center-position vs among, with clear examples and quick checks.",
+    },
+    "zh-CN": {
+      title: "in the middle of 用法：在……中间/在……过程中 | Preposition Dino",
+      description:
+        "in the middle of 表示“在中央位置”或“在进行到一半时”。本页对比 in the middle of 与 among，提供空间与过程两类高频例句。",
+    },
+  },
   "in-back-of": {
     en: {
       title: "in back of vs behind: meaning & examples | Preposition Dino",
@@ -179,6 +281,18 @@ const SEO_METADATA_OVERRIDES: Partial<
       title: "between 介词用法：含义与例句 | Preposition Dino",
       description:
         "between 表示“两端点之间”的关系（空间/时间）。固定搭配：between A and B（不是 between A to B）。例句：Call me between 7 and 9 p.m.",
+    },
+  },
+  among: {
+    en: {
+      title: "among: meaning + examples (among vs between) | Preposition Dino",
+      description:
+        "among means ‘within a group’ (people, objects, ideas). Use a quick 4-question rule to choose among vs between vs amid, plus real examples like among the best / among other things. Learn one clear pattern in 30 seconds.",
+    },
+    "zh-CN": {
+      title: "among 用法：在……当中｜与 between/amid 区别＋例句 | Preposition Dino",
+      description:
+        "among 表示“在一群/多者当中”（人群、树丛、一堆物品、统计语境都常见）。本页用 4 个问题快速区分 among vs between vs amid，并配常见搭配与例句。用一个清晰模式，30秒建立介词直觉。",
     },
   },
   upon: {
@@ -281,12 +395,12 @@ const SEO_METADATA_OVERRIDES: Partial<
     en: {
       title: "against vs on: meaning & examples | Preposition Dino",
       description:
-        'against means touching with pressure/support (against the wall). on is on top of a surface (on the table). Example: The ladder is against the wall.',
+        'against means touching a surface with pressure/support (against the wall). It can also mean opposed to (vote against) or in violation of a rule (against the rules), and it appears in the time phrase "against the clock". Compare: on is on top of a surface (on the table). Example: The ladder is against the wall.',
     },
     "zh-CN": {
       title: "against 介词用法：含义与例句（对比 on） | Preposition Dino",
       description:
-        "against 表示“贴着/靠着”（against the wall）；on 表示“在表面上方并接触”（on the table）。例句：The ladder is against the wall.",
+        "against 表示“贴着/靠着”（against the wall），也可表示“反对/违反”（vote against / against the rules），以及固定短语 against the clock（争分夺秒）；on 表示“在表面上方并接触”（on the table）。例句：The ladder is against the wall。",
     },
   },
 };

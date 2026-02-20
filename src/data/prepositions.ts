@@ -4743,30 +4743,692 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……之中（多者之间）",
-        tips: ["通常是三个及以上之间。", "强调在一群中。"],
+        meaning: "在……当中；在一群人/物里（被许多东西包围）",
+        tips: [
+          "把 among 想成“在一群里面”：人群、树丛、盒子堆都可以。",
+          "它不强调‘两端/两点’的间隔：说两端之间通常用 between；说一群里面通常用 among。",
+          "不要求在正中心：只要“在这群里面/被这群东西围着”，就可以用 among。",
+        ],
       },
       en: {
-        meaning: "among; in a group of many",
-        tips: ["Used for three or more.", "In the middle of a group."],
+        meaning: "within a group; surrounded by many people/things",
+        tips: [
+          "Think: inside a group (crowd, trees, boxes).",
+          "It doesn’t focus on two endpoints; for two (or clearly defined endpoints), use between.",
+          "Not necessarily the exact center—just within the group.",
+        ],
       },
     },
     examples: [
       {
         en: "The ball is among the boxes.",
         i18n: {
-          "zh-CN": { translation: "球在一堆盒子中间。" },
+          "zh-CN": { translation: "球在一堆盒子里（被盒子围着）。" },
           en: { translation: "The ball is among the boxes." },
         },
       },
       {
         en: "He sat among his friends.",
         i18n: {
-          "zh-CN": { translation: "他坐在朋友们中间。" },
+          "zh-CN": { translation: "他坐在朋友们当中。" },
           en: { translation: "He sat among his friends." },
         },
       },
+      {
+        en: "She felt safe among familiar faces.",
+        i18n: {
+          "zh-CN": { translation: "在熟悉的人群中，她觉得很安心。" },
+          en: { translation: "She felt safe among familiar faces." },
+        },
+      },
+      {
+        en: "A small village lies among the hills.",
+        i18n: {
+          "zh-CN": { translation: "一座小村庄坐落在群山之间（山丘当中）。" },
+          en: { translation: "A small village lies among the hills." },
+        },
+      },
+      {
+        en: "I found my keys among the papers on the desk.",
+        i18n: {
+          "zh-CN": { translation: "我在桌上的一堆文件里找到了钥匙。" },
+          en: { translation: "I found my keys among the papers on the desk." },
+        },
+      },
+      {
+        en: "There was disagreement among the members.",
+        i18n: {
+          "zh-CN": { translation: "成员之间出现了分歧。" },
+          en: { translation: "There was disagreement among the members." },
+        },
+      },
+      {
+        en: "The survey shows wide support among young voters.",
+        i18n: {
+          "zh-CN": { translation: "调查显示，年轻选民中支持度很高。" },
+          en: { translation: "The survey shows wide support among young voters." },
+        },
+      },
+      {
+        en: "Her novel is among the best this year.",
+        i18n: {
+          "zh-CN": { translation: "她的小说属于今年最好的那一批。" },
+          en: { translation: "Her novel is among the best this year." },
+        },
+      },
+      {
+        en: "Between the three of us, we can finish it today.",
+        i18n: {
+          "zh-CN": { translation: "我们三个人之间（合在一起）今天就能做完。" },
+          en: { translation: "Between the three of us, we can finish it today." },
+        },
+      },
+      {
+        en: "Among other things, we discussed the budget.",
+        i18n: {
+          "zh-CN": { translation: "此外，我们还讨论了预算。" },
+          en: { translation: "Among other things, we discussed the budget." },
+        },
+      },
     ],
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "among 强调“在一群/多者之中”；between 更强调“端点之间/对应关系”。",
+          differences: [
+            {
+              term: "如何选择（快速决策）",
+              description:
+                "先问 4 个问题：1) 是不是只有两个端点/两个人/两件物？→ 用 between。2) 是不是一群/很多个，不强调两端？→ 用 among。3) 是不是更书面、强调‘在某种事件/情绪/局势中’？→ 多用 amid。4) 虽然是 3 个以上，但强调“彼此之间的关系/分配/秘密”？→ 常见用 between（between the three of us）。",
+              examples: [
+                {
+                  term: "between",
+                  sentence: "She sat between Tom and Lily.",
+                  translation: "她坐在汤姆和莉莉之间。",
+                },
+                {
+                  term: "among",
+                  sentence: "She sat among her friends.",
+                  translation: "她坐在朋友们当中。",
+                },
+                {
+                  term: "amid",
+                  sentence: "He stayed calm amid the chaos.",
+                  translation: "在混乱中他仍保持冷静。",
+                },
+              ],
+            },
+            {
+              term: "between",
+              description:
+                "between 多用于两个对象；但当三者以上的关系是“一一对应”或端点很清楚时，也常用 between。among 更像“混在一群里”。",
+              examples: [
+                {
+                  term: "among",
+                  sentence: "She sat among her friends.",
+                  translation: "她坐在朋友们当中。",
+                },
+                {
+                  term: "between",
+                  sentence: "She sat between Tom and Lily.",
+                  translation: "她坐在汤姆和莉莉之间。",
+                },
+              ],
+            },
+            {
+              term: "amid",
+              description:
+                "amid 通常更书面，常搭配抽象名词（混乱、争议、压力等），画面是“在某种局势中”。among 更像“在一群人/物里”。",
+              examples: [
+                {
+                  term: "amid",
+                  sentence: "She resigned amid growing criticism.",
+                  translation: "在批评声不断高涨的情况下，她辞职了。",
+                },
+                {
+                  term: "among",
+                  sentence: "There was anger among the staff.",
+                  translation: "员工中有人很生气（出现愤怒情绪）。",
+                },
+              ],
+            },
+            {
+              term: "around",
+              description:
+                "around 多指‘在外圈/周围’；among 是‘在里面’，被一圈东西围住。",
+              examples: [
+                {
+                  term: "among",
+                  sentence: "The cabin is hidden among the trees.",
+                  translation: "小木屋藏在树林里。",
+                },
+                {
+                  term: "around",
+                  sentence: "There are trees around the cabin.",
+                  translation: "小木屋周围有树。",
+                },
+              ],
+            },
+            {
+              term: "in the middle of",
+              description:
+                "in the middle of 更强调‘正中间/中心’；among 更宽松，只要在这群里面即可。",
+              examples: [
+                {
+                  term: "in the middle of",
+                  sentence: "He stood in the middle of the room.",
+                  translation: "他站在房间正中间。",
+                },
+                {
+                  term: "among",
+                  sentence: "He stood among the students.",
+                  translation: "他站在学生们当中。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Among means ‘within a group’; between highlights ‘the space separating two endpoints (or a clearly defined set)’.",
+          differences: [
+            {
+              term: "How to choose (fast)",
+              description:
+                "Ask 4 questions: (1) Only two clear endpoints? → between. (2) A group/many items, no endpoints? → among. (3) More formal + an event/situation/feeling? → often amid. (4) 3+ people but it’s about relationships/sharing/secrets? → between can be natural (between the three of us).",
+              examples: [
+                { term: "between", sentence: "She sat between Tom and Lily." },
+                { term: "among", sentence: "She sat among her friends." },
+                { term: "amid", sentence: "He stayed calm amid the chaos." },
+              ],
+            },
+            {
+              term: "between",
+              description:
+                "Use between for two things (or two clear endpoints). For 3+ people, between can still work when it’s about relationships/sharing.",
+              examples: [
+                { term: "among", sentence: "She sat among her friends." },
+                { term: "between", sentence: "She sat between Tom and Lily." },
+                {
+                  term: "between",
+                  sentence: "Between the three of us, we can finish it today.",
+                },
+              ],
+            },
+            {
+              term: "amid",
+              description:
+                "Amid is more formal and often pairs with abstract nouns (chaos, controversy, pressure). Among is more literal: within a group of people/things.",
+              examples: [
+                { term: "amid", sentence: "She resigned amid growing criticism." },
+                { term: "among", sentence: "There was disagreement among the members." },
+              ],
+            },
+            {
+              term: "around",
+              description:
+                "Around is outside/surrounding; among is inside the group.",
+              examples: [
+                { term: "among", sentence: "The cabin is hidden among the trees." },
+                { term: "around", sentence: "There are trees around the cabin." },
+              ],
+            },
+            {
+              term: "in the middle of",
+              description:
+                "In the middle of is more exact (the center). Among is looser: within the group.",
+              examples: [
+                { term: "in the middle of", sentence: "He stood in the middle of the room." },
+                { term: "among", sentence: "He stood among the students." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocations: {
+      "zh-CN": [
+        "among friends",
+        "among classmates",
+        "among colleagues",
+        "among neighbors",
+        "among the crowd",
+        "among the trees",
+        "among the flowers",
+        "among the bushes",
+        "among the boxes",
+        "among ourselves",
+        "among others",
+        "among other things",
+      ],
+      en: [
+        "among friends",
+        "among classmates",
+        "among colleagues",
+        "among neighbors",
+        "among the crowd",
+        "among the trees",
+        "among the flowers",
+        "among the bushes",
+        "among the boxes",
+        "among ourselves",
+        "among others",
+        "among other things",
+      ],
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "人群/群体里",
+          items: [
+            {
+              phrase: "among friends",
+              meaning: "在朋友们当中（口语）：I feel relaxed among friends.",
+            },
+            {
+              phrase: "among classmates",
+              meaning: "在同学们当中：She is popular among classmates.",
+            },
+            {
+              phrase: "among colleagues",
+              meaning: "在同事中：The news spread quickly among colleagues.",
+            },
+            {
+              phrase: "among the staff",
+              meaning: "在员工中：There was tension among the staff.",
+            },
+            {
+              phrase: "among the crowd",
+              meaning: "在人群中：He disappeared among the crowd.",
+            },
+            {
+              phrase: "among themselves",
+              meaning: "只在他们内部（私下里）：They discussed it among themselves.",
+            },
+          ],
+        },
+        {
+          title: "自然/物品堆里",
+          items: [
+            {
+              phrase: "among the trees",
+              meaning: "在树林里：A cabin is hidden among the trees.",
+            },
+            {
+              phrase: "among the bushes",
+              meaning: "在灌木丛里：A cat was sleeping among the bushes.",
+            },
+            {
+              phrase: "among the rocks",
+              meaning: "在石堆里：The lizard hid among the rocks.",
+            },
+            {
+              phrase: "among the boxes",
+              meaning: "在一堆盒子里：The ball rolled among the boxes.",
+            },
+            {
+              phrase: "among the papers",
+              meaning: "在一堆文件里：I found it among the papers.",
+            },
+            {
+              phrase: "among the ruins",
+              meaning: "在废墟中（较书面）：They searched among the ruins.",
+            },
+          ],
+        },
+        {
+          title: "抽象集合/讨论语境",
+          items: [
+            {
+              phrase: "among others",
+              meaning: "其中包括/等等：She thanked her teacher among others.",
+            },
+            {
+              phrase: "among other things",
+              meaning: "此外/其中还包括：Among other things, we discussed the budget.",
+            },
+            {
+              phrase: "among the best",
+              meaning: "名列前茅：Her novel is among the best this year.",
+            },
+            {
+              phrase: "among the first",
+              meaning: "最早的一批：He was among the first to arrive.",
+            },
+            {
+              phrase: "among the last",
+              meaning: "最后一批：They were among the last to leave.",
+            },
+            {
+              phrase: "among + group (统计)",
+              meaning: "在某群体中：Support is highest among 18–24-year-olds.",
+            },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "People/groups",
+          items: [
+            {
+              phrase: "among friends",
+              meaning: "(spoken) I feel relaxed among friends.",
+            },
+            {
+              phrase: "among colleagues",
+              meaning: "The news spread quickly among colleagues.",
+            },
+            {
+              phrase: "among the staff",
+              meaning: "There was tension among the staff.",
+            },
+            {
+              phrase: "among the crowd",
+              meaning: "He disappeared among the crowd.",
+            },
+            {
+              phrase: "among themselves",
+              meaning: "They discussed it among themselves.",
+            },
+            {
+              phrase: "among them/us",
+              meaning: "She is the tallest among them.",
+            },
+          ],
+        },
+        {
+          title: "Nature/objects",
+          items: [
+            { phrase: "among the trees", meaning: "A cabin is hidden among the trees." },
+            { phrase: "among the rocks", meaning: "The lizard hid among the rocks." },
+            {
+              phrase: "among the papers",
+              meaning: "I found my keys among the papers.",
+            },
+            {
+              phrase: "among the boxes",
+              meaning: "The ball rolled among the boxes.",
+            },
+            {
+              phrase: "among the ruins",
+              meaning: "(formal) They searched among the ruins.",
+            },
+            {
+              phrase: "among the hills",
+              meaning: "A small village lies among the hills.",
+            },
+          ],
+        },
+        {
+          title: "Abstract sets / ranking",
+          items: [
+            {
+              phrase: "among others",
+              meaning: "Among others, she thanked her teacher.",
+            },
+            {
+              phrase: "among other things",
+              meaning: "Among other things, we discussed the budget.",
+            },
+            { phrase: "among the best", meaning: "Her novel is among the best." },
+            {
+              phrase: "among the first",
+              meaning: "He was among the first to arrive.",
+            },
+            {
+              phrase: "among the last",
+              meaning: "They were among the last to leave.",
+            },
+            {
+              phrase: "among 18–24-year-olds",
+              meaning: "Support is highest among 18–24-year-olds.",
+            },
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "The cafe is among the bank and the post office.",
+          correct: "The cafe is between the bank and the post office.",
+          reason: "只有两个明确对象/端点时，用 between 更自然。",
+        },
+        {
+          wrong: "The ball is between the boxes.",
+          correct: "The ball is among the boxes.",
+          reason:
+            "当周围是一堆/一群（不止两个）时，用 among 更自然；between 更像“两端之间”。",
+        },
+        {
+          wrong: "There are three of us. Among the three of us, we can do it.",
+          correct: "There are three of us. Between the three of us, we can do it.",
+          reason:
+            "说‘我们之间/私下里’这类“关系/共同分担”，英语里常用 between the three of us（虽然是 3 个以上）。",
+        },
+        {
+          wrong: "He sat among to his friends.",
+          correct: "He sat among his friends.",
+          reason: "among 后面直接接名词/代词宾格，不用加 to。",
+        },
+        {
+          wrong: "He walked among crowd and took photos.",
+          correct: "He walked among the crowd and took photos.",
+          reason:
+            "among 后面通常接可数复数或带限定词的集合名词：among the crowd / among crowds（不是 *among crowd）。",
+        },
+        {
+          wrong: "The cabin is around the trees.",
+          correct: "The cabin is among the trees.",
+          reason:
+            "如果要表达‘在树林里/被树包围’，用 among；around 更像‘在外圈/周围’。",
+        },
+        {
+          wrong: "Among you and I, this is a secret.",
+          correct: "Among you and me, this is a secret.",
+          reason: "介词后用宾格：me / him / her / us / them。",
+        },
+      ],
+      en: [
+        {
+          wrong: "The cafe is among the bank and the post office.",
+          correct: "The cafe is between the bank and the post office.",
+          reason: "With two clear endpoints, between is the natural choice.",
+        },
+        {
+          wrong: "The ball is between the boxes.",
+          correct: "The ball is among the boxes.",
+          reason:
+            "If it’s within a group (many boxes), among is more natural; between highlights two endpoints.",
+        },
+        {
+          wrong: "There are three of us. Among the three of us, we can do it.",
+          correct: "There are three of us. Between the three of us, we can do it.",
+          reason:
+            "Between can be natural with 3+ people when it’s about relationships/sharing: between the three of us.",
+        },
+        {
+          wrong: "He sat among to his friends.",
+          correct: "He sat among his friends.",
+          reason: "Among takes a noun/pronoun directly (no to).",
+        },
+        {
+          wrong: "He walked among crowd and took photos.",
+          correct: "He walked among the crowd and took photos.",
+          reason:
+            "Among usually needs a plural noun or a set noun with a determiner: among the crowd / among crowds (not *among crowd).",
+        },
+        {
+          wrong: "The cabin is around the trees.",
+          correct: "The cabin is among the trees.",
+          reason:
+            "If you mean ‘inside the group of trees’, use among; around is outside/surrounding.",
+        },
+        {
+          wrong: "Among you and I, this is a secret.",
+          correct: "Among you and me, this is a secret.",
+          reason: "Use object pronouns after a preposition (me, him, her, us, them).",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "She was sitting ___ her classmates.",
+          options: ["among", "between", "around"],
+          answer: "among",
+          explanation: "classmates 是一群人，用 among 表示“在……当中”。",
+        },
+        {
+          prompt: "The cafe is ___ the bank and the post office.",
+          options: ["among", "between", "under"],
+          answer: "between",
+          explanation: "只有两个明确端点（bank 和 post office），用 between。",
+        },
+        {
+          prompt: "The cabin is hidden ___ the trees.",
+          options: ["among", "on", "into"],
+          answer: "among",
+          explanation: "在树林里、被树围着，用 among the trees。",
+        },
+      ],
+      en: [
+        {
+          prompt: "She was sitting ___ her classmates.",
+          options: ["among", "between", "around"],
+          answer: "among",
+          explanation: "Classmates are a group, so use among.",
+        },
+        {
+          prompt: "The cafe is ___ the bank and the post office.",
+          options: ["among", "between", "under"],
+          answer: "between",
+          explanation: "Two clear endpoints: the bank and the post office → between.",
+        },
+        {
+          prompt: "The cabin is hidden ___ the trees.",
+          options: ["among", "on", "into"],
+          answer: "among",
+          explanation: "Use among the trees to mean ‘within a group of trees’.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "among 的核心画面是什么？",
+          answer:
+            "核心画面是“在一群里面/被许多东西围着”。比如在人群里、在树林里、在一堆盒子里：among the crowd / among the trees / among the boxes。",
+        },
+        {
+          question: "among 和 between 的区别怎么一句话记？",
+          answer:
+            "between 更像“两端之间的空隙”（Tom 和 Lily 之间）；among 更像“混在一群里”（朋友们当中）。",
+        },
+        {
+          question: "‘三者之间’可以用 between 吗？",
+          answer:
+            "可以。虽然传统规则常说 between 用于 2 个对象，但在真实英语里，如果强调“彼此之间的关系/分配/秘密”，between + 3/4… 很常见：Between the three of us, we can finish it today.（我们三个人合在一起/私下里……）",
+        },
+        {
+          question: "among 一定表示‘三个以上’吗？",
+          answer:
+            "传统规则常说 3+，但更实用的判断是：是不是‘一群/不强调两端’。只要听起来像“在一群里”，就用 among。",
+        },
+        {
+          question: "among 和 amid 的区别是什么？",
+          answer:
+            "among 更像“在一群人/物里”（更具体、画面感强）；amid 更书面，常说“在某种局势/情绪/事件中”（amid the chaos / amid criticism）。",
+        },
+        {
+          question: "among 和 around 的区别是什么？",
+          answer:
+            "around 通常是“在外圈/周围”（树在小屋周围）；among 是“在里面”（小屋在树林里）。",
+        },
+        {
+          question: "among 后面能接代词吗？",
+          answer:
+            "能。直接用宾格代词：among us / among them。例句：She is the tallest among them.",
+        },
+        {
+          question: "among 后面接单数还是复数？",
+          answer:
+            "多数情况下接复数（among students / among friends）。如果是集合名词或固定说法，可以用单数但通常要有限定词：among the crowd / among the population（不是 *among crowd）。",
+        },
+        {
+          question: "among 后面需要加 to/of 吗？",
+          answer:
+            "不需要。直接说 among + 名词/代词：among my friends / among us。不要说 among to…。",
+        },
+        {
+          question: "为什么要说 among you and me（不是 I）？",
+          answer:
+            "因为介词后面用宾格代词：me / him / her / us / them。结构和 between you and me 一样。",
+        },
+        {
+          question: "30 秒怎么记住 among？",
+          answer:
+            "记一个画面：小球被一圈盒子围着。再配一句话复述：The ball is among the boxes.（球在一堆盒子里。）",
+        },
+      ],
+      en: [
+        {
+          question: "What’s the core picture for among?",
+          answer:
+            "Picture something inside a group—surrounded by many. Examples: among the crowd / among the trees / among the boxes.",
+        },
+        {
+          question: "Among vs between: one-sentence rule?",
+          answer:
+            "Between highlights the space separating two endpoints; among means within a group.",
+        },
+        {
+          question: "Can I use between for three things?",
+          answer:
+            "Yes. Between is common with 3+ when it’s about relationships, sharing, or an agreement: Between the three of us, we can finish it today.",
+        },
+        {
+          question: "Does among always mean ‘three or more’?",
+          answer:
+            "That’s the traditional guideline, but the practical test is: is it a group (not two clear endpoints)? If yes, among sounds natural.",
+        },
+        {
+          question: "Among vs amid: what’s the difference?",
+          answer:
+            "Among is more literal (inside a group of people/things). Amid is more formal and often used with events/situations: amid the chaos / amid criticism.",
+        },
+        {
+          question: "Among vs around: what’s the difference?",
+          answer:
+            "Around is outside/surrounding; among is inside the group.",
+        },
+        {
+          question: "Can among take pronouns?",
+          answer: "Yes: among us / among them.",
+        },
+        {
+          question: "Should I use a plural noun after among?",
+          answer:
+            "Usually yes (among friends/students). With set nouns, add a determiner: among the crowd (not *among crowd).",
+        },
+        {
+          question: "Do I say ‘among to’ or ‘among of’?",
+          answer:
+            "No. Use among + noun/pronoun directly: among my friends, among us.",
+        },
+        {
+          question: "Why ‘among you and me’ (not I)?",
+          answer:
+            "A preposition takes an object pronoun: me/him/her/us/them.",
+        },
+        {
+          question: "How can I remember among in 30 seconds?",
+          answer:
+            "Use one image + one sentence: The ball is among the boxes. Repeat both together for 30 seconds.",
+        },
+      ],
+    },
     scene: makeScene([0, 0, 0], {
       variant: "ringCubes",
     }),
@@ -4778,12 +5440,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "在……周围（环绕）",
-        tips: ["强调围绕在周边。", "可表示环绕或分布在周围。"],
+        meaning: "在……周围；大约（约）",
+        tips: [
+          "表示“在……周围/围绕”：sit/stand/gather around + 名词。",
+          "around + 时间/数量 = 大约、差不多：around 5 pm / around 20 people。",
+          "对比：about 更中性（数字/时间更常见）；round 多为英式口语（空间更常见）。",
+        ],
       },
       en: {
-        meaning: "around; surrounding",
-        tips: ["Surrounding or encircling.", "Can mean spread around."],
+        meaning: "around: surrounding; approximately",
+        tips: [
+          "Surrounding or encircling: sit/stand/gather around + noun.",
+          "around + time/number = approximately: around 5 pm / around 20 people.",
+          "Compare: about is more neutral for numbers; round is common BrE for space.",
+        ],
       },
     },
     examples: [
@@ -4802,6 +5472,61 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         },
       },
     ],
+    examplesByCategory: {
+      time: [
+        {
+          en: "Let’s meet around 5 pm.",
+          i18n: {
+            "zh-CN": { translation: "我们大约下午5点见。" },
+            en: { translation: "Let’s meet around 5 pm." },
+          },
+        },
+        {
+          en: "The package should arrive around Tuesday.",
+          i18n: {
+            "zh-CN": { translation: "包裹预计周二左右到。" },
+            en: { translation: "The package should arrive around Tuesday." },
+          },
+        },
+        {
+          en: "It took around 10 minutes.",
+          i18n: {
+            "zh-CN": { translation: "大约花了10分钟。" },
+            en: { translation: "It took around 10 minutes." },
+          },
+        },
+        {
+          en: "There were around 20 people at the meeting.",
+          i18n: {
+            "zh-CN": { translation: "会议上大约有20个人。" },
+            en: { translation: "There were around 20 people at the meeting." },
+          },
+        },
+        {
+          en: "The coffee was around $10.",
+          i18n: {
+            "zh-CN": { translation: "这杯咖啡大概10美元。" },
+            en: { translation: "The coffee was around $10." },
+          },
+        },
+      ],
+      dynamic: [
+        {
+          en: "We walked around the park.",
+          i18n: {
+            "zh-CN": { translation: "我们绕着公园走了一圈。" },
+            en: { translation: "We walked around the park." },
+          },
+        },
+        {
+          en: "She drove around the city before dinner.",
+          i18n: {
+            "zh-CN": { translation: "晚饭前她开车在城里转了转。" },
+            en: { translation: "She drove around the city before dinner." },
+          },
+        },
+      ],
+    },
     scene: makeScene([1.2, 0, 0], {
       variant: "ringCubes",
       animation: {
@@ -4829,11 +5554,19 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     i18n: {
       "zh-CN": {
         meaning: "在……内部",
-        tips: ["强调内部空间。", "比 in 更强调边界。"],
+        tips: [
+          "发音：/ˌɪnˈsaɪd/。",
+          "三选一：位置=在里面 → in；位置=在边界内/强调‘别出去’ → inside；动作=进入 → into。",
+          "inside 强调‘边界/封闭感’：常见于安全提醒、规则范围、或对比 on/outside（如：Keep your hands inside the car）。",
+        ],
       },
       en: {
         meaning: "inside; within",
-        tips: ["Inside a boundary.", "Often emphasizes the boundary."],
+        tips: [
+          "Pronunciation: /ˌɪnˈsaɪd/.",
+          "Quick choice: location (neutral) → in; location + boundary (‘stay within / don’t go out’) → inside; movement (entering) → into.",
+          "Inside highlights an enclosure or limit (safety rules, boundaries, ‘not out/on’ contrasts).",
+        ],
       },
     },
     examples: [
@@ -4851,7 +5584,469 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
           en: { translation: "Stay inside the room." },
         },
       },
+      {
+        en: "Please wait inside the building.",
+        i18n: {
+          "zh-CN": { translation: "请在大楼里等。" },
+          en: { translation: "Please wait inside the building." },
+        },
+      },
+      {
+        en: "Keep your hands inside the car.",
+        i18n: {
+          "zh-CN": { translation: "把手放在车里（不要伸出窗外）。" },
+          en: { translation: "Keep your hands inside the car." },
+        },
+      },
+      {
+        en: "Don't leave food inside the fridge overnight.",
+        i18n: {
+          "zh-CN": { translation: "不要把食物在冰箱里放过夜。" },
+          en: { translation: "Don't leave food inside the fridge overnight." },
+        },
+      },
+      {
+        en: "The keys are inside the box (not on it).",
+        i18n: {
+          "zh-CN": { translation: "钥匙在盒子里面（不是在盒子上）。" },
+          en: { translation: "The keys are inside the box (not on it)." },
+        },
+      },
+      {
+        en: "There's a note inside the envelope.",
+        i18n: {
+          "zh-CN": { translation: "信封里有一张便条。" },
+          en: { translation: "There's a note inside the envelope." },
+        },
+      },
+      {
+        en: "You can find the settings inside the app.",
+        i18n: {
+          "zh-CN": { translation: "你可以在应用里找到设置。" },
+          en: { translation: "You can find the settings inside the app." },
+        },
+      },
+      {
+        en: "The answer is inside the document.",
+        i18n: {
+          "zh-CN": { translation: "答案在文档里。" },
+          en: { translation: "The answer is inside the document." },
+        },
+      },
+      {
+        en: "Inside the company, people call this project “Dino”.",
+        i18n: {
+          "zh-CN": { translation: "在公司内部，大家把这个项目叫作“Dino”。" },
+          en: { translation: "Inside the company, people call this project “Dino”." },
+        },
+      },
     ],
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "Inside vs in：两者都可表示“在里面”，但 inside 更强调边界/封闭感，常用于提醒“别出去/别越界”。",
+          differences: [
+            {
+              term: "in",
+              description:
+                "Inside vs in：in 更中性、更常用；inside 更强调“在边界之内/不要离开”。",
+              examples: [
+                {
+                  term: "in",
+                  sentence: "She is in the room.",
+                  translation: "她在房间里。",
+                },
+                {
+                  term: "inside",
+                  sentence: "Stay inside the room.",
+                  translation: "待在房间里（别出去）。",
+                },
+              ],
+            },
+            {
+              term: "within",
+              description:
+                "Inside vs within：within 更偏正式/书面，常用于范围/距离/时间限制（within 10 minutes）。",
+              examples: [
+                {
+                  term: "inside",
+                  sentence: "Please stay inside the building.",
+                  translation: "请待在大楼内部。",
+                },
+                {
+                  term: "within",
+                  sentence: "Please reply within 10 minutes.",
+                  translation: "请在10分钟内回复。",
+                },
+              ],
+            },
+            {
+              term: "into",
+              description:
+                "Inside vs into：inside 是位置（在哪里）；into 是从外到内的动作/方向（进入）。",
+              examples: [
+                {
+                  term: "into",
+                  sentence: "He walked into the room.",
+                  translation: "他走进房间。",
+                },
+                {
+                  term: "inside",
+                  sentence: "He is inside the room.",
+                  translation: "他在房间里（内部）。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "Inside vs in: both can mean ‘in a place’, but inside strongly highlights the boundary/enclosure (often like ‘don’t go out’).",
+          differences: [
+            {
+              term: "in",
+              description:
+                "Inside vs in: in is neutral and most common; inside highlights the boundary or staying within it.",
+              examples: [
+                { term: "in", sentence: "She is in the room." },
+                { term: "inside", sentence: "Stay inside the room." },
+              ],
+            },
+            {
+              term: "within",
+              description:
+                "Inside vs within: within is more formal and often used for limits (within 10 minutes / within 5 miles).",
+              examples: [
+                { term: "inside", sentence: "Please stay inside the building." },
+                { term: "within", sentence: "Please reply within 10 minutes." },
+              ],
+            },
+            {
+              term: "into",
+              description:
+                "Inside is a location; into is movement from outside to inside.",
+              examples: [
+                { term: "into", sentence: "He walked into the room." },
+                { term: "inside", sentence: "He is inside the room." },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "常见地点/边界",
+          items: [
+            {
+              phrase: "inside the house",
+              meaning: "常用度：高｜在房子里：The kids are playing inside the house.",
+            },
+            {
+              phrase: "inside the room",
+              meaning: "常用度：高｜在房间里：Please wait inside the room.",
+            },
+            {
+              phrase: "inside the building",
+              meaning: "常用度：高｜在楼里：Everyone must stay inside the building.",
+            },
+            {
+              phrase: "inside the car",
+              meaning: "常用度：高｜在车里：Keep your dog inside the car.",
+            },
+            {
+              phrase: "inside the city walls",
+              meaning: "常用度：中｜在城墙内：Markets were held inside the city walls.",
+            },
+            {
+              phrase: "inside the fence",
+              meaning: "常用度：中｜在围栏内：Children should stay inside the fence.",
+            },
+          ],
+        },
+        {
+          title: "容器/物体内部",
+          items: [
+            {
+              phrase: "inside the box",
+              meaning: "常用度：高｜在盒子里：The gift is inside the box.",
+            },
+            {
+              phrase: "inside the bag",
+              meaning: "常用度：高｜在包里：Your phone is inside the bag.",
+            },
+            {
+              phrase: "inside the drawer",
+              meaning: "常用度：高｜在抽屉里：The keys are inside the drawer.",
+            },
+            {
+              phrase: "inside the envelope",
+              meaning: "常用度：中｜在信封里：The photo is inside the envelope.",
+            },
+            {
+              phrase: "inside my pocket",
+              meaning: "常用度：中｜在我的口袋里：I kept the coin inside my pocket.",
+            },
+            {
+              phrase: "inside the bottle",
+              meaning: "常用度：中｜在瓶子里：There is a message inside the bottle.",
+            },
+          ],
+        },
+        {
+          title: "规则/范围语境",
+          items: [
+            {
+              phrase: "inside the boundary line",
+              meaning: "常用度：中｜在线内：The ball landed inside the boundary line.",
+            },
+            {
+              phrase: "inside the app",
+              meaning: "常用度：中｜在应用内部：You can change settings inside the app.",
+            },
+            {
+              phrase: "inside the document",
+              meaning: "常用度：中｜在文档里：The answer is inside the document.",
+            },
+            {
+              phrase: "inside the museum",
+              meaning: "常用度：中｜在博物馆内：No food is allowed inside the museum.",
+            },
+            {
+              phrase: "inside the classroom",
+              meaning: "常用度：中｜在教室里：Please speak softly inside the classroom.",
+            },
+            {
+              phrase: "inside the safe",
+              meaning: "常用度：中｜在保险箱里：The papers are inside the safe.",
+            },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Places / boundaries",
+          items: [
+            {
+              phrase: "inside the house",
+              meaning: "(High) The kids are playing inside the house.",
+            },
+            { phrase: "inside the room", meaning: "(High) Please wait inside the room." },
+            {
+              phrase: "inside the building",
+              meaning: "(High) Everyone must stay inside the building.",
+            },
+            { phrase: "inside the car", meaning: "(High) Keep your dog inside the car." },
+            {
+              phrase: "inside the city walls",
+              meaning: "(Medium) Markets were held inside the city walls.",
+            },
+            {
+              phrase: "inside the fence",
+              meaning: "(Medium) Children should stay inside the fence.",
+            },
+          ],
+        },
+        {
+          title: "Inside a container",
+          items: [
+            { phrase: "inside the box", meaning: "(High) The gift is inside the box." },
+            { phrase: "inside the bag", meaning: "(High) Your phone is inside the bag." },
+            { phrase: "inside the drawer", meaning: "(High) The keys are inside the drawer." },
+            {
+              phrase: "inside the envelope",
+              meaning: "(Medium) The photo is inside the envelope.",
+            },
+            {
+              phrase: "inside my pocket",
+              meaning: "(Medium) I kept the coin inside my pocket.",
+            },
+            {
+              phrase: "inside the bottle",
+              meaning: "(Medium) There is a message inside the bottle.",
+            },
+          ],
+        },
+        {
+          title: "Rules / limits / systems",
+          items: [
+            {
+              phrase: "inside the boundary line",
+              meaning: "(Medium) The ball landed inside the boundary line.",
+            },
+            {
+              phrase: "inside the app",
+              meaning: "(Medium) You can change settings inside the app.",
+            },
+            {
+              phrase: "inside the document",
+              meaning: "(Medium) The answer is inside the document.",
+            },
+            {
+              phrase: "inside the museum",
+              meaning: "(Medium) No food is allowed inside the museum.",
+            },
+            {
+              phrase: "inside the classroom",
+              meaning: "(Medium) Please speak softly inside the classroom.",
+            },
+            { phrase: "inside the safe", meaning: "(Medium) The papers are inside the safe." },
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "He walked inside the room.",
+          correct: "He walked into the room.",
+          reason: "walk 表示“走进（动作）”时需要 into；inside 只表示位置（在哪里）。",
+        },
+        {
+          wrong: "I put it inside the table.",
+          correct: "I put it on the table.",
+          reason: "桌子通常没有“内部空间”，放在桌面用 on；inside 适合有边界/容器的东西（box, bag）。",
+        },
+        {
+          wrong: "Stay in the room! (when you mean ‘don’t go out’)",
+          correct: "Stay inside the room!",
+          reason: "两句都可能正确；但要强调“别出去/别越界”，inside 更贴合语气与边界感。",
+        },
+        {
+          wrong: "The keys are inside of the box.",
+          correct: "The keys are inside the box.",
+          reason:
+            "inside 后通常不需要 of。inside of 在口语中也能见到，但更推荐用 inside + 名词（更简洁、也更常见）。",
+        },
+      ],
+      en: [
+        {
+          wrong: "He walked inside the room.",
+          correct: "He walked into the room.",
+          reason: "Use into for movement (entering). Inside is a location.",
+        },
+        {
+          wrong: "I put it inside the table.",
+          correct: "I put it on the table.",
+          reason: "A table usually doesn’t have an ‘inside’ space; use on for a surface.",
+        },
+        {
+          wrong: "Stay in the room! (when you mean ‘don’t go out’)",
+          correct: "Stay inside the room!",
+          reason: "Both can be grammatical, but inside better signals ‘stay within the boundary’.",
+        },
+        {
+          wrong: "The keys are inside of the box.",
+          correct: "The keys are inside the box.",
+          reason:
+            "Inside usually doesn’t need of. Inside of is heard in casual speech, but inside + noun is more concise and standard.",
+        },
+      ],
+    },
+    quiz: {
+      "zh-CN": [
+        {
+          prompt: "选出更合适的介词：Please stay ___ the building.",
+          options: ["in", "inside", "into"],
+          answer: "inside",
+          explanation: "强调“待在大楼内部/别出去”时，用 inside 更自然；into 表示进入的动作。",
+        },
+        {
+          prompt: "选出更合适的介词：He walked ___ the room.",
+          options: ["inside", "into", "in"],
+          answer: "into",
+          explanation: "walked 表示进入（动作）时用 into；inside/in 表示位置。",
+        },
+        {
+          prompt: "选出更合适的介词：The book is ___ the box.",
+          options: ["inside", "on", "over"],
+          answer: "inside",
+          explanation: "书在盒子内部空间里，用 inside；on 是在表面上。",
+        },
+      ],
+      en: [
+        {
+          prompt: "Choose the best preposition: Please stay ___ the building.",
+          options: ["in", "inside", "into"],
+          answer: "inside",
+          explanation: "Inside emphasizes staying within the boundary; into is movement (entering).",
+        },
+        {
+          prompt: "Choose the best preposition: He walked ___ the room.",
+          options: ["inside", "into", "in"],
+          answer: "into",
+          explanation: "Use into for entering (movement).",
+        },
+        {
+          prompt: "Choose the best preposition: The book is ___ the box.",
+          options: ["inside", "on", "over"],
+          answer: "inside",
+          explanation: "Inside is correct because the book is in the enclosed space of the box.",
+        },
+      ],
+    },
+    faq: {
+      "zh-CN": [
+        {
+          question: "Inside 和 in 有什么区别？",
+          answer: "两者都可表示“在里面”。in 更中性、更常用；inside 更强调边界/封闭感，常用于提醒“别出去/别越界”。",
+        },
+        {
+          question: "Inside 和 within 有什么区别？",
+          answer: "within 更正式，常用于“范围/限制”（within 10 minutes）。inside 更偏具体空间的“在内部”。",
+        },
+        {
+          question: "Inside 和 into 能互换吗？",
+          answer: "一般不能：inside 表示位置（在哪里）；into 表示进入的动作/方向（从外到内）。",
+        },
+        {
+          question: "什么时候 inside 比 in 更自然？",
+          answer:
+            "当你要强调“别出去/别越界”时，inside 更自然。比如：Stay inside the house.",
+        },
+        {
+          question: "inside 后面通常接什么名词？",
+          answer:
+            "通常接有边界或容器感的名词，如 room, building, box, bag, car, fence, boundary line。",
+        },
+        {
+          question: "inside of 正确吗？",
+          answer:
+            "多数情况下用 inside + 名词即可（inside the box）。inside of 在口语里也能见到，但更啰嗦；写作/教学场景通常建议不用 of。",
+        },
+      ],
+      en: [
+        {
+          question: "Inside vs in: what’s the difference?",
+          answer: "Both can mean ‘in a place’. In is neutral and most common; inside highlights the boundary/enclosure (often ‘stay within’).",
+        },
+        {
+          question: "Inside vs within: what’s the difference?",
+          answer: "Within is more formal and often used for limits (within 10 minutes). Inside is more concrete for physical space.",
+        },
+        {
+          question: "Can I use inside instead of into?",
+          answer: "Usually no. Inside is a location; into is movement (entering) from outside to inside.",
+        },
+        {
+          question: "When is inside more natural than in?",
+          answer:
+            "Use inside when you want to stress boundaries or safety instructions, such as: Stay inside the house.",
+        },
+        {
+          question: "What nouns are common after inside?",
+          answer:
+            "Common nouns include room, building, box, bag, car, fence, and boundary line.",
+        },
+        {
+          question: "Is ‘inside of’ correct?",
+          answer:
+            "Usually you can just say inside + noun (inside the box). Inside of is common in casual speech, but it’s wordier; in writing/teaching, inside is usually preferred.",
+        },
+      ],
+    },
     scene: makeScene([0, 0, 0]),
   },
   {
@@ -6051,17 +7246,17 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
       "zh-CN": {
         meaning: "靠着/贴着（接触并有支撑）",
         tips: [
-          "核心画面：接触表面，并有“倚靠/支撑/受力”的感觉。",
-          "对比 on：on 是在表面上；against 多是贴着侧面（墙/门/玻璃）。",
-          "也可表示“反对/对抗”：vote against / fight against（扩展用法）。",
+          "发音 /əˈɡenst/。记忆：把 A “顶/靠”到 B 上（接触 + 受力/支撑）。",
+          "Against vs on：on 多在上表面；against 多贴着侧面，并带支撑/压力感（lean against a wall）。",
+          "常用句型：be against + 名词（反对）；against the rules（违反）；against the clock（争分夺秒）。",
         ],
       },
       en: {
-        meaning: "against; touching with pressure or support",
+        meaning: "touching and pressing to a surface (with support/pressure)",
         tips: [
-          "Touching a surface, often with pressure/support (lean against a wall).",
-          "On = on top of a surface; against = pressed to the side of a surface.",
-          'It can also mean "opposed to" (vote against, fight against) as an extension.',
+          "Pronunciation: /\u0259\u02c8\u0261enst/. Think: A is pushed to B (contact + pressure/support).",
+          "Against vs on: on is on top of a surface; against is pressed to the side (lean against a wall).",
+          'Useful patterns: be against + noun (opposed to), against the rules (in violation), against the clock (time pressure).',
         ],
       },
     },
@@ -6078,6 +7273,43 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         i18n: {
           "zh-CN": { translation: "他靠在门上。" },
           en: { translation: "He leaned against the door." },
+        },
+      },
+      {
+        en: "They voted against the plan.",
+        i18n: {
+          "zh-CN": { translation: "他们投票反对这个计划。" },
+          en: { translation: "They voted against the plan." },
+        },
+      },
+      {
+        en: "We are fighting against the disease.",
+        i18n: {
+          "zh-CN": { translation: "我们正在对抗这种疾病。" },
+          en: { translation: "We are fighting against the disease." },
+        },
+      },
+      {
+        en: "It's against the rules to smoke here.",
+        i18n: {
+          "zh-CN": { translation: "在这里抽烟是违反规定的。" },
+          en: { translation: "It's against the rules to smoke here." },
+        },
+      },
+      {
+        en: "We worked against the clock to finish on time.",
+        i18n: {
+          "zh-CN": { translation: "我们争分夺秒赶进度，按时完成。" },
+          en: { translation: "We worked against the clock to finish on time." },
+        },
+      },
+      {
+        en: "She put on sunscreen to protect her skin against the sun.",
+        i18n: {
+          "zh-CN": { translation: "她涂了防晒霜，保护皮肤免受日晒。" },
+          en: {
+            translation: "She put on sunscreen to protect her skin against the sun.",
+          },
         },
       },
     ],
@@ -6268,6 +7500,11 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
           reason:
             "against 表示贴着接触；只是位置在旁边且不强调接触，用 next to。",
         },
+        {
+          wrong: "I am against to the idea.",
+          correct: "I am against the idea.",
+          reason: "against 后面直接接名词/名词短语：be against + noun。",
+        },
       ],
       en: [
         {
@@ -6284,6 +7521,11 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
           wrong: "I am against the table. (meaning: beside it)",
           correct: "I am next to the table.",
           reason: "Against implies touching; next to is the neutral beside position.",
+        },
+        {
+          wrong: "I am against to the idea.",
+          correct: "I am against the idea.",
+          reason: "Pattern: be against + noun/noun phrase (no 'to').",
         },
       ],
     },
@@ -6364,7 +7606,7 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         {
           question: 'Is "against" used for time expressions?',
           answer:
-            "Not usually for basic time expressions. It is mainly about contact/support or opposition.",
+            'Not for basic time like "on Monday". But it is common in the fixed phrase "against the clock" (working under time pressure).',
         },
         {
           question: 'How can I remember "against" quickly?',
@@ -6406,7 +7648,7 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         {
           question: "against 用于时间表达吗？",
           answer:
-            "通常不用于基础时间表达，它主要描述“贴靠/对抗”。",
+            "不用于 on Monday 这类基础时间表达，但有固定搭配 against the clock，表示“争分夺秒/在时限压力下”。",
         },
         {
           question: "如何快速记住 against？",
@@ -7035,16 +8277,24 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
   {
     id: "to",
     word: "to",
-    tags: ["space", "direction", "destination"],
+    tags: ["space", "direction", "destination", "recipient", "range"],
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "到/向……（目的地）",
-        tips: ["表示方向或目的地。", "强调“到达”。"],
+        meaning: "到/向；给/对（受事）；到……为止（范围终点）",
+        tips: [
+          "表示运动的终点：go to school（到学校）。",
+          "表示受事/接受者：give it to me（把它给我）。",
+          "快速辨析：介词 to + 名词/代词/动名词；不定式 to + 动词原形。",
+        ],
       },
       en: {
-        meaning: "to; toward a destination",
-        tips: ["Indicates direction or destination.", "Focus on reaching a point."],
+        meaning: "to: toward an endpoint; to a recipient; up to a limit",
+        tips: [
+          "Endpoint/destination: move to a place or point.",
+          "Recipient/target: give/send/show something to someone.",
+          "Quick check: preposition to + noun/pronoun/gerund; infinitive to + base verb.",
+        ],
       },
     },
     examples: [
@@ -7062,6 +8312,20 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
           en: { translation: "The bus goes to the station." },
         },
       },
+      {
+        en: "Please send the file to me.",
+        i18n: {
+          "zh-CN": { translation: "请把文件发给我。" },
+          en: { translation: "Please send the file to me." },
+        },
+      },
+      {
+        en: "The office is open from 9 to 5.",
+        i18n: {
+          "zh-CN": { translation: "办公室从 9 点开到 5 点。" },
+          en: { translation: "The office is open from 9 to 5." },
+        },
+      },
     ],
     scene: makeScene([0, 0, 1.2], {
       animation: {
@@ -7071,6 +8335,384 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         to: [0, 0, 1.2],
       },
     }),
+    comparison: {
+      i18n: {
+        "zh-CN": {
+          summary:
+            "to 的核心是“指向终点/目标”。用于去向（go to…）、受事（give to…）与范围终点（from…to…）。注意：介词 to 后面接名词/代词/动名词；to + 动词原形通常是不定式标记，不是介词。",
+          differences: [
+            {
+              term: "toward",
+              description:
+                "toward 强调“朝着方向”，不保证到达；to 更偏“到达终点/目标”。",
+              examples: [
+                {
+                  term: "toward",
+                  sentence: "She walked toward the door, then stopped.",
+                  translation: "她朝门口走去，但中途停下了。",
+                },
+                {
+                  term: "to",
+                  sentence: "She walked to the door.",
+                  translation: "她走到门口。",
+                },
+              ],
+            },
+            {
+              term: "into",
+              description:
+                "into 强调“进入内部（从外到内）”；to 只到达一个点/地点，不强调进入。",
+              examples: [
+                {
+                  term: "to",
+                  sentence: "He went to the room.",
+                  translation: "他去到房间（不强调进去）。",
+                },
+                {
+                  term: "into",
+                  sentence: "He went into the room.",
+                  translation: "他走进了房间。",
+                },
+              ],
+            },
+            {
+              term: "at",
+              description:
+                "at 强调“在某个点/位置”；to 强调“到那个点（移动的终点）”。",
+              examples: [
+                {
+                  term: "to",
+                  sentence: "We drove to the airport.",
+                  translation: "我们开车去机场（到达机场）。",
+                },
+                {
+                  term: "at",
+                  sentence: "We are at the airport.",
+                  translation: "我们在机场。",
+                },
+              ],
+            },
+            {
+              term: "for",
+              description:
+                "for 常表示“为了/给……用（目的/用途）”；to 更偏“指向某个对象/受事/终点”。",
+              examples: [
+                {
+                  term: "to",
+                  sentence: "She gave the key to Tom.",
+                  translation: "她把钥匙给了汤姆。",
+                },
+                {
+                  term: "for",
+                  sentence: "She bought a key for Tom.",
+                  translation: "她给汤姆买了一把钥匙。",
+                },
+              ],
+            },
+          ],
+        },
+        en: {
+          summary:
+            "To points to an endpoint/target: destination (go to…), recipient (give to…), or a range endpoint (from…to…). Quick check: preposition to + noun/pronoun/gerund; to + base verb is usually the infinitive marker.",
+          differences: [
+            {
+              term: "toward",
+              description:
+                "Toward emphasizes direction without guaranteed arrival; to highlights the endpoint.",
+              examples: [
+                {
+                  term: "toward",
+                  sentence: "She walked toward the door, then stopped.",
+                },
+                {
+                  term: "to",
+                  sentence: "She walked to the door.",
+                },
+              ],
+            },
+            {
+              term: "into",
+              description:
+                "Into means movement from outside to inside; to does not necessarily imply entering.",
+              examples: [
+                {
+                  term: "to",
+                  sentence: "He went to the room.",
+                },
+                {
+                  term: "into",
+                  sentence: "He went into the room.",
+                },
+              ],
+            },
+            {
+              term: "at",
+              description:
+                "At is a static point/location; to is movement to that point.",
+              examples: [
+                {
+                  term: "to",
+                  sentence: "We drove to the airport.",
+                },
+                {
+                  term: "at",
+                  sentence: "We are at the airport.",
+                },
+              ],
+            },
+            {
+              term: "for",
+              description:
+                "For often marks purpose/benefit; to often marks direction/recipient/target.",
+              examples: [
+                {
+                  term: "to",
+                  sentence: "She gave the key to Tom.",
+                },
+                {
+                  term: "for",
+                  sentence: "She bought a key for Tom.",
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    collocationGroups: {
+      en: [
+        {
+          title: "Destination / endpoint",
+          items: [
+            "go to school",
+            "walk to the door",
+            "drive to the airport",
+            "return to work",
+            "get to the point",
+            "head to the station",
+          ],
+        },
+        {
+          title: "Recipient / target",
+          items: [
+            "give it to me",
+            "send an email to the team",
+            "explain it to a child",
+            "talk to your doctor",
+            "reply to this message",
+            "introduce her to my parents",
+          ],
+        },
+        {
+          title: "Range / limit",
+          items: [
+            "from 9 to 5",
+            "Monday to Friday",
+            "up to 10 people",
+            "ten to twelve",
+            "3 to 1",
+            "from start to finish",
+          ],
+        },
+      ],
+      "zh-CN": [
+        {
+          title: "去向/终点",
+          items: [
+            { phrase: "go to school", meaning: "去学校" },
+            { phrase: "walk to the door", meaning: "走到门口" },
+            { phrase: "drive to the airport", meaning: "开车去机场" },
+            { phrase: "return to work", meaning: "回去上班/回到工作状态" },
+            { phrase: "get to the point", meaning: "切入正题" },
+            { phrase: "head to the station", meaning: "前往车站" },
+          ],
+        },
+        {
+          title: "给/对（受事）",
+          items: [
+            { phrase: "give it to me", meaning: "把它给我" },
+            { phrase: "send an email to the team", meaning: "给团队发邮件" },
+            { phrase: "explain it to a child", meaning: "向孩子解释" },
+            { phrase: "talk to your doctor", meaning: "和你的医生沟通" },
+            { phrase: "reply to this message", meaning: "回复这条消息" },
+            { phrase: "introduce her to my parents", meaning: "把她介绍给我父母" },
+          ],
+        },
+        {
+          title: "范围终点/上限",
+          items: [
+            { phrase: "from 9 to 5", meaning: "从 9 点到 5 点" },
+            { phrase: "Monday to Friday", meaning: "周一到周五" },
+            { phrase: "up to 10 people", meaning: "最多 10 个人" },
+            { phrase: "ten to twelve", meaning: "10 点到 12 点 / 10 到 12" },
+            { phrase: "3 to 1", meaning: "三比一" },
+            { phrase: "from start to finish", meaning: "从开始到结束" },
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      en: [
+        {
+          wrong: "I want to school.",
+          correct: "I want to go to school.",
+          reason:
+            "To is a preposition before a noun (to school). After want, to + base verb is the infinitive marker (to go).",
+        },
+        {
+          wrong: "I look forward to see you.",
+          correct: "I look forward to seeing you.",
+          reason:
+            "Here to is a preposition after look forward; it needs a noun/gerund, not a base verb.",
+        },
+        {
+          wrong: "We arrived to the airport.",
+          correct: "We arrived at the airport.",
+          reason:
+            "Arrive uses at/in, not to (arrive at the airport / arrive in London).",
+        },
+        {
+          wrong: "Between 9 to 5",
+          correct: "From 9 to 5 / Between 9 and 5",
+          reason: "Use from…to… for a range; between pairs with and.",
+        },
+      ],
+      "zh-CN": [
+        {
+          wrong: "I want to school.",
+          correct: "I want to go to school.",
+          reason:
+            "to school 里的 to 是介词（后接名词）；want 后面的 to go 是不定式标记（to + 动词原形）。",
+        },
+        {
+          wrong: "I look forward to see you.",
+          correct: "I look forward to seeing you.",
+          reason:
+            "look forward to 里的 to 是介词，后面要接名词/动名词（seeing）。",
+        },
+        {
+          wrong: "We arrived to the airport.",
+          correct: "We arrived at the airport.",
+          reason:
+            "arrive 通常用 at/in，而不用 to：arrive at the airport / arrive in London。",
+        },
+        {
+          wrong: "Between 9 to 5",
+          correct: "From 9 to 5 / Between 9 and 5",
+          reason: "范围表达中 from…to… 搭配；between 必须跟 and。",
+        },
+      ],
+    },
+    quiz: {
+      en: [
+        {
+          prompt: "Choose the best option: She walked ___ the door.",
+          options: ["to", "at", "in", "for"],
+          answer: "to",
+          explanation: "Use to for movement to an endpoint (the door).",
+        },
+        {
+          prompt: "Choose the best option: I decided ___ leave early.",
+          options: ["to", "at", "in", "for"],
+          answer: "to",
+          explanation:
+            "Here to + base verb (leave) is the infinitive marker, not the preposition to.",
+        },
+        {
+          prompt: "Choose the best option: I look forward to ___ you again.",
+          options: ["seeing", "see", "to see", "saw"],
+          answer: "seeing",
+          explanation:
+            "In look forward to, to is a preposition, so it takes a gerund (seeing).",
+        },
+      ],
+      "zh-CN": [
+        {
+          prompt: "选择正确选项：She walked ___ the door.",
+          options: ["to", "at", "in", "for"],
+          answer: "to",
+          explanation: "表示走到终点（门口）用 to。",
+        },
+        {
+          prompt: "选择正确选项：I decided ___ leave early.",
+          options: ["to", "at", "in", "for"],
+          answer: "to",
+          explanation: "这里 to + 动词原形（leave）是不定式标记，不是介词。",
+        },
+        {
+          prompt: "选择正确选项：I look forward to ___ you again.",
+          options: ["seeing", "see", "to see", "saw"],
+          answer: "seeing",
+          explanation: "look forward to 里的 to 是介词，后面要接动名词（seeing）。",
+        },
+      ],
+    },
+    faq: {
+      en: [
+        {
+          question: "What does the preposition \"to\" mean?",
+          answer:
+            "As a preposition, to points to an endpoint or target: destination (go to school), recipient (give it to me), or a range limit (from 9 to 5).",
+        },
+        {
+          question: "Preposition to vs infinitive to: how can I tell?",
+          answer:
+            "If to is followed by a noun/pronoun/gerund, it is a preposition (to the station / to me / to seeing you). If it is followed by a base verb, it is usually the infinitive marker (to go / to learn).",
+        },
+        {
+          question: "To vs toward: what's the difference?",
+          answer:
+            "Toward emphasizes direction and does not guarantee arrival. To highlights the endpoint: walk toward the door (maybe stop) vs walk to the door (reach it).",
+        },
+        {
+          question: "Can I use to after \"look forward\"?",
+          answer:
+            "Yes, but to is a preposition there, so use a noun or gerund: look forward to the weekend / look forward to seeing you.",
+        },
+        {
+          question: "Do we say arrive to a place?",
+          answer:
+            "No. Use arrive at (a point) or arrive in (a city/country): arrive at the airport / arrive in London.",
+        },
+        {
+          question: "How do I express a range with to?",
+          answer:
+            "Use from X to Y, or X to Y in lists/timetables: from 9 to 5 / Monday to Friday / 10 to 12.",
+        },
+      ],
+      "zh-CN": [
+        {
+          question: "介词 to 的核心意思是什么？",
+          answer:
+            "介词 to 指向“终点/目标”：去向终点（go to school）、受事/接受者（give it to me）、范围终点（from 9 to 5）。",
+        },
+        {
+          question: "怎么区分介词 to 和不定式 to？",
+          answer:
+            "看后面跟什么：to + 名词/代词/动名词 → 介词（to the station / to me / to seeing you）；to + 动词原形 → 多数是不定式标记（to go / to learn）。",
+        },
+        {
+          question: "to 和 toward 有什么区别？",
+          answer:
+            "toward 强调“朝着方向”，不保证到达；to 更强调到达终点：walk toward the door（可能停下）vs walk to the door（走到门口）。",
+        },
+        {
+          question: "look forward to 后面能接动词原形吗？",
+          answer:
+            "不能。look forward to 里的 to 是介词，后面接名词或动名词：look forward to the weekend / look forward to seeing you。",
+        },
+        {
+          question: "arrive 后面可以用 to 吗？",
+          answer:
+            "一般不可以。固定用法是 arrive at（地点点位）或 arrive in（城市/国家）：arrive at the airport / arrive in London。",
+        },
+        {
+          question: "怎么用 to 表示范围？",
+          answer:
+            "常用 from X to Y，也可在列表/时间表里用 X to Y：from 9 to 5 / Monday to Friday / 10 to 12。",
+        },
+      ],
+    },
   },
   {
     id: "from",
@@ -7079,30 +8721,344 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     sense: "space",
     i18n: {
       "zh-CN": {
-        meaning: "从……（出发点）",
-        tips: ["表示起点或来源。", "与 to 相对。"],
+        meaning: "从……（起点/来源）",
+        tips: [
+          "核心画面：从起点出发或来自某来源。",
+          "常用结构：from A to B（从 A 到 B，用于时间/地点范围）。",
+          "易混：since 强调“从某时间点一直到现在”；out of 强调“从里面出来”。",
+        ],
       },
       en: {
-        meaning: "from; starting point",
-        tips: ["Indicates origin or source.", "Opposite of to."],
+        meaning: "from (origin/start point; source)",
+        tips: [
+          "Core idea: a starting point or source (where something begins/comes).",
+          "Common pattern: from A to B (place or time range).",
+          "Don’t mix up: since (start time + still true now) and out of (movement from inside).",
+        ],
       },
     },
     examples: [
       {
-        en: "He comes from the school.",
+        en: "She moved from Paris to Berlin.",
         i18n: {
-          "zh-CN": { translation: "他从学校来。" },
-          en: { translation: "He comes from the school." },
+          "zh-CN": { translation: "她从巴黎搬到柏林。" },
+          en: { translation: "She moved from Paris to Berlin." },
         },
       },
       {
-        en: "The train left from the platform.",
+        en: "The store is open from 9 a.m. to 6 p.m.",
         i18n: {
-          "zh-CN": { translation: "火车从站台出发。" },
-          en: { translation: "The train left from the platform." },
+          "zh-CN": { translation: "这家店营业时间是上午 9 点到下午 6 点。" },
+          en: { translation: "The store is open from 9 a.m. to 6 p.m." },
+        },
+      },
+      {
+        en: "I got a message from my boss.",
+        i18n: {
+          "zh-CN": { translation: "我收到了老板发来的消息。" },
+          en: { translation: "I got a message from my boss." },
         },
       },
     ],
+    collocationGroups: {
+      "zh-CN": [
+        {
+          title: "来源/出发点",
+          items: [
+            { phrase: "come from", meaning: "来自（某地/某来源）" },
+            { phrase: "be from", meaning: "来自（某地）" },
+            { phrase: "get…from…", meaning: "从……获得/得到……" },
+            { phrase: "hear from", meaning: "收到……的消息" },
+            { phrase: "borrow…from…", meaning: "向……借……" },
+            { phrase: "learn…from…", meaning: "从……学习/汲取经验" },
+          ],
+        },
+        {
+          title: "时间/范围",
+          items: [
+            { phrase: "from Monday to Friday", meaning: "从周一到周五" },
+            { phrase: "from 9 to 5", meaning: "从 9 点到 5 点" },
+            { phrase: "from A to Z", meaning: "从头到尾/全面" },
+            { phrase: "from now on", meaning: "从现在起" },
+            { phrase: "from then on", meaning: "从那时起" },
+            { phrase: "from start to finish", meaning: "从开始到结束" },
+          ],
+        },
+        {
+          title: "距离/分离",
+          items: [
+            { phrase: "far from", meaning: "离……很远/远非" },
+            { phrase: "away from", meaning: "离开/远离" },
+            { phrase: "different from", meaning: "不同于" },
+            { phrase: "separate…from…", meaning: "把……和……分开" },
+            { phrase: "protect…from…", meaning: "保护……免受……" },
+            { phrase: "stop…from…", meaning: "阻止……做……" },
+          ],
+        },
+      ],
+      en: [
+        {
+          title: "Origin / Source",
+          items: [
+            "come from",
+            "be from",
+            "get … from …",
+            "hear from",
+            "borrow … from …",
+            "learn … from …",
+          ],
+        },
+        {
+          title: "Time / Range",
+          items: [
+            "from Monday to Friday",
+            "from 9 to 5",
+            "from A to Z",
+            "from now on",
+            "from then on",
+            "from start to finish",
+          ],
+        },
+        {
+          title: "Distance / Separation",
+          items: [
+            "far from",
+            "away from",
+            "different from",
+            "separate … from …",
+            "protect … from …",
+            "stop … from …",
+          ],
+        },
+      ],
+    },
+    commonMistakes: {
+      "zh-CN": [
+        {
+          wrong: "I have lived here from 2019.",
+          correct: "I have lived here since 2019.",
+          reason: "现在完成时表示“从某时开始一直到现在”，通常用 since + 时间点，而不是 from。",
+        },
+        {
+          wrong: "The store is open from 9 until 6.",
+          correct: "The store is open from 9 to 6.",
+          reason: "表达“从……到……（范围两端）”的最常见结构是 from A to B。",
+        },
+        {
+          wrong: "He walked from of the room.",
+          correct: "He walked out of the room.",
+          reason: "从“房间内部出来”的动作，用 out of；from 更像“从起点/来源”。",
+        },
+      ],
+      en: [
+        {
+          wrong: "I have lived here from 2019.",
+          correct: "I have lived here since 2019.",
+          reason:
+            "With the present perfect for a situation continuing to now, use since + a start time, not from.",
+        },
+        {
+          wrong: "The store is open from 9 until 6.",
+          correct: "The store is open from 9 to 6.",
+          reason:
+            "For a clear range with two endpoints, the most common pattern is from A to B.",
+        },
+        {
+          wrong: "He walked from of the room.",
+          correct: "He walked out of the room.",
+          reason:
+            "Use out of for movement from inside an enclosed space. From focuses on the source/start point.",
+        },
+      ],
+    },
+    comparison: {
+      i18n: {
+        en: {
+          summary:
+            "from marks an origin/source. For time, it often pairs with to for a range; since is used for a start time continuing to now; out of is movement from inside.",
+          differences: [
+            {
+              term: "since",
+              description:
+                "Use from for a start point in a range (often with to). Use since for a starting time when something continues to the present.",
+              examples: [
+                {
+                  term: "from",
+                  sentence: "The cafe is open from 8 to 4.",
+                },
+                {
+                  term: "since",
+                  sentence: "I have worked here since 2019.",
+                },
+              ],
+            },
+            {
+              term: "out of",
+              description:
+                "Use from for source/origin. Use out of for movement from inside an enclosed space to outside.",
+              examples: [
+                {
+                  term: "from",
+                  sentence: "I got an email from my teacher.",
+                },
+                {
+                  term: "out of",
+                  sentence: "She ran out of the room.",
+                },
+              ],
+            },
+          ],
+        },
+        "zh-CN": {
+          summary:
+            "from 表示“起点/来源”。时间表达里常与 to 搭配构成范围；since 用于“从某时间点持续到现在”；out of 表示“从里面出来”。",
+          differences: [
+            {
+              term: "since",
+              description:
+                "from 常用于“起点 + 终点”的范围（多与 to 搭配）；since 表示“从某时间点一直到现在”的持续。",
+              examples: [
+                {
+                  term: "from",
+                  sentence: "The cafe is open from 8 to 4.",
+                  translation: "这家咖啡店营业时间是 8 点到 4 点。",
+                },
+                {
+                  term: "since",
+                  sentence: "I have worked here since 2019.",
+                  translation: "我从 2019 年起一直在这里工作。",
+                },
+              ],
+            },
+            {
+              term: "out of",
+              description:
+                "from 强调来源/起点；out of 强调“从容器/房间内部出来到外面”。",
+              examples: [
+                {
+                  term: "from",
+                  sentence: "I got an email from my teacher.",
+                  translation: "我收到了老师发来的邮件。",
+                },
+                {
+                  term: "out of",
+                  sentence: "She ran out of the room.",
+                  translation: "她跑出了房间。",
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
+    quiz: {
+      en: [
+        {
+          prompt: "Choose the best option: The shop is open ___ 9 a.m. to 6 p.m.",
+          options: ["from", "since", "out of"],
+          answer: "from",
+          explanation: "Use from A to B to express a time range with two endpoints.",
+        },
+        {
+          prompt: "Choose the best option: I have known her ___ 2020.",
+          options: ["from", "since", "between"],
+          answer: "since",
+          explanation:
+            "With present perfect for something continuing to now, use since + a start time.",
+        },
+        {
+          prompt: "Choose the best option: She took the book ___ her bag.",
+          options: ["from", "out of", "to"],
+          answer: "out of",
+          explanation: "Out of is used for movement from inside a container to outside.",
+        },
+      ],
+      "zh-CN": [
+        {
+          prompt: "选出最合适的介词：这家店营业时间是 ___ 9 点到 6 点。",
+          options: ["from", "since", "out of"],
+          answer: "from",
+          explanation: "表达“从……到……”的范围，常用 from A to B。",
+        },
+        {
+          prompt: "选出最合适的介词：我从 2020 年起一直认识她。I have known her ___ 2020.",
+          options: ["from", "since", "to"],
+          answer: "since",
+          explanation: "现在完成时表示持续到现在，通常用 since + 时间点。",
+        },
+        {
+          prompt: "选出最合适的介词：她从包里拿出了书。She took the book ___ her bag.",
+          options: ["from", "out of", "at"],
+          answer: "out of",
+          explanation: "强调“从容器内部出来”用 out of。",
+        },
+      ],
+    },
+    faq: {
+      en: [
+        {
+          question: "What does \"from\" mean?",
+          answer:
+            "From marks an origin or source: where something starts or where it comes from.",
+        },
+        {
+          question: "How do I use \"from\" in a simple pattern?",
+          answer:
+            "Use from + place/person/thing: from London, from my friend, from the internet.",
+        },
+        {
+          question: "How do I talk about a time range with \"from\"?",
+          answer:
+            "Use from A to B: The store is open from 9 a.m. to 6 p.m.",
+        },
+        {
+          question: "From vs since: what's the difference?",
+          answer:
+            "From often pairs with to for a range. Since is used for a start time continuing to now (I have lived here since 2019).",
+        },
+        {
+          question: "From vs out of: what's the difference?",
+          answer:
+            "From is source/origin (a message from her). Out of is movement from inside to outside (out of the room).",
+        },
+        {
+          question: "What are common collocations with \"from\"?",
+          answer:
+            "High-frequency: come from, be from, hear from, learn from, protect from, different from.",
+        },
+      ],
+      "zh-CN": [
+        {
+          question: "from 的核心意思是什么？",
+          answer: "from 表示来源或起点：某事从哪里开始、从哪里来。",
+        },
+        {
+          question: "from 最常用的句型是什么？",
+          answer:
+            "最常用：from + 地点/人/来源（from London / from my friend / from the internet）。",
+        },
+        {
+          question: "如何用 from 表达时间范围？",
+          answer:
+            "用 from A to B：The store is open from 9 a.m. to 6 p.m.（营业时间 9 点到 6 点）。",
+        },
+        {
+          question: "from 和 since 有什么区别？",
+          answer:
+            "from 常用于范围起点（常与 to 搭配）；since 表示“从某时间点一直到现在”（I have lived here since 2019）。",
+        },
+        {
+          question: "from 和 out of 有什么区别？",
+          answer:
+            "from 强调来源/起点（a message from her）；out of 强调“从里面出来”（out of the room）。",
+        },
+        {
+          question: "from 常见高频搭配有哪些？",
+          answer:
+            "高频：come from / be from / hear from / learn from / protect…from… / different from。",
+        },
+      ],
+    },
     scene: makeScene([0, 0, -1.2], {
       animation: {
         type: "path",
@@ -8529,11 +10485,19 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     i18n: {
       "zh-CN": {
         meaning: "在……对面",
-        tips: ["强调隔着一条路/区域相对。", "常与街道、河流搭配。"],
+        tips: [
+          "表示“在……对面”：两者隔着一段空间（街道、河流、广场、走廊）。",
+          "across from 强调静态位置；如果是“穿过到另一边”的动作，改用 across。",
+          "与 opposite 多数场景可互换；across from 更偏美式口语。",
+        ],
       },
       en: {
         meaning: "across from; on the opposite side",
-        tips: ["Opposite side across a space.", "Often across a street or river."],
+        tips: [
+          "Use it for a fixed position on the opposite side of a space (street/river/hall).",
+          "It is static location; for movement to the other side, use across.",
+          "Often interchangeable with opposite; across from is very common in AmE.",
+        ],
       },
     },
     examples: [
@@ -8549,6 +10513,13 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         i18n: {
           "zh-CN": { translation: "他住在公园对面。" },
           en: { translation: "He lives across from the park." },
+        },
+      },
+      {
+        en: "The pharmacy is across from the station entrance.",
+        i18n: {
+          "zh-CN": { translation: "药店在车站入口对面。" },
+          en: { translation: "The pharmacy is across from the station entrance." },
         },
       },
     ],
@@ -8703,7 +10674,6 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
           title: "面对面（人/座位）",
           items: [
             { phrase: "sit opposite me", meaning: "坐在我对面" },
-            { phrase: "sit opposite each other", meaning: "面对面坐着" },
             { phrase: "stand opposite each other", meaning: "彼此相对站着" },
             { phrase: "directly opposite", meaning: "正对着/正对面" },
             { phrase: "right opposite", meaning: "（英式口语）就在正对面" },
@@ -8739,7 +10709,6 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
           title: "Face-to-face (people/seats)",
           items: [
             "sit opposite me",
-            "sit opposite each other",
             "stand opposite each other",
             "directly opposite",
             "right opposite",
@@ -8968,11 +10937,19 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     i18n: {
       "zh-CN": {
         meaning: "在……之中（多者中）",
-        tips: ["强调在一群/环境中间。", "语气较正式。"],
+        tips: [
+          "amid 表示“在……之中”，常用于人群、混乱、争议、掌声等“情境氛围”里。",
+          "语气比 among 更正式，新闻写作和书面表达里很常见。",
+          "amid 后常接不可数或抽象名词：amid chaos / amid criticism。",
+        ],
       },
       en: {
         meaning: "amid; in the middle of",
-        tips: ["In the middle of a group.", "Slightly formal."],
+        tips: [
+          "Amid means ‘in the middle of / surrounded by,’ often with situations or atmosphere.",
+          "It sounds more formal than among and is common in news writing.",
+          "Typical pattern: amid + abstract/uncountable nouns (amid chaos, amid pressure).",
+        ],
       },
     },
     examples: [
@@ -8990,6 +10967,13 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
           en: { translation: "A house sits amid the trees." },
         },
       },
+      {
+        en: "She remained calm amid heavy criticism.",
+        i18n: {
+          "zh-CN": { translation: "在猛烈批评声中，她仍保持冷静。" },
+          en: { translation: "She remained calm amid heavy criticism." },
+        },
+      },
     ],
     scene: makeScene([0, 0, 0], {
       variant: "ringCubes",
@@ -9003,11 +10987,19 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     i18n: {
       "zh-CN": {
         meaning: "在……之中（同 amid）",
-        tips: ["与 amid 意义相同，更书面。", "强调周围环绕。"],
+        tips: [
+          "amidst 与 amid 基本同义，都表示“在……之中/被……包围”。",
+          "amidst 更偏文学或正式语体，日常口语里 amid 更常见。",
+          "常见搭配与 amid 类似：amidst uncertainty / amidst cheers。",
+        ],
       },
       en: {
         meaning: "amidst; same as amid",
-        tips: ["Same meaning as amid, more formal.", "Surrounded by."],
+        tips: [
+          "Amidst has almost the same meaning as amid: ‘in the middle of / surrounded by.’",
+          "Amidst feels slightly more literary or formal than amid.",
+          "Use it with atmosphere-like nouns: amidst uncertainty, amidst applause.",
+        ],
       },
     },
     examples: [
@@ -9023,6 +11015,13 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         i18n: {
           "zh-CN": { translation: "小屋坐落在树林中。" },
           en: { translation: "The cabin stands amidst the woods." },
+        },
+      },
+      {
+        en: "The team celebrated amidst loud cheers.",
+        i18n: {
+          "zh-CN": { translation: "在热烈欢呼声中，球队庆祝胜利。" },
+          en: { translation: "The team celebrated amidst loud cheers." },
         },
       },
     ],
@@ -10240,11 +12239,19 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     i18n: {
       "zh-CN": {
         meaning: "在……中间/中央",
-        tips: ["强调位于中心位置。", "可用于多个物体之间。"],
+        tips: [
+          "强调“正中间/中央位置”，通常可视化为左右两边都有空间。",
+          "比 among 更强调‘中心点位’，among 更强调‘在一群里’。",
+          "可用于空间、人群和事件过程：in the middle of the room / discussion / class。",
+        ],
       },
       en: {
         meaning: "in the middle of; at the center",
-        tips: ["At the central position.", "Between multiple things."],
+        tips: [
+          "Use it for the central position of an area, line, group, or process.",
+          "It focuses on center point, unlike among which focuses on being within a group.",
+          "Common pattern: in the middle of + place/event/activity.",
+        ],
       },
     },
     examples: [
@@ -10260,6 +12267,13 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
         i18n: {
           "zh-CN": { translation: "他坐在小组中间。" },
           en: { translation: "He sat in the middle of the group." },
+        },
+      },
+      {
+        en: "Sorry, I called you in the middle of your class.",
+        i18n: {
+          "zh-CN": { translation: "抱歉，我在你上课到一半时给你打了电话。" },
+          en: { translation: "Sorry, I called you in the middle of your class." },
         },
       },
     ],

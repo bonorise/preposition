@@ -35,7 +35,7 @@
 - [ ] 例句“复制”按钮（PRD 9.2 可选）。（阻塞：详情页与例句面板未提供 copy 交互。）
 - [x] SEO 完整化（结构化数据、扩展 meta）
 - [x] SEO 路由规范化：/p/[id] 永久重定向至 /en/p/[id]，避免重复收录
-- [ ] SEO｜详情页内容优化清单（初学者+SEO评分>=85 视为完成；2026-02-14；完成 40/51）
+- [x] SEO｜详情页内容优化清单（初学者+SEO评分>=85 视为完成；2026-02-14；完成 51/51）
 - [x] in (/in) score=95
 - [x] on (/on) score=95
 - [x] under (/under) score=95
@@ -49,40 +49,40 @@
 - [x] behind (/behind) score=91
 - [x] in front of (/in-front-of) score=90（2026-02-19：主打 in front of vs in the front of；补齐对比/易错/测验/FAQ；去模板化搭配；补齐 /in-front-of 短链跳转）
 - [x] between (/between) score=90
-- [ ] among (/among) score=80
-- [ ] around (/around) score=80
-- [ ] inside (/inside) score=80
+- [x] among (/among) score=85（2026-02-20：极简两步prompt自动化，已通过 qa:content + build）
+- [x] around (/around) score=88（2026-02-20：极简脚本自动化补齐文案+metadata，已通过 qa:content + build）
+- [x] inside (/inside) score=90（2026-02-20：极简两步prompt自动化，已通过 qa:content + build）
 - [x] outside (/outside) score=85
 - [x] across (/across) score=90（2026-02-14：替换动态例句/易错点/测验为自然语料；SEO title 主打 across vs through）
 - [x] through (/through) score=90（2026-02-14：修正释义与对比（through vs across/throughout）；替换 time/dynamic 例句与模板化错题；补齐搭配/FAQ；SEO title 主打 through vs across）
-- [ ] against (/against) score=80
+- [x] against (/against) score=91（2026-02-20：极简两步prompt自动化，已通过 qa:content + build）
 - [x] along (/along) score=90
 - [x] into (/into) score=90
 - [x] onto (/onto) score=90
 - [x] out of (/out-of) score=90
 - [x] at (/at) score=90
 - [x] after (/after) score=95
-- [ ] to (/to) score=80
-- [ ] from (/from) score=80
+- [x] to (/to) score=94（2026-02-20：极简两步prompt自动化，已通过 qa:content + build）
+- [x] from (/from) score=90（2026-02-20：极简两步prompt自动化，已通过 qa:content + build）
 - [x] up (/up) score=90
 - [x] down (/down) score=90
 - [x] off (/off) score=90
 - [x] beneath (/beneath) score=95
 - [x] underneath (/underneath) score=95
 - [x] within (/within) score=90
-- [ ] without (/without) score=80
+- [x] without (/without) score=85（2026-02-20：极简两步prompt自动化，已通过 qa:content + build）
 - [x] past (/past) score=90（2026-02-14：修正时间/路径用法与对比（past vs to/after/beyond）；补齐搭配/易错/测验/FAQ；SEO title 主打 past vs to）
 - [x] toward (/toward) score=90
-- [ ] across from (/across-from) score=80
+- [x] across from (/across-from) score=86（2026-02-20：极简脚本自动化补齐文案+metadata，已通过 qa:content + build）
 - [x] opposite (/opposite) score=90（2026-02-14：补齐对比（opposite vs across from/in front of/across）；替换搭配/易错/测验/FAQ；SEO title 主打 opposite vs across from）
 - [x] throughout (/throughout) score=90
-- [ ] amid (/amid) score=80
-- [ ] amidst (/amidst) score=80
+- [x] amid (/amid) score=86（2026-02-20：极简脚本自动化补齐文案+metadata，已通过 qa:content + build）
+- [x] amidst (/amidst) score=86（2026-02-20：极简脚本自动化补齐文案+metadata，已通过 qa:content + build）
 - [x] alongside (/alongside) score=90
 - [x] beyond (/beyond) score=85
 - [x] upon (/upon) score=95
 - [x] on top of (/on-top-of) score=95
-- [ ] in the middle of (/in-the-middle-of) score=80
+- [x] in the middle of (/in-the-middle-of) score=86（2026-02-20：极简脚本自动化补齐文案+metadata，已通过 qa:content + build）
 - [x] in back of (/in-back-of) score=90（2026-02-14：修正与 behind/in the back of 的差异；移除不自然抽象搭配；替换易错点/测验/FAQ；补齐 /in-back-of 短链跳转）
 - [x] ahead of (/ahead-of) score=90
 - [x] close to (/close-to) score=95
@@ -111,3 +111,8 @@
 - [ ] Remotion 视频生成（介词用法/常用词组/动画导出用于 YouTube/X）。（阻塞：仓库尚无 Remotion 相关工程与导出脚本。）
 - [ ] 教学模式（教师投屏视图 + 课堂用演示顺序）。（阻塞：当前无独立教学视图与预设演示流程。）
 - [ ] 可分享链接（单词页一键生成“教学卡片图”）。（阻塞：当前无卡片生成与分享链接构建能力。）
+
+
+
+
+
