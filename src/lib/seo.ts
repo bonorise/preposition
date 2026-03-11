@@ -1,5 +1,5 @@
 export function getSiteUrl() {
-  const fallback = "https://prepositiondino.vercel.app";
+  const fallback = "https://preposition.worddino.com";
   const raw = (process.env.NEXT_PUBLIC_SITE_URL ?? fallback).trim();
   const withProtocol =
     raw.startsWith("http://") || raw.startsWith("https://")

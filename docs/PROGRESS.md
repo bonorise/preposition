@@ -107,17 +107,16 @@
 - [x] 补充时间介词模块（按时间介词 / 空间介词 / 动态介词分类）
 - [ ] 增加多语言（日本语 / 한국어 / Español 等）。（阻塞：当前仅 `en` 与 `zh-CN` 两种 locale。）
 - [x] 域名检查：word Monster 是否可用。（阻塞：仓库内暂无可追溯的检查记录或结果文档。）
-- [ ] 生产主域切换到 `https://preposition.worddino.com`，并将 `https://prepositiondino.vercel.app` 永久跳转到新域名。（阻塞：需要在 Cloudflare / Vercel 控制台完成 DNS、Domain、环境变量与旧域跳转配置，并同步仓库站点 URL 真源。）
-- [ ] 在 Vercel 项目中添加 `preposition.worddino.com` 自定义域名并等待证书 Ready。
-- [ ] 在 Cloudflare 为 `preposition.worddino.com` 新增指向 Vercel 的 `CNAME` 记录。
-- [ ] 在 Vercel 将 `NEXT_PUBLIC_SITE_URL` 统一为 `https://preposition.worddino.com` 并重新部署生产环境。
-- [ ] 将 `prepositiondino.vercel.app` 配置为永久跳转到 `https://preposition.worddino.com`，保留 path 与 query。
+- [x] 生产主域切换到 `https://preposition.worddino.com`，并将 `https://prepositiondino.vercel.app` 永久跳转到新域名。
+- [x] 在 Vercel 项目中添加 `preposition.worddino.com` 自定义域名并等待证书 Ready。
+- [x] 在 Cloudflare 为 `preposition.worddino.com` 新增指向 Vercel 的 `CNAME` 记录。
+- [x] 在 Vercel 将 `NEXT_PUBLIC_SITE_URL` 统一为 `https://preposition.worddino.com` 并重新部署生产环境。
+- [x] 将 `prepositiondino.vercel.app` 配置为永久跳转到 `https://preposition.worddino.com`，保留 path 与 query。
 - [ ] 立方体与小球加眼睛（更生动）。（阻塞：当前仅 playground 小球加眼睛，立方体与主详情 3D 视图未覆盖。）
 - [x] 介词测试模块（游戏化测验）
 - [ ] Remotion 视频生成（介词用法/常用词组/动画导出用于 YouTube/X）。（阻塞：仓库尚无 Remotion 相关工程与导出脚本。）
 - [ ] 教学模式（教师投屏视图 + 课堂用演示顺序）。（阻塞：当前无独立教学视图与预设演示流程。）
 - [ ] 可分享链接（单词页一键生成“教学卡片图”）。（阻塞：当前无卡片生成与分享链接构建能力。）
-
 
 
 
