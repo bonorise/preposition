@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  
+  <g stroke="#cbd5e1" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="57.72" y1="44.11" x2="84.65" y2="56.84" />
+    <line x1="57.72" y1="12.00" x2="57.72" y2="44.11" />
+    <line x1="57.72" y1="44.11" x2="30.79" y2="56.84" />
+  </g>
+  
+  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="84.65" y1="56.84" x2="88.03" y2="20.65" />
+    <line x1="88.03" y1="20.65" x2="57.72" y2="12.00" />
+    <line x1="30.79" y1="56.84" x2="57.72" y2="74.33" />
+    <line x1="57.72" y1="74.33" x2="57.72" y2="33.02" />
+    <line x1="57.72" y1="33.02" x2="27.41" y2="20.65" />
+    <line x1="27.41" y1="20.65" x2="30.79" y2="56.84" />
+    <line x1="84.65" y1="56.84" x2="57.72" y2="74.33" />
+    <line x1="88.03" y1="20.65" x2="57.72" y2="33.02" />
+    <line x1="57.72" y1="12.00" x2="27.41" y2="20.65" />
+  </g>
+  
+  <defs>
+    <marker id="motion-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#9ca3af" />
+    </marker>
+  </defs>
+  <path d="M96.13 57.02 L93.09 58.85 L89.52 60.52 L85.51 62.03 L81.13 63.38 L76.43 64.55 L71.45 65.51 L66.23 66.24 L60.84 66.66 L55.38 66.69 L49.97 66.32 L44.73 65.63 L39.71 64.70 L34.96 63.56 L30.53 62.23 L26.47 60.75 L22.82 59.10 L19.70 57.29 L17.22 55.31 L15.31 53.25 L13.89 51.15 L12.88 49.07 L12.26 47.01 L12.00 45.00 L12.10 43.03 L12.60 41.13 L13.55 39.30 L14.94 37.56 L16.64 35.92 L18.57 34.38 L20.66 32.95 L22.89 31.61 L25.26 30.37 L27.76 29.23 L30.41 28.21 L33.24 27.32 L36.21 26.56 L39.25 25.91 L42.33 25.36 L45.45 24.90 L48.60 24.52 L51.77 24.23 L54.97 24.05 L58.18 24.00 L61.39 24.09 L64.58 24.30 L67.74 24.62 L70.88 25.02 L73.99 25.51" fill="none" stroke="#9ca3af" stroke-opacity="0.8" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="4 4" marker-end="url(#motion-arrow)" />
+  <circle cx="96.13" cy="57.02" r="10.79" fill="#7c3aed" />
+  
+  
+</svg>

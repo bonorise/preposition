@@ -141,6 +141,7 @@ function getPrimarySeoCategory(categories: LearningCategory[]) {
 const PRIMARY_SEO_CATEGORY_OVERRIDE: Partial<Record<string, LearningCategory>> = {
   behind: "space",
   around: "time",
+  about: "time",
 };
 
 const SEO_METADATA_OVERRIDES: Partial<
@@ -196,6 +197,19 @@ const SEO_METADATA_OVERRIDES: Partial<
       title: "around 介词用法：在……周围 / 大约（约）＋例句 | Preposition Dino",
       description:
         "around 常用两大义项：（1）在……周围/环绕（sit around the table）；（2）表示“大约/差不多”，用于时间或数量（around 5 pm / around 20 people）。本页给出规则与自然例句，帮助快速上手。",
+    },
+  },
+  about: {
+    en: {
+      title:
+        "about (preposition): why it means concerning and approximately | Preposition Dino",
+      description:
+        "About originally feels like moving around a center, which helps explain its meanings: around/surrounding, concerning, and approximately. Includes 3D diagrams, examples, about vs around, common mistakes, quiz, and FAQ.",
+    },
+    "zh-CN": {
+      title: "about 介词用法：为什么它既表示“关于”也表示“大约”？｜Preposition Dino",
+      description:
+        "about 的核心感觉像围着一个中心打转，所以它能表示在周围、关于某事，也能表示大约、左右。页面含 3D 图解、例句、about vs around 对比、易错点、小测验与 FAQ。",
     },
   },
   "across-from": {

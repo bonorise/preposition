@@ -15995,6 +15995,7 @@ const RELATED: Record<string, string[]> = {
   between: ["among", "in-the-middle-of", "around", "amid"],
   among: ["between", "around", "amid", "amidst"],
   around: ["between", "among", "in-the-middle-of", "throughout"],
+  about: ["around", "at", "on", "throughout"],
   inside: ["outside", "in", "within", "out-of"],
   outside: ["inside", "within", "out-of", "in"],
   across: ["through", "past", "across-from", "opposite"],
