@@ -5604,10 +5604,10 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
           },
         },
         {
-          en: "A few people stood about the door, waiting.",
+          en: "There were toys scattered about the floor.",
           i18n: {
-            "zh-CN": { translation: "几个人站在门边附近等着。" },
-            en: { translation: "A few people stood about the door, waiting." },
+            "zh-CN": { translation: "地板上到处散着玩具。" },
+            en: { translation: "There were toys scattered about the floor." },
           },
         },
       ],
@@ -5811,9 +5811,9 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
           reason: "discuss 后面通常直接接宾语，不再加 about；如果用 talk，就说 talk about。",
         },
         {
-          wrong: "The meeting is about Monday.",
-          correct: "The meeting is on Monday. / The meeting is about Monday if you mean “around Monday.”",
-          reason: "about + Monday 表示“周一左右”，不是“准确在周一”。表达确切日期通常用 on。",
+          wrong: "I heard the accident yesterday.",
+          correct: "I heard about the accident yesterday.",
+          reason: "hear about 表示“听说某事”；如果少了 about，就变成真的“听见了那场事故”的声音，意思不对。",
         },
         {
           wrong: "She is angry for the noise.",
@@ -5828,9 +5828,9 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
           reason: "Discuss normally takes a direct object. Use about with talk, not with discuss.",
         },
         {
-          wrong: "The meeting is about Monday.",
-          correct: "The meeting is on Monday. / The meeting is about Monday if you mean 'around Monday.'",
-          reason: "About + Monday means approximately Monday, not the exact scheduled day.",
+          wrong: "I heard the accident yesterday.",
+          correct: "I heard about the accident yesterday.",
+          reason: "Hear about means learn news of something. Without about, it sounds like you literally heard the accident itself.",
         },
         {
           wrong: "She is angry for the noise.",

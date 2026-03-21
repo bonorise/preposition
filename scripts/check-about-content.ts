@@ -20,11 +20,19 @@ assert.ok(
   spaceExamples.length >= 2,
   "about should provide dedicated space examples instead of relying on fallback examples",
 );
+assert.ok(
+  spaceExamples.some((item) => item.en.includes("scattered about the floor")),
+  "about should include a natural beginner-friendly space example like 'scattered about the floor'",
+);
 
 const mistakesZh = entry.commonMistakes?.["zh-CN"] ?? [];
 assert.ok(
   mistakesZh.some((item) => item.wrong.includes("discussed about")),
   "about should explicitly correct 'discuss about'",
+);
+assert.ok(
+  !mistakesZh.some((item) => item.wrong.includes("about Monday")),
+  "about mistakes should avoid ambiguous examples that can also mean '关于 Monday'",
 );
 
 const collocationsZh = entry.collocationGroups?.["zh-CN"] ?? [];
