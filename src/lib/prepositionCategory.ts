@@ -13,6 +13,7 @@ const TEMPORAL_IDS = new Set([
   "through",
   "over",
   "around",
+  "about",
   "from",
   "to",
   "past",

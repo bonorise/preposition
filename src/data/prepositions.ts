@@ -5547,6 +5547,113 @@ const PREPOSITIONS_BASE: PrepositionEntryBase[] = [
     }),
   },
   {
+    id: "about",
+    word: "about",
+    tags: ["space", "around", "topic", "approximation"],
+    sense: "space",
+    i18n: {
+      "zh-CN": {
+        meaning:
+          "about：原始感觉像围着一个人或事物转圈，所以它既能表示在周围、围绕着，也能引申成关于某事，还能表示大约、左右，好像在某个时间点或数字附近打转。",
+        tips: [
+          "围着具体东西转：在周围、在附近、在各处、围绕。",
+          "围着话题转：关于、对于、涉及。",
+          "围着数字或时间点转：大约、左右、差不多。",
+        ],
+      },
+      en: {
+        meaning:
+          "about: its core feeling is moving around a person, thing, time point, or idea, which helps explain around/surrounding, concerning, and approximately.",
+        tips: [
+          "Around a real thing: around, nearby, here and there, surrounding.",
+          "Around a topic: about, concerning, related to.",
+          "Around a number or time point: approximately, roughly, about.",
+        ],
+      },
+    },
+    examples: [
+      {
+        en: "Books were lying about the room.",
+        i18n: {
+          "zh-CN": { translation: "房间里到处散着书。" },
+          en: { translation: "Books were lying about the room." },
+        },
+      },
+      {
+        en: "We talked about your idea after lunch.",
+        i18n: {
+          "zh-CN": { translation: "午饭后我们聊了你的想法。" },
+          en: { translation: "We talked about your idea after lunch." },
+        },
+      },
+    ],
+    examplesByCategory: {
+      time: [
+        {
+          en: "It’s about ten o’clock now.",
+          i18n: {
+            "zh-CN": { translation: "现在大约十点钟。" },
+            en: { translation: "It’s about ten o’clock now." },
+          },
+        },
+        {
+          en: "There were about twenty people in the hall.",
+          i18n: {
+            "zh-CN": { translation: "大厅里大约有二十个人。" },
+            en: { translation: "There were about twenty people in the hall." },
+          },
+        },
+      ],
+      dynamic: [
+        {
+          en: "The children ran about the yard.",
+          i18n: {
+            "zh-CN": { translation: "孩子们在院子里跑来跑去。" },
+            en: { translation: "The children ran about the yard." },
+          },
+        },
+      ],
+    },
+    scene: makeScene([1.1, 0, 0], {
+      variant: "ringCubes",
+      animation: {
+        type: "path",
+        duration: 3.2,
+        closed: true,
+        path: [
+          [1.1, 0, 0],
+          [0.78, 0, 0.78],
+          [0, 0, 1.1],
+          [-0.78, 0, 0.78],
+          [-1.1, 0, 0],
+          [-0.78, 0, -0.78],
+          [0, 0, -1.1],
+          [0.78, 0, -0.78],
+        ],
+      },
+    }),
+    scenesByCategory: {
+      dynamic: makeScene([1.1, 0, 0], {
+        variant: "singleCube",
+        animation: {
+          type: "path",
+          duration: 3.2,
+          closed: true,
+          path: [
+            [1.1, 0, 0],
+            [0.78, 0, 0.78],
+            [0, 0, 1.1],
+            [-0.78, 0, 0.78],
+            [-1.1, 0, 0],
+            [-0.78, 0, -0.78],
+            [0, 0, -1.1],
+            [0.78, 0, -0.78],
+          ],
+        },
+      }),
+    },
+  },
+  {
     id: "inside",
     word: "inside",
     tags: ["space", "inside"],
