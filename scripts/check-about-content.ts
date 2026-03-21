@@ -6,6 +6,12 @@ import { getPrepositionFaqItems } from "../src/lib/prepositionFaq";
 const entry = getPrepositionById("about");
 
 assert.ok(entry, "about entry should exist");
+assert.ok(
+  entry.i18n["zh-CN"]?.meaning.includes("ab-") &&
+    entry.i18n["zh-CN"]?.meaning.includes("out") &&
+    entry.i18n["zh-CN"]?.meaning.includes("外围转圈"),
+  "about zh meaning should keep the ab- / out / 外围转圈 breakdown",
+);
 
 const comparisonZh = entry.comparison?.i18n["zh-CN"];
 assert.ok(comparisonZh, "about should define zh-CN comparison");
