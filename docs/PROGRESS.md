@@ -7,6 +7,13 @@
 - [x] 规范化需求/进度真源位置：`docs/PRD.md` + `docs/PROGRESS.md`
 - [x] 对照 `docs/PRD.md` 完成一次代码级进度核查并回写勾选状态（2026-02-14）
 - [x] 产出 `preposition.worddino.com` 主域切换设计与实施计划（2026-03-11）
+- [x] 产出介词数据模块化重构设计与实施计划（2026-03-22）
+
+## Phase 0.5｜数据结构可扩展性
+
+- [ ] 介词数据目录化：按词条拆分 `meta.ts` / `scene.ts` / `content/<locale>.ts`。（阻塞：当前所有词条内容仍集中在 `src/data/prepositions.ts` 单文件。）
+- [ ] 聚合层兼容：保留 `PREPOSITIONS` 与查询 API，页面层无感切换到新数据目录。（阻塞：当前页面与组件仍直接依赖旧单文件聚合实现。）
+- [ ] 数据校验脚本：校验目录名、`meta.id`、必填语言内容、`relatedIds` 引用完整性。（阻塞：目前尚无针对新目录结构的构建前校验。）
 
 ## Phase 0｜已完成的基础 MVP
 
