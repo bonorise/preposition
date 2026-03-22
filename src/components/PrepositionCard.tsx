@@ -27,7 +27,11 @@ export default function PrepositionCard({
   category,
   thumbnailFormat = "svg",
 }: PrepositionCardProps) {
-  const meaning = entry.i18n[locale]?.meaning ?? entry.i18n["zh-CN"].meaning;
+  const meaning =
+    entry.i18n[locale]?.cardMeaning ??
+    entry.i18n[locale]?.meaning ??
+    entry.i18n["zh-CN"].cardMeaning ??
+    entry.i18n["zh-CN"].meaning;
   const localePath = localeToPathSegment(locale);
   const preferredSrc = category
     ? category === "time"
@@ -97,7 +101,12 @@ export default function PrepositionCard({
           </CardTitle>
         </CardHeader>
         <CardContent className="relative space-y-2">
-          <p className="text-sm leading-relaxed text-[color:var(--color-muted)]">
+          <p
+            className={cn(
+              "text-sm leading-relaxed text-[color:var(--color-muted)] overflow-hidden",
+              "[display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3]",
+            )}
+          >
             {meaning}
           </p>
         </CardContent>

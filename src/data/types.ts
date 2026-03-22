@@ -94,7 +94,7 @@ export type PrepositionEntry = {
   word: string;
   tags: string[];
   sense: "space";
-  i18n: Record<Locale, { meaning: string; tips?: string[] }>;
+  i18n: Record<Locale, { meaning: string; cardMeaning?: string; tips?: string[] }>;
   examples: PrepositionExample[];
   examplesByCategory?: Partial<Record<LearningCategory, PrepositionExample[]>>;
   relatedIds: string[];

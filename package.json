@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "check:prepositions": "tsx scripts/check-preposition-data-structure.ts",
+    "generate:preposition-registry": "tsx scripts/generate-preposition-registry.ts",
     "generate:thumbnails": "tsx scripts/generate-thumbnails.ts",
     "capture:thumbnails": "tsx scripts/capture-thumbnails.ts",
     "qa:content": "tsx scripts/qa-content.ts",
