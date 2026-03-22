@@ -145,14 +145,17 @@ export default function PrepositionDetail({
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <h1 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
-              {entry.word}
-            </h1>
-            <p className="text-base text-[color:var(--color-muted)]">{meaning}</p>
-          </div>
+      <div className="grid gap-x-6 gap-y-4 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)]">
+        <div>
+          <h1 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
+            {entry.word}
+          </h1>
+        </div>
+        <div className="lg:flex lg:min-h-[3rem] lg:items-center">
+          <NavPrevNext prev={prev} next={next} locale={activeLocale} />
+        </div>
+        <div className="space-y-4 lg:col-start-1">
+          <p className="text-base text-[color:var(--color-muted)]">{meaning}</p>
           <div className="space-y-2">
             {keyPoints.length ? (
               <ul className="list-disc space-y-1 pl-5 text-sm text-[color:var(--color-muted)]">
@@ -163,7 +166,6 @@ export default function PrepositionDetail({
             ) : null}
           </div>
         </div>
-        <NavPrevNext prev={prev} next={next} locale={activeLocale} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)]">
