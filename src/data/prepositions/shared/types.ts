@@ -1,5 +1,7 @@
 import type {
   LearningCategory,
+  PrepositionComparisonVisual,
+  PrepositionComparisonVisualMarker,
   Locale,
   PrepositionCollocationGroup,
   PrepositionEntry,
@@ -27,6 +29,19 @@ export type LocalizedComparison = NonNullable<
   NonNullable<PrepositionEntry["comparison"]>["i18n"][Locale]
 >;
 
+export type LocalizedComparisonVisual = {
+  type: PrepositionComparisonVisual["type"];
+  title: string;
+  caption: string;
+  items: Array<{
+    term: string;
+    xRange: [number, number];
+    yRange: [number, number];
+    marker: PrepositionComparisonVisualMarker;
+    note: string;
+  }>;
+};
+
 export type LocalizedPrepositionContent = {
   meaning: string;
   cardMeaning?: string;
@@ -34,6 +49,7 @@ export type LocalizedPrepositionContent = {
   examples: PrepositionExample[];
   examplesByCategory?: Partial<Record<LearningCategory, PrepositionExample[]>>;
   comparison?: LocalizedComparison;
+  comparisonVisual?: LocalizedComparisonVisual;
   collocations?: string[];
   collocationGroups?: PrepositionCollocationGroup[];
   commonMistakes?: PrepositionMistakeItem[];

@@ -78,6 +78,32 @@ export type PrepositionFaqItem = {
   answer: string;
 };
 
+export type PrepositionComparisonVisualMarker =
+  | "contact"
+  | "hover"
+  | "crossing"
+  | "below";
+
+export type PrepositionComparisonVisualItem = {
+  term: string;
+  xRange: [number, number];
+  yRange: [number, number];
+  marker: PrepositionComparisonVisualMarker;
+  note: Record<Locale, string>;
+};
+
+export type PrepositionComparisonVisual = {
+  type: "vertical-range";
+  i18n: Record<
+    Locale,
+    {
+      title: string;
+      caption: string;
+    }
+  >;
+  items: PrepositionComparisonVisualItem[];
+};
+
 export type PrepositionCollocationGroup = {
   title: string;
   items: Array<
@@ -117,6 +143,7 @@ export type PrepositionEntry = {
       }
     >;
   };
+  comparisonVisual?: PrepositionComparisonVisual;
   collocations?: Record<Locale, string[]>;
   collocationGroups?: Record<Locale, PrepositionCollocationGroup[]>;
   commonMistakes?: Record<Locale, PrepositionMistakeItem[]>;

@@ -6,6 +6,7 @@ import type { Locale, PrepositionEntry } from "@/data/types";
 import { getUiText, localeToPathSegment } from "@/data/i18n";
 import { useLocale } from "@/components/LocaleProvider";
 import PrepositionDecisionTree from "@/components/PrepositionDecisionTree";
+import PrepositionComparisonVisual from "@/components/PrepositionComparisonVisual";
 
 type PrepositionComparisonProps = {
   entry: PrepositionEntry;
@@ -41,6 +42,12 @@ export default function PrepositionComparison({
         <div className="space-y-4">
           {comparison ? (
             <div className="space-y-4">
+              {entry.comparisonVisual ? (
+                <PrepositionComparisonVisual
+                  visual={entry.comparisonVisual}
+                  locale={activeLocale}
+                />
+              ) : null}
               <p className="text-sm text-[color:var(--color-muted)]">
                 {comparison.summary}
               </p>

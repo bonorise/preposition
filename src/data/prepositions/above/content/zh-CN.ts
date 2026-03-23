@@ -1,11 +1,11 @@
 import type { LocalizedPrepositionContent } from "../../shared/types";
 
 const content: LocalizedPrepositionContent = {
-  "meaning": "在……上方（不接触）；高于（标准/数值）",
+  "meaning": "在……上方（不接触）；高于、超过（数值/水平/能力范围）",
   "tips": [
-    "above 强调“更高位置”，通常不涉及接触，也不强调跨越路径。",
-    "表达数值/水平高于标准时也常用 above（above average, above zero）。",
-    "若有表面接触用 on；若强调从上方跨过去常用 over。"
+    "先记一句话：above = higher than, not touching。",
+    "on 表示“在上面并接触表面”；above 表示“在上方但不接触”。",
+    "当后面是 average、zero、your level 这类标准或范围时，above 表示“高于、超过”。"
   ],
   "examples": [
     {
@@ -20,13 +20,13 @@ const content: LocalizedPrepositionContent = {
       }
     },
     {
-      "en": "Her score is above average.",
+      "en": "A small window is above the bed.",
       "i18n": {
         "zh-CN": {
-          "translation": "她的成绩高于平均水平。"
+          "translation": "床上方有一扇小窗。"
         },
         "en": {
-          "translation": "Her score is above average."
+          "translation": "A small window is above the bed."
         }
       }
     }
@@ -45,40 +45,24 @@ const content: LocalizedPrepositionContent = {
         }
       },
       {
-        "en": "The plane is above the clouds.",
+        "en": "A small window is above the bed.",
         "i18n": {
           "zh-CN": {
-            "translation": "飞机在云层上方。"
+            "translation": "床上方有一扇小窗。"
           },
           "en": {
-            "translation": "The plane is above the clouds."
+            "translation": "A small window is above the bed."
           }
         }
       }
     ]
   },
   "comparison": {
-    "summary": "above 的核心是“位置更高或水平更高”，不强调接触与跨越动作。先判断是否接触、是否跨越，再选 above。",
+    "summary": "above 的核心不是“正上方”，而是“高于某物”。它通常不接触，也不强调跨越；如果有接触，多用 on；如果强调从上方跨过去，多用 over。",
     "differences": [
       {
-        "term": "over",
-        "description": "above 偏静态“更高”；over 常带“从上方跨过/覆盖”的动态关系。",
-        "examples": [
-          {
-            "term": "above",
-            "sentence": "The clock is above the door.",
-            "translation": "时钟在门上方。"
-          },
-          {
-            "term": "over",
-            "sentence": "A bird flew over the wall.",
-            "translation": "一只鸟飞过了墙上方。"
-          }
-        ]
-      },
-      {
         "term": "on",
-        "description": "on 强调接触表面；above 强调在上方且不接触。",
+        "description": "on 强调接触表面；above 强调在更高位置且不接触。",
         "examples": [
           {
             "term": "on",
@@ -87,14 +71,30 @@ const content: LocalizedPrepositionContent = {
           },
           {
             "term": "above",
-            "sentence": "The lamp hangs above the table.",
-            "translation": "灯悬挂在桌子上方（不接触）。"
+            "sentence": "The lamp is above the table.",
+            "translation": "灯在桌子上方（不接触）。"
+          }
+        ]
+      },
+      {
+        "term": "over",
+        "description": "over 常带“跨过/罩在上方”的感觉；above 只强调高于，不一定正好在中心正上方。",
+        "examples": [
+          {
+            "term": "over",
+            "sentence": "A bird flew over the wall.",
+            "translation": "一只鸟飞过墙上方。"
+          },
+          {
+            "term": "above",
+            "sentence": "The clock is above the door.",
+            "translation": "时钟在门上方。"
           }
         ]
       },
       {
         "term": "below",
-        "description": "below 与 above 方向相反：below 是低于，above 是高于。",
+        "description": "below 与 above 方向相反：below 表示低于，above 表示高于。",
         "examples": [
           {
             "term": "below",
@@ -107,6 +107,65 @@ const content: LocalizedPrepositionContent = {
             "translation": "温度在零度以上。"
           }
         ]
+      }
+    ]
+  },
+  "comparisonVisual": {
+    "type": "vertical-range",
+    "title": "一张图看懂 on / over / above / below",
+    "caption": "虚线矩形代表参照物。对比是否接触、是否跨越，以及高于/低于的适用范围。",
+    "items": [
+      {
+        "term": "on",
+        "xRange": [
+          0.08,
+          0.22
+        ],
+        "yRange": [
+          0.5,
+          0.5
+        ],
+        "marker": "contact",
+        "note": "接触表面"
+      },
+      {
+        "term": "over",
+        "xRange": [
+          0.3,
+          0.48
+        ],
+        "yRange": [
+          0.28,
+          0.58
+        ],
+        "marker": "crossing",
+        "note": "在上方并跨过"
+      },
+      {
+        "term": "above",
+        "xRange": [
+          0.56,
+          0.72
+        ],
+        "yRange": [
+          0.16,
+          0.32
+        ],
+        "marker": "hover",
+        "note": "高于，不接触"
+      },
+      {
+        "term": "below",
+        "xRange": [
+          0.8,
+          0.94
+        ],
+        "yRange": [
+          0.7,
+          0.86
+        ],
+        "marker": "below",
+        "note": "低于"
       }
     ]
   },
@@ -123,20 +182,20 @@ const content: LocalizedPrepositionContent = {
           "meaning": "在门上方"
         },
         {
-          "phrase": "above the clouds",
-          "meaning": "在云层上方"
+          "phrase": "above the bed",
+          "meaning": "在床上方"
         },
         {
           "phrase": "above the roof",
           "meaning": "在屋顶上方"
         },
         {
-          "phrase": "above the bed",
-          "meaning": "在床上方"
-        },
-        {
           "phrase": "above the screen",
           "meaning": "在屏幕上方"
+        },
+        {
+          "phrase": "above the clouds",
+          "meaning": "在云层上方"
         }
       ]
     },
@@ -170,62 +229,62 @@ const content: LocalizedPrepositionContent = {
       ]
     },
     {
-      "title": "抽象表达类",
+      "title": "能力与抽象范围类",
       "items": [
         {
-          "phrase": "above all",
-          "meaning": "最重要的是"
+          "phrase": "above my level",
+          "meaning": "超出我的水平"
         },
         {
-          "phrase": "above suspicion",
-          "meaning": "无可怀疑"
-        },
-        {
-          "phrase": "above criticism",
-          "meaning": "无可指摘"
+          "phrase": "above my level of understanding",
+          "meaning": "超出我的理解能力"
         },
         {
           "phrase": "rise above",
           "meaning": "超越（困难/情绪）"
         },
         {
-          "phrase": "head and shoulders above",
-          "meaning": "远胜于"
+          "phrase": "above suspicion",
+          "meaning": "无可怀疑"
         },
         {
-          "phrase": "above board",
-          "meaning": "光明正大的"
+          "phrase": "above all",
+          "meaning": "最重要的是"
+        },
+        {
+          "phrase": "head and shoulders above",
+          "meaning": "远胜于"
         }
       ]
     }
   ],
   "commonMistakes": [
     {
-      "wrong": "The book is above the table. (book touching the table)",
+      "wrong": "The book is above the table. (when the book is touching the table)",
       "correct": "The book is on the table.",
-      "reason": "有接触关系时应用 on，不用 above。"
+      "reason": "有接触时用 on；above 表示“在更高处且不接触”。"
     },
     {
       "wrong": "The bird flew above the wall and crossed it.",
       "correct": "The bird flew over the wall.",
-      "reason": "强调“跨越动作”时，over 比 above 更自然。"
+      "reason": "强调“跨越路径”时，over 通常比 above 更自然。"
     },
     {
       "wrong": "The score is over average.",
       "correct": "The score is above average.",
-      "reason": "表示“高于平均值”的固定搭配是 above average。"
+      "reason": "比较标准、数值或水平时，固定搭配通常是 above average。"
     }
   ],
   "quiz": [
     {
-      "prompt": "Choose the correct preposition: The clock is ___ the door.",
+      "prompt": "Choose the correct preposition: The lamp is ___ the table.",
       "options": [
         "above",
         "on",
         "through"
       ],
       "answer": "above",
-      "explanation": "时钟在门上方且不接触门面，选 above。"
+      "explanation": "灯在桌子更高的位置，而且不接触桌面，选 above。"
     },
     {
       "prompt": "Choose the correct preposition: Her score is ___ average.",
@@ -235,51 +294,47 @@ const content: LocalizedPrepositionContent = {
         "under"
       ],
       "answer": "above",
-      "explanation": "固定搭配为 above average。"
+      "explanation": "表示“高于平均水平”的固定表达是 above average。"
     },
     {
-      "prompt": "Choose the correct preposition: The helicopter hovered ___ the stadium.",
+      "prompt": "Choose the correct preposition: A bird flew ___ the wall.",
       "options": [
+        "over",
         "above",
-        "inside",
-        "under"
+        "inside"
       ],
-      "answer": "above",
-      "explanation": "强调“在上方悬停”而非穿越动作，选 above。"
+      "answer": "over",
+      "explanation": "这里强调“飞过”这条跨越路径，所以用 over。"
     }
   ],
   "faq": [
     {
       "question": "above 的核心意思是什么？",
-      "answer": "above 表示“在更高位置”或“高于某标准”，通常不强调接触，也不强调跨越。"
-    },
-    {
-      "question": "above 和 over 的区别是什么？",
-      "answer": "above 更静态，表示高于；over 常带跨越或覆盖关系，尤其在运动场景中更常见。"
+      "answer": "above 的核心是“高于某物”，而且通常不接触它。"
     },
     {
       "question": "above 和 on 如何区分？",
-      "answer": "关键看接触：接触表面用 on，不接触且在上方用 above。"
+      "answer": "on 表示接触表面；above 表示在更高位置，但不接触表面。"
     },
     {
-      "question": "above 可以表示数值关系吗？",
-      "answer": "可以，比如 above average、above zero、above 90%，都表示“高于某标准”。"
+      "question": "above 和 over 的区别是什么？",
+      "answer": "above 只强调“更高”；over 常带“跨过”或“罩在上方”的感觉。"
     },
     {
-      "question": "above 可以用于时间表达吗？",
-      "answer": "一般不作为时间介词核心用法；时间关系通常用 at/in/on/over 等词。"
+      "question": "为什么说 above average，而不是 over average？",
+      "answer": "因为 above 是比较水平、数值和标准时最常用的词，所以会说 above average、above zero、above the limit。"
     },
     {
-      "question": "学习 above 最常见错误是什么？",
-      "answer": "常见错是把接触关系误用 above（应 on），或把跨越动作场景误用 above（常应 over）。"
+      "question": "above 一定是正好在正上方吗？",
+      "answer": "不一定。above 的重点是“高于”，可以略微偏左或偏右，不一定正好居中。"
     },
     {
-      "question": "above 的高频搭配有哪些？",
-      "answer": "常见有 above the table、above average、above sea level、above all。"
+      "question": "above 可以表示数值和能力范围吗？",
+      "answer": "可以。常见有 above average、above zero、above sea level、above my level。"
     },
     {
-      "question": "30 秒记住 above 的方法？",
-      "answer": "记一个判据：只要是“更高但不接触”，优先想 above；再用 above average 强化数值义。"
+      "question": "如何快速记住 above？",
+      "answer": "记住一句话：higher than, not touching。再用 above average 这个搭配把“高于标准”的意思一起记住。"
     }
   ]
 };

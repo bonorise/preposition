@@ -1,11 +1,11 @@
 import type { LocalizedPrepositionContent } from "../../shared/types";
 
 const content: LocalizedPrepositionContent = {
-  "meaning": "at a higher level or position; higher than a standard",
+  "meaning": "higher than something and not touching it; also higher than a level, number, or standard",
   "tips": [
-    "Above marks higher position without contact.",
-    "It also works for levels and standards (above average, above zero).",
-    "Use on for contact; use over when crossing movement is central."
+    "Start with one rule: above means higher than something without touching it.",
+    "On means touching the surface. Above means higher than it, without contact.",
+    "When the noun is a level or standard, above means higher than that level: above average, above zero, above your level."
   ],
   "examples": [
     {
@@ -20,13 +20,13 @@ const content: LocalizedPrepositionContent = {
       }
     },
     {
-      "en": "Her score is above average.",
+      "en": "A small window is above the bed.",
       "i18n": {
         "zh-CN": {
-          "translation": "她的成绩高于平均水平。"
+          "translation": "床上方有一扇小窗。"
         },
         "en": {
-          "translation": "Her score is above average."
+          "translation": "A small window is above the bed."
         }
       }
     }
@@ -45,38 +45,24 @@ const content: LocalizedPrepositionContent = {
         }
       },
       {
-        "en": "The plane is above the clouds.",
+        "en": "A small window is above the bed.",
         "i18n": {
           "zh-CN": {
-            "translation": "飞机在云层上方。"
+            "translation": "床上方有一扇小窗。"
           },
           "en": {
-            "translation": "The plane is above the clouds."
+            "translation": "A small window is above the bed."
           }
         }
       }
     ]
   },
   "comparison": {
-    "summary": "Above means higher position or higher level, without contact and without necessary crossing movement.",
+    "summary": "Above does not mainly mean directly over the center. Its core idea is higher than something. It usually does not involve contact or crossing. If there is contact, use on. If crossing is central, use over.",
     "differences": [
       {
-        "term": "over",
-        "description": "Above is usually static higher position; over often adds crossing or covering meaning.",
-        "examples": [
-          {
-            "term": "above",
-            "sentence": "The clock is above the door."
-          },
-          {
-            "term": "over",
-            "sentence": "A bird flew over the wall."
-          }
-        ]
-      },
-      {
         "term": "on",
-        "description": "On requires surface contact. Above means higher than without touching.",
+        "description": "On is for surface contact. Above is for a higher position without touching.",
         "examples": [
           {
             "term": "on",
@@ -84,7 +70,21 @@ const content: LocalizedPrepositionContent = {
           },
           {
             "term": "above",
-            "sentence": "The lamp hangs above the table."
+            "sentence": "The lamp is above the table."
+          }
+        ]
+      },
+      {
+        "term": "over",
+        "description": "Over often adds a crossing or covering idea. Above only says that something is higher.",
+        "examples": [
+          {
+            "term": "over",
+            "sentence": "A bird flew over the wall."
+          },
+          {
+            "term": "above",
+            "sentence": "The clock is above the door."
           }
         ]
       },
@@ -104,16 +104,75 @@ const content: LocalizedPrepositionContent = {
       }
     ]
   },
+  "comparisonVisual": {
+    "type": "vertical-range",
+    "title": "See on / over / above / below in one picture",
+    "caption": "The dashed rectangle is the reference object. Compare contact, crossing, and higher/lower range.",
+    "items": [
+      {
+        "term": "on",
+        "xRange": [
+          0.08,
+          0.22
+        ],
+        "yRange": [
+          0.5,
+          0.5
+        ],
+        "marker": "contact",
+        "note": "touching the surface"
+      },
+      {
+        "term": "over",
+        "xRange": [
+          0.3,
+          0.48
+        ],
+        "yRange": [
+          0.28,
+          0.58
+        ],
+        "marker": "crossing",
+        "note": "above and crossing"
+      },
+      {
+        "term": "above",
+        "xRange": [
+          0.56,
+          0.72
+        ],
+        "yRange": [
+          0.16,
+          0.32
+        ],
+        "marker": "hover",
+        "note": "higher than, not touching"
+      },
+      {
+        "term": "below",
+        "xRange": [
+          0.8,
+          0.94
+        ],
+        "yRange": [
+          0.7,
+          0.86
+        ],
+        "marker": "below",
+        "note": "lower than"
+      }
+    ]
+  },
   "collocationGroups": [
     {
       "title": "Spatial position",
       "items": [
         "above the table",
         "above the door",
-        "above the clouds",
-        "above the roof",
         "above the bed",
-        "above the screen"
+        "above the roof",
+        "above the screen",
+        "above the clouds"
       ]
     },
     {
@@ -128,44 +187,44 @@ const content: LocalizedPrepositionContent = {
       ]
     },
     {
-      "title": "Abstract expressions",
+      "title": "Ability and abstract range",
       "items": [
-        "above all",
-        "above suspicion",
-        "above criticism",
+        "above my level",
+        "above my level of understanding",
         "rise above",
-        "head and shoulders above",
-        "above board"
+        "above suspicion",
+        "above all",
+        "head and shoulders above"
       ]
     }
   ],
   "commonMistakes": [
     {
-      "wrong": "The book is above the table. (when touching)",
+      "wrong": "The book is above the table. (when the book is touching the table)",
       "correct": "The book is on the table.",
-      "reason": "Use on for surface contact; above means no contact."
+      "reason": "Use on for surface contact. Above means higher than something without touching it."
     },
     {
       "wrong": "The bird flew above the wall and crossed it.",
       "correct": "The bird flew over the wall.",
-      "reason": "When crossing movement is central, over is usually the better choice."
+      "reason": "When the crossing path matters, over is usually the better choice."
     },
     {
       "wrong": "The score is over average.",
       "correct": "The score is above average.",
-      "reason": "The standard collocation is above average."
+      "reason": "The standard collocation is above average when you compare with a level or standard."
     }
   ],
   "quiz": [
     {
-      "prompt": "Choose the correct preposition: The clock is ___ the door.",
+      "prompt": "Choose the correct preposition: The lamp is ___ the table.",
       "options": [
         "above",
         "on",
         "through"
       ],
       "answer": "above",
-      "explanation": "The relation is higher position without contact."
+      "explanation": "The lamp is higher than the table and not touching it."
     },
     {
       "prompt": "Choose the correct preposition: Her score is ___ average.",
@@ -175,51 +234,47 @@ const content: LocalizedPrepositionContent = {
         "under"
       ],
       "answer": "above",
-      "explanation": "The standard expression is above average."
+      "explanation": "Above average is the standard expression for a level or standard."
     },
     {
-      "prompt": "Choose the correct preposition: The helicopter hovered ___ the stadium.",
+      "prompt": "Choose the correct preposition: A bird flew ___ the wall.",
       "options": [
+        "over",
         "above",
-        "inside",
-        "under"
+        "inside"
       ],
-      "answer": "above",
-      "explanation": "This is static higher position, not internal movement or lower position."
+      "answer": "over",
+      "explanation": "Use over when the crossing movement is central."
     }
   ],
   "faq": [
     {
       "question": "What is the core meaning of above?",
-      "answer": "Above means higher position or higher level than a reference point, usually without contact."
+      "answer": "Above means higher than something, usually without touching it."
+    },
+    {
+      "question": "What is the difference between above and on?",
+      "answer": "On means contact with a surface. Above means a higher position without contact."
     },
     {
       "question": "What is the difference between above and over?",
-      "answer": "Above is usually static higher position; over often adds crossing or covering meaning."
+      "answer": "Above focuses on higher position. Over often adds crossing or covering meaning."
     },
     {
-      "question": "How is above different from on?",
-      "answer": "On requires contact with a surface. Above means higher than without touching."
+      "question": "Why do we say above average, not over average?",
+      "answer": "Because above is the standard word for being higher than a level, number, or standard such as average, zero, or the limit."
     },
     {
-      "question": "Can above express numeric meaning?",
-      "answer": "Yes. It is common in level expressions such as above average, above zero, and above 90%."
+      "question": "Can above mean not exactly straight over the center?",
+      "answer": "Yes. Above means higher than something. It does not have to be exactly centered over it."
     },
     {
-      "question": "Can above be used for time expressions?",
-      "answer": "Not as a core time preposition in most beginner contexts. Use at/in/on/over for time relations."
-    },
-    {
-      "question": "What is a common learner mistake with above?",
-      "answer": "Learners often use above where contact is intended (use on) or where crossing movement is intended (use over)."
-    },
-    {
-      "question": "What are common collocations with above?",
-      "answer": "High-frequency collocations include above the table, above average, above sea level, and above all."
+      "question": "Can above be used for numbers and levels?",
+      "answer": "Yes. Common patterns include above average, above zero, above sea level, and above your level."
     },
     {
       "question": "What is a quick memory rule for above?",
-      "answer": "Use one test: higher but not touching. Then anchor it with a level phrase like above average."
+      "answer": "Think: higher than, not touching. Then anchor it with a phrase like above average."
     }
   ]
 };

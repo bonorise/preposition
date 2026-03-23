@@ -147,6 +147,18 @@ const PRIMARY_SEO_CATEGORY_OVERRIDE: Partial<Record<string, LearningCategory>> =
 const SEO_METADATA_OVERRIDES: Partial<
   Record<string, Partial<Record<Locale, Pick<Metadata, "title" | "description">>>>
 > = {
+  above: {
+    en: {
+      title: "above: meaning, examples, and above vs on vs over | Preposition Dino",
+      description:
+        "Above means higher than something without touching it. Learn above vs on vs over, see clear examples, and understand why we say above average.",
+    },
+    "zh-CN": {
+      title: "above 介词用法：在……上方 vs on / over｜含义、例句与区别 | Preposition Dino",
+      description:
+        "above 表示“高于某物且不接触”。本页讲清 above vs on / over 的区别，并解释为什么会有 above average 这类“高于标准”的用法。",
+    },
+  },
   from: {
     en: {
       title:
