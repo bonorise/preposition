@@ -32,7 +32,7 @@ type PrepositionDetailProps = {
   thumbnailFormat?: ThumbnailFormat;
 };
 
-const CATEGORY_PRIORITY: LearningCategory[] = ["space", "time", "dynamic"];
+const CATEGORY_PRIORITY: LearningCategory[] = ["space", "time", "dynamic", "abstract"];
 
 export default function PrepositionDetail({
   entry,
@@ -56,10 +56,27 @@ export default function PrepositionDetail({
   } | null>(null);
   const categories = useMemo(() => getEntryCategories(entry), [entry]);
   const fallbackCategory = useMemo(
-    () =>
-      CATEGORY_PRIORITY.find((category) => categories.includes(category)) ??
-      categories[0] ??
-      "space",
+    () => {
+      if (
+        categories.includes("abstract") &&
+        !categories.includes("time") &&
+        !categories.includes("dynamic")
+      ) {
+        return "abstract";
+      }
+      if (
+        categories.includes("dynamic") &&
+        !categories.includes("space") &&
+        !categories.includes("time")
+      ) {
+        return "dynamic";
+      }
+      return (
+        CATEGORY_PRIORITY.find((category) => categories.includes(category)) ??
+        categories[0] ??
+        "space"
+      );
+    },
     [categories],
   );
   const sourceCategory = useMemo(
@@ -97,6 +114,7 @@ export default function PrepositionDetail({
     space: ui.detailSceneCategorySpace,
     time: ui.detailSceneCategoryTime,
     dynamic: ui.detailSceneCategoryDynamic,
+    abstract: ui.detailSceneCategoryAbstract,
   };
   const enterFullscreen = (element: HTMLDivElement) => {
     const target = element as HTMLDivElement & {

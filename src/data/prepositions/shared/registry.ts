@@ -55,6 +55,17 @@ import inBackOfModule from "../in-back-of";
 import aheadOfModule from "../ahead-of";
 import closeToModule from "../close-to";
 import farFromModule from "../far-from";
+import apartFromModule from "../apart-from";
+import accordingToModule from "../according-to";
+import awayFromModule from "../away-from";
+import asModule from "../as";
+import sinceModule from "../since";
+import untilModule from "../until";
+import includingModule from "../including";
+import dueToModule from "../due-to";
+import duringModule from "../during";
+import insteadOfModule from "../instead-of";
+import viaModule from "../via";
 
 export const PREPOSITION_MODULES: PrepositionModule[] = [
   inModule,
@@ -109,4 +120,15 @@ export const PREPOSITION_MODULES: PrepositionModule[] = [
   aheadOfModule,
   closeToModule,
   farFromModule,
+  apartFromModule,
+  accordingToModule,
+  awayFromModule,
+  asModule,
+  sinceModule,
+  untilModule,
+  includingModule,
+  dueToModule,
+  duringModule,
+  insteadOfModule,
+  viaModule,
 ];

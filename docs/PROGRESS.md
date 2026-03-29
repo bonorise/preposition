@@ -115,8 +115,11 @@
 - [x] 落地 above 对比图复用能力与 above 页面双语内容优化。（2026-03-23）
 - [x] 微调 above 对比图样式：移除内层边框、收窄标记线条、删除底部说明卡片并将释义移入 SVG；优化 over 间距与曲线留白、拉宽 above 范围并在窄屏改为纵向排列。（2026-03-23）
 - [ ] 将 comparisonVisual 复用到 below / over / on 等相关词条页。（阻塞：当前复用组件已完成，但其他词条尚未补对应的双语对比数据。）
-- [ ] 结构升级：支持 `abstract` 分类，并让首页 / 详情页 / 例句 / SEO 按四分法稳定工作。（阻塞：待按 2026-03-29 设计与实施计划执行。）
-- [ ] 新增 11 个正式词条页：apart from、according to、away from、as、since、until、including、due to、during、instead of、via。（阻塞：待完成四分法结构升级与双语内容接入。）
+- [x] 结构升级：支持 `abstract` 分类，并让首页 / 详情页 / 例句 / SEO 按四分法稳定工作。（2026-03-29）
+- [x] 新增 11 个正式词条页：apart from、according to、away from、as、since、until、including、due to、during、instead of、via。（2026-03-29）
+- [x] 批次接入 A：补齐 11 个新词条脚手架，并完成 since / until / during 的正式内容与校验。（2026-03-29）
+- [x] 批次接入 B：完成 according to / as / due to / instead of 的正式内容与校验。（2026-03-29）
+- [x] 批次接入 C：完成 apart from / including / away from / via 的正式内容与校验。（2026-03-29）
 - [x] 时间介词可视化：时间轴/日历/钟表小图（时间语义优先，不强依赖 3D 立方体）
 - [x] 标签（tags）降噪：默认折叠或改为“关键点”文案，仅保留 2-3 条最关键提示
 - [x] 每页微测验（3 题）：选词填空 + 即时反馈（主动回忆/巩固）

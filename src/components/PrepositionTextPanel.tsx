@@ -1,6 +1,7 @@
 "use client";
 
 import { CATEGORY_EXAMPLE_BANK } from "@/data/categoryExamples";
+import { getUiText } from "@/data/i18n";
 import type {
   LearningCategory,
   Locale,
@@ -8,6 +9,7 @@ import type {
   PrepositionExample,
 } from "@/data/types";
 import {
+  isAbstractPreposition,
   isDynamicPreposition,
   isSpatialPreposition,
   isTemporalPreposition,
@@ -24,16 +26,19 @@ export default function PrepositionTextPanel({
   locale,
   examplesTitle,
 }: PrepositionTextPanelProps) {
+  const ui = getUiText(locale);
   const exampleSectionLabels: Record<Locale, Record<LearningCategory, string>> = {
     "zh-CN": {
       space: "空间介词例句",
       time: "时间介词例句",
       dynamic: "动态介词例句",
+      abstract: ui.detailExamplesAbstract,
     },
     en: {
       space: "Spatial examples",
       time: "Time examples",
       dynamic: "Dynamic examples",
+      abstract: ui.detailExamplesAbstract,
     },
   };
   const resolveCategoryExamples = (category: LearningCategory) => {
@@ -54,19 +59,22 @@ export default function PrepositionTextPanel({
     if (category === "time" && isTemporalPreposition(entry)) {
       return entry.examples;
     }
+    if (category === "abstract" && isAbstractPreposition(entry)) {
+      return entry.examples;
+    }
     return [] as PrepositionExample[];
   };
-  const exampleSections = (
-    ["space", "time", "dynamic"] as LearningCategory[]
-  )
+  const exampleSections = (["space", "time", "dynamic", "abstract"] as LearningCategory[])
     .filter((category) => {
       if (category === "space") return isSpatialPreposition(entry);
       if (category === "time") return isTemporalPreposition(entry);
-      return isDynamicPreposition(entry);
+      if (category === "dynamic") return isDynamicPreposition(entry);
+      return isAbstractPreposition(entry);
     })
     .map((category) => ({
       category,
-      title: exampleSectionLabels[locale]?.[category] ??
+      title:
+        exampleSectionLabels[locale]?.[category] ??
         exampleSectionLabels["zh-CN"][category],
       examples: resolveCategoryExamples(category),
     }))

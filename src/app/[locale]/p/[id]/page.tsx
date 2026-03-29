@@ -25,6 +25,7 @@ import {
 } from "@/lib/seo";
 import { getPrepositionFaqItems } from "@/lib/prepositionFaq";
 import {
+  getEntryCategories,
   isDynamicPreposition,
   isSpatialPreposition,
   isTemporalPreposition,
@@ -45,7 +46,12 @@ function resolveLocale(value: string): Locale | null {
   return value;
 }
 
-const SEO_CATEGORY_PRIORITY: LearningCategory[] = ["dynamic", "time", "space"];
+const SEO_CATEGORY_PRIORITY: LearningCategory[] = [
+  "dynamic",
+  "time",
+  "abstract",
+  "space",
+];
 
 const SEO_TEMPLATE: Record<
   Locale,
@@ -82,6 +88,13 @@ const SEO_TEMPLATE: Record<
       exampleLabel: "Example",
       actionLine: "Learn one clear pattern in 30 seconds.",
     },
+    abstract: {
+      titleSuffix: "abstract preposition meaning, rules and examples",
+      ctrLead: "Build abstract-relationship intuition fast.",
+      ruleLabel: "Rule",
+      exampleLabel: "Example",
+      actionLine: "Learn one clear pattern in 30 seconds.",
+    },
   },
   "zh-CN": {
     space: {
@@ -105,6 +118,13 @@ const SEO_TEMPLATE: Record<
       exampleLabel: "例句",
       actionLine: "用一个清晰模式，30秒建立介词直觉。",
     },
+    abstract: {
+      titleSuffix: "抽象介词用法：含义、规则与例句",
+      ctrLead: "快速掌握依据、替代、包含等抽象关系。",
+      ruleLabel: "用法规则",
+      exampleLabel: "例句",
+      actionLine: "用一个清晰模式，30秒建立介词直觉。",
+    },
   },
 };
 
@@ -116,11 +136,17 @@ const SEO_KEYWORDS_BY_CATEGORY: Record<
     space: ["spatial preposition", "location preposition", "place preposition"],
     time: ["time preposition", "preposition of time", "time expressions"],
     dynamic: ["movement preposition", "direction preposition", "path preposition"],
+    abstract: [
+      "abstract preposition",
+      "relationship preposition",
+      "logical relation preposition",
+    ],
   },
   "zh-CN": {
     space: ["空间介词", "位置介词", "英语方位介词"],
     time: ["时间介词", "英语时间介词", "时间表达"],
     dynamic: ["动态介词", "运动介词", "方向介词"],
+    abstract: ["抽象介词", "关系介词", "逻辑关系表达"],
   },
 };
 
@@ -128,6 +154,7 @@ function getSeoCategories(entry: NonNullable<ReturnType<typeof getPrepositionByI
   const categories: LearningCategory[] = [];
   if (isDynamicPreposition(entry)) categories.push("dynamic");
   if (isTemporalPreposition(entry)) categories.push("time");
+  if (getEntryCategories(entry).includes("abstract")) categories.push("abstract");
   if (isSpatialPreposition(entry) || categories.length === 0) categories.push("space");
   return categories;
 }
@@ -142,6 +169,7 @@ const PRIMARY_SEO_CATEGORY_OVERRIDE: Partial<Record<string, LearningCategory>> =
   behind: "space",
   around: "time",
   about: "time",
+  "away-from": "space",
 };
 
 const SEO_METADATA_OVERRIDES: Partial<

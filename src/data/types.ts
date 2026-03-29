@@ -1,5 +1,5 @@
 export type Locale = "en" | "zh-CN";
-export type LearningCategory = "space" | "time" | "dynamic";
+export type LearningCategory = "space" | "time" | "dynamic" | "abstract";
 
 export type SceneVariant = "singleCube" | "twoCubes" | "ringCubes";
 

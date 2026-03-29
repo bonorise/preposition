@@ -33,14 +33,15 @@ export default function PrepositionCard({
     entry.i18n["zh-CN"].cardMeaning ??
     entry.i18n["zh-CN"].meaning;
   const localePath = localeToPathSegment(locale);
+  const defaultSrc = `/thumbnails/${entry.id}.${thumbnailFormat}`;
   const preferredSrc = category
     ? category === "time"
       ? `/thumbnails/${entry.id}--time--${locale}.svg`
-      : `/thumbnails/${entry.id}--${category}.svg`
-    : `/thumbnails/${entry.id}.${thumbnailFormat}`;
-  const fallbackSrc = category
-    ? `/thumbnails/${entry.id}--${category}.svg`
-    : `/thumbnails/${entry.id}.svg`;
+      : category === "abstract"
+        ? defaultSrc
+        : `/thumbnails/${entry.id}--${category}.svg`
+    : defaultSrc;
+  const fallbackSrc = category === "time" ? `/thumbnails/${entry.id}--time.svg` : defaultSrc;
   const [imgSrc, setImgSrc] = useState(preferredSrc);
 
   useEffect(() => {

@@ -525,15 +525,24 @@ export default function SpatialPlayground({
     };
 
     const activateStaticMode = () => {
-      const selectedAnchor =
-        STATIC_ANCHORS.find((anchor) => anchor.label === selectedStaticLabel) ??
-        STATIC_ANCHORS[0];
+      const selectedAnchor = STATIC_ANCHORS.find(
+        (anchor) => anchor.label === selectedStaticLabel,
+      );
       if (selectedAnchor) {
         const [x, y, z] = selectedAnchor.point;
         ball.position.set(x, y, z);
         lastPosition.copy(ball.position);
         setRenderedMotion(null);
         setLabelSafe(getStaticPrepositionLabel(ball.position));
+        return;
+      }
+
+      if (currentEntry) {
+        const [x, y, z] = currentEntry.scene.ball.position;
+        ball.position.set(x, y, z);
+        lastPosition.copy(ball.position);
+        setRenderedMotion(null);
+        setLabelSafe(currentEntry.word.toLowerCase());
         return;
       }
 
@@ -680,6 +689,7 @@ export default function SpatialPlayground({
       scene.clear();
     };
   }, [
+    currentEntry,
     locale,
     mode,
     selectedMotionLabel,

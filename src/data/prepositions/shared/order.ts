@@ -51,6 +51,17 @@ export const PREPOSITION_IDS = [
   "ahead-of",
   "close-to",
   "far-from",
+  "apart-from",
+  "according-to",
+  "away-from",
+  "as",
+  "since",
+  "until",
+  "including",
+  "due-to",
+  "during",
+  "instead-of",
+  "via",
 ] as const;
 
 export type PrepositionId = (typeof PREPOSITION_IDS)[number];

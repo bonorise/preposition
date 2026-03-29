@@ -64,6 +64,12 @@ export default function PrepositionGallery({
       description: ui.sectionDynamicDesc,
       entries: groupedResults.dynamic,
     },
+    {
+      key: "abstract",
+      title: ui.sectionAbstractTitle,
+      description: ui.sectionAbstractDesc,
+      entries: groupedResults.abstract,
+    },
   ] as const;
 
   return (

@@ -18,11 +18,13 @@ const TIME_AXIS_WORLD_X_MAX = 1.35;
 
 const TIME_POINT_IDS = new Set(["at", "around", "past"]);
 const TIME_RANGE_IDS = new Set(["between", "from", "to", "through"]);
-const TIME_DURATION_IDS = new Set(["in", "over", "throughout"]);
+const TIME_DURATION_IDS = new Set(["in", "over", "throughout", "during"]);
 const TIME_DEADLINE_IDS = new Set(["by", "ahead-of", "within"]);
 const TIME_THRESHOLD_IDS = new Set(["under"]);
 const TIME_AFTER_IDS = new Set(["after", "beyond", "behind"]);
 const TIME_DATE_IDS = new Set(["on"]);
+const TIME_SINCE_IDS = new Set(["since"]);
+const TIME_UNTIL_IDS = new Set(["until"]);
 
 function clamp01(value: number) {
   return Math.min(1, Math.max(0, value));
@@ -154,6 +156,18 @@ function buildTimeScene(entry: PrepositionEntry, locale: Locale): SceneConfig | 
     });
   }
 
+  if (TIME_SINCE_IDS.has(id)) {
+    return makeTimeAxisScene({
+      kind: "duration",
+      dotPosition: 0.24,
+      rangeStart: 0.24,
+      rangeEnd: 0.8,
+      markerStartLabel: ui.timeAxisLabelStart,
+      markerEndLabel: ui.timeAxisLabelNow,
+      centerLabel: ui.timeAxisLabelDuration,
+    });
+  }
+
   if (TIME_RANGE_IDS.has(id)) {
     if (id === "from") {
       return makeTimeAxisScene({
@@ -188,7 +202,30 @@ function buildTimeScene(entry: PrepositionEntry, locale: Locale): SceneConfig | 
     });
   }
 
+  if (TIME_UNTIL_IDS.has(id)) {
+    return makeTimeAxisScene({
+      kind: "deadline",
+      dotPosition: 0.78,
+      rangeStart: 0.22,
+      rangeEnd: 0.78,
+      markerStartLabel: ui.timeAxisLabelStart,
+      markerEndLabel: ui.timeAxisLabelEnd,
+      centerLabel: ui.timeAxisLabelEnd,
+    });
+  }
+
   if (TIME_DURATION_IDS.has(id)) {
+    if (id === "during") {
+      return makeTimeAxisScene({
+        kind: "duration",
+        dotPosition: 0.52,
+        rangeStart: 0.26,
+        rangeEnd: 0.78,
+        markerStartLabel: ui.timeAxisLabelStart,
+        markerEndLabel: ui.timeAxisLabelEnd,
+        centerLabel: ui.timeAxisLabelDuration,
+      });
+    }
     if (id === "over") {
       return makeTimeAxisScene({
         kind: "duration",
