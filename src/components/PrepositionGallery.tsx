@@ -37,10 +37,11 @@ export default function PrepositionGallery({
     return entries.find((entry) => entry.id === playgroundSeedId) ?? null;
   }, [entries, playgroundSeedId]);
 
-  const results = useMemo(
+  const searchResult = useMemo(
     () => filterPrepositions(entries, query, activeLocale),
     [entries, query, activeLocale],
   );
+  const results = searchResult.results;
   const groupedResults = useMemo(
     () => partitionByHomeCategory(results),
     [results],
@@ -133,6 +134,11 @@ export default function PrepositionGallery({
         <h2 className="font-display text-2xl tracking-tight text-[color:var(--color-ink)]">
           {ui.galleryLabel}
         </h2>
+        {searchResult.matchMode === "fallback-meaning" ? (
+          <p className="text-sm text-[color:var(--color-muted)]">
+            {ui.searchFallbackNotice}
+          </p>
+        ) : null}
         {results.length === 0 ? (
           <div className="rounded-[var(--radius-md)] border border-dashed border-[color:var(--color-edge)] bg-white/60 p-8 text-center text-[color:var(--color-muted)]">
             <p className="text-base font-semibold">{ui.emptyTitle}</p>

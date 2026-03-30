@@ -33,6 +33,7 @@ export const UI_TEXT: Record<
     galleryLabel: string;
     searchPlaceholder: string;
     searchHint: string;
+    searchFallbackNotice: string;
     countLabel: string;
     headerTitle: string;
     headerSubtitle: string;
@@ -128,8 +129,9 @@ export const UI_TEXT: Record<
     siteTagline: "英语介词 3D 空间学习站",
     siteSubtitle: "用极简线框与立体球体，建立最直观的空间记忆。",
     galleryLabel: "介词画廊",
-    searchPlaceholder: "搜索介词 / 中文释义",
-    searchHint: "支持英文或中文释义搜索",
+    searchPlaceholder: "搜索介词；也可输入中文含义",
+    searchHint: "优先匹配介词；无结果时显示含义接近的结果",
+    searchFallbackNotice: "未找到完全匹配的介词，已显示含义接近的结果。",
     countLabel: "条介词",
     headerTitle: "Preposition Dino",
     headerSubtitle: "可能是全世界最好的介词学习网站",
@@ -292,8 +294,10 @@ export const UI_TEXT: Record<
     siteSubtitle:
       "Minimal wireframes + a bold sphere to build fast spatial intuition.",
     galleryLabel: "Preposition Gallery",
-    searchPlaceholder: "Search prepositions or meanings",
-    searchHint: "Search by English word or meaning",
+    searchPlaceholder: "Search prepositions",
+    searchHint: "Match by preposition word only",
+    searchFallbackNotice:
+      "No exact preposition match found. Showing meaning-related results instead.",
     countLabel: "prepositions",
     headerTitle: "Preposition Dino",
     headerSubtitle: "Possibly the best preposition learning website in the world",
