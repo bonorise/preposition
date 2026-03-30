@@ -15,6 +15,8 @@
 - [x] 产出首页 FAQ 方法论改版实施计划（2026-03-23）
 - [x] 产出抽象介词分类结构升级与 11 个新词条接入设计文档（2026-03-29）
 - [x] 产出抽象介词分类结构升级与 11 个新词条接入实施计划（2026-03-29）
+- [x] 产出 by 词条与共用 SEO 逻辑优化设计文档（2026-03-30）
+- [x] 产出 by 词条与共用 SEO 逻辑优化实施计划（2026-03-30）
 
 ## Phase 0.5｜数据结构可扩展性
 
@@ -65,6 +67,7 @@
 - [x] next to (/next-to) score=95
 - [x] near (/near) score=95
 - [x] by (/by) score=90
+- [x] 优化 by 词条内容与共用 SEO 主分类逻辑：以空间核心义为主，补齐时间/抽象延伸，并修正 metadata / FAQ / structured data 主轴。（2026-03-30）
 - [x] behind (/behind) score=91
 - [x] in front of (/in-front-of) score=90（2026-02-19：主打 in front of vs in the front of；补齐对比/易错/测验/FAQ；去模板化搭配；补齐 /in-front-of 短链跳转）
 - [x] between (/between) score=90
@@ -116,6 +119,7 @@
 - [x] 微调 above 对比图样式：移除内层边框、收窄标记线条、删除底部说明卡片并将释义移入 SVG；优化 over 间距与曲线留白、拉宽 above 范围并在窄屏改为纵向排列。（2026-03-23）
 - [ ] 将 comparisonVisual 复用到 below / over / on 等相关词条页。（阻塞：当前复用组件已完成，但其他词条尚未补对应的双语对比数据。）
 - [x] 结构升级：支持 `abstract` 分类，并让首页 / 详情页 / 例句 / SEO 按四分法稳定工作。（2026-03-29）
+- [x] 首页主分类修正：`by` 按核心义归入空间介词模块，而非时间介词模块。（2026-03-30）
 - [x] 新增 11 个正式词条页：apart from、according to、away from、as、since、until、including、due to、during、instead of、via。（2026-03-29）
 - [x] 批次接入 A：补齐 11 个新词条脚手架，并完成 since / until / during 的正式内容与校验。（2026-03-29）
 - [x] 批次接入 B：完成 according to / as / due to / instead of 的正式内容与校验。（2026-03-29）
@@ -126,6 +130,7 @@
 - [x] 新增 about 介词词条页（空间/时间/动态图解 + 抽象义文案 + SEO/GEO 文案覆盖）。
 - [x] 补强 about 释义中的词根拆解（保留 ab- / out / 外围转圈，便于记忆）。
 - [x] 首页 FAQ 方法论改版：替换中英文 FAQ 标题、方法论问答与结构化数据输出验证。（2026-03-23）
+- [ ] SEO 数据模型升级（方案 3）：为词条引入 `seoPrimaryCategory`、`seoDescription`、`seoFaq` 等可数据化字段。（阻塞：本轮只落方案 2，若进入方案 3 需评估现有词条与 override 映射的批量迁移成本。）
 - [ ] 拖拽摆放 + 判定（练习模式）。（阻塞：已有拖拽演示，但尚未实现 Check 判定与偏差反馈。）
 - [ ] 账号/学习进度（后续）。（阻塞：当前仍是无账号、无持久学习进度模式。）
 

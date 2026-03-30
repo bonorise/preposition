@@ -6,7 +6,10 @@ const meta: PrepositionMeta = {
   "tags": [
     "space",
     "side",
-    "near"
+    "near",
+    "deadline",
+    "method",
+    "basis"
   ],
   "sense": "space",
   "relatedIds": [

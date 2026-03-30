@@ -3,6 +3,7 @@ import type { LearningCategory, PrepositionEntry } from "@/data/types";
 export type HomeCategory = LearningCategory;
 
 const HOME_CATEGORY_OVERRIDES: Partial<Record<string, HomeCategory>> = {
+  by: "space",
   "away-from": "space",
 };
 
@@ -32,6 +33,7 @@ const TEMPORAL_IDS = new Set([
 ]);
 
 const ABSTRACT_IDS = new Set([
+  "by",
   "about",
   "according-to",
   "apart-from",
