@@ -207,7 +207,7 @@ export const UI_TEXT: Record<
     sectionTimeDesc: "聚焦时间表达：时间点、时间段与时限。",
     sectionDynamicTitle: "动态介词",
     sectionDynamicDesc: "聚焦运动过程：路径、方向与起终点变化。",
-    sectionAbstractTitle: "抽象关系",
+    sectionAbstractTitle: "抽象介词",
     sectionAbstractDesc: "聚焦依据、替代、包含、原因与渠道等抽象关系。",
     sectionEmpty: "当前搜索下暂无该分类词条。",
     faqTitle: "FAQ · 这个网站如何帮助你学会介词",
@@ -376,7 +376,7 @@ export const UI_TEXT: Record<
     sectionTimeDesc: "Focus on time points, durations, and deadlines.",
     sectionDynamicTitle: "Dynamic prepositions",
     sectionDynamicDesc: "Focus on movement paths, direction, and start-end transitions.",
-    sectionAbstractTitle: "Abstract relations",
+    sectionAbstractTitle: "Abstract prepositions",
     sectionAbstractDesc:
       "Focus on basis, substitution, inclusion, cause, and channel relations.",
     sectionEmpty: "No items in this section for the current query.",

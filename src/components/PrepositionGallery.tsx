@@ -72,6 +72,10 @@ export default function PrepositionGallery({
       entries: groupedResults.abstract,
     },
   ] as const;
+  const hasActiveQuery = query.trim().length > 0;
+  const visibleSections = hasActiveQuery
+    ? sections.filter((section) => section.entries.length > 0)
+    : sections;
 
   return (
     <section className="space-y-10">
@@ -146,7 +150,7 @@ export default function PrepositionGallery({
           </div>
         ) : (
           <div className="space-y-8">
-            {sections.map((section) => (
+            {visibleSections.map((section) => (
               <section
                 key={section.key}
                 className="space-y-4 rounded-[var(--radius-md)] border border-[color:var(--color-edge)] bg-white/55 p-5"
@@ -165,24 +169,18 @@ export default function PrepositionGallery({
                   </span>
                 </div>
 
-                {section.entries.length === 0 ? (
-                  <div className="rounded-[var(--radius-md)] border border-dashed border-[color:var(--color-edge)] bg-white/60 p-4 text-sm text-[color:var(--color-muted)]">
-                    {ui.sectionEmpty}
-                  </div>
-                ) : (
-                  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {section.entries.map((entry, index) => (
-                      <PrepositionCard
-                        key={entry.id}
-                        entry={entry}
-                        locale={activeLocale}
-                        index={index}
-                        category={section.key}
-                        thumbnailFormat={thumbnailFormat}
-                      />
-                    ))}
-                  </div>
-                )}
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {section.entries.map((entry, index) => (
+                    <PrepositionCard
+                      key={entry.id}
+                      entry={entry}
+                      locale={activeLocale}
+                      index={index}
+                      category={section.key}
+                      thumbnailFormat={thumbnailFormat}
+                    />
+                  ))}
+                </div>
               </section>
             ))}
           </div>
