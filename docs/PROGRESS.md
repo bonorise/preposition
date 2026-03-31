@@ -122,12 +122,14 @@
 - [x] 落地 above 对比图复用能力与 above 页面双语内容优化。（2026-03-23）
 - [x] 微调 above 对比图样式：移除内层边框、收窄标记线条、删除底部说明卡片并将释义移入 SVG；优化 over 间距与曲线留白、拉宽 above 范围并在窄屏改为纵向排列。（2026-03-23）
 - [ ] 将 comparisonVisual 复用到 below / over / on 等相关词条页。（阻塞：当前复用组件已完成，但其他词条尚未补对应的双语对比数据。）
+- [ ] 修复详情页 related prepositions 缩略图缺失导致的 404 噪音。（阻塞：多个 relatedIds 对应缩略图尚未生成，当前先按内容与 SEO 优先级延后处理。）
 - [x] 结构升级：支持 `abstract` 分类，并让首页 / 详情页 / 例句 / SEO 按四分法稳定工作。（2026-03-29）
 - [x] 首页主分类修正：`by` 按核心义归入空间介词模块，而非时间介词模块。（2026-03-30）
 - [x] 新增 11 个正式词条页：apart from、according to、away from、as、since、until、including、due to、during、instead of、via。（2026-03-29）
 - [x] 批次接入 A：补齐 11 个新词条脚手架，并完成 since / until / during 的正式内容与校验。（2026-03-29）
 - [x] 批次接入 B：完成 according to / as / due to / instead of 的正式内容与校验。（2026-03-29）
-- [ ] 升级 as 词条为“单词总览页”：围绕“相似 / 相伴随”主线，重写中英文内容、FAQ 与 SEO，并新增 meaning map 模块。（阻塞：设计与实施计划已确认，尚未进入代码实现与验证。）
+- [x] 升级 as 词条为“单词总览页”：围绕“相似 / 相伴随”主线，重写中英文内容、FAQ 与 SEO，并新增 meaning map 模块。（2026-03-30）
+- [x] 微调 as 词条首句：先点明 “all so / also” 记忆线，再引出 “sameness + accompanying relation” 核心义。（2026-03-30）
 - [x] 批次接入 C：完成 apart from / including / away from / via 的正式内容与校验。（2026-03-29）
 - [x] 时间介词可视化：时间轴/日历/钟表小图（时间语义优先，不强依赖 3D 立方体）
 - [x] 标签（tags）降噪：默认折叠或改为“关键点”文案，仅保留 2-3 条最关键提示

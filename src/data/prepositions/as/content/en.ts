@@ -2,85 +2,200 @@ import type { LocalizedPrepositionContent } from "../../shared/types";
 
 const content: LocalizedPrepositionContent = {
   meaning:
-    "as: in the role, function, identity, or use of something.",
-  cardMeaning: "as: as a role / in the function of.",
+    "as: you can understand it through an old “all so / also” feeling. Its core feeling is sameness plus accompanying relation, which helps explain comparison, role, time, reason, and concession.",
+  cardMeaning: "as: same way, as a role, when, because.",
   tips: [
-    "This page focuses only on the preposition use of as: as a teacher / use it as a guide.",
-    "As means 'in the role of' or 'with the function of', not simply 'similar to'.",
-    "Do not mix this page with the conjunction as or the pattern as ... as ... .",
+    "Start from two core ideas: sameness and accompanying relation.",
+    "From sameness, English gets as ... as and role/function uses such as work as a teacher.",
+    "From accompanying relation, English gets time, reason, and formal concession patterns.",
   ],
+  meaningMap: {
+    title: "How the meanings of as connect",
+    intro:
+      "Do not memorize each use of as as a separate rule. It is easier to see one core idea first, then watch English extend it in several directions.",
+    coreLabel: "Core idea",
+    coreMeaning:
+      "You can understand as through a teaching model close to “all so / also”: things are so in the same way, or so alongside one another. That gives two core feelings: sameness and accompanying relation.",
+    branches: [
+      {
+        label: "Sameness -> comparison",
+        description:
+          "If two things are so in the same way, English can compare them on one scale with as ... as.",
+        examples: [
+          "as quiet as the library",
+          "as carefully as she could",
+        ],
+      },
+      {
+        label: "Sameness -> role / function",
+        description:
+          "If something is treated in the same way as a role, type, or function, English uses as to mark that role.",
+        examples: [
+          "work as a teacher",
+          "use the bench as a table",
+        ],
+      },
+      {
+        label: "Accompanying relation -> time",
+        description:
+          "When one situation unfolds alongside another, as can mean “when / while this is happening”.",
+        examples: [
+          "As I was leaving, the phone rang.",
+          "As the sun went down, the air grew colder.",
+        ],
+      },
+      {
+        label: "Accompanying relation -> reason",
+        description:
+          "If one situation accompanies another and helps explain it, as can introduce a lighter background reason.",
+        examples: [
+          "As it was getting late, we took a taxi home.",
+          "As no one objected, the plan went ahead.",
+        ],
+      },
+      {
+        label: "Accompanying relation -> concession",
+        description:
+          "In a formal pattern, a condition can be present alongside the main event, but the main result still happens: Tired as he was, ...",
+        examples: [
+          "Young as she is, she speaks with great confidence.",
+          "Try as he might, he could not move it.",
+        ],
+      },
+    ],
+    note:
+      "The “all so / also” explanation here is a learning model for remembering the network of meanings. It is meant to organize the page clearly for learners, not to replace full historical linguistics.",
+  },
   examples: [
     {
-      en: "She works as a designer in a small studio.",
+      en: "This room is as quiet as the library.",
       i18n: {
-        en: { translation: "She works as a designer in a small studio." },
-        "zh-CN": { translation: "她在一家小型工作室当设计师。" },
+        en: { translation: "This room is as quiet as the library." },
+        "zh-CN": { translation: "这个房间和图书馆一样安静。" },
       },
     },
     {
-      en: "We used a box as a temporary table.",
+      en: "She spoke as a parent, not as a manager.",
       i18n: {
-        en: { translation: "We used a box as a temporary table." },
-        "zh-CN": { translation: "我们把一个箱子当临时桌子用。" },
+        en: { translation: "She spoke as a parent, not as a manager." },
+        "zh-CN": { translation: "她是以家长身份发言，不是以经理身份发言。" },
+      },
+    },
+    {
+      en: "As I was crossing the street, it started to rain.",
+      i18n: {
+        en: { translation: "As I was crossing the street, it started to rain." },
+        "zh-CN": { translation: "我正过马路的时候，开始下雨了。" },
       },
     },
   ],
   examplesByCategory: {
     abstract: [
       {
-        en: "He spoke as a parent, not as a manager.",
+        en: "This room is as quiet as the library.",
         i18n: {
-          en: { translation: "He spoke as a parent, not as a manager." },
-          "zh-CN": { translation: "他是以家长身份发言，不是以经理身份发言。" },
+          en: { translation: "This room is as quiet as the library." },
+          "zh-CN": { translation: "这个房间和图书馆一样安静。" },
         },
       },
       {
-        en: "Please keep this note as a reminder.",
+        en: "We used the bench as a temporary table.",
         i18n: {
-          en: { translation: "Please keep this note as a reminder." },
-          "zh-CN": { translation: "请把这张纸条留作提醒。" },
+          en: { translation: "We used the bench as a temporary table." },
+          "zh-CN": { translation: "我们把长凳当临时桌子用。" },
         },
       },
       {
-        en: "The team sees the setback as a useful lesson.",
+        en: "As the children grew older, they became more independent.",
         i18n: {
-          en: { translation: "The team sees the setback as a useful lesson." },
-          "zh-CN": { translation: "团队把这次挫折看作一次有用的教训。" },
+          en: {
+            translation:
+              "As the children grew older, they became more independent.",
+          },
+          "zh-CN": {
+            translation: "随着孩子们长大，他们变得更独立了。",
+          },
+        },
+      },
+      {
+        en: "As it was already midnight, we went straight home.",
+        i18n: {
+          en: {
+            translation: "As it was already midnight, we went straight home.",
+          },
+          "zh-CN": { translation: "因为已经是半夜了，我们就直接回家了。" },
+        },
+      },
+      {
+        en: "Tired as he was, he kept working.",
+        i18n: {
+          en: { translation: "Tired as he was, he kept working." },
+          "zh-CN": { translation: "虽然他很累，他还是继续工作。" },
         },
       },
     ],
   },
   comparison: {
     summary:
-      "As is about role, identity, or function. Learners often confuse it with like (similarity) and instead of (substitution).",
+      "The easiest way to learn as is to connect the uses instead of separating them too early. It can mark equality, role, accompanying time, lighter reason, and formal concession.",
     differences: [
       {
         term: "like",
         description:
-          "Like means similar to. As means in the role or function of.",
+          "Like points to resemblance. As can express equality in as ... as, or role/function in patterns such as work as a teacher and use it as a guide.",
         examples: [
           {
             term: "like",
-            sentence: "This fabric feels like silk.",
+            sentence: "She looks like her sister.",
           },
           {
             term: "as",
-            sentence: "Use this fabric as a curtain.",
+            sentence: "She works as her sister's assistant.",
           },
         ],
       },
       {
-        term: "instead of",
+        term: "because",
         description:
-          "Instead of means one thing replaces another. As means one thing serves in a role or identity.",
+          "Because gives a direct reason. As often gives a lighter background reason that explains the situation without sounding as forceful.",
         examples: [
           {
-            term: "instead of",
-            sentence: "Use tea instead of coffee.",
+            term: "because",
+            sentence: "We stayed inside because it was storming.",
           },
           {
             term: "as",
-            sentence: "Use tea as a warm welcome for guests.",
+            sentence: "As it was storming, we stayed inside.",
+          },
+        ],
+      },
+      {
+        term: "when / while",
+        description:
+          "When marks time more neutrally. While emphasizes two actions continuing together. As often presents one event unfolding alongside another.",
+        examples: [
+          {
+            term: "when",
+            sentence: "When I opened the door, the cat ran out.",
+          },
+          {
+            term: "as",
+            sentence: "As I opened the door, the cat ran out.",
+          },
+        ],
+      },
+      {
+        term: "although / though",
+        description:
+          "Although and though are the ordinary way to show concession. As can do this too, but usually in a more formal inverted pattern: Tired as he was, ...",
+        examples: [
+          {
+            term: "although",
+            sentence: "Although he was tired, he kept working.",
+          },
+          {
+            term: "as",
+            sentence: "Tired as he was, he kept working.",
           },
         ],
       },
@@ -88,107 +203,107 @@ const content: LocalizedPrepositionContent = {
   },
   collocationGroups: [
     {
-      title: "Role and identity",
+      title: "Comparison patterns",
+      items: [
+        "as soon as possible",
+        "as carefully as possible",
+        "as much as I can",
+        "as far as I know",
+        "as long as you like",
+        "as good as new",
+      ],
+    },
+    {
+      title: "Role and function",
       items: [
         "work as a teacher",
-        "serve as captain",
+        "serve as a reminder",
         "act as a guide",
-        "speak as a parent",
-        "see him as a friend",
-        "treat it as a joke",
+        "use it as a tool",
+        "see it as a chance",
+        "describe him as calm",
       ],
     },
     {
-      title: "Use something as",
+      title: "Clause patterns",
       items: [
-        "use a box as a table",
-        "use your phone as a torch",
-        "use water as a coolant",
-        "use the room as storage",
-        "use the file as a template",
-        "use the chair as a step",
-      ],
-    },
-    {
-      title: "Common sentence frames",
-      items: [
-        "as a student",
-        "as evidence",
-        "as a warning",
-        "as an example",
-        "as a gift",
-        "as part of the plan",
+        "as I was leaving",
+        "as the sun rose",
+        "as it was late",
+        "as no one objected",
+        "tired as he was",
+        "try as he might",
       ],
     },
   ],
   commonMistakes: [
     {
-      wrong: "She works like a designer there.",
-      correct: "She works as a designer there.",
+      wrong: "She is as her sister.",
+      correct: "She is like her sister. / She is as tall as her sister.",
       reason:
-        "If designer is her job role, English uses as. Like would mean only 'similar to a designer'.",
+        "Use like for simple resemblance. Use as when you mean equality on a scale (as tall as) or role/function (as a teacher).",
     },
     {
-      wrong: "We used a box instead of a table for a temporary table.",
-      correct: "We used a box as a temporary table.",
+      wrong: "We used the bench like a table.",
+      correct: "We used the bench as a table.",
       reason:
-        "As highlights the function the box served. Instead of would only highlight replacement.",
+        "When something serves in a role or function, English usually uses as, not like.",
     },
     {
-      wrong: "As I was tired, I went home.",
-      correct: "That is a conjunction use of as, not the preposition use on this page.",
+      wrong: "As he was tired, but he kept working.",
+      correct: "Although he was tired, he kept working. / Tired as he was, he kept working.",
       reason:
-        "This page only explains the preposition meaning: role, function, or identity.",
+        "Do not mix the causal as pattern with a second contrast marker. For concession, use although/though, or the formal inverted as pattern.",
     },
   ],
   quiz: [
     {
-      prompt: "She spoke ___ the team leader.",
-      options: ["as", "like", "during"],
+      prompt: "This bag is ___ heavy as the old one.",
+      options: ["as", "like", "because"],
       answer: "as",
       explanation:
-        "Team leader is the role in which she spoke, so as is correct.",
+        "In equality patterns, English uses as ... as: as heavy as the old one.",
     },
     {
-      prompt: "This tastes ___ lemon, but it isn't lemon.",
-      options: ["like", "as", "since"],
-      answer: "like",
-      explanation:
-        "This sentence is about similarity, not role or function, so like is better than as.",
-    },
-    {
-      prompt: "We used the spare room ___ an office.",
-      options: ["as", "until", "about"],
+      prompt: "She worked ___ an interpreter during the meeting.",
+      options: ["as", "like", "while"],
       answer: "as",
       explanation:
-        "The room served in the function of an office, so use as.",
+        "Interpreter is the role she had in the meeting, so as is correct.",
+    },
+    {
+      prompt: "___ I was walking home, I saw the lights go out.",
+      options: ["As", "Like", "Since"],
+      answer: "As",
+      explanation:
+        "Here as introduces one event unfolding alongside another, so it means “when/while”.",
     },
   ],
   faq: [
     {
-      question: "What is the core preposition meaning of as?",
+      question: "Is as a preposition or a conjunction?",
       answer:
-        "It marks role, function, identity, or the way something is understood.",
-    },
-    {
-      question: "Can as be used for jobs and roles?",
-      answer:
-        "Yes. Work as a teacher, serve as captain, and act as a guide are common patterns.",
+        "Both. As can work in role/function patterns such as work as a teacher, and it can also introduce clauses for time, reason, and formal concession.",
     },
     {
       question: "What is the difference between as and like?",
       answer:
-        "As is about role or function. Like is about similarity.",
+        "Like usually marks resemblance. As can mark equality in as ... as, or role/function in patterns such as use it as a guide and speak as a parent.",
     },
     {
-      question: "Can as be used after verbs such as see or describe?",
+      question: "Why can as mean because?",
       answer:
-        "Yes. You can say see it as a chance, describe him as calm, or regard it as a risk.",
+        "Because one situation can accompany another and also explain it. In that use, as often gives a lighter background reason than because.",
     },
     {
-      question: "Why is this page not explaining as a conjunction?",
+      question: "How does as express time?",
       answer:
-        "Because this page is limited to the preposition use of as, which is common and easier for learners to separate clearly.",
+        "As can mean “when / while” when one action happens alongside another: As I was leaving, the phone rang.",
+    },
+    {
+      question: "How is as ... as connected to the core meaning of as?",
+      answer:
+        "It comes from the same idea of sameness. If two things are so in the same way, English can compare them with as ... as.",
     },
   ],
 };

@@ -78,6 +78,21 @@ export type PrepositionFaqItem = {
   answer: string;
 };
 
+export type PrepositionMeaningMapBranch = {
+  label: string;
+  description: string;
+  examples?: string[];
+};
+
+export type PrepositionMeaningMap = {
+  title: string;
+  intro: string;
+  coreLabel: string;
+  coreMeaning: string;
+  branches: PrepositionMeaningMapBranch[];
+  note?: string;
+};
+
 export type PrepositionComparisonVisualMarker =
   | "contact"
   | "hover"
@@ -144,6 +159,7 @@ export type PrepositionEntry = {
     >;
   };
   comparisonVisual?: PrepositionComparisonVisual;
+  meaningMap?: Record<Locale, PrepositionMeaningMap>;
   collocations?: Record<Locale, string[]>;
   collocationGroups?: Record<Locale, PrepositionCollocationGroup[]>;
   commonMistakes?: Record<Locale, PrepositionMistakeItem[]>;

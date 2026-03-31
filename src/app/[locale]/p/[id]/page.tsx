@@ -67,6 +67,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     entry,
     locale,
   });
+  const socialImageAlt = entry.meaningMap
+    ? `${entry.word} usage overview`
+    : `${entry.word} preposition 3D diagram`;
   const languages = buildHreflangLanguages({
     locales: SUPPORTED_LOCALES,
     defaultLocale: DEFAULT_LOCALE,
@@ -75,7 +78,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const socialImage = [
     {
       url: absoluteUrl(`/thumbnails/${entry.id}.svg`),
-      alt: `${entry.word} preposition 3D diagram`,
+      alt: socialImageAlt,
     },
   ];
 
@@ -142,6 +145,9 @@ export default async function LocalePrepositionPage({
     locale,
   });
   const faqItems = getPrepositionFaqItems(entry, locale);
+  const definedTermSetName = entry.meaningMap
+    ? "English Usage Guides"
+    : "English Prepositions";
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -160,7 +166,7 @@ export default async function LocalePrepositionPage({
       description: meaning,
       inDefinedTermSet: {
         "@type": "DefinedTermSet",
-        name: "English Prepositions",
+        name: definedTermSetName,
         url: siteUrl,
       },
     },

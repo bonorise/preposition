@@ -21,6 +21,7 @@ import PrepositionCollocations from "@/components/PrepositionCollocations";
 import PrepositionMistakes from "@/components/PrepositionMistakes";
 import PrepositionQuiz from "@/components/PrepositionQuiz";
 import PrepositionFaq from "@/components/PrepositionFaq";
+import PrepositionMeaningMap from "@/components/PrepositionMeaningMap";
 
 type PrepositionDetailProps = {
   entry: PrepositionEntry;
@@ -266,6 +267,7 @@ export default function PrepositionDetail({
         entries={related}
         thumbnailFormat={thumbnailFormat}
       />
+      <PrepositionMeaningMap entry={entry} locale={activeLocale} />
       <PrepositionComparison entry={entry} locale={activeLocale} />
       <PrepositionCollocations entry={entry} locale={activeLocale} />
       <PrepositionMistakes entry={entry} locale={activeLocale} />

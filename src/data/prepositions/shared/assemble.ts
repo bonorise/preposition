@@ -119,6 +119,7 @@ export function assemblePreposition(module: PrepositionModule): PrepositionEntry
     examplesByCategory: primaryContent?.examplesByCategory,
     comparison: buildComparison(module),
     comparisonVisual: buildComparisonVisual(module),
+    meaningMap: buildLocalizedMap(module, (content) => content.meaningMap),
     collocations: buildLocalizedMap(module, (content) => content.collocations),
     collocationGroups: buildLocalizedMap(
       module,

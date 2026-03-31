@@ -110,7 +110,9 @@ export default function PrepositionComparison({
               {ui.detailComparisonPlaceholder}
             </p>
           )}
-          <PrepositionDecisionTree entry={entry} locale={activeLocale} />
+          {entry.meaningMap ? null : (
+            <PrepositionDecisionTree entry={entry} locale={activeLocale} />
+          )}
         </div>
       </div>
     </section>

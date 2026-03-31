@@ -5,15 +5,17 @@ const meta: PrepositionMeta = {
   "word": "as",
   "tags": [
     "abstract",
+    "comparison",
     "role",
-    "function",
-    "identity"
+    "time",
+    "reason",
+    "concession"
   ],
   "sense": "space",
   "relatedIds": [
-    "according-to",
+    "since",
     "instead-of",
-    "about",
+    "according-to",
     "due-to"
   ]
 };

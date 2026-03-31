@@ -118,6 +118,20 @@ const PRIMARY_SEO_CATEGORY_OVERRIDE: Partial<Record<string, LearningCategory>> =
 const SEO_METADATA_OVERRIDES: Partial<
   Record<string, Partial<Record<Locale, SeoOverride>>>
 > = {
+  as: {
+    en: {
+      title:
+        "as meaning: comparison, role, time, reason, and how the uses connect | Preposition Dino",
+      description:
+        "As starts from the ideas of sameness and accompanying relation. This page shows how that core meaning extends to as ... as, role and function, time (when/while), reason (because), and formal concession, with clear examples and comparisons.",
+    },
+    "zh-CN": {
+      title:
+        "as 的意思怎么串起来？比较、作为、时间、原因与让步用法总览 | Preposition Dino",
+      description:
+        "as 的底层感觉可以理解为“相似”和“相伴随”。本页讲清它如何从这个核心义延伸到 as ... as、作为/当作、当……时、因为和正式让步等常见用法，并配对比例句帮助理解。",
+    },
+  },
   by: {
     en: {
       title: "by: meaning, examples, and by vs near / beside | Preposition Dino",

@@ -7,6 +7,7 @@ import type {
   PrepositionEntry,
   PrepositionExample,
   PrepositionFaqItem,
+  PrepositionMeaningMap,
   PrepositionMistakeItem,
   PrepositionQuizItem,
   SceneConfig,
@@ -50,6 +51,7 @@ export type LocalizedPrepositionContent = {
   examplesByCategory?: Partial<Record<LearningCategory, PrepositionExample[]>>;
   comparison?: LocalizedComparison;
   comparisonVisual?: LocalizedComparisonVisual;
+  meaningMap?: PrepositionMeaningMap;
   collocations?: string[];
   collocationGroups?: PrepositionCollocationGroup[];
   commonMistakes?: PrepositionMistakeItem[];
