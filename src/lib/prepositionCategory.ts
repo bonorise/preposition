@@ -41,6 +41,7 @@ const ABSTRACT_IDS = new Set([
   "due-to",
   "including",
   "instead-of",
+  "since",
   "via",
 ]);
 

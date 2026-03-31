@@ -77,6 +77,18 @@ function cloneScene(scene: SceneConfig): SceneConfig {
           ...scene.timeAxis,
         }
       : undefined,
+    abstractDiagram: scene.abstractDiagram
+      ? {
+          ...scene.abstractDiagram,
+          nodes: scene.abstractDiagram.nodes.map((node) => ({
+            ...node,
+            position: toTuple(node.position, [0, 0, 0]),
+            label: node.label ? { ...node.label } : undefined,
+            fillColor: node.fillColor,
+          })),
+          arrows: scene.abstractDiagram.arrows.map((arrow) => ({ ...arrow })),
+        }
+      : undefined,
   };
 }
 

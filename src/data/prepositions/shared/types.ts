@@ -17,7 +17,7 @@ export type PrepositionMeta = {
   id: string;
   word: string;
   tags: string[];
-  sense: "space";
+  sense: LearningCategory;
   relatedIds: string[];
 };
 

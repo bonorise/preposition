@@ -7,9 +7,10 @@ const meta: PrepositionMeta = {
     "time",
     "starting-point",
     "continuation",
-    "duration"
+    "duration",
+    "reason"
   ],
-  "sense": "space",
+  "sense": "time",
   "relatedIds": [
     "after",
     "from",

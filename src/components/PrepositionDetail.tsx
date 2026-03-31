@@ -220,6 +220,7 @@ export default function PrepositionDetail({
               ref={viewerRef}
               entry={entry}
               sceneOverride={activeScene}
+              locale={activeLocale}
               frontLabel={ui.directionFront}
               showGroundOverride={showGroundOverride}
               className={isFullscreen ? "flex-1 h-full rounded-none" : undefined}

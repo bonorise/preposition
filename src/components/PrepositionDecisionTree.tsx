@@ -633,6 +633,50 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> use since (since 2020 / since Monday), not after.",
       });
     }
+  } else if (word === "since" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "你要表达的是“从过去某个时间点开始，并且一直持续到现在/到另一个参照点”吗？",
+        answer: "是 -> 用 since + 时间点/事件（since 2020 / since Monday / since breakfast）。",
+      });
+      questions.push({
+        question: "你只是想说“在……之后”，不强调持续吗？",
+        answer: "是 -> 用 after，不用 since。",
+      });
+      questions.push({
+        question: "你表达的是“从 A 到 B”的时间范围，两端都说清了吗？",
+        answer: "是 -> 用 from ... to ...；since 不用来配明确终点范围。",
+      });
+      questions.push({
+        question: "这句话是在说明原因，意思接近“因为 / 既然”吗？",
+        answer: "是 -> since 也可以，但语气常比 because 更像“既然这个事实成立”。",
+      });
+      questions.push({
+        question: "你想表达的是“持续了多久”，而不是“从何时开始”吗？",
+        answer: "是 -> 用 for（for two hours），不用 since。",
+      });
+    } else {
+      questions.push({
+        question: "Do you mean a starting point in time that continues to now or to another reference moment?",
+        answer: "Yes -> use since + a time point or event (since 2020 / since Monday / since breakfast).",
+      });
+      questions.push({
+        question: "Do you only mean later than an event, without the idea of continuation?",
+        answer: "Yes -> use after, not since.",
+      });
+      questions.push({
+        question: "Is it a range with both a start and an end point?",
+        answer: "Yes -> use from ... to ...; since does not pair naturally with a fixed end point.",
+      });
+      questions.push({
+        question: "Are you giving a reason meaning because / given that?",
+        answer: "Yes -> since also works, especially when the reason is treated as known or already accepted.",
+      });
+      questions.push({
+        question: "Do you mean duration length rather than the starting point?",
+        answer: "Yes -> use for (for two hours), not since.",
+      });
+    }
   } else if (word === "past") {
     if (activeLocale === "zh-CN") {
       questions.push({

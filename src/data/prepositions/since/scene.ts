@@ -21,6 +21,59 @@ const sceneModule: PrepositionSceneModule = {
       wireframeStyle: "edges+faces",
     },
   },
+  scenesByCategory: {
+    abstract: {
+      cube: {
+        size: 1,
+        position: [0, 0, 0],
+      },
+      ball: {
+        radius: 0.16,
+        position: [-0.95, 0, 0],
+      },
+      camera: {
+        position: [0, 0, 4.2],
+        target: [0, 0, 0],
+        fov: 34,
+      },
+      render: {
+        showGround: false,
+        shadows: false,
+        wireframeStyle: "edges+faces",
+      },
+      abstractDiagram: {
+        ballNodeId: "cause",
+        nodes: [
+          {
+            id: "cause",
+            position: [-0.95, 0, 0],
+            radius: 0.34,
+            fillColor: "#f5f3ff",
+            label: {
+              en: "Cause",
+              "zh-CN": "原因",
+            },
+          },
+          {
+            id: "result",
+            position: [0.95, 0, 0],
+            radius: 0.34,
+            fillColor: "#f5f3ff",
+            label: {
+              en: "Result",
+              "zh-CN": "结果",
+            },
+          },
+        ],
+        arrows: [
+          {
+            from: "cause",
+            to: "result",
+          },
+        ],
+      },
+    },
+  },
 };
 
 export default sceneModule;

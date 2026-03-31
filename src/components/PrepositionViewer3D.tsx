@@ -9,7 +9,13 @@ import {
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-import type { PrepositionEntry, SceneConfig, TimeAxisConfig } from "@/data/types";
+import type {
+  AbstractDiagramConfig,
+  Locale,
+  PrepositionEntry,
+  SceneConfig,
+  TimeAxisConfig,
+} from "@/data/types";
 import { cn } from "@/lib/utils";
 
 export type ViewerHandle = {
@@ -20,6 +26,7 @@ export type ViewerHandle = {
 type PrepositionViewer3DProps = {
   entry: PrepositionEntry;
   sceneOverride?: SceneConfig;
+  locale?: Locale;
   frontLabel?: string;
   showGroundOverride?: boolean;
   className?: string;
@@ -368,8 +375,114 @@ function buildTimeAxisGroup({
   };
 }
 
+function buildAbstractDiagramGroup({
+  abstractDiagram,
+  renderer,
+  locale,
+}: {
+  abstractDiagram: AbstractDiagramConfig;
+  renderer: THREE.WebGLRenderer;
+  locale?: Locale;
+}) {
+  const group = new THREE.Group();
+  const geometries: THREE.BufferGeometry[] = [];
+  const materials: THREE.Material[] = [];
+  const textures: THREE.Texture[] = [];
+
+  const arrowMaterial = new THREE.LineBasicMaterial({
+    color: timelineMarkerColor,
+    transparent: true,
+    opacity: 0.85,
+  });
+  const arrowHeadMaterial = new THREE.MeshBasicMaterial({
+    color: timelineMarkerColor,
+    transparent: true,
+    opacity: 0.92,
+  });
+  materials.push(arrowMaterial, arrowHeadMaterial);
+
+  const nodeMap = new Map(
+    abstractDiagram.nodes.map((node) => [node.id, node] as const),
+  );
+
+  abstractDiagram.nodes.forEach((node) => {
+    const radius = node.radius ?? 0.34;
+    const nodeFillMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color(node.fillColor ?? "#f5f5f4"),
+      transparent: true,
+      opacity: 0.98,
+    });
+    materials.push(nodeFillMaterial);
+    const circleGeometry = new THREE.CircleGeometry(radius, 48);
+    const circle = new THREE.Mesh(circleGeometry, nodeFillMaterial);
+    circle.position.set(...node.position);
+    geometries.push(circleGeometry);
+    group.add(circle);
+
+    const labelText = node.label?.[locale ?? "en"] ?? node.label?.["zh-CN"];
+    if (labelText) {
+      const result = createLabelMesh({
+        text: labelText,
+        width: 0.9,
+        height: 0.24,
+        fontSize: 42,
+        renderer,
+        color: "#475569",
+      });
+      if (result) {
+        result.mesh.position.set(node.position[0], node.position[1] - 0.58, node.position[2]);
+        group.add(result.mesh);
+        geometries.push(result.geometry);
+        materials.push(result.material);
+        textures.push(result.texture);
+      }
+    }
+  });
+
+  abstractDiagram.arrows.forEach((arrow) => {
+    const fromNode = nodeMap.get(arrow.from);
+    const toNode = nodeMap.get(arrow.to);
+    if (!fromNode || !toNode) return;
+
+    const from = new THREE.Vector3(...fromNode.position);
+    const to = new THREE.Vector3(...toNode.position);
+    const direction = to.clone().sub(from);
+    if (direction.lengthSq() < 0.000001) return;
+
+    direction.normalize();
+    const fromRadius = fromNode.radius ?? 0.34;
+    const toRadius = toNode.radius ?? 0.34;
+    const lineStart = from.clone().add(direction.clone().multiplyScalar(fromRadius));
+    const lineEnd = to.clone().add(direction.clone().multiplyScalar(-toRadius - 0.12));
+
+    pushLine(group, [lineStart, lineEnd], arrowMaterial, geometries);
+
+    const arrowHeadGeometry = new THREE.ConeGeometry(0.08, 0.22, 18);
+    const arrowHead = new THREE.Mesh(arrowHeadGeometry, arrowHeadMaterial);
+    arrowHead.position.copy(to.clone().add(direction.clone().multiplyScalar(-toRadius + 0.02)));
+    arrowHead.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction);
+    geometries.push(arrowHeadGeometry);
+    group.add(arrowHead);
+  });
+
+  const ballAnchor =
+    nodeMap.get(abstractDiagram.ballNodeId ?? abstractDiagram.nodes[0]?.id ?? "") ??
+    abstractDiagram.nodes[0];
+  const ballPosition = ballAnchor
+    ? new THREE.Vector3(...ballAnchor.position)
+    : new THREE.Vector3(0, 0, 0);
+
+  return {
+    group,
+    geometries,
+    materials,
+    textures,
+    ballPosition,
+  };
+}
+
 const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
-  ({ entry, sceneOverride, frontLabel, showGroundOverride, className }, ref) => {
+  ({ entry, sceneOverride, locale, frontLabel, showGroundOverride, className }, ref) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const animationRef = useRef<{
       isPlaying: boolean;
@@ -480,6 +593,18 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         materials.push(...timeline.materials);
         textures.push(...timeline.textures);
         ballPosition = timeline.ballPosition.clone();
+        scene.add(structureGroup);
+      } else if (sceneConfig.abstractDiagram) {
+        const abstractGroup = buildAbstractDiagramGroup({
+          abstractDiagram: sceneConfig.abstractDiagram,
+          renderer,
+          locale,
+        });
+        structureGroup = abstractGroup.group;
+        geometries.push(...abstractGroup.geometries);
+        materials.push(...abstractGroup.materials);
+        textures.push(...abstractGroup.textures);
+        ballPosition = abstractGroup.ballPosition.clone();
         scene.add(structureGroup);
       } else {
         const cubeResult = buildCubeGroup(sceneConfig);
@@ -700,7 +825,7 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
           container.removeChild(renderer.domElement);
         }
       };
-    }, [entry, sceneOverride, frontLabel, showGroundOverride]);
+    }, [entry, sceneOverride, locale, frontLabel, showGroundOverride]);
 
     return (
       <div

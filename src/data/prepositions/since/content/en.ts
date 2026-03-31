@@ -2,12 +2,12 @@ import type { LocalizedPrepositionContent } from "../../shared/types";
 
 const content: LocalizedPrepositionContent = {
   meaning:
-    "since: from a starting point in the past up to now, or from one starting point up to another reference moment.",
-  cardMeaning: "since: from a past starting point until now/then.",
+    "since: a starting point that can be temporal ('from that time until now/then') or logical ('because / given that').",
+  cardMeaning: "since: marks a time starting point, and sometimes the reason a judgment starts from.",
   tips: [
-    "Since marks the starting point, not the length of time.",
-    "With time expressions, since often works with the present perfect: since 2020 / since Monday.",
-    "If you only mean 'later than', use after, not since.",
+    "The core idea of since is a starting point, not a length of time.",
+    "In time expressions, since often works with the present perfect: since 2020 / since Monday.",
+    "In reason clauses, since introduces the fact a judgment starts from, often with a 'because / given that' tone.",
   ],
   examples: [
     {
@@ -49,10 +49,30 @@ const content: LocalizedPrepositionContent = {
         },
       },
     ],
+    abstract: [
+      {
+        en: "Since you are here, let's begin with the first example.",
+        i18n: {
+          en: {
+            translation: "Since you are here, let's begin with the first example.",
+          },
+          "zh-CN": { translation: "既然你已经到了，我们就从第一个例子开始吧。" },
+        },
+      },
+      {
+        en: "Since everyone agrees, we can move to the next step.",
+        i18n: {
+          en: {
+            translation: "Since everyone agrees, we can move to the next step.",
+          },
+          "zh-CN": { translation: "既然大家都同意，我们就可以进入下一步了。" },
+        },
+      },
+    ],
   },
   comparison: {
     summary:
-      "Since points to the beginning of a time span that continues. The main learner confusions are after (simple sequence) and from (a neutral starting point without the 'continuing until now' idea).",
+      "Since always points to a starting point. In time, it marks where a span begins and continues. In logic, it marks the fact a judgment starts from. Learners mainly confuse it with after, from, and because.",
     differences: [
       {
         term: "after",
@@ -81,6 +101,21 @@ const content: LocalizedPrepositionContent = {
           {
             term: "since",
             sentence: "The store has been open since 9 a.m.",
+          },
+        ],
+      },
+      {
+        term: "because",
+        description:
+          "Because directly answers why something happens. Since can also give a reason, but it often sounds like the speaker is starting from a fact that is already known or accepted.",
+        examples: [
+          {
+            term: "because",
+            sentence: "We stayed inside because it was raining.",
+          },
+          {
+            term: "since",
+            sentence: "Since it was raining, we stayed inside.",
           },
         ],
       },
@@ -120,6 +155,17 @@ const content: LocalizedPrepositionContent = {
         "since that day",
       ],
     },
+    {
+      title: "Reason / judgment starters",
+      items: [
+        "since you asked",
+        "since everyone agrees",
+        "since this is true",
+        "since we are already here",
+        "since the road is closed",
+        "since that is the case",
+      ],
+    },
   ],
   commonMistakes: [
     {
@@ -139,6 +185,12 @@ const content: LocalizedPrepositionContent = {
       correct: "The shop is open from 9 to 6.",
       reason:
         "Use from ... to ... for schedule ranges. Since is for a starting point that continues.",
+    },
+    {
+      wrong: "Since I was tired, because I went home early.",
+      correct: "Since I was tired, I went home early. / Because I was tired, I went home early.",
+      reason:
+        "Do not stack since and because in the same clause. Choose one reason marker.",
     },
   ],
   quiz: [
@@ -163,12 +215,19 @@ const content: LocalizedPrepositionContent = {
       explanation:
         "Noon is the starting point. Since noon means from noon up to now.",
     },
+    {
+      prompt: "___ everyone is ready, let's start the lesson.",
+      options: ["Since", "After", "During"],
+      answer: "Since",
+      explanation:
+        "Here since means 'because / given that' and introduces the starting fact behind the decision.",
+    },
   ],
   faq: [
     {
       question: "What is the core meaning of since as a preposition?",
       answer:
-        "It marks the point where a time span begins. The idea is 'from that point onward'.",
+        "Its core meaning is a starting point. In time, that means 'from that point onward'. In logic, it can also mark the fact or reason a judgment starts from.",
     },
     {
       question: "Why do many since sentences use the present perfect?",
@@ -184,6 +243,21 @@ const content: LocalizedPrepositionContent = {
       question: "What is the difference between since and from?",
       answer:
         "From is broader and can describe ranges or movement. Since is especially natural for a time starting point that continues until now or another reference moment.",
+    },
+    {
+      question: "Can since mean because?",
+      answer:
+        "Yes. Since can introduce a reason, especially when that reason is treated as known or already accepted: Since everyone agrees, we can move on.",
+    },
+    {
+      question: "What is the difference between since and because?",
+      answer:
+        "Because directly explains why. Since also gives a reason, but it often sounds like the speaker is starting from an already known fact and drawing a conclusion from it.",
+    },
+    {
+      question: "Why can since mean both time and reason?",
+      answer:
+        "Both uses share the same underlying idea: a starting point. One is a starting point in time; the other is the starting point of a thought, judgment, or decision.",
     },
     {
       question: "Can since be followed by a date or event?",

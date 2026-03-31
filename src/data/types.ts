@@ -21,6 +21,25 @@ export type TimeAxisConfig = {
   centerLabel?: string;
 };
 
+export type AbstractDiagramNode = {
+  id: string;
+  position: [number, number, number];
+  radius?: number;
+  fillColor?: string;
+  label?: Partial<Record<Locale, string>>;
+};
+
+export type AbstractDiagramArrow = {
+  from: string;
+  to: string;
+};
+
+export type AbstractDiagramConfig = {
+  nodes: AbstractDiagramNode[];
+  arrows: AbstractDiagramArrow[];
+  ballNodeId?: string;
+};
+
 export type SceneRenderOptions = {
   showGround?: boolean;
   shadows?: boolean;
@@ -44,6 +63,7 @@ export type SceneConfig = {
   render?: SceneRenderOptions;
   variant?: SceneVariant;
   timeAxis?: TimeAxisConfig;
+  abstractDiagram?: AbstractDiagramConfig;
   animation?: {
     type: "path" | "keyframes";
     duration: number;
@@ -134,7 +154,7 @@ export type PrepositionEntry = {
   id: string;
   word: string;
   tags: string[];
-  sense: "space";
+  sense: LearningCategory;
   i18n: Record<Locale, { meaning: string; cardMeaning?: string; tips?: string[] }>;
   examples: PrepositionExample[];
   examplesByCategory?: Partial<Record<LearningCategory, PrepositionExample[]>>;

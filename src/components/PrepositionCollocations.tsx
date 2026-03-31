@@ -24,6 +24,9 @@ export default function PrepositionCollocations({
     [];
   const isEnglishLocale = activeLocale === "en";
 
+  const escapeRegExp = (value: string) =>
+    value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
   const parseItem = (
     item:
       | string
@@ -50,20 +53,12 @@ export default function PrepositionCollocations({
   ) => {
     const { phrase, meaning } = parseItem(item);
     const normalizedItem = phrase.trim();
-    const lowerItem = normalizedItem.toLowerCase();
-    const word = entry.word.toLowerCase();
-    let head = "";
-    let tail = normalizedItem;
-    if (lowerItem.startsWith(`${word} `) || lowerItem === word) {
-      head = normalizedItem.slice(0, word.length);
-      tail = normalizedItem.slice(word.length);
-    } else {
-      const firstSpace = normalizedItem.indexOf(" ");
-      if (firstSpace > 0) {
-        head = normalizedItem.slice(0, firstSpace);
-        tail = normalizedItem.slice(firstSpace);
-      }
-    }
+    const wordPattern = new RegExp(`\\b${escapeRegExp(entry.word)}\\b`, "i");
+    const match = wordPattern.exec(normalizedItem);
+    const before = match ? normalizedItem.slice(0, match.index) : "";
+    const highlighted = match ? normalizedItem.slice(match.index, match.index + match[0].length) : "";
+    const after = match ? normalizedItem.slice(match.index + match[0].length) : normalizedItem;
+
     return (
       <div
         key={key}
@@ -73,8 +68,13 @@ export default function PrepositionCollocations({
       >
         <span className="inline-flex items-center gap-2 text-[color:var(--color-ink)]">
           <span className="h-1 w-1 rounded-full bg-slate-300/80" />
-          <span className="font-semibold text-[#7c3aed]">{head}</span>
-          <span className="text-[color:var(--color-ink)]">{tail}</span>
+          <span className="text-[color:var(--color-ink)]">
+            {before ? <span>{before}</span> : null}
+            {highlighted ? (
+              <span className="font-semibold text-[#7c3aed]">{highlighted}</span>
+            ) : null}
+            <span>{after}</span>
+          </span>
         </span>
         {!isEnglishLocale && meaning ? (
           <p className="mt-1 pl-3 text-xs text-[color:var(--color-muted)]">
