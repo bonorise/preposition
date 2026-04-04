@@ -148,17 +148,7 @@ const content: LocalizedPrepositionContent = {
         { phrase: "has improved since last month", meaning: "从上个月起已经有所改善" }
       ]
     },
-    {
-      title: "常用句型",
-      items: [
-        { phrase: "since the beginning of the year", meaning: "从年初以来" },
-        { phrase: "since the project started", meaning: "从项目启动以来" },
-        { phrase: "since our last call", meaning: "从我们上次通话以来" },
-        { phrase: "since the accident", meaning: "从那次事故以后起" },
-        { phrase: "since the rule changed", meaning: "从规则更改以后起" },
-        { phrase: "since that day", meaning: "从那一天起" }
-      ]
-    },
+
     {
       title: "原因/判断出发点",
       items: [
@@ -199,12 +189,6 @@ const content: LocalizedPrepositionContent = {
       options: ["since", "after", "during"],
       answer: "since",
       explanation: "这里要表达“从小学开始一直到现在都认识她”，所以用 since。"
-    },
-    {
-      prompt: "We went home ___ dinner.",
-      options: ["after", "since", "from"],
-      answer: "after",
-      explanation: "这里只是“晚饭后回家”，是单纯先后顺序，所以用 after。"
     },
     {
       prompt: "The café has been busy ___ noon.",

@@ -145,17 +145,6 @@ const content: LocalizedPrepositionContent = {
       ],
     },
     {
-      title: "Useful sentence frames",
-      items: [
-        "since the beginning of the year",
-        "since the project started",
-        "since our last call",
-        "since the accident",
-        "since the rule changed",
-        "since that day",
-      ],
-    },
-    {
       title: "Reason / judgment starters",
       items: [
         "since you asked",
@@ -200,13 +189,6 @@ const content: LocalizedPrepositionContent = {
       answer: "since",
       explanation:
         "Since introduces the starting point of a relationship that continues until now.",
-    },
-    {
-      prompt: "We went home ___ dinner.",
-      options: ["after", "since", "from"],
-      answer: "after",
-      explanation:
-        "This sentence is only about order in time, so after is correct, not since.",
     },
     {
       prompt: "The café has been busy ___ noon.",
