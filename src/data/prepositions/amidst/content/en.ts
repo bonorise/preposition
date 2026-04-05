@@ -77,36 +77,36 @@ const content: LocalizedPrepositionContent = {
   },
   "collocationGroups": [
     {
-      "title": "Spatial contexts",
+      "title": "Atmosphere and emotion",
       "items": [
-        "amidst the room",
-        "amidst the table",
-        "amidst the box",
-        "amidst the wall",
-        "amidst the door",
-        "amidst the corner"
+        "amidst chaos",
+        "amidst confusion",
+        "amidst uncertainty",
+        "amidst controversy",
+        "amidst applause",
+        "amidst cheers"
       ]
     },
     {
-      "title": "Route positions",
+      "title": "Situational contexts",
       "items": [
-        "amidst the path",
-        "amidst the route",
-        "amidst the gate",
-        "amidst the bridge",
-        "amidst the center",
-        "amidst the line"
+        "amidst the pandemic",
+        "amidst the celebrations",
+        "amidst protests",
+        "amidst war",
+        "amidst a crisis",
+        "amidst scandal"
       ]
     },
     {
-      "title": "Abstract patterns",
+      "title": "Literary and formal",
       "items": [
-        "amidst the plan",
-        "amidst the process",
-        "amidst the result",
-        "amidst the idea",
-        "amidst the goal",
-        "amidst the problem"
+        "amidst the gathering",
+        "amidst public debate",
+        "amidst heavy criticism",
+        "amidst the turmoil",
+        "amidst the noise",
+        "amidst strong winds"
       ]
     }
   ],
@@ -152,6 +152,32 @@ const content: LocalizedPrepositionContent = {
       ],
       "answer": "amidst",
       "explanation": "Use amidst because it best matches this page's target relation."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the core meaning of the preposition amidst?",
+      "answer": "Amidst means 'in the middle of' or 'surrounded by.' It has the same core meaning as amid. The difference is stylistic: amidst sounds more literary or old-fashioned, while amid is more common in everyday English."
+    },
+    {
+      "question": "What is the difference between amidst and among?",
+      "answer": "Among is used with countable, distinct items (among the trees, among friends). Amidst is used with uncountable or atmospheric nouns (amidst the chaos, amidst the crowd). Amidst is slightly more literary than among."
+    },
+    {
+      "question": "What is the difference between amidst and amid?",
+      "answer": "There is no difference in meaning between amidst and amid. Both mean 'in the middle of' or 'surrounded by.' Amidst is simply more literary in tone, while amid is the more common choice in everyday speech and writing."
+    },
+    {
+      "question": "When should I use amidst instead of amid?",
+      "answer": "Use amidst when you want a more literary, poetic, or old-fashioned tone. In most everyday contexts, amid is preferred. Amidst often appears in formal writing, literature, and expressions that aim for a more dramatic or elevated style."
+    },
+    {
+      "question": "What are common collocations with amidst?",
+      "answer": "High-frequency collocations include: amidst chaos, amidst uncertainty, amidst controversy, amidst applause, amidst the celebrations, amidst the gathering, amidst heavy criticism, and amidst the turmoil."
+    },
+    {
+      "question": "Is amidst formal?",
+      "answer": "Yes, amidst is more formal and literary than amid. It is common in formal writing, literature, and elevated speech. In casual conversation, speakers typically use amid or 'in the middle of.'"
     }
   ]
 };

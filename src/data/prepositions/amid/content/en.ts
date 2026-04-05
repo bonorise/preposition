@@ -77,36 +77,36 @@ const content: LocalizedPrepositionContent = {
   },
   "collocationGroups": [
     {
-      "title": "Spatial contexts",
+      "title": "Atmosphere and emotion",
       "items": [
-        "amid the room",
-        "amid the table",
-        "amid the box",
-        "amid the wall",
-        "amid the door",
-        "amid the corner"
+        "amid chaos",
+        "amid confusion",
+        "amid pressure",
+        "amid uncertainty",
+        "amid controversy",
+        "amid cheers"
       ]
     },
     {
-      "title": "Route positions",
+      "title": "Situational contexts",
       "items": [
-        "amid the path",
-        "amid the route",
-        "amid the gate",
-        "amid the bridge",
-        "amid the center",
-        "amid the line"
+        "amid the pandemic",
+        "amid a crisis",
+        "amid war",
+        "amid protests",
+        "amid a recession",
+        "amid scandal"
       ]
     },
     {
-      "title": "Abstract patterns",
+      "title": "Formal and literary",
       "items": [
-        "amid the plan",
-        "amid the process",
-        "amid the result",
-        "amid the idea",
-        "amid the goal",
-        "amid the problem"
+        "amid the gathering",
+        "amid the celebrations",
+        "amid public debate",
+        "amid heavy criticism",
+        "amid applause",
+        "amid the turmoil"
       ]
     }
   ],
@@ -152,6 +152,32 @@ const content: LocalizedPrepositionContent = {
       ],
       "answer": "amid",
       "explanation": "Use amid because it best matches this page's target relation."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the core meaning of the preposition amid?",
+      "answer": "Amid means 'in the middle of' or 'surrounded by.' It is used with situations, atmospheres, or abstract conditions rather than physical objects. Think of it as being surrounded by something while staying in the middle of it."
+    },
+    {
+      "question": "What is the difference between amid and among?",
+      "answer": "Among is used with countable, distinct items (among the trees, among the children). Amid is used with uncountable or singular nouns that create an atmosphere or situation (amid chaos, amid the crowd). Amid sounds more formal than among."
+    },
+    {
+      "question": "What is the difference between amid and amidst?",
+      "answer": "Amidst has the same core meaning as amid. The difference is purely stylistic: amidst sounds slightly more literary or old-fashioned. In modern English, amid is more common in everyday use, while amidst appears more in written or formal contexts."
+    },
+    {
+      "question": "Can amid be used for physical locations?",
+      "answer": "Yes, but it is more common with atmospheric or situational contexts. You might hear 'amid the crowd' or 'amid the trees,' but 'among' is usually preferred for purely physical groupings of distinct objects."
+    },
+    {
+      "question": "What are common collocations with amid?",
+      "answer": "High-frequency collocations include: amid chaos, amid confusion, amid controversy, amid pressure, amid uncertainty, amid the pandemic, amid heavy criticism, and amid applause."
+    },
+    {
+      "question": "Is amid formal?",
+      "answer": "Yes. Amid is more formal than among and is especially common in news writing, formal speeches, and written English. In casual conversation, speakers often use 'in the middle of' or 'among' instead."
     }
   ]
 };

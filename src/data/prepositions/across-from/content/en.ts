@@ -77,36 +77,36 @@ const content: LocalizedPrepositionContent = {
   },
   "collocationGroups": [
     {
-      "title": "Spatial contexts",
+      "title": "Urban locations",
       "items": [
-        "across from the room",
-        "across from the table",
-        "across from the box",
-        "across from the wall",
-        "across from the door",
-        "across from the corner"
+        "across from the bank",
+        "across from the mall",
+        "across from the school",
+        "across from the hospital",
+        "across from the library",
+        "across from the park"
       ]
     },
     {
-      "title": "Route positions",
+      "title": "Transit and infrastructure",
       "items": [
-        "across from the path",
-        "across from the route",
-        "across from the gate",
+        "across from the station entrance",
+        "across from the bus stop",
+        "across from the airport",
         "across from the bridge",
-        "across from the center",
-        "across from the line"
+        "across from the intersection",
+        "across from the highway"
       ]
     },
     {
-      "title": "Abstract patterns",
+      "title": "Everyday landmarks",
       "items": [
-        "across from the plan",
-        "across from the process",
-        "across from the result",
-        "across from the idea",
-        "across from the goal",
-        "across from the problem"
+        "across from the coffee shop",
+        "across from the restaurant",
+        "across from the hotel",
+        "across from the church",
+        "across from the museum",
+        "across from the fountain"
       ]
     }
   ],
@@ -152,6 +152,32 @@ const content: LocalizedPrepositionContent = {
       ],
       "answer": "across from",
       "explanation": "Use across from because it best matches this page's target relation."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the core meaning of the preposition across from?",
+      "answer": "Across from means on the opposite side of a space. It describes a fixed position facing something, with a street, river, or open area in between. Think of sitting across from someone at a table — you face each other with space in between."
+    },
+    {
+      "question": "What is the difference between across from and opposite?",
+      "answer": "Across from and opposite can often be used interchangeably in AmE: 'The bank is across from the mall' and 'The bank is opposite the mall' both work. Across from emphasizes being on the opposite side of a bounded space, while opposite is slightly more formal and more common in BrE."
+    },
+    {
+      "question": "What is the difference between across from and near?",
+      "answer": "Across from means on the exact opposite side, with clear space in between. Near means close but not necessarily directly opposite. A coffee shop near the park could be anywhere nearby; a coffee shop across from the park is on the park's opposite side."
+    },
+    {
+      "question": "Is across from American English or British English?",
+      "answer": "Across from is primarily American English. In British English, opposite is the more common choice. However, across from is widely understood in both varieties and is common in everyday AmE speech."
+    },
+    {
+      "question": "What are common collocations with across from?",
+      "answer": "High-frequency collocations include: across from the bank, across from the mall, across from the park, across from the station entrance, across from the bus stop, and across from the hotel."
+    },
+    {
+      "question": "Can across from be used for abstract situations?",
+      "answer": "Across from is primarily used for physical, spatial locations. For abstract opposition or contrast, 'against' or 'opposite to' are more appropriate: 'opposite to this view' or 'against the current policy.'"
     }
   ]
 };
