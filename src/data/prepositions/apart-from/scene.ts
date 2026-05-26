@@ -8,11 +8,11 @@ const sceneModule: PrepositionSceneModule = {
     },
     ball: {
       radius: 0.22,
-      position: [1.35, 0, 0.45],
+      position: [1.82, 0, 0],
     },
     camera: {
-      position: [2.7, 1.8, 2.5],
-      target: [0, 0, 0],
+      position: [3.0, 1.8, 2.4],
+      target: [0.45, 0, 0],
       fov: 42,
     },
     render: {
@@ -21,6 +21,7 @@ const sceneModule: PrepositionSceneModule = {
       wireframeStyle: "edges+faces",
     },
     variant: "ringCubes",
+    highlightedCubeIndex: 0,
   },
 };
 

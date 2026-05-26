@@ -148,6 +148,14 @@ function edgeGroupMarkup(
   </g>`;
 }
 
+function faceGroupMarkup(polygons: string[], opts: { fill: string; opacity: number }) {
+  if (!polygons.length) return "";
+  return `
+  <g fill="${opts.fill}" fill-opacity="${opts.opacity}">
+    ${polygons.join("\n    ")}
+  </g>`;
+}
+
 function ballProjectedRadius(center: Vec3, radius: number, camera: THREE.PerspectiveCamera) {
   const centerProjected = project(center, camera).point;
   const axisOffsets: Vec3[] = [
@@ -398,8 +406,9 @@ function buildSpatialSvg(scene: SceneConfig) {
 
   const frontEdges: Array<{ line: string; depth: number }> = [];
   const backEdges: Array<{ line: string; depth: number }> = [];
+  const highlightedFaces: Array<{ polygon: string; depth: number }> = [];
   let vertexIndex = 0;
-  cubes.forEach((cube) => {
+  cubes.forEach((cube, cubeIndex) => {
     const faceVisibility = FACE_INDEXES.map((face) => {
       const a = new THREE.Vector3(...cube[face[0]]);
       const b = new THREE.Vector3(...cube[face[1]]);
@@ -415,6 +424,25 @@ function buildSpatialSvg(scene: SceneConfig) {
       const viewDir = camera.position.clone().sub(center).normalize();
       return normal.dot(viewDir) > 0;
     });
+
+    if (cubeIndex === scene.highlightedCubeIndex) {
+      FACE_INDEXES.forEach((face, index) => {
+        if (!faceVisibility[index]) return;
+        const points = face
+          .map((faceIndex) => normalizedVertices[vertexIndex + faceIndex])
+          .map((point) => `${point[0].toFixed(2)},${point[1].toFixed(2)}`)
+          .join(" ");
+        const depth =
+          face.reduce(
+            (sum, faceIndex) => sum + projectedVertices[vertexIndex + faceIndex].depth,
+            0,
+          ) / face.length;
+        highlightedFaces.push({
+          polygon: `<polygon points="${points}" />`,
+          depth,
+        });
+      });
+    }
 
     EDGE_INDEXES.forEach(([startIndex, endIndex]) => {
       const firstIndex = vertexIndex + startIndex;
@@ -464,6 +492,18 @@ function buildSpatialSvg(scene: SceneConfig) {
     frontEdgesBehindBall.push(edge.line);
   });
 
+  const highlightedFacesBehindBall: string[] = [];
+  const highlightedFacesInFrontOfBall: string[] = [];
+  highlightedFaces
+    .sort((a, b) => b.depth - a.depth)
+    .forEach((face) => {
+      if (face.depth < ballDepth - depthEpsilon) {
+        highlightedFacesInFrontOfBall.push(face.polygon);
+        return;
+      }
+      highlightedFacesBehindBall.push(face.polygon);
+    });
+
   let motionPathMarkup = "";
   if (normalizedMotion.length >= 2) {
     const pathData = normalizedMotion
@@ -482,6 +522,10 @@ function buildSpatialSvg(scene: SceneConfig) {
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${SIZE}" height="${SIZE}" viewBox="0 0 ${SIZE} ${SIZE}" fill="none">
+  ${faceGroupMarkup(highlightedFacesBehindBall, {
+    fill: BALL_COLOR,
+    opacity: 0.18,
+  })}
   ${edgeGroupMarkup(backEdgesBehindBall, {
     stroke: BACK_STROKE,
     opacity: BACK_OPACITY,
@@ -496,6 +540,10 @@ function buildSpatialSvg(scene: SceneConfig) {
   <circle cx="${normalizedBall[0].toFixed(2)}" cy="${normalizedBall[1].toFixed(
     2,
   )}" r="${projectedBallRadius.toFixed(2)}" fill="${BALL_COLOR}" />
+  ${faceGroupMarkup(highlightedFacesInFrontOfBall, {
+    fill: BALL_COLOR,
+    opacity: 0.18,
+  })}
   ${edgeGroupMarkup(backEdgesInFrontOfBall, {
     stroke: BACK_STROKE,
     opacity: BACK_OPACITY,

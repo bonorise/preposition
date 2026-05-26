@@ -2,12 +2,12 @@ import type { LocalizedPrepositionContent } from "../../shared/types";
 
 const content: LocalizedPrepositionContent = {
   meaning:
-    "apart from: except for; aside from; and in some contexts, besides / in addition to.",
-  cardMeaning: "apart from: except for / besides.",
+    "apart from: the core image is one item separated from a source or group. In use, it often means except for, and in some contexts besides / in addition to.",
+  cardMeaning: "apart from: separated from the group; except for.",
   tips: [
-    "The most common meaning is exclusion: apart from one detail, everything is fine.",
-    "It can also mean 'besides / in addition to', but context needs to make that clear.",
-    "The physical idea of separation can help memory, but the core page use is abstract exclusion/addition.",
+    "Start with the image: one item is taken out from the main group.",
+    "The most common use is exclusion: apart from one detail = except for one detail.",
+    "Sometimes it adds information, close to besides / in addition to, so context matters.",
   ],
   examples: [
     {
@@ -68,12 +68,12 @@ const content: LocalizedPrepositionContent = {
   },
   comparison: {
     summary:
-      "Apart from usually excludes something from a group or situation. It is often compared with except for (close meaning) and including (the opposite direction: counting something in).",
+      "Apart from starts from separation: one item is taken out from a group, situation, or list. That can create exclusion, physical separation, or sometimes an additive meaning close to besides.",
     differences: [
       {
         term: "except for",
         description:
-          "Except for is a direct exclusion marker. Apart from can exclude too, but it can also mean 'besides' in some contexts.",
+          "Except for is the most direct exclusion marker. Apart from can mean the same, but it keeps a wider separation image and can also be additive in some contexts.",
         examples: [
           {
             term: "except for",
@@ -88,7 +88,7 @@ const content: LocalizedPrepositionContent = {
       {
         term: "including",
         description:
-          "Including adds something into the set. Apart from usually takes something out of the set or separates it from the rest.",
+          "Including counts an item inside the set. Apart from often points the other way: it separates an item from the set or treats it as an exception.",
         examples: [
           {
             term: "including",
@@ -97,6 +97,21 @@ const content: LocalizedPrepositionContent = {
           {
             term: "apart from",
             sentence: "Apart from lunch, the price covers everything else.",
+          },
+        ],
+      },
+      {
+        term: "besides / in addition to",
+        description:
+          "Besides and in addition to clearly add another item. Apart from can also add information, but beginners should check the context so they do not read an additive sentence as exclusion.",
+        examples: [
+          {
+            term: "besides / in addition to",
+            sentence: "Besides English, she speaks Korean.",
+          },
+          {
+            term: "apart from",
+            sentence: "Apart from English, she speaks Korean too.",
           },
         ],
       },
@@ -151,10 +166,10 @@ const content: LocalizedPrepositionContent = {
         "If Sara is the exception, use apart from rather than including.",
     },
     {
-      wrong: "She sat apart from to me.",
-      correct: "She sat apart from me.",
+      wrong: "Apart from English, she speaks Korean. (meaning: she does not speak English)",
+      correct: "Apart from English, she speaks Korean. (meaning: she speaks English and Korean)",
       reason:
-        "Apart from is followed directly by a noun phrase or pronoun.",
+        "In additive contexts, apart from can mean besides / in addition to. Do not automatically read it as exclusion.",
     },
   ],
   quiz: [

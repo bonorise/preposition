@@ -62,6 +62,7 @@ export type SceneConfig = {
   };
   render?: SceneRenderOptions;
   variant?: SceneVariant;
+  highlightedCubeIndex?: number;
   timeAxis?: TimeAxisConfig;
   abstractDiagram?: AbstractDiagramConfig;
   animation?: {

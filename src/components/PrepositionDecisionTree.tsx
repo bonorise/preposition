@@ -901,6 +901,50 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> use below, not above.",
       });
     }
+  } else if (word === "apart from" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "句子是否在把某一项从整体里拿出来、单独分离看待？",
+        answer: "是 -> 继续判断：它通常就是 apart from 的核心画面。",
+      });
+      questions.push({
+        question: "拿出来之后，其他部分是否仍成立？",
+        answer: "是 -> 用排除义 apart from，接近 except for。",
+      });
+      questions.push({
+        question: "句子是在说“除了 A，还 B”，也就是补充添加信息吗？",
+        answer: "是 -> apart from 可用，但 besides / in addition to 往往更清楚。",
+      });
+      questions.push({
+        question: "这是物理空间上的分开、隔开吗？",
+        answer: "是 -> apart from 也可表示分离位置，如 keep A apart from B。",
+      });
+      questions.push({
+        question: "你其实是把某项算进整体吗？",
+        answer: "是 -> 用 including；including 的方向和 apart from 的排除义相反。",
+      });
+    } else {
+      questions.push({
+        question: "Is one item separated from the main group or taken out of the situation?",
+        answer: "Yes -> this is the core image of apart from.",
+      });
+      questions.push({
+        question: "After that item is separated, is the rest still true?",
+        answer: "Yes -> use the exclusion meaning of apart from, close to except for.",
+      });
+      questions.push({
+        question: "Does the sentence mean besides A, also B?",
+        answer: "Yes -> apart from can work, but besides / in addition to is often clearer.",
+      });
+      questions.push({
+        question: "Is it physical separation in space?",
+        answer: "Yes -> apart from also works for separation, as in keep A apart from B.",
+      });
+      questions.push({
+        question: "Are you counting the item inside the group?",
+        answer: "Yes -> use including; it points in the opposite direction from exclusion.",
+      });
+    }
   } else if (looksTemporal && !isDynamic) {
     const isUnder = word === "under";
     const a = primaryContrast ?? "at";

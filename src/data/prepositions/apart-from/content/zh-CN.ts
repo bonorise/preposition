@@ -1,12 +1,13 @@
 import type { LocalizedPrepositionContent } from "../../shared/types";
 
 const content: LocalizedPrepositionContent = {
-  meaning: "apart from：除……之外；撇开……不谈；在有些语境里也可表示“此外、除了……还”。",
-  cardMeaning: "apart from：除……之外；此外。",
+  meaning:
+    "apart from：核心画面是“从整体中分离出来”。可以把 a 记成方向/箭头，part 记成分开、分离，from 记成“从……”，合起来就是“从某处或某个整体中分离”。把某个因素分离出去时，就是“除了……之外”。",
+  cardMeaning: "apart from：从整体中分离出来；除了……之外。",
   tips: [
-    "最常见的意思是排除：apart from one detail, everything is fine。",
-    "它有时也可表示“此外、除了……还”，要靠上下文判断。",
-    "“分开、隔开”的空间感觉有助于记忆，但本页核心仍是抽象排除/补充关系。",
+    "先抓核心：把某一项从整体中单独拿出来看。",
+    "最常见是排除义：apart from one detail = 除了一个细节外。",
+    "有些句子是补充义，接近 besides / in addition to，要靠上下文判断。",
   ],
   examples: [
     {
@@ -67,11 +68,11 @@ const content: LocalizedPrepositionContent = {
   },
   comparison: {
     summary:
-      "apart from 通常表示把某个东西从整体里排除出来。它常和 except for（接近）以及 including（方向相反，是算进整体）对比。",
+      "apart from 从“分离”出发：把某一项从整体、情况或清单里拿出来单独看。这个动作可以形成排除义，也可以表示空间分开；少数语境里还可表示接近 besides 的补充义。",
     differences: [
       {
         term: "except for",
-        description: "except for 是更直接的排除标记；apart from 也能排除，但有时还可以表示“此外”。",
+        description: "except for 是最直接的排除标记；apart from 也能表示排除，但保留“分离出来”的画面，且有时还可以表示“此外”。",
         examples: [
           {
             term: "except for",
@@ -87,7 +88,7 @@ const content: LocalizedPrepositionContent = {
       },
       {
         term: "including",
-        description: "including 是把某项算进整体；apart from 常是把某项排除出去，或和整体分开看。",
+        description: "including 是把某项算进整体；apart from 的排除义方向相反，常是把某项拿出去、当作例外或分开看。",
         examples: [
           {
             term: "including",
@@ -98,6 +99,22 @@ const content: LocalizedPrepositionContent = {
             term: "apart from",
             sentence: "Apart from lunch, the price covers everything else.",
             translation: "除了午餐外，这个价格包含其他所有项目。"
+          }
+        ]
+      },
+      {
+        term: "besides / in addition to",
+        description: "besides 和 in addition to 明确表示补充添加；apart from 也可以这样用，但初学者要靠上下文判断，避免把补充义误读成排除义。",
+        examples: [
+          {
+            term: "besides / in addition to",
+            sentence: "Besides English, she speaks Korean.",
+            translation: "除了英语，她还会说韩语。"
+          },
+          {
+            term: "apart from",
+            sentence: "Apart from English, she speaks Korean too.",
+            translation: "除了英语，她也会说韩语。"
           }
         ]
       }
@@ -150,9 +167,9 @@ const content: LocalizedPrepositionContent = {
       reason: "如果 Sara 是例外项，要用 apart from，而不是 including。"
     },
     {
-      wrong: "She sat apart from to me.",
-      correct: "She sat apart from me.",
-      reason: "apart from 后面直接接名词或代词，不要加 to。"
+      wrong: "Apart from English, she speaks Korean.（误解为：她不会英语）",
+      correct: "Apart from English, she speaks Korean.（这里表示：她会英语，也会韩语）",
+      reason: "在补充语境里，apart from 可接近 besides / in addition to，不要自动理解成排除。"
     }
   ],
   quiz: [

@@ -117,17 +117,35 @@ function buildCubeGroup(scene: SceneConfig) {
     roughness: 0.9,
     metalness: 0,
   });
+  const highlightedFaceMaterial =
+    typeof scene.highlightedCubeIndex === "number"
+      ? new THREE.MeshStandardMaterial({
+          color: ballColor,
+          transparent: true,
+          opacity: wireframeStyle === "edges+faces" ? 0.28 : 0,
+          roughness: 0.82,
+          metalness: 0,
+        })
+      : null;
 
   const geometries: THREE.BufferGeometry[] = [];
   const materials: THREE.Material[] = [lineMaterial, faceMaterial];
+  if (highlightedFaceMaterial) {
+    materials.push(highlightedFaceMaterial);
+  }
 
-  offsets.forEach((offset) => {
+  offsets.forEach((offset, index) => {
     const geometry = new THREE.BoxGeometry(size, size, size);
     geometries.push(geometry);
 
     const cubeGroup = new THREE.Group();
     if (wireframeStyle !== "edges") {
-      const faces = new THREE.Mesh(geometry, faceMaterial);
+      const faces = new THREE.Mesh(
+        geometry,
+        index === scene.highlightedCubeIndex && highlightedFaceMaterial
+          ? highlightedFaceMaterial
+          : faceMaterial,
+      );
       faces.renderOrder = 0;
       cubeGroup.add(faces);
     }
