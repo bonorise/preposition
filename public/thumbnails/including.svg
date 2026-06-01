@@ -1,60 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
-  <rect width="120" height="120" fill="#ffffff"/>
-
-  <!-- Large transparent group container -->
-  <g fill="#f8fafc" fill-opacity="0.18">
-    <polygon points="36,30 76,18 98,32 58,45"/>
-    <polygon points="58,45 98,32 98,80 58,96"/>
-    <polygon points="20,48 58,45 58,96 20,78"/>
+  
+  <g fill="#ffffff" fill-opacity="0.12">
+    <polygon points="34.00,23.50 73.50,12.00 105.50,27.50 64.00,42.50" />
+    <polygon points="18.00,43.00 64.00,42.50 64.00,108.00 18.00,80.50" />
+    <polygon points="64.00,42.50 105.50,27.50 101.00,83.00 64.00,108.00" />
   </g>
-  <g stroke="#94a3b8" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" opacity="0.68">
-    <path d="M36 30 76 18 98 32 58 45 20 48 36 30Z"/>
-    <path d="M20 48v30l38 18 40-16V32"/>
-    <path d="M58 45v51"/>
-    <path d="M76 18v31"/>
-    <path d="M36 30v36"/>
+  
+  <g fill="#cbd5e1" fill-opacity="0.12">
+    <polygon points="37.50,54.00 48.50,50.00 58.50,55.00 47.50,59.50" />
+    <polygon points="47.50,59.50 58.50,55.00 58.50,69.50 47.50,75.00" />
+    <polygon points="37.50,54.00 47.50,59.50 47.50,75.00 37.50,68.50" />
+    <polygon points="67.00,49.00 78.00,45.00 88.00,50.00 77.00,54.50" />
+    <polygon points="77.00,54.50 88.00,50.00 88.00,64.50 77.00,70.00" />
+    <polygon points="67.00,49.00 77.00,54.50 77.00,70.00 67.00,63.50" />
+    <polygon points="57.50,73.00 68.50,69.00 78.50,74.00 67.50,78.50" />
+    <polygon points="67.50,78.50 78.50,74.00 78.50,88.50 67.50,94.00" />
+    <polygon points="57.50,73.00 67.50,78.50 67.50,94.00 57.50,87.50" />
   </g>
-  <g stroke="#cbd5e1" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.45">
-    <path d="M20 78 58 64 98 80"/>
-    <path d="M36 66 76 49 98 62"/>
+  
+  <g fill="#7c3aed" fill-opacity="0.18">
+    <polygon points="43.00,37.00 54.00,33.00 64.00,38.00 53.00,42.50" />
+    <polygon points="53.00,42.50 64.00,38.00 64.00,52.50 53.00,58.00" />
+    <polygon points="43.00,37.00 53.00,42.50 53.00,58.00 43.00,51.50" />
   </g>
-
-  <!-- Included items inside the container -->
-  <g stroke-linecap="round" stroke-linejoin="round">
-    <g opacity="0.78">
-      <polygon points="37,56 49,52 58,57 46,62" fill="#e2e8f0" fill-opacity="0.62"/>
-      <polygon points="46,62 58,57 58,70 46,75" fill="#cbd5e1" fill-opacity="0.46"/>
-      <polygon points="37,56 46,62 46,75 37,69" fill="#f1f5f9" fill-opacity="0.62"/>
-      <path d="M37 56 49 52 58 57 58 70 46 75 37 69Z M46 62v13 M46 62 58 57 M46 62 37 56" stroke="#94a3b8" stroke-width="0.95" opacity="0.74"/>
-    </g>
-
-    <g opacity="0.78">
-      <polygon points="65,47 77,43 86,48 74,53" fill="#e2e8f0" fill-opacity="0.62"/>
-      <polygon points="74,53 86,48 86,61 74,66" fill="#cbd5e1" fill-opacity="0.46"/>
-      <polygon points="65,47 74,53 74,66 65,60" fill="#f1f5f9" fill-opacity="0.62"/>
-      <path d="M65 47 77 43 86 48 86 61 74 66 65 60Z M74 53v13 M74 53 86 48 M74 53 65 47" stroke="#94a3b8" stroke-width="0.95" opacity="0.74"/>
-    </g>
-
-    <g opacity="0.78">
-      <polygon points="58,72 70,68 79,73 67,78" fill="#e2e8f0" fill-opacity="0.62"/>
-      <polygon points="67,78 79,73 79,86 67,91" fill="#cbd5e1" fill-opacity="0.46"/>
-      <polygon points="58,72 67,78 67,91 58,85" fill="#f1f5f9" fill-opacity="0.62"/>
-      <path d="M58 72 70 68 79 73 79 86 67 91 58 85Z M67 78v13 M67 78 79 73 M67 78 58 72" stroke="#94a3b8" stroke-width="0.95" opacity="0.74"/>
-    </g>
-
-    <g>
-      <polygon points="43,40 55,36 64,41 52,46" fill="#a78bfa" fill-opacity="0.76"/>
-      <polygon points="52,46 64,41 64,54 52,59" fill="#7c3aed" fill-opacity="0.56"/>
-      <polygon points="43,40 52,46 52,59 43,53" fill="#c4b5fd" fill-opacity="0.76"/>
-      <path d="M43 40 55 36 64 41 64 54 52 59 43 53Z M52 46v13 M52 46 64 41 M52 46 43 40" stroke="#6d28d9" stroke-width="1.15" opacity="0.9"/>
-    </g>
+  
+  <g stroke="#cbd5e1" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="64.00" y1="42.50" x2="105.50" y2="27.50" />
+    <line x1="64.00" y1="42.50" x2="64.00" y2="108.00" />
+    <line x1="18.00" y1="43.00" x2="64.00" y2="42.50" />
+    <line x1="34.00" y1="23.50" x2="64.00" y2="42.50" />
+    <line x1="73.50" y1="12.00" x2="64.00" y2="42.50" />
   </g>
-
-  <!-- Front edges make the whole boundary unmistakable. -->
-  <g stroke="#334155" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" opacity="0.82">
-    <path d="M20 48v30l38 18 40-16V32"/>
-    <path d="M20 48 58 45 98 32"/>
-    <path d="M58 45v51"/>
+  
+  <g stroke="#cbd5e1" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="47.50" y1="59.50" x2="58.50" y2="55.00" />
+    <line x1="47.50" y1="59.50" x2="37.50" y2="54.00" />
+    <line x1="47.50" y1="59.50" x2="47.50" y2="75.00" />
+    <line x1="77.00" y1="54.50" x2="88.00" y2="50.00" />
+    <line x1="77.00" y1="54.50" x2="67.00" y2="49.00" />
+    <line x1="77.00" y1="54.50" x2="77.00" y2="70.00" />
+    <line x1="67.50" y1="78.50" x2="78.50" y2="74.00" />
+    <line x1="67.50" y1="78.50" x2="57.50" y2="73.00" />
+    <line x1="67.50" y1="78.50" x2="67.50" y2="94.00" />
+    <line x1="53.00" y1="42.50" x2="64.00" y2="38.00" />
+    <line x1="53.00" y1="42.50" x2="43.00" y2="37.00" />
+    <line x1="53.00" y1="42.50" x2="53.00" y2="58.00" />
+  </g>
+  
+  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18.00" y1="43.00" x2="18.00" y2="80.50" />
+    <line x1="18.00" y1="80.50" x2="64.00" y2="108.00" />
+    <line x1="64.00" y1="108.00" x2="101.00" y2="83.00" />
+    <line x1="101.00" y1="83.00" x2="105.50" y2="27.50" />
+    <line x1="105.50" y1="27.50" x2="73.50" y2="12.00" />
+    <line x1="73.50" y1="12.00" x2="34.00" y2="23.50" />
+    <line x1="34.00" y1="23.50" x2="18.00" y2="43.00" />
+  </g>
+  
+  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="37.50" y1="54.00" x2="48.50" y2="50.00" />
+    <line x1="48.50" y1="50.00" x2="58.50" y2="55.00" />
+    <line x1="58.50" y1="55.00" x2="58.50" y2="69.50" />
+    <line x1="58.50" y1="69.50" x2="47.50" y2="75.00" />
+    <line x1="47.50" y1="75.00" x2="37.50" y2="68.50" />
+    <line x1="37.50" y1="68.50" x2="37.50" y2="54.00" />
+    <line x1="67.00" y1="49.00" x2="78.00" y2="45.00" />
+    <line x1="78.00" y1="45.00" x2="88.00" y2="50.00" />
+    <line x1="88.00" y1="50.00" x2="88.00" y2="64.50" />
+    <line x1="88.00" y1="64.50" x2="77.00" y2="70.00" />
+    <line x1="77.00" y1="70.00" x2="67.00" y2="63.50" />
+    <line x1="67.00" y1="63.50" x2="67.00" y2="49.00" />
+    <line x1="57.50" y1="73.00" x2="68.50" y2="69.00" />
+    <line x1="68.50" y1="69.00" x2="78.50" y2="74.00" />
+    <line x1="78.50" y1="74.00" x2="78.50" y2="88.50" />
+    <line x1="78.50" y1="88.50" x2="67.50" y2="94.00" />
+    <line x1="67.50" y1="94.00" x2="57.50" y2="87.50" />
+    <line x1="57.50" y1="87.50" x2="57.50" y2="73.00" />
+  </g>
+  
+  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="43.00" y1="37.00" x2="54.00" y2="33.00" />
+    <line x1="54.00" y1="33.00" x2="64.00" y2="38.00" />
+    <line x1="64.00" y1="38.00" x2="64.00" y2="52.50" />
+    <line x1="64.00" y1="52.50" x2="53.00" y2="58.00" />
+    <line x1="53.00" y1="58.00" x2="43.00" y2="51.50" />
+    <line x1="43.00" y1="51.50" x2="43.00" y2="37.00" />
   </g>
 </svg>
