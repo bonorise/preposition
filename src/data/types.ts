@@ -25,6 +25,8 @@ export type AbstractDiagramNode = {
   id: string;
   position: [number, number, number];
   radius?: number;
+  size?: number;
+  shape?: "circle" | "cube";
   fillColor?: string;
   label?: Partial<Record<Locale, string>>;
 };

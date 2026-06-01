@@ -2,12 +2,12 @@ import type { LocalizedPrepositionContent } from "../../shared/types";
 
 const content: LocalizedPrepositionContent = {
   meaning:
-    "due to: because of; caused by; resulting from a reason or condition.",
+    "due to: because of; caused by. It links a result to the cause behind it: cause -> result.",
   cardMeaning: "due to: because of / caused by.",
   tips: [
-    "Due to is followed by a noun phrase: due to rain / due to a delay.",
-    "It is often a little more formal than because of.",
-    "If you need a full clause, English often switches to because: because it rained.",
+    "Due to is usually followed by a noun phrase that names the cause: due to rain / due to a delay.",
+    "It is close to because of, but due to often sounds more formal or more written, especially in notices and reports.",
+    "If you need a full clause, use because: because it rained, not due to it rained.",
   ],
   examples: [
     {
@@ -52,12 +52,12 @@ const content: LocalizedPrepositionContent = {
   },
   comparison: {
     summary:
-      "Due to introduces a reason or cause. Learners often compare it with because of (similar meaning) and according to (source, not cause).",
+      "Due to links a result to its cause: cause -> result. The most useful contrasts are because of (similar meaning but different tone), because (full clause), and according to (source, not cause).",
     differences: [
       {
         term: "because of",
         description:
-          "Because of and due to are close in meaning. Due to often sounds more formal or more written.",
+          "Because of and due to both introduce a cause. Because of is more conversational and general; due to often sounds more formal or written.",
         examples: [
           {
             term: "because of",
@@ -70,9 +70,24 @@ const content: LocalizedPrepositionContent = {
         ],
       },
       {
+        term: "because",
+        description:
+          "Because is followed by a full clause. Due to is usually followed by a noun phrase. Do not say due to it rained; say because it rained or due to rain.",
+        examples: [
+          {
+            term: "because",
+            sentence: "The match was canceled because it rained.",
+          },
+          {
+            term: "due to",
+            sentence: "The match was canceled due to heavy rain.",
+          },
+        ],
+      },
+      {
         term: "according to",
         description:
-          "According to introduces a source or rule. Due to introduces a cause.",
+          "According to introduces a source, rule, or basis. Due to introduces a cause. Do not use according to when you mean the reason something happened.",
         examples: [
           {
             term: "according to",

@@ -1105,6 +1105,50 @@ export default function PrepositionDecisionTree({
         });
       }
     }
+  } else if (word === "due to" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "后面是名词词组，表示导致结果的原因吗？",
+        answer: "是 -> 用 due to，表示“由于…… / 由……造成”。",
+      });
+      questions.push({
+        question: "后面是完整句子，比如 it rained / the system failed 吗？",
+        answer: "是 -> 用 because；due to 后面通常接名词词组。",
+      });
+      questions.push({
+        question: "你想要更口语、更普通的原因表达吗？",
+        answer: "是 -> because of 也常用；due to 往往稍正式、更书面。",
+      });
+      questions.push({
+        question: "后面是报告、数据、规则或某人的说法等信息来源吗？",
+        answer: "是 -> 用 according to，不用 due to。",
+      });
+      questions.push({
+        question: "你表达的是“到期 / 预定应做”，如 due date 或 be due to do 吗？",
+        answer: "是 -> 这是 due 的另一类用法，不是本页的 due to + 名词词组因果用法。",
+      });
+    } else {
+      questions.push({
+        question: "Is the next phrase a noun phrase that names the cause of a result?",
+        answer: "Yes -> use due to. It means because of / caused by.",
+      });
+      questions.push({
+        question: "Is the next part a full clause, such as it rained or the system failed?",
+        answer: "Yes -> use because; due to is usually followed by a noun phrase.",
+      });
+      questions.push({
+        question: "Do you want a more conversational, general reason phrase?",
+        answer: "Yes -> because of also works; due to often sounds a little more formal or written.",
+      });
+      questions.push({
+        question: "Is the next phrase a source, rule, report, data set, or someone's statement?",
+        answer: "Yes -> use according to, not due to.",
+      });
+      questions.push({
+        question: "Do you mean scheduled or expected, as in due date or be due to do?",
+        answer: "Yes -> that is another use of due, not this page's due to + noun phrase cause pattern.",
+      });
+    }
   } else if (word === "according to" && !isDynamic) {
     if (activeLocale === "zh-CN") {
       questions.push({

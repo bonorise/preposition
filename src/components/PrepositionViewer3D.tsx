@@ -425,17 +425,45 @@ function buildAbstractDiagramGroup({
 
   abstractDiagram.nodes.forEach((node) => {
     const radius = node.radius ?? 0.34;
-    const nodeFillMaterial = new THREE.MeshBasicMaterial({
-      color: new THREE.Color(node.fillColor ?? "#f5f5f4"),
-      transparent: true,
-      opacity: 0.98,
-    });
-    materials.push(nodeFillMaterial);
-    const circleGeometry = new THREE.CircleGeometry(radius, 48);
-    const circle = new THREE.Mesh(circleGeometry, nodeFillMaterial);
-    circle.position.set(...node.position);
-    geometries.push(circleGeometry);
-    group.add(circle);
+    if (node.shape === "cube") {
+      const size = node.size ?? radius * 2;
+      const cubeGeometry = new THREE.BoxGeometry(size, size, size);
+      const faceMaterial = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(node.fillColor ?? "#ffffff"),
+        transparent: true,
+        opacity: 0.16,
+        roughness: 0.9,
+        metalness: 0,
+      });
+      const edgeGeometry = new THREE.EdgesGeometry(cubeGeometry);
+      const edgeMaterial = new THREE.LineBasicMaterial({
+        color: timelineMarkerColor,
+        transparent: true,
+        opacity: 0.78,
+      });
+      materials.push(faceMaterial, edgeMaterial);
+      geometries.push(cubeGeometry, edgeGeometry);
+
+      const cube = new THREE.Mesh(cubeGeometry, faceMaterial);
+      cube.position.set(...node.position);
+      group.add(cube);
+
+      const edges = new THREE.LineSegments(edgeGeometry, edgeMaterial);
+      edges.position.set(...node.position);
+      group.add(edges);
+    } else {
+      const nodeFillMaterial = new THREE.MeshBasicMaterial({
+        color: new THREE.Color(node.fillColor ?? "#f5f5f4"),
+        transparent: true,
+        opacity: 0.98,
+      });
+      materials.push(nodeFillMaterial);
+      const circleGeometry = new THREE.CircleGeometry(radius, 48);
+      const circle = new THREE.Mesh(circleGeometry, nodeFillMaterial);
+      circle.position.set(...node.position);
+      geometries.push(circleGeometry);
+      group.add(circle);
+    }
 
     const labelText = node.label?.[locale ?? "en"] ?? node.label?.["zh-CN"];
     if (labelText) {
