@@ -81,6 +81,7 @@ export type SceneConfig = {
     positions: [number, number, number][];
     movingFrom: [number, number, number];
     movingToIndex: number;
+    displacedTo: [number, number, number];
     duration: number;
   };
   timeAxis?: TimeAxisConfig;

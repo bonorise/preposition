@@ -117,8 +117,11 @@ function buildCubeGroup(scene: SceneConfig) {
     roughness: 0.9,
     metalness: 0,
   });
+  const shouldCreateHighlightedMaterial =
+    typeof scene.highlightedCubeIndex === "number" ||
+    typeof scene.containedCubes?.highlightedIndex === "number";
   const highlightedFaceMaterial =
-    typeof scene.highlightedCubeIndex === "number"
+    shouldCreateHighlightedMaterial
       ? new THREE.MeshStandardMaterial({
           color: ballColor,
           transparent: true,
@@ -139,7 +142,17 @@ function buildCubeGroup(scene: SceneConfig) {
     geometries.push(containerGeometry);
 
     if (wireframeStyle !== "edges") {
-      const faces = new THREE.Mesh(containerGeometry, faceMaterial);
+      const containerFaceMaterial = new THREE.MeshStandardMaterial({
+        color: cubeFaceColor,
+        transparent: true,
+        opacity: 0.06,
+        roughness: 0.9,
+        metalness: 0,
+        depthWrite: false,
+        side: THREE.DoubleSide,
+      });
+      materials.push(containerFaceMaterial);
+      const faces = new THREE.Mesh(containerGeometry, containerFaceMaterial);
       faces.renderOrder = 0;
       group.add(faces);
     }
@@ -664,12 +677,18 @@ function buildReplacementCubesGroup({
     return cubeGroup;
   };
 
+  let displacedCube: THREE.Group | null = null;
+  const displacedStart = new THREE.Vector3(...(positions[targetIndex] ?? [0, 0, 0]));
+
   positions.forEach((position, index) => {
     const cube = makeCube({
       label: index === targetIndex ? "B" : undefined,
       dimmed: index === targetIndex,
     });
     cube.position.set(...position);
+    if (index === targetIndex) {
+      displacedCube = cube;
+    }
     group.add(cube);
   });
 
@@ -683,8 +702,11 @@ function buildReplacementCubesGroup({
     materials,
     textures,
     movingCube,
+    displacedCube,
     start: new THREE.Vector3(...(replacement?.movingFrom ?? [-2.1, 0, 0])),
     end: new THREE.Vector3(...(positions[targetIndex] ?? [0, 0, 0])),
+    displacedStart,
+    displacedEnd: new THREE.Vector3(...(replacement?.displacedTo ?? [0, -1.1, 0])),
     durationMs: Math.max(replacement?.duration ?? 3.2, 0.1) * 1000,
   };
 }
@@ -708,7 +730,10 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
       durationMs: number;
       start: THREE.Vector3;
       end: THREE.Vector3;
+      displacedStart: THREE.Vector3;
+      displacedEnd: THREE.Vector3;
       movingCube: THREE.Group;
+      displacedCube: THREE.Group | null;
     } | null>(null);
     const resetRef = useRef<{
       camera: SceneConfig["camera"];
@@ -744,6 +769,9 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         if (replacementState) {
           replacementState.startTime = performance.now();
           replacementState.movingCube.position.copy(replacementState.start);
+          replacementState.displacedCube?.position.copy(
+            replacementState.displacedStart,
+          );
         }
       },
     }));
@@ -842,7 +870,10 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
           durationMs: replacementGroup.durationMs,
           start: replacementGroup.start,
           end: replacementGroup.end,
+          displacedStart: replacementGroup.displacedStart,
+          displacedEnd: replacementGroup.displacedEnd,
           movingCube: replacementGroup.movingCube,
+          displacedCube: replacementGroup.displacedCube,
         };
         scene.add(structureGroup);
       } else {
@@ -1039,6 +1070,11 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
           replacementState.movingCube.position.lerpVectors(
             replacementState.start,
             replacementState.end,
+            eased,
+          );
+          replacementState.displacedCube?.position.lerpVectors(
+            replacementState.displacedStart,
+            replacementState.displacedEnd,
             eased,
           );
         }

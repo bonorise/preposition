@@ -125,3 +125,14 @@ test("instead of decision tree explains replacement in English", () => {
   assert.match(markup, /no B, without a replacement/i);
   assert.doesNotMatch(markup, /touching a surface/i);
 });
+
+test("instead of scene replaces B from the vertical direction", () => {
+  const entry = getInsteadOfEntry();
+  const replacement = entry.scene.replacementCubes;
+
+  assert.equal(entry.scene.variant, "replacementCubes");
+  assert.ok(replacement, "instead-of scene should define replacement cubes");
+  assert.deepEqual(replacement.positions[replacement.movingToIndex], [0, 0, 0]);
+  assert.deepEqual(replacement.movingFrom, [0, 1.08, 0]);
+  assert.deepEqual(replacement.displacedTo, [0, -1.08, 0]);
+});

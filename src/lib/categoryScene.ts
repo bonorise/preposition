@@ -88,6 +88,7 @@ function cloneScene(scene: SceneConfig): SceneConfig {
           itemSize: scene.replacementCubes.itemSize,
           movingFrom: toTuple(scene.replacementCubes.movingFrom, [0, 0, 0]),
           movingToIndex: scene.replacementCubes.movingToIndex,
+          displacedTo: toTuple(scene.replacementCubes.displacedTo, [0, -1, 0]),
           duration: scene.replacementCubes.duration,
           positions: scene.replacementCubes.positions.map((position) =>
             toTuple(position, [0, 0, 0]),

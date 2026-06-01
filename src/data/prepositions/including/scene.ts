@@ -17,7 +17,7 @@ const sceneModule: PrepositionSceneModule = {
       fov: 42,
     },
     render: {
-      showGround: false,
+      showGround: true,
       shadows: false,
       wireframeStyle: "edges+faces",
     },
