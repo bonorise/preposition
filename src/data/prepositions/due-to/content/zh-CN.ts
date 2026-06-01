@@ -1,12 +1,13 @@
 import type { LocalizedPrepositionContent } from "../../shared/types";
 
 const content: LocalizedPrepositionContent = {
-  meaning: "due to：由于、因为、由……造成。",
-  cardMeaning: "due to：由于…… / 因为……。",
+  meaning:
+    "due to：由于……而产生某个结果；由……造成。核心画面是 cause -> result：前面的原因导致后面的结果。",
+  cardMeaning: "due to：由于…… / 由……造成。",
   tips: [
-    "due to 后面通常接名词词组：due to rain / due to a delay。",
-    "它的语气常比 because of 稍正式一些。",
-    "如果后面要接完整从句，英语更常改用 because：because it rained。",
+    "due to 后面通常接名词词组，表示导致结果的原因：due to rain / due to a delay。",
+    "它和 because of 意思很接近，但 due to 往往更正式、更书面，常见于通知、报告和工作英语。",
+    "如果后面要接完整从句，英语更常用 because：because it rained，而不是 due to it rained。",
   ],
   examples: [
     {
@@ -51,11 +52,11 @@ const content: LocalizedPrepositionContent = {
   },
   comparison: {
     summary:
-      "due to 用来引出原因或成因。最常见的对比是 because of（意思接近）和 according to（来源，不是原因）。",
+      "due to 用来把结果和原因连起来：cause -> result。最需要分清的是 because of（意思接近但语气不同）、because（后接完整从句）和 according to（信息来源，不是原因）。",
     differences: [
       {
         term: "because of",
-        description: "because of 和 due to 很接近；due to 往往更正式、更书面。",
+        description: "because of 和 due to 都能引出原因；because of 更口语、更通用，due to 往往更正式、更书面，常用于说明某个结果的成因。",
         examples: [
           {
             term: "because of",
@@ -70,8 +71,24 @@ const content: LocalizedPrepositionContent = {
         ]
       },
       {
+        term: "because",
+        description: "because 后面接完整从句；due to 后面通常接名词词组。不要说 due to it rained，要说 because it rained 或 due to rain。",
+        examples: [
+          {
+            term: "because",
+            sentence: "The match was canceled because it rained.",
+            translation: "比赛取消了，因为下雨了。"
+          },
+          {
+            term: "due to",
+            sentence: "The match was canceled due to heavy rain.",
+            translation: "比赛因大雨取消了。"
+          }
+        ]
+      },
+      {
         term: "according to",
-        description: "according to 引出“根据谁/根据什么”；due to 引出“因为什么”。",
+        description: "according to 引出信息来源、规则或依据；due to 引出原因或成因。来源不是原因时，不要混用。",
         examples: [
           {
             term: "according to",

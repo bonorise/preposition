@@ -1,7 +1,12 @@
 export type Locale = "en" | "zh-CN";
 export type LearningCategory = "space" | "time" | "dynamic" | "abstract";
 
-export type SceneVariant = "singleCube" | "twoCubes" | "ringCubes";
+export type SceneVariant =
+  | "singleCube"
+  | "twoCubes"
+  | "ringCubes"
+  | "containedCubes"
+  | "replacementCubes";
 
 export type TimeAxisKind =
   | "point"
@@ -25,6 +30,8 @@ export type AbstractDiagramNode = {
   id: string;
   position: [number, number, number];
   radius?: number;
+  size?: number;
+  shape?: "circle" | "cube";
   fillColor?: string;
   label?: Partial<Record<Locale, string>>;
 };
@@ -54,6 +61,7 @@ export type SceneConfig = {
   ball: {
     radius: number;
     position: [number, number, number];
+    visible?: boolean;
   };
   camera: {
     position: [number, number, number];
@@ -63,6 +71,18 @@ export type SceneConfig = {
   render?: SceneRenderOptions;
   variant?: SceneVariant;
   highlightedCubeIndex?: number;
+  containedCubes?: {
+    itemSize: number;
+    positions: [number, number, number][];
+    highlightedIndex: number;
+  };
+  replacementCubes?: {
+    itemSize: number;
+    positions: [number, number, number][];
+    movingFrom: [number, number, number];
+    movingToIndex: number;
+    duration: number;
+  };
   timeAxis?: TimeAxisConfig;
   abstractDiagram?: AbstractDiagramConfig;
   animation?: {

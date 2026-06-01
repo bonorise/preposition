@@ -1105,6 +1105,50 @@ export default function PrepositionDecisionTree({
         });
       }
     }
+  } else if (word === "due to" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "后面是名词词组，表示导致结果的原因吗？",
+        answer: "是 -> 用 due to，表示“由于…… / 由……造成”。",
+      });
+      questions.push({
+        question: "后面是完整句子，比如 it rained / the system failed 吗？",
+        answer: "是 -> 用 because；due to 后面通常接名词词组。",
+      });
+      questions.push({
+        question: "你想要更口语、更普通的原因表达吗？",
+        answer: "是 -> because of 也常用；due to 往往稍正式、更书面。",
+      });
+      questions.push({
+        question: "后面是报告、数据、规则或某人的说法等信息来源吗？",
+        answer: "是 -> 用 according to，不用 due to。",
+      });
+      questions.push({
+        question: "你表达的是“到期 / 预定应做”，如 due date 或 be due to do 吗？",
+        answer: "是 -> 这是 due 的另一类用法，不是本页的 due to + 名词词组因果用法。",
+      });
+    } else {
+      questions.push({
+        question: "Is the next phrase a noun phrase that names the cause of a result?",
+        answer: "Yes -> use due to. It means because of / caused by.",
+      });
+      questions.push({
+        question: "Is the next part a full clause, such as it rained or the system failed?",
+        answer: "Yes -> use because; due to is usually followed by a noun phrase.",
+      });
+      questions.push({
+        question: "Do you want a more conversational, general reason phrase?",
+        answer: "Yes -> because of also works; due to often sounds a little more formal or written.",
+      });
+      questions.push({
+        question: "Is the next phrase a source, rule, report, data set, or someone's statement?",
+        answer: "Yes -> use according to, not due to.",
+      });
+      questions.push({
+        question: "Do you mean scheduled or expected, as in due date or be due to do?",
+        answer: "Yes -> that is another use of due, not this page's due to + noun phrase cause pattern.",
+      });
+    }
   } else if (word === "according to" && !isDynamic) {
     if (activeLocale === "zh-CN") {
       questions.push({
@@ -1147,6 +1191,97 @@ export default function PrepositionDecisionTree({
       questions.push({
         question: "Are you explaining the cause or reason?",
         answer: "Yes -> use due to / because of, not according to.",
+      });
+    }
+  } else if (word === "instead of" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "是否是“选择/使用/做 A，而不是 B”，A 明确替代 B？",
+        answer: "是 -> 用 instead of；它表示 A replaces B。",
+      });
+      questions.push({
+        question: "instead of 后面是否接名词词组或 -ing 动作？",
+        answer: "是 -> 结构正确，如 instead of coffee / instead of driving。",
+      });
+      questions.push({
+        question: "你只是表达偏好对比或“宁愿 A 而不是 B”吗？",
+        answer: "是 -> rather than 也常见；instead of 更强调实际替代。",
+      });
+      questions.push({
+        question: "你是在说 A 充当某个角色或功能吗？",
+        answer: "是 -> 用 as，不用 instead of。",
+      });
+      questions.push({
+        question: "你只是说“没有 B”，并没有 A 来替代吗？",
+        answer: "是 -> 用 without，不用 instead of。",
+      });
+    } else {
+      questions.push({
+        question: "Are you choosing, using, or doing A so A clearly replaces B?",
+        answer: "Yes -> use instead of; it means A replaces B.",
+      });
+      questions.push({
+        question: "Is instead of followed by a noun phrase or -ing form?",
+        answer:
+          "Yes -> the structure is correct: instead of coffee / instead of driving.",
+      });
+      questions.push({
+        question: "Are you mainly expressing preference or contrast?",
+        answer:
+          "Yes -> rather than may also work; instead of sounds more like real replacement.",
+      });
+      questions.push({
+        question: "Does A serve in a role or function?",
+        answer: "Yes -> use as, not instead of.",
+      });
+      questions.push({
+        question: "Do you only mean no B, without a replacement?",
+        answer: "Yes -> use without, not instead of.",
+      });
+    }
+  } else if (word === "including" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "这项是否被算进总数、费用、名单或范围？",
+        answer: "是 -> 用 including；它表示这项已经在整体里面。",
+      });
+      questions.push({
+        question: "你是否在点名举出整体中的一个成员、例子或附加项目？",
+        answer: "是 -> 用 including，如 five people, including Leo。",
+      });
+      questions.push({
+        question: "你是否想表达“除了这项不算 / 排除这项”？",
+        answer: "是 -> 用 except for 或 apart from，不用 including。",
+      });
+      questions.push({
+        question: "你只是说某人或某物处在一群之中吗？",
+        answer: "是 -> 用 among；including 强调列名并计入整体。",
+      });
+      questions.push({
+        question: "including 后面是否误加了 of？",
+        answer: "不要加 of；直接说 including tax / including lunch。",
+      });
+    } else {
+      questions.push({
+        question: "Is this item counted inside a total, fee, list, or range?",
+        answer: "Yes -> use including; the item is already inside the whole.",
+      });
+      questions.push({
+        question: "Are you naming one member, example, or extra item inside the whole?",
+        answer: "Yes -> use including, as in five people, including Leo.",
+      });
+      questions.push({
+        question: "Do you mean this item is excluded or not counted?",
+        answer: "Yes -> use except for or apart from, not including.",
+      });
+      questions.push({
+        question: "Do you only mean someone or something is in the middle of a group?",
+        answer:
+          "Yes -> use among; including highlights named membership in the whole.",
+      });
+      questions.push({
+        question: "Did you add of after including?",
+        answer: "Remove of; say including tax / including lunch.",
       });
     }
   } else {

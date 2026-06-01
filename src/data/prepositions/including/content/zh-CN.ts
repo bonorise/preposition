@@ -73,11 +73,11 @@ const content: LocalizedPrepositionContent = {
   },
   comparison: {
     summary:
-      "including 的核心是“把某项算进整体里”。它常和 apart from（排除）以及 among（在一群之中，但不一定强调列名归属）对比。",
+      "including 的核心是“点名某项，并明确它已经算进整体里”。判断时先问：这项是在总数、名单、费用或范围里面，还是被排除在外？",
     differences: [
       {
         term: "apart from",
-        description: "apart from 多数时候是把某项排除或单独分开；including 则是明确把某项算进整体。",
+        description: "apart from 多数时候是把某项拿出去、排除或单独分开看；including 则是明确把某项算进整体。",
         examples: [
           {
             term: "apart from",
@@ -92,8 +92,24 @@ const content: LocalizedPrepositionContent = {
         ]
       },
       {
+        term: "except for",
+        description: "except for 是排除这一项；including 是把这一项也算进去。",
+        examples: [
+          {
+            term: "except for",
+            sentence: "Everyone paid except for Leo.",
+            translation: "除了 Leo 没付，其他人都付了。"
+          },
+          {
+            term: "including",
+            sentence: "Everyone paid, including Leo.",
+            translation: "大家都付了，包括 Leo。"
+          }
+        ]
+      },
+      {
         term: "among",
-        description: "among 更像“在一群之中”；including 更像“点名说这个成员也算在里面”。",
+        description: "among 强调“处在一群之中”；including 强调“点名列出这个成员，并把它计入整体”。",
         examples: [
           {
             term: "among",

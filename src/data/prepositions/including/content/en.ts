@@ -74,12 +74,12 @@ const content: LocalizedPrepositionContent = {
   },
   comparison: {
     summary:
-      "Including brings an item into the group or list. It is often contrasted with apart from (excluding) and among (inside a group, but not necessarily highlighting membership in a list).",
+      "Including names an item and makes clear that it is counted inside the whole. First ask: is the item inside the total, list, fee, or range, or is it excluded?",
     differences: [
       {
         term: "apart from",
         description:
-          "Apart from usually excludes or separates something. Including explicitly counts it inside the set.",
+          "Apart from usually takes something out, excludes it, or treats it separately. Including explicitly counts it inside the set.",
         examples: [
           {
             term: "apart from",
@@ -92,9 +92,24 @@ const content: LocalizedPrepositionContent = {
         ],
       },
       {
+        term: "except for",
+        description:
+          "Except for excludes this item. Including counts this item too.",
+        examples: [
+          {
+            term: "except for",
+            sentence: "Everyone paid except for Leo.",
+          },
+          {
+            term: "including",
+            sentence: "Everyone paid, including Leo.",
+          },
+        ],
+      },
+      {
         term: "among",
         description:
-          "Among places something in the middle of a group. Including names a member as part of the set.",
+          "Among places someone or something inside a group. Including names that member and counts it as part of the whole.",
         examples: [
           {
             term: "among",

@@ -60,6 +60,8 @@ export const UI_TEXT: Record<
     detailPrev: string;
     detailNext: string;
     detailViewerHint: string;
+    detailStaticVisualTitle: string;
+    detailStaticVisualHint: string;
     detailViewerHelper: string;
     detailRelatedTitle: string;
     detailSceneCategoryLabel: string;
@@ -158,6 +160,8 @@ export const UI_TEXT: Record<
     detailPrev: "上一个",
     detailNext: "下一个",
     detailViewerHint: "拖拽旋转 / 滚轮缩放 / 双指缩放",
+    detailStaticVisualTitle: "示意图",
+    detailStaticVisualHint: "整体边界 / 被包含对象",
     detailViewerHelper: "部分介词需要动态表达，MVP 先用静态位置 + 文字说明。",
     detailRelatedTitle: "相关介词",
     detailSceneCategoryLabel: "示意图类别",
@@ -324,6 +328,8 @@ export const UI_TEXT: Record<
     detailPrev: "Previous",
     detailNext: "Next",
     detailViewerHint: "Drag to rotate / Scroll to zoom / Pinch to zoom",
+    detailStaticVisualTitle: "Visual",
+    detailStaticVisualHint: "Whole boundary / included object",
     detailViewerHelper:
       "Some prepositions need motion; MVP shows a static cue + notes.",
     detailRelatedTitle: "Related prepositions",

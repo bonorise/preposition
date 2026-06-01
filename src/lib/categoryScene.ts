@@ -60,6 +60,7 @@ function cloneScene(scene: SceneConfig): SceneConfig {
     ball: {
       radius: scene.ball.radius,
       position: toTuple(scene.ball.position, [0, 0, 0]),
+      visible: scene.ball.visible,
     },
     camera: {
       position: toTuple(scene.camera.position, [2.4, 1.7, 2.4]),
@@ -69,6 +70,28 @@ function cloneScene(scene: SceneConfig): SceneConfig {
     render: scene.render
       ? {
           ...scene.render,
+        }
+      : undefined,
+    variant: scene.variant,
+    highlightedCubeIndex: scene.highlightedCubeIndex,
+    containedCubes: scene.containedCubes
+      ? {
+          itemSize: scene.containedCubes.itemSize,
+          highlightedIndex: scene.containedCubes.highlightedIndex,
+          positions: scene.containedCubes.positions.map((position) =>
+            toTuple(position, [0, 0, 0]),
+          ),
+        }
+      : undefined,
+    replacementCubes: scene.replacementCubes
+      ? {
+          itemSize: scene.replacementCubes.itemSize,
+          movingFrom: toTuple(scene.replacementCubes.movingFrom, [0, 0, 0]),
+          movingToIndex: scene.replacementCubes.movingToIndex,
+          duration: scene.replacementCubes.duration,
+          positions: scene.replacementCubes.positions.map((position) =>
+            toTuple(position, [0, 0, 0]),
+          ),
         }
       : undefined,
     animation: cloneAnimation(scene),

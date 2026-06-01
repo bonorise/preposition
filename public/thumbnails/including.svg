@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  <style>
+    .back-line {
+      stroke: #cbd5e1;
+      stroke-opacity: 0.55;
+      stroke-width: 0.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+    .front-line {
+      stroke: #0f1c2e;
+      stroke-opacity: 0.65;
+      stroke-width: 0.95;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+    .soft-line {
+      stroke: #cbd5e1;
+      stroke-opacity: 0.58;
+      stroke-width: 0.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+  </style>
+
+  <g fill="#ffffff" fill-opacity="0.12">
+    <polygon points="34 24 73 13 104 28 64 42" />
+    <polygon points="18 43 64 42 64 106 18 80" />
+    <polygon points="64 42 104 28 101 82 64 106" />
+  </g>
+
+  <g class="back-line">
+    <line x1="64" y1="42" x2="104" y2="28" />
+    <line x1="64" y1="42" x2="64" y2="106" />
+    <line x1="18" y1="43" x2="64" y2="42" />
+    <line x1="34" y1="24" x2="64" y2="42" />
+  </g>
+
+  <g class="front-line">
+    <line x1="18" y1="43" x2="34" y2="24" />
+    <line x1="34" y1="24" x2="73" y2="13" />
+    <line x1="73" y1="13" x2="104" y2="28" />
+    <line x1="104" y1="28" x2="101" y2="82" />
+    <line x1="101" y1="82" x2="64" y2="106" />
+    <line x1="64" y1="106" x2="18" y2="80" />
+    <line x1="18" y1="80" x2="18" y2="43" />
+  </g>
+
+  <g fill="#ffffff" fill-opacity="0.16">
+    <polygon points="39 56 49 52 58 57 48 61" />
+    <polygon points="48 61 58 57 58 69 48 74" />
+    <polygon points="39 56 48 61 48 74 39 68" />
+    <polygon points="67 53 77 49 86 54 76 58" />
+    <polygon points="76 58 86 54 86 66 76 71" />
+    <polygon points="67 53 76 58 76 71 67 65" />
+    <polygon points="57 74 67 70 76 75 66 79" />
+    <polygon points="66 79 76 75 76 87 66 92" />
+    <polygon points="57 74 66 79 66 92 57 86" />
+  </g>
+
+  <g class="soft-line">
+    <path d="M39 56 49 52 58 57 58 69 48 74 39 68Z" />
+    <path d="M48 61 58 57M48 61 39 56M48 61v13" />
+    <path d="M67 53 77 49 86 54 86 66 76 71 67 65Z" />
+    <path d="M76 58 86 54M76 58 67 53M76 58v13" />
+    <path d="M57 74 67 70 76 75 76 87 66 92 57 86Z" />
+    <path d="M66 79 76 75M66 79 57 74M66 79v13" />
+  </g>
+
+  <g fill="#7c3aed" fill-opacity="0.28">
+    <polygon points="45 38 55 34 64 39 54 43" />
+    <polygon points="54 43 64 39 64 51 54 56" />
+    <polygon points="45 38 54 43 54 56 45 50" />
+  </g>
+
+  <g class="front-line">
+    <path d="M45 38 55 34 64 39 64 51 54 56 45 50Z" />
+    <path d="M54 43 64 39M54 43 45 38M54 43v13" />
+  </g>
+</svg>
