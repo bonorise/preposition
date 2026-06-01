@@ -19,6 +19,12 @@ function getApartFromEntry() {
   return entry;
 }
 
+function getInsteadOfEntry() {
+  const entry = getPrepositionById("instead-of");
+  assert.ok(entry, "instead-of entry should exist");
+  return entry;
+}
+
 test("since decision tree explains both time-start and reason meanings in Chinese", () => {
   const entry = getSinceEntry();
   const markup = renderToStaticMarkup(
@@ -85,4 +91,37 @@ test("apart from comparison has three representative differences", () => {
     entry.comparison?.i18n.en.differences.map((item) => item.term),
     ["except for", "including", "besides / in addition to"],
   );
+});
+
+test("instead of comparison uses replacement-specific contrasts in Chinese", () => {
+  const entry = getInsteadOfEntry();
+
+  assert.deepEqual(
+    entry.comparison?.i18n["zh-CN"].differences.map((item) => item.term),
+    ["rather than", "as", "without"],
+  );
+});
+
+test("instead of decision tree explains replacement in Chinese", () => {
+  const entry = getInsteadOfEntry();
+  const markup = renderToStaticMarkup(
+    <PrepositionDecisionTree entry={entry} locale="zh-CN" />,
+  );
+
+  assert.match(markup, /A 明确替代 B/);
+  assert.match(markup, /名词词组或 -ing/);
+  assert.match(markup, /只是说“没有 B”/);
+  assert.doesNotMatch(markup, /物体是否接触某个表面/);
+});
+
+test("instead of decision tree explains replacement in English", () => {
+  const entry = getInsteadOfEntry();
+  const markup = renderToStaticMarkup(
+    <PrepositionDecisionTree entry={entry} locale="en" />,
+  );
+
+  assert.match(markup, /A clearly replaces B/i);
+  assert.match(markup, /noun phrase or -ing form/i);
+  assert.match(markup, /no B, without a replacement/i);
+  assert.doesNotMatch(markup, /touching a surface/i);
 });

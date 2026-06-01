@@ -5,7 +5,8 @@ export type SceneVariant =
   | "singleCube"
   | "twoCubes"
   | "ringCubes"
-  | "containedCubes";
+  | "containedCubes"
+  | "replacementCubes";
 
 export type TimeAxisKind =
   | "point"
@@ -74,6 +75,13 @@ export type SceneConfig = {
     itemSize: number;
     positions: [number, number, number][];
     highlightedIndex: number;
+  };
+  replacementCubes?: {
+    itemSize: number;
+    positions: [number, number, number][];
+    movingFrom: [number, number, number];
+    movingToIndex: number;
+    duration: number;
   };
   timeAxis?: TimeAxisConfig;
   abstractDiagram?: AbstractDiagramConfig;

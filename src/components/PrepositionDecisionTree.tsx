@@ -1193,6 +1193,52 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> use due to / because of, not according to.",
       });
     }
+  } else if (word === "instead of" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "是否是“选择/使用/做 A，而不是 B”，A 明确替代 B？",
+        answer: "是 -> 用 instead of；它表示 A replaces B。",
+      });
+      questions.push({
+        question: "instead of 后面是否接名词词组或 -ing 动作？",
+        answer: "是 -> 结构正确，如 instead of coffee / instead of driving。",
+      });
+      questions.push({
+        question: "你只是表达偏好对比或“宁愿 A 而不是 B”吗？",
+        answer: "是 -> rather than 也常见；instead of 更强调实际替代。",
+      });
+      questions.push({
+        question: "你是在说 A 充当某个角色或功能吗？",
+        answer: "是 -> 用 as，不用 instead of。",
+      });
+      questions.push({
+        question: "你只是说“没有 B”，并没有 A 来替代吗？",
+        answer: "是 -> 用 without，不用 instead of。",
+      });
+    } else {
+      questions.push({
+        question: "Are you choosing, using, or doing A so A clearly replaces B?",
+        answer: "Yes -> use instead of; it means A replaces B.",
+      });
+      questions.push({
+        question: "Is instead of followed by a noun phrase or -ing form?",
+        answer:
+          "Yes -> the structure is correct: instead of coffee / instead of driving.",
+      });
+      questions.push({
+        question: "Are you mainly expressing preference or contrast?",
+        answer:
+          "Yes -> rather than may also work; instead of sounds more like real replacement.",
+      });
+      questions.push({
+        question: "Does A serve in a role or function?",
+        answer: "Yes -> use as, not instead of.",
+      });
+      questions.push({
+        question: "Do you only mean no B, without a replacement?",
+        answer: "Yes -> use without, not instead of.",
+      });
+    }
   } else if (word === "including" && !isDynamic) {
     if (activeLocale === "zh-CN") {
       questions.push({

@@ -54,7 +54,7 @@ const sceneModule: PrepositionSceneModule = {
             fillColor: "#ffffff",
             label: {
               en: "cause",
-              "zh-CN": "cause",
+              "zh-CN": "原因",
             },
           },
           {
@@ -66,7 +66,7 @@ const sceneModule: PrepositionSceneModule = {
             fillColor: "#ffffff",
             label: {
               en: "result",
-              "zh-CN": "result",
+              "zh-CN": "结果",
             },
           },
         ],

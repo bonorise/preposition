@@ -83,6 +83,17 @@ function cloneScene(scene: SceneConfig): SceneConfig {
           ),
         }
       : undefined,
+    replacementCubes: scene.replacementCubes
+      ? {
+          itemSize: scene.replacementCubes.itemSize,
+          movingFrom: toTuple(scene.replacementCubes.movingFrom, [0, 0, 0]),
+          movingToIndex: scene.replacementCubes.movingToIndex,
+          duration: scene.replacementCubes.duration,
+          positions: scene.replacementCubes.positions.map((position) =>
+            toTuple(position, [0, 0, 0]),
+          ),
+        }
+      : undefined,
     animation: cloneAnimation(scene),
     timeAxis: scene.timeAxis
       ? {

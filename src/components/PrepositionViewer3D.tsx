@@ -584,6 +584,111 @@ function buildAbstractDiagramGroup({
   };
 }
 
+function buildReplacementCubesGroup({
+  sceneConfig,
+  renderer,
+}: {
+  sceneConfig: SceneConfig;
+  renderer: THREE.WebGLRenderer;
+}) {
+  const group = new THREE.Group();
+  const geometries: THREE.BufferGeometry[] = [];
+  const materials: THREE.Material[] = [];
+  const textures: THREE.Texture[] = [];
+  const replacement = sceneConfig.replacementCubes;
+  const itemSize = replacement?.itemSize ?? sceneConfig.cube.size;
+  const positions =
+    replacement?.positions ?? [
+      [-1.15, 0, 0],
+      [0, 0, 0],
+      [1.15, 0, 0],
+    ];
+  const targetIndex = replacement?.movingToIndex ?? 1;
+
+  const makeCube = ({
+    label,
+    highlighted = false,
+    dimmed = false,
+  }: {
+    label?: string;
+    highlighted?: boolean;
+    dimmed?: boolean;
+  }) => {
+    const cubeGroup = new THREE.Group();
+    const geometry = new THREE.BoxGeometry(itemSize, itemSize, itemSize);
+    geometries.push(geometry);
+
+    const faceMaterial = new THREE.MeshStandardMaterial({
+      color: highlighted ? ballColor : cubeFaceColor,
+      transparent: true,
+      opacity: highlighted ? 0.28 : dimmed ? 0.08 : 0.12,
+      roughness: 0.9,
+      metalness: 0,
+    });
+    const edgeMaterial = new THREE.LineBasicMaterial({
+      color: highlighted ? ballColor : cubeLineColor,
+      transparent: true,
+      opacity: highlighted ? 0.85 : dimmed ? 0.32 : 0.65,
+    });
+    materials.push(faceMaterial, edgeMaterial);
+
+    const faces = new THREE.Mesh(geometry, faceMaterial);
+    faces.renderOrder = highlighted ? 3 : 0;
+    cubeGroup.add(faces);
+
+    const edges = new THREE.EdgesGeometry(geometry);
+    geometries.push(edges);
+    const lines = new THREE.LineSegments(edges, edgeMaterial);
+    lines.renderOrder = highlighted ? 4 : 1;
+    cubeGroup.add(lines);
+
+    if (label) {
+      const labelMesh = createLabelMesh({
+        text: label,
+        width: itemSize * 0.52,
+        height: itemSize * 0.28,
+        fontSize: 88,
+        renderer,
+        color: highlighted ? "#ffffff" : "#334155",
+      });
+      if (labelMesh) {
+        labelMesh.mesh.position.set(0, 0, itemSize / 2 + 0.004);
+        labelMesh.mesh.renderOrder = highlighted ? 5 : 2;
+        cubeGroup.add(labelMesh.mesh);
+        geometries.push(labelMesh.geometry);
+        materials.push(labelMesh.material);
+        textures.push(labelMesh.texture);
+      }
+    }
+
+    return cubeGroup;
+  };
+
+  positions.forEach((position, index) => {
+    const cube = makeCube({
+      label: index === targetIndex ? "B" : undefined,
+      dimmed: index === targetIndex,
+    });
+    cube.position.set(...position);
+    group.add(cube);
+  });
+
+  const movingCube = makeCube({ label: "A", highlighted: true });
+  movingCube.position.set(...(replacement?.movingFrom ?? [-2.1, 0, 0]));
+  group.add(movingCube);
+
+  return {
+    group,
+    geometries,
+    materials,
+    textures,
+    movingCube,
+    start: new THREE.Vector3(...(replacement?.movingFrom ?? [-2.1, 0, 0])),
+    end: new THREE.Vector3(...(positions[targetIndex] ?? [0, 0, 0])),
+    durationMs: Math.max(replacement?.duration ?? 3.2, 0.1) * 1000,
+  };
+}
+
 const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
   ({ entry, sceneOverride, locale, frontLabel, showGroundOverride, className }, ref) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -597,6 +702,13 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
       ball: THREE.Mesh;
       curve?: THREE.CatmullRomCurve3;
       loop: boolean;
+    } | null>(null);
+    const replacementAnimationRef = useRef<{
+      startTime: number;
+      durationMs: number;
+      start: THREE.Vector3;
+      end: THREE.Vector3;
+      movingCube: THREE.Group;
     } | null>(null);
     const resetRef = useRef<{
       camera: SceneConfig["camera"];
@@ -619,13 +731,19 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
       },
       playAnimation: () => {
         const state = animationRef.current;
-        if (!state) return;
-        state.isPlaying = true;
-        state.startTime = performance.now();
-        if (state.curve) {
-          state.ball.position.copy(state.curve.getPointAt(0));
-        } else {
-          state.ball.position.copy(state.start);
+        if (state) {
+          state.isPlaying = true;
+          state.startTime = performance.now();
+          if (state.curve) {
+            state.ball.position.copy(state.curve.getPointAt(0));
+          } else {
+            state.ball.position.copy(state.start);
+          }
+        }
+        const replacementState = replacementAnimationRef.current;
+        if (replacementState) {
+          replacementState.startTime = performance.now();
+          replacementState.movingCube.position.copy(replacementState.start);
         }
       },
     }));
@@ -708,6 +826,24 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         materials.push(...abstractGroup.materials);
         textures.push(...abstractGroup.textures);
         ballPosition = abstractGroup.ballPosition.clone();
+        scene.add(structureGroup);
+      } else if (sceneConfig.variant === "replacementCubes") {
+        const replacementGroup = buildReplacementCubesGroup({
+          sceneConfig,
+          renderer,
+        });
+        structureGroup = replacementGroup.group;
+        geometries.push(...replacementGroup.geometries);
+        materials.push(...replacementGroup.materials);
+        textures.push(...replacementGroup.textures);
+        ballPosition = replacementGroup.end.clone();
+        replacementAnimationRef.current = {
+          startTime: performance.now(),
+          durationMs: replacementGroup.durationMs,
+          start: replacementGroup.start,
+          end: replacementGroup.end,
+          movingCube: replacementGroup.movingCube,
+        };
         scene.add(structureGroup);
       } else {
         const cubeResult = buildCubeGroup(sceneConfig);
@@ -863,6 +999,7 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
       const animate = () => {
         animationFrame = window.requestAnimationFrame(animate);
         const animationState = animationRef.current;
+        const replacementState = replacementAnimationRef.current;
         if (animationState?.isPlaying) {
           const elapsed = performance.now() - animationState.startTime;
           const progress = Math.min(elapsed / animationState.durationMs, 1);
@@ -893,6 +1030,17 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
               animationState.ball.position.copy(animationState.rest);
             }
           }
+        }
+        if (replacementState) {
+          const elapsed = performance.now() - replacementState.startTime;
+          const rawProgress = (elapsed % replacementState.durationMs) / replacementState.durationMs;
+          const travelProgress = rawProgress < 0.72 ? rawProgress / 0.72 : 1;
+          const eased = animationEase(travelProgress);
+          replacementState.movingCube.position.lerpVectors(
+            replacementState.start,
+            replacementState.end,
+            eased,
+          );
         }
         controls.update();
         renderer.render(scene, camera);
@@ -930,6 +1078,7 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         }
         scene.clear();
         animationRef.current = null;
+        replacementAnimationRef.current = null;
         if (renderer.domElement.parentElement === container) {
           container.removeChild(renderer.domElement);
         }

@@ -54,37 +54,53 @@ const content: LocalizedPrepositionContent = {
   },
   comparison: {
     summary:
-      "instead of 的核心是“替代关系”：一个选项取代另一个。最容易混的是 as（角色/功能）和 without（没有，不一定替代）。",
+      "instead of 的核心是“替代关系”：A 取代 B，B 原本的位置或选择被 A 占了。最容易混的是 rather than（偏好/对比）、as（角色/功能）和 without（没有但不一定替代）。",
     differences: [
       {
-        term: "as",
-        description: "as 强调身份或功能；instead of 强调替代。",
+        term: "rather than",
+        description: "rather than 强调偏好或对比选择；instead of 更强调 A 实际替代 B。",
         examples: [
           {
-            term: "as",
-            sentence: "Use this room as an office.",
-            translation: "把这个房间当办公室用。"
+            term: "rather than",
+            sentence: "I would rather walk than wait for the bus.",
+            translation: "我宁愿走路，也不想等公交。"
           },
           {
             term: "instead of",
-            sentence: "Use this room instead of the old office.",
-            translation: "用这个房间替代旧办公室。"
+            sentence: "We walked instead of taking the bus.",
+            translation: "我们走路，替代了坐公交这个选择。"
+          }
+        ]
+      },
+      {
+        term: "as",
+        description: "as 强调身份、角色或功能；instead of 强调用一个东西替掉另一个。",
+        examples: [
+          {
+            term: "as",
+            sentence: "Use this box as a table.",
+            translation: "把这个盒子当桌子用。"
+          },
+          {
+            term: "instead of",
+            sentence: "Use this box instead of the table.",
+            translation: "用这个盒子替代那张桌子。"
           }
         ]
       },
       {
         term: "without",
-        description: "without 表示“没有某物”；instead of 表示“用某物代替另一物”。",
+        description: "without 只是表示没有某物；instead of 表示有 A 来替代 B。",
         examples: [
           {
             term: "without",
-            sentence: "He left without his umbrella.",
+            sentence: "He left without an umbrella.",
             translation: "他没带伞就走了。"
           },
           {
             term: "instead of",
             sentence: "He took a raincoat instead of an umbrella.",
-            translation: "他带了雨衣，没带伞。"
+            translation: "他带了雨衣来替代雨伞。"
           }
         ]
       }

@@ -55,8 +55,23 @@ const content: LocalizedPrepositionContent = {
   },
   comparison: {
     summary:
-      "Instead of is about substitution: one option replaces another. Learners often compare it with as (role/function) and without (absence, not replacement).",
+      "Instead of is about replacement: A takes the place of B. Learners often confuse it with rather than (preference/contrast), as (role/function), and without (absence without replacement).",
     differences: [
+      {
+        term: "rather than",
+        description:
+          "Rather than highlights preference or contrast. Instead of more clearly says one option replaces another.",
+        examples: [
+          {
+            term: "rather than",
+            sentence: "I would rather walk than wait for the bus.",
+          },
+          {
+            term: "instead of",
+            sentence: "We walked instead of taking the bus.",
+          },
+        ],
+      },
       {
         term: "as",
         description:
@@ -64,22 +79,22 @@ const content: LocalizedPrepositionContent = {
         examples: [
           {
             term: "as",
-            sentence: "Use this room as an office.",
+            sentence: "Use this box as a table.",
           },
           {
             term: "instead of",
-            sentence: "Use this room instead of the old office.",
+            sentence: "Use this box instead of the table.",
           },
         ],
       },
       {
         term: "without",
         description:
-          "Without means not having something. Instead of means choosing one thing in place of another.",
+          "Without means not having something. Instead of means using or choosing A in place of B.",
         examples: [
           {
             term: "without",
-            sentence: "He left without his umbrella.",
+            sentence: "He left without an umbrella.",
           },
           {
             term: "instead of",

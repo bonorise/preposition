@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
 
 import type { LearningCategory, Locale, PrepositionEntry } from "@/data/types";
 import { getUiText } from "@/data/i18n";
@@ -107,7 +106,6 @@ export default function PrepositionDetail({
     [entry, activeCategory, activeLocale],
   );
   const hasAnimation = Boolean(activeScene.animation);
-  const usesStaticIncludingVisual = entry.id === "including";
   const keyPoints = useMemo(() => {
     const localizedTips =
       entry.i18n[activeLocale]?.tips ?? entry.i18n["zh-CN"]?.tips ?? [];
@@ -218,46 +216,21 @@ export default function PrepositionDetail({
                 </div>
               </div>
             ) : null}
-            {usesStaticIncludingVisual ? (
-              <div
-                data-viewer="preposition-static"
-                className={`flex min-h-[320px] items-center justify-center bg-white ${
-                  isFullscreen ? "flex-1 h-full rounded-none" : "rounded-t-none"
-                }`}
-              >
-                <Image
-                  src="/thumbnails/including.svg"
-                  alt="including visual"
-                  width={720}
-                  height={520}
-                  unoptimized
-                  priority
-                  className="h-auto w-full max-w-[720px] object-contain px-6 py-8"
-                />
-              </div>
-            ) : (
-              <PrepositionViewer3D
-                ref={viewerRef}
-                entry={entry}
-                sceneOverride={activeScene}
-                locale={activeLocale}
-                frontLabel={ui.directionFront}
-                showGroundOverride={showGroundOverride}
-                className={isFullscreen ? "flex-1 h-full rounded-none" : undefined}
-              />
-            )}
+            <PrepositionViewer3D
+              ref={viewerRef}
+              entry={entry}
+              sceneOverride={activeScene}
+              locale={activeLocale}
+              frontLabel={ui.directionFront}
+              showGroundOverride={showGroundOverride}
+              className={isFullscreen ? "flex-1 h-full rounded-none" : undefined}
+            />
             <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[color:var(--color-edge)] bg-white/70 px-5 py-4 text-sm">
               <div className="space-y-1 text-[color:var(--color-muted)]">
                 <p className="text-xs uppercase tracking-[0.3em]">
-                  {usesStaticIncludingVisual
-                    ? ui.detailStaticVisualTitle
-                    : ui.detailControlsTitle}
+                  {ui.detailControlsTitle}
                 </p>
-                <p className="text-sm">
-                  {usesStaticIncludingVisual
-                    ? ui.detailStaticVisualHint
-                    : ui.detailViewerHint}
-                </p>
+                <p className="text-sm">{ui.detailViewerHint}</p>
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 {hasAnimation ? (
@@ -272,15 +245,13 @@ export default function PrepositionDetail({
                 <Button variant="outline" size="sm" onClick={requestFullscreen}>
                   {isFullscreen ? ui.detailExitFullscreen : ui.detailFullscreen}
                 </Button>
-                {usesStaticIncludingVisual ? null : (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => viewerRef.current?.reset()}
-                  >
-                    {ui.detailResetCamera}
-                  </Button>
-                )}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => viewerRef.current?.reset()}
+                >
+                  {ui.detailResetCamera}
+                </Button>
               </div>
             </div>
           </div>
