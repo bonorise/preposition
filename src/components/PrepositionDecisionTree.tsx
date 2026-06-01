@@ -1149,6 +1149,51 @@ export default function PrepositionDecisionTree({
         answer: "Yes -> use due to / because of, not according to.",
       });
     }
+  } else if (word === "including" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "这项是否被算进总数、费用、名单或范围？",
+        answer: "是 -> 用 including；它表示这项已经在整体里面。",
+      });
+      questions.push({
+        question: "你是否在点名举出整体中的一个成员、例子或附加项目？",
+        answer: "是 -> 用 including，如 five people, including Leo。",
+      });
+      questions.push({
+        question: "你是否想表达“除了这项不算 / 排除这项”？",
+        answer: "是 -> 用 except for 或 apart from，不用 including。",
+      });
+      questions.push({
+        question: "你只是说某人或某物处在一群之中吗？",
+        answer: "是 -> 用 among；including 强调列名并计入整体。",
+      });
+      questions.push({
+        question: "including 后面是否误加了 of？",
+        answer: "不要加 of；直接说 including tax / including lunch。",
+      });
+    } else {
+      questions.push({
+        question: "Is this item counted inside a total, fee, list, or range?",
+        answer: "Yes -> use including; the item is already inside the whole.",
+      });
+      questions.push({
+        question: "Are you naming one member, example, or extra item inside the whole?",
+        answer: "Yes -> use including, as in five people, including Leo.",
+      });
+      questions.push({
+        question: "Do you mean this item is excluded or not counted?",
+        answer: "Yes -> use except for or apart from, not including.",
+      });
+      questions.push({
+        question: "Do you only mean someone or something is in the middle of a group?",
+        answer:
+          "Yes -> use among; including highlights named membership in the whole.",
+      });
+      questions.push({
+        question: "Did you add of after including?",
+        answer: "Remove of; say including tax / including lunch.",
+      });
+    }
   } else {
     // Generic fallback for prepositions not handled above
     const a = primaryContrast ?? "in";
