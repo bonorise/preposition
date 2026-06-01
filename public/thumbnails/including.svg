@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  <style>
+    .back-line {
+      stroke: #cbd5e1;
+      stroke-opacity: 0.65;
+      stroke-width: 1.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+    .front-line {
+      stroke: #0f1c2e;
+      stroke-opacity: 0.65;
+      stroke-width: 1.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+  </style>
   
   <g fill="#ffffff" fill-opacity="0.12">
     <polygon points="34.00,23.50 73.50,12.00 105.50,27.50 64.00,42.50" />
@@ -19,13 +37,13 @@
     <polygon points="57.50,73.00 67.50,78.50 67.50,94.00 57.50,87.50" />
   </g>
   
-  <g fill="#7c3aed" fill-opacity="0.18">
+  <g fill="#7c3aed" fill-opacity="0.28">
     <polygon points="43.00,37.00 54.00,33.00 64.00,38.00 53.00,42.50" />
     <polygon points="53.00,42.50 64.00,38.00 64.00,52.50 53.00,58.00" />
     <polygon points="43.00,37.00 53.00,42.50 53.00,58.00 43.00,51.50" />
   </g>
   
-  <g stroke="#cbd5e1" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <g class="back-line">
     <line x1="64.00" y1="42.50" x2="105.50" y2="27.50" />
     <line x1="64.00" y1="42.50" x2="64.00" y2="108.00" />
     <line x1="18.00" y1="43.00" x2="64.00" y2="42.50" />
@@ -33,7 +51,7 @@
     <line x1="73.50" y1="12.00" x2="64.00" y2="42.50" />
   </g>
   
-  <g stroke="#cbd5e1" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <g class="back-line">
     <line x1="47.50" y1="59.50" x2="58.50" y2="55.00" />
     <line x1="47.50" y1="59.50" x2="37.50" y2="54.00" />
     <line x1="47.50" y1="59.50" x2="47.50" y2="75.00" />
@@ -48,7 +66,7 @@
     <line x1="53.00" y1="42.50" x2="53.00" y2="58.00" />
   </g>
   
-  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <g class="front-line">
     <line x1="18.00" y1="43.00" x2="18.00" y2="80.50" />
     <line x1="18.00" y1="80.50" x2="64.00" y2="108.00" />
     <line x1="64.00" y1="108.00" x2="101.00" y2="83.00" />
@@ -58,7 +76,7 @@
     <line x1="34.00" y1="23.50" x2="18.00" y2="43.00" />
   </g>
   
-  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <g class="front-line">
     <line x1="37.50" y1="54.00" x2="48.50" y2="50.00" />
     <line x1="48.50" y1="50.00" x2="58.50" y2="55.00" />
     <line x1="58.50" y1="55.00" x2="58.50" y2="69.50" />
@@ -79,7 +97,7 @@
     <line x1="57.50" y1="87.50" x2="57.50" y2="73.00" />
   </g>
   
-  <g stroke="#0f172a" stroke-opacity="0.85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <g class="front-line">
     <line x1="43.00" y1="37.00" x2="54.00" y2="33.00" />
     <line x1="54.00" y1="33.00" x2="64.00" y2="38.00" />
     <line x1="64.00" y1="38.00" x2="64.00" y2="52.50" />
