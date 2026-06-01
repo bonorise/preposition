@@ -134,6 +134,63 @@ function buildCubeGroup(scene: SceneConfig) {
     materials.push(highlightedFaceMaterial);
   }
 
+  if (variant === "containedCubes") {
+    const containerGeometry = new THREE.BoxGeometry(size, size, size);
+    geometries.push(containerGeometry);
+
+    if (wireframeStyle !== "edges") {
+      const faces = new THREE.Mesh(containerGeometry, faceMaterial);
+      faces.renderOrder = 0;
+      group.add(faces);
+    }
+
+    const containerEdges = new THREE.EdgesGeometry(containerGeometry);
+    geometries.push(containerEdges);
+    const containerLines = new THREE.LineSegments(containerEdges, lineMaterial);
+    containerLines.renderOrder = 1;
+    group.add(containerLines);
+    group.position.copy(center);
+
+    const contained = scene.containedCubes;
+    const itemSize = contained?.itemSize ?? size * 0.24;
+    const positions =
+      contained?.positions ?? [
+        [-0.18, 0.14, 0.12],
+        [0.18, 0.14, -0.12],
+        [-0.18, -0.16, -0.1],
+        [0.18, -0.16, 0.12],
+      ];
+    const highlightedIndex = contained?.highlightedIndex ?? 0;
+
+    positions.forEach((position, index) => {
+      const itemGeometry = new THREE.BoxGeometry(itemSize, itemSize, itemSize);
+      geometries.push(itemGeometry);
+
+      const itemGroup = new THREE.Group();
+      if (wireframeStyle !== "edges") {
+        const faces = new THREE.Mesh(
+          itemGeometry,
+          index === highlightedIndex && highlightedFaceMaterial
+            ? highlightedFaceMaterial
+            : faceMaterial,
+        );
+        faces.renderOrder = 2;
+        itemGroup.add(faces);
+      }
+
+      const itemEdges = new THREE.EdgesGeometry(itemGeometry);
+      geometries.push(itemEdges);
+      const lines = new THREE.LineSegments(itemEdges, lineMaterial);
+      lines.renderOrder = 3;
+      itemGroup.add(lines);
+
+      itemGroup.position.set(position[0], position[1], position[2]);
+      group.add(itemGroup);
+    });
+
+    return { group, geometries, materials };
+  }
+
   offsets.forEach((offset, index) => {
     const geometry = new THREE.BoxGeometry(size, size, size);
     geometries.push(geometry);
@@ -659,7 +716,8 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         materials.push(...cubeResult.materials);
         scene.add(structureGroup);
 
-        const frontLabelText = frontLabel ?? "前";
+        const frontLabelText =
+          sceneConfig.variant === "containedCubes" ? "" : frontLabel ?? "前";
         if (frontLabelText) {
           const frontLabelMesh = createLabelMesh({
             text: frontLabelText,
@@ -684,6 +742,7 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         }
       }
 
+      const showBall = sceneConfig.ball.visible !== false;
       const ballMaterial = new THREE.MeshStandardMaterial({
         color: ballColor,
         roughness: 0.3,
@@ -697,10 +756,12 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
       const ball = new THREE.Mesh(ballGeometry, ballMaterial);
       ball.position.copy(ballPosition);
       ball.castShadow = enableShadows;
-      scene.add(ball);
+      if (showBall) {
+        scene.add(ball);
+      }
 
       const animationPath = resolveAnimationPath(sceneConfig);
-      if (animationPath) {
+      if (animationPath && showBall) {
         const startTime = performance.now();
         animationRef.current = {
           isPlaying: true,
@@ -864,7 +925,9 @@ const PrepositionViewer3D = forwardRef<ViewerHandle, PrepositionViewer3DProps>(
         if (structureGroup) {
           scene.remove(structureGroup);
         }
-        scene.remove(ball);
+        if (showBall) {
+          scene.remove(ball);
+        }
         scene.clear();
         animationRef.current = null;
         if (renderer.domElement.parentElement === container) {
