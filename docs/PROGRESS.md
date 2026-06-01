@@ -37,6 +37,7 @@
 - [x] 修正 including 详情页示意图线条粗细：SVG 线条改为不随详情页放大而变粗，并按现有 3D renderer 的线色与透明度对齐。（2026-06-01）
 - [x] 重绘 including 示意图：对照 above 详情页的大留白、低密度细线框与单一紫色焦点风格，保留容器尺寸不变并简化内部线条。（2026-06-01）
 - [x] 重做 including 详情页 3D 示意图：使用共享 Three.js renderer 表现“大透明立方体容器内包含 4 个同尺寸小立方体，其中 1 个紫色”的语义画面。（2026-06-01）
+- [x] 修复 including 3D scene 生效问题：`getSceneForCategory` 克隆时保留 `variant`、`containedCubes` 与 `ball.visible`，确保详情页不再退回默认“立方体 + 小球”。（2026-06-01）
 
 ## Phase 0.5｜数据结构可扩展性
 
