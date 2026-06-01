@@ -1105,7 +1105,52 @@ export default function PrepositionDecisionTree({
         });
       }
     }
+  } else if (word === "according to" && !isDynamic) {
+    if (activeLocale === "zh-CN") {
+      questions.push({
+        question: "后面是报告、新闻、医生、地图、数据、邮件等信息来源吗？",
+        answer: "是 -> 用 according to，表示“据……所说 / 根据……”。",
+      });
+      questions.push({
+        question: "后面是计划、规则、政策、合同、标准或传统吗？",
+        answer: "是 -> 用 according to，表示“按照 / 根据”。",
+      });
+      questions.push({
+        question: "你是在表达自己的个人看法吗？",
+        answer: "是 -> 用 in my opinion / I think，不用 according to me。",
+      });
+      questions.push({
+        question: "你只是说“关于某个话题”吗？",
+        answer: "是 -> 用 about，不用 according to。",
+      });
+      questions.push({
+        question: "你是在说明原因或成因吗？",
+        answer: "是 -> 用 due to / because of，不用 according to。",
+      });
+    } else {
+      questions.push({
+        question: "Is the next phrase a source, such as a report, news item, doctor, map, data, or email?",
+        answer: "Yes -> use according to. It means as stated by / based on that source.",
+      });
+      questions.push({
+        question: "Is the next phrase a plan, rule, policy, contract, standard, or tradition?",
+        answer: "Yes -> use according to. It means following that plan, rule, or standard.",
+      });
+      questions.push({
+        question: "Are you expressing your own personal opinion?",
+        answer: "Yes -> use in my opinion / I think, not according to me.",
+      });
+      questions.push({
+        question: "Are you only naming the topic?",
+        answer: "Yes -> use about, not according to.",
+      });
+      questions.push({
+        question: "Are you explaining the cause or reason?",
+        answer: "Yes -> use due to / because of, not according to.",
+      });
+    }
   } else {
+    // Generic fallback for prepositions not handled above
     const a = primaryContrast ?? "in";
     const b = secondaryContrast ?? "over";
     if (activeLocale === "zh-CN") {

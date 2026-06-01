@@ -1,12 +1,13 @@
 import type { LocalizedPrepositionContent } from "../../shared/types";
 
 const content: LocalizedPrepositionContent = {
-  meaning: "according to：根据某个来源、规则、计划或某人的说法。",
-  cardMeaning: "according to：根据…… / 按照……所说。",
+  meaning:
+    "according to：核心是“与……一致”。according 来自 accord（达成一致），to 表示目标；接消息来源时，表示“与该来源的说法一致”，即“据……所说 / 据……报道”；接计划、规则或标准时，表示“与该计划/标准一致”，即“按照 / 根据”。",
+  cardMeaning: "according to：与……一致；据……所说 / 按照……",
   tips: [
-    "according to 后面常接信息来源：according to the report / according to my doctor。",
-    "它也可以表示“按规则/按计划”：according to policy / according to schedule。",
-    "表达个人意见时，英语通常说 in my opinion，不常说 according to me。",
+    "according 来自 accord（达成一致），to 指向目标，所以 according to 的底层感觉是“与某个来源、计划或标准一致”。",
+    "后面接消息来源时：according to the report / according to my doctor，意思是“据报告 / 据医生说”。",
+    "后面接计划、规则、标准时：according to plan / according to policy / according to the rules，意思是“按计划 / 按规定 / 按规则”。",
   ],
   examples: [
     {
@@ -54,41 +55,60 @@ const content: LocalizedPrepositionContent = {
   },
   comparison: {
     summary:
-      "according to 的核心是“以某个来源/规则为依据”。最容易混的是 by（方式/依规）和 about（关于某个话题）。",
+      "according to 不是“关于”、不是“因为”，也通常不表达“我个人觉得”。它只是在说：这句话或做法与哪个外部来源、计划、规则或标准一致。",
     differences: [
       {
-        term: "by",
-        description: "by 更常强调方式或遵守规则（pay by card / play by the rules）；according to 强调信息来源或判断依据。",
+        term: "in my opinion",
+        description:
+          "in my opinion 用来表达自己的看法；according to 通常引出外部来源，不用来表达“我个人觉得”。",
         examples: [
           {
-            term: "by",
-            sentence: "Please pay by card.",
-            translation: "请刷卡支付。"
+            term: "in my opinion",
+            sentence: "In my opinion, this route is better.",
+            translation: "在我看来，这条路线更好。",
           },
           {
             term: "according to",
-            sentence: "According to the bill, service is included.",
-            translation: "根据账单，服务费已经包含在内。"
-          }
-        ]
+            sentence: "According to the map, this route is shorter.",
+            translation: "根据地图，这条路线更短。",
+          },
+        ],
       },
       {
         term: "about",
-        description: "about 引出话题内容；according to 引出“依据谁/依据什么”。",
+        description:
+          "about 引出话题内容；according to 引出信息来源、依据、计划或标准。",
         examples: [
           {
             term: "about",
             sentence: "This book is about climate change.",
-            translation: "这本书是关于气候变化的。"
+            translation: "这本书是关于气候变化的。",
           },
           {
             term: "according to",
             sentence: "According to this book, climate change is accelerating.",
-            translation: "根据这本书的说法，气候变化正在加速。"
-          }
-        ]
-      }
-    ]
+            translation: "根据这本书的说法，气候变化正在加速。",
+          },
+        ],
+      },
+      {
+        term: "due to",
+        description:
+          "due to 引出原因；according to 引出信息来源、规则、计划或标准。",
+        examples: [
+          {
+            term: "due to",
+            sentence: "The delay was due to heavy traffic.",
+            translation: "延误是因为交通拥堵。",
+          },
+          {
+            term: "according to",
+            sentence: "According to the traffic report, the road is closed.",
+            translation: "根据交通报告，这条路封闭了。",
+          },
+        ],
+      },
+    ],
   },
   collocationGroups: [
     {
@@ -156,16 +176,17 @@ const content: LocalizedPrepositionContent = {
       explanation: "according to plan 表示“按计划进行”。"
     },
     {
-      prompt: "___ me, the best route is the quiet one.",
-      options: ["In my opinion", "According to", "During"],
-      answer: "In my opinion",
-      explanation: "表达个人看法时更常用 in my opinion，而不是 according to me。"
+      prompt: "___ the traffic report, the bridge is closed.",
+      options: ["According to", "Due to", "About"],
+      answer: "According to",
+      explanation: "traffic report 是信息来源，不是原因或话题，所以用 according to。",
     }
   ],
   faq: [
     {
       question: "according to 的核心意思是什么？",
-      answer: "它把一句话或一个安排和某个来源、规则、依据联系起来。"
+      answer:
+        "核心是“与……一致”：与来源的说法一致，就是“据……所说”；与计划、规则或标准一致，就是“按照 / 根据”。"
     },
     {
       question: "according to 可以接人吗？",

@@ -2,12 +2,12 @@ import type { LocalizedPrepositionContent } from "../../shared/types";
 
 const content: LocalizedPrepositionContent = {
   meaning:
-    "according to: based on a source, rule, report, plan, or someone's statement.",
-  cardMeaning: "according to: based on / as stated by.",
+    "according to: in agreement with a source, rule, report, plan, or standard.",
+  cardMeaning: "according to: in agreement with / as stated by.",
   tips: [
-    "Use according to before a source: according to the report / according to my doctor.",
-    "It can also mean following a rule or plan: according to policy / according to schedule.",
-    "For personal opinion, English usually prefers in my opinion, not according to me.",
+    "The core idea is agreement: the statement or action matches a source, rule, plan, or standard.",
+    "Before a source, it means as stated by: according to the report / according to my doctor.",
+    "Before a rule, plan, or standard, it means following it: according to policy / according to schedule.",
   ],
   examples: [
     {
@@ -55,27 +55,27 @@ const content: LocalizedPrepositionContent = {
   },
   comparison: {
     summary:
-      "According to links information or action to a source or rule. Learners often mix it with by (method/compliance) and about (topic).",
+      "According to is not about the topic, not about the cause, and it is usually not your personal opinion. It simply tells you which external source, plan, rule, or standard the statement agrees with.",
     differences: [
       {
-        term: "by",
+        term: "in my opinion",
         description:
-          "By often highlights method or compliance (pay by card, play by the rules). According to highlights the source or basis for a statement or arrangement.",
+          "In my opinion is for your own view. According to usually points to an external source, not your personal opinion.",
         examples: [
           {
-            term: "by",
-            sentence: "Please pay by card.",
+            term: "in my opinion",
+            sentence: "In my opinion, this route is better.",
           },
           {
             term: "according to",
-            sentence: "According to the bill, service is included.",
+            sentence: "According to the map, this route is shorter.",
           },
         ],
       },
       {
         term: "about",
         description:
-          "About introduces a topic. According to introduces the source or rule behind a statement.",
+          "About introduces the topic. According to introduces the source, basis, plan, or standard.",
         examples: [
           {
             term: "about",
@@ -84,6 +84,21 @@ const content: LocalizedPrepositionContent = {
           {
             term: "according to",
             sentence: "According to this book, climate change is accelerating.",
+          },
+        ],
+      },
+      {
+        term: "due to",
+        description:
+          "Due to introduces a cause or reason. According to introduces a source, rule, plan, or standard.",
+        examples: [
+          {
+            term: "due to",
+            sentence: "The delay was due to heavy traffic.",
+          },
+          {
+            term: "according to",
+            sentence: "According to the traffic report, the road is closed.",
           },
         ],
       },
@@ -160,18 +175,18 @@ const content: LocalizedPrepositionContent = {
         "According to plan means 'in the way the plan said it would happen'.",
     },
     {
-      prompt: "___ me, the best route is the quiet one.",
-      options: ["In my opinion", "According to", "During"],
-      answer: "In my opinion",
+      prompt: "___ the traffic report, the bridge is closed.",
+      options: ["According to", "Due to", "About"],
+      answer: "According to",
       explanation:
-        "For personal opinion, English normally says in my opinion, not according to me.",
+        "The traffic report is the source of the information, so according to is correct.",
     },
   ],
   faq: [
     {
       question: "What is the core idea of according to?",
       answer:
-        "It points to the source, rule, or basis behind what you say.",
+        "It means that a statement or action is in agreement with a source, rule, plan, or standard.",
     },
     {
       question: "Can according to be used with people?",
